@@ -1,0 +1,39 @@
+{
+  "server": {
+    "api": {
+      "host": "localhost",
+      "port": "8080"
+    },
+    "run": {
+      "path": "",
+      "host": "localhost",
+      "port": "8080"  
+    }
+  },
+  "database": {
+    "cloudant": {
+      "url": ""
+    }
+  },
+  "auth": {
+    "macPrefix": "",
+    "providers": {
+      "github": {
+        "clientID": "74387y8",
+        "clientSecret": "kjksd787"
+      },
+      "dropbox": {
+        "clientID": "74387y8",
+        "clientSecret": "kjksd787"
+      },
+      "google": {
+        "clientID": "74387y8",
+        "clientSecret": "kjksd787"
+      },
+      "twitter": {
+        "consumerKey": "74387y8",
+        "consumerSecret": "kjksd787"
+      }
+    }
+  }
+}

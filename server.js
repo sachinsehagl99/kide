@@ -7,7 +7,7 @@ var Config = require("./config." + (process.env.NODE_ENV || "development"));
 var api = new Hapi.Server(Config.server.api.host, Config.server.api.port, { cors: true });
 
 api.pack.require({
-  "./servers/api": { config: Config },
+  //"./servers/api": { config: Config },
   "./servers/run": { config: Config },
   "./servers/web": { config: Config },
 }, function (err) {
