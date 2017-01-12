@@ -13,7 +13,7 @@ angular.module("plunker.directive.previewer", [
 ])
 
 .directive("plunkerPreviewer", ["$rootScope", "$timeout", "$interval", "$http", "commander", "project", "settings", "oplog", "config", function ($rootScope, $timeout, $interval, $http, commander, project, settings, oplog, config) {
-  var previewUrl = "http://localhost:8080/previews/" + genid();
+  var previewUrl = config.url.run + "/previews/" + genid();
   var updateStream = oplog.local.fork().filter(function (e) { return settings.previewer.autoRefresh && started && (active || previewWindow); });
   var previewWindow = null;
   var checkPreviewWindowInterval = null;
