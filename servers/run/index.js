@@ -172,7 +172,17 @@ exports.register = function (plugin, options, next) {
       }
     }
   });
-  
+ 
+  plugin.route({
+    method: "GET",
+    path: "/previews/{previewId}/media/{imageId}",
+    config: {
+      handler: function (request, reply) {
+        reply.file("./media/"+request.params.imageId); 
+      }
+    }
+  });
+ 
   plugin.route({
     method: "GET",
     path: basePath + "/previews/{previewId}/{path*}",
