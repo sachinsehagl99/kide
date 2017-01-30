@@ -4,7 +4,8 @@
       <div class="tree-inner" ng-click="collapsed=!collapsed">
         <i class="tree-icon fa-li fa fa-folder{{!collapsed && '-open' || ''}}"></i>
         <span class="tree-filename" >{{entry.filename}} <span class="label label-default" ng-show="collapsed" ng-bind="entry.children.length"></span></span>
-        <div class="tree-actions">
+        <div class="tree-actions"> 
+          <button class="btn btn-xs btn-link tree-add-file" tooltip="Create directory" tooltip-append-to-body="true" ng-click="hello($event, entry)"><i class="fa fa-folder"></i></button>
           <button class="btn btn-xs btn-link tree-add-file" tooltip="Create directory" tooltip-append-to-body="true" ng-click="createDir($event, entry)"><i class="fa fa-folder"></i></button>
           <button class="btn btn-xs btn-link tree-add-dir" tooltip="Create file" tooltip-append-to-body="true" ng-click="createFile($event, entry)"><i class="fa fa-file"></i></button>
           <button class="btn btn-xs btn-link tree-remove-entry" tooltip="Delete this directory and all its files" tooltip-append-to-body="true" ng-click="remove($event, entry)" ng-if="!entry.isRoot"><i class="fa fa-times"></i></button>

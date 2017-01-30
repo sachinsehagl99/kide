@@ -16,10 +16,11 @@ angular.module("plunker.service.notifier", [
 .run(["$templateCache", function ($templateCache) {
   $templateCache.put("partials/modals/confirm.html", Fs.readFileSync(__dirname + "/../../../public/partials/modals/confirm.html", "utf8"));
   $templateCache.put("partials/modals/prompt.html", Fs.readFileSync(__dirname + "/../../../public/partials/modals/prompt.html", "utf8"));
+  $templateCache.put("partials/modals/uploader.html", Fs.readFileSync(__dirname + "/../../../public/partials/modals/uploader.html", "utf8"));
 }])
 
 
-.factory("notifier", ["$rootScope", "$q", "$modal", "growl", function ($rootScope, $q, $modal, growl) {
+.factory("notifier", ["$rootScope", "$q", "$modal", "growl", "config", function ($rootScope, $q, $modal, growl, config) {
   var notifier = {
     confirm: function (question, answer) {
       return $modal.open({
@@ -33,6 +34,29 @@ angular.module("plunker.service.notifier", [
       return $modal.open({
         templateUrl: "partials/modals/prompt.html",
         scope: createScope({question: question, answer: initial || ""})
+      }).result.catch(function (e) {
+        return false;
+      });
+    },
+    fileUploader: function () {
+      return $modal.open({
+        templateUrl: "partials/modals/uploader.html",
+	controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+	  $scope.fileUpload = function (){
+            var f = document.getElementById('file').files[0];
+	    var data = new FormData();
+	    data.append('file', f);
+            var postUrl = config.url.run + "/media/submit";
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("POST", postUrl, true);
+	    xhr.onload = function (e) {
+	      if (this.status == 200) {
+                $modalInstance.close(f.name);
+	      }
+	    };
+	    xhr.send(data);
+	  }
+	}]
       }).result.catch(function (e) {
         return false;
       });

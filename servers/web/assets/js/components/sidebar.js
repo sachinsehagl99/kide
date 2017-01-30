@@ -26,7 +26,7 @@ angular.module("plunker.component.sidebar", [
   return {
     restrict: "E",
     replace: true,
-    template: Fs.readFileSync(__dirname + "/sidebar/sidebar.html", "utf8"),
+    templateUrl: "components/sidebar/sidebar.html",
     controller: require("./sidebar/sidebarController"),
     controllerAs: "sidebar"
   };

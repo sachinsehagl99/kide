@@ -23,7 +23,7 @@ angular.module("plunker.directive.fileTree", [
       tree: "=",
       closed: "@"
     },
-    template: Fs.readFileSync(__dirname + "/fileTree.html", "utf8"),
+    templateUrl: "components/sidebar/tree/fileTree.html",
     link: function($scope, $element, $attrs){
       var openRight = false
         , openDown = false;
@@ -98,6 +98,16 @@ angular.module("plunker.directive.fileTree", [
             }
           });
         }
+      };
+
+      $scope.hello = function($event, parent) {
+        $event.stopPropagation();
+        notifier.fileUploader().then(function (filename){
+          console.log(filename);
+          if (filename) {
+            commander.execute("file.create", {parent: parent, filename: filename});
+          }
+        }); 
       };
 
       $scope.createDir = function ($event, parent) {

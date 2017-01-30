@@ -9,6 +9,7 @@ var Crypto = require('crypto');
 var Marked = require("marked");
 var Request = require("request");
 var _ = require('lodash');
+var fs = require("fs");
 
 var internals = {
   compilers: [
@@ -172,13 +173,49 @@ exports.register = function (plugin, options, next) {
       }
     }
   });
+
+  plugin.route({ 
+    method: 'POST', 
+    path: '/media/submit',
+    config: {
+        payload: {
+            output: 'stream',
+            parse: true,
+            allow: 'multipart/form-data'
+        },
+
+        handler: function (request, reply) {
+            var data = request.payload;
+            if (data.file) {
+                var name = data.file.hapi.filename;
+                var path = __dirname + "/uploads/" + name;
+                var file = fs.createWriteStream(path);
+
+                file.on('error', function (err) { 
+                    console.error(err) 
+                });
+
+                data.file.pipe(file);
+
+                data.file.on('end', function (err) { 
+                    var ret = {
+                        filename: data.file.hapi.filename,
+                        headers: data.file.hapi.headers
+                    }
+                    reply(JSON.stringify(ret));
+                })
+            }
+
+        }
+    } 
+  });
  
   plugin.route({
     method: "GET",
-    path: "/previews/{previewId}/media/{imageId}",
+    path: "/previews/{previewId}/uploads/{imageId}",
     config: {
       handler: function (request, reply) {
-        reply.file("./media/"+request.params.imageId); 
+        reply.file(__dirname + "/uploads/" + request.params.imageId); 
       }
     }
   });

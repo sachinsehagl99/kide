@@ -795,10 +795,11 @@ angular.module("plunker.service.notifier", [
 .run(["$templateCache", function ($templateCache) {
   $templateCache.put("partials/modals/confirm.html", "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-hidden=\"true\">&times;</button>\n  <h3 ng-bind=\"question\"></h3>\n</div>\n<div class=\"modal-body\">\n  <button class=\"btn btn-primary\" ng-click=\"$close(answer)\" autofocus>Confirm</button>\n  <button class=\"btn btn-default\" ng-click=\"$dismiss()\">Cancel</button>\n</div>");
   $templateCache.put("partials/modals/prompt.html", "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-hidden=\"true\">&times;</button>\n  <h3 ng-bind=\"question\"></h3>\n</div>\n<div class=\"modal-body\">\n  <form ng-submit=\"$close(answer)\">\n    <input type=\"text\" id=\"answer\" class=\"form-control\" ng-model=\"answer\" autofocus autoselect>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button class=\"btn btn-primary\" ng-click=\"$close(answer)\">Confirm</button>\n  <button class=\"btn btn-default\" ng-click=\"$dismiss()\">Cancel</button>\n</div>");
+  $templateCache.put("partials/modals/uploader.html", "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"$dismiss()\" aria-hidden=\"true\">&times;</button>\n</div>\n<div class=\"modal-body\">\n  <input type=\"file\" id=\"file\" name=\"file\"/>\n  <button class=\"btn btn-primary\" ng-click=\"fileUpload()\">upload</button>\n</div>\n");
 }])
 
 
-.factory("notifier", ["$rootScope", "$q", "$modal", "growl", function ($rootScope, $q, $modal, growl) {
+.factory("notifier", ["$rootScope", "$q", "$modal", "growl", "config", function ($rootScope, $q, $modal, growl, config) {
   var notifier = {
     confirm: function (question, answer) {
       return $modal.open({
@@ -812,6 +813,30 @@ angular.module("plunker.service.notifier", [
       return $modal.open({
         templateUrl: "partials/modals/prompt.html",
         scope: createScope({question: question, answer: initial || ""})
+      }).result.catch(function (e) {
+        return false;
+      });
+    },
+    fileUploader: function () {
+      return $modal.open({
+        templateUrl: "partials/modals/uploader.html",
+	controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
+	  $scope.fileUpload = function (){
+            var f = document.getElementById('file').files[0];
+	    var data = new FormData();
+	    data.append('file', f);
+            var postUrl = config.url.run + "/media/submit";
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("POST", postUrl, true);
+	    xhr.onload = function (e) {
+	      if (this.status == 200) {
+		console.log("Form sent!");
+                $modalInstance.close(f.name);
+	      }
+	    };
+	    xhr.send(data);
+	  }
+	}]
       }).result.catch(function (e) {
         return false;
       });
@@ -846,6 +871,7 @@ angular.module("plunker.service.notifier", [
     }
   };
 }]);
+
 },{"../../vendor/angular-growl/angular-growl":35,"../../vendor/ui-bootstrap/ui-bootstrap":42}],8:[function(require,module,exports){
 var angular = window.angular;
 
@@ -2394,11 +2420,12 @@ angular.module("plunker.component.sidebar", [
   return {
     restrict: "E",
     replace: true,
-    template: "<div class=\"plunker-sidebar\">\n  <file-tree tree=\"sidebar.tree\"></file-tree>\n  <ul class=\"file-tree plunker-revisions fa-ul\" ng-show=\"sidebar.project.isSaved()\" ng-init=\"showHistory = false; maxRevisions = 5\">\n    <li>\n      <div class=\"tree-entry tree-folder\" ng-class=\"{collapsed: !showHistory}\">\n        <div class=\"tree-inner\" ng-click=\"showHistory = !showHistory\">\n          <i class=\"tree-icon fa fa-li fa-history\"></i>\n          <span class=\"tree-filename\">History <span class=\"label label-default\" ng-bind=\"sidebar.project.plunk.revisions.length | number\" ng-show=\"!showHistory && sidebar.project.plunk.revisions\"></span></span>\n        </div>\n        <div class=\"tree-bg\"></div>\n      </div>\n      <ul class=\"file-tree fa-ul\" ng-show=\"showHistory\">\n        <li ng-repeat=\"revision in sidebar.project.plunk.revisions | orderBy:'-created_at' | limitTo:maxRevisions\">\n          <div class=\"tree-entry tree-file\">\n            <div class=\"tree-inner\" ng-switch=\"revision.event\">\n              <i class=\"tree-icon fa fa-li fa-save\" ng-switch-when=\"update\"></i>\n              <i class=\"tree-icon fa fa-li fa-asterisk\" ng-switch-when=\"create\"></i>\n              <i class=\"tree-icon fa fa-li fa-code-fork\" ng-switch-when=\"fork\"></i>\n              <span class=\"tree-filename\">\n                <a class=\"user-ref\" ng-bind=\"revision.user.username\"></a>\n                <span ng-bind=\"{update: 'updated', 'create': 'created', fork: 'forked'}[revision.event]\"></span>\n                <a class=\"tree-ref\" url-state=\"{tree: revision.tree}\" ng-bind=\"revision.tree | slice:10\"></a>\n                <span class=\"reltime\" ng-bind=\"revision.created_at | timeAgo\"></span>\n              </span>\n            </div>\n            <div class=\"tree-bg\"></div>\n          </div>\n        </li>\n        <li ng-if=\"sidebar.project.plunk.revisions.length > maxRevisions\">\n          <div class=\"tree-entry tree-file\">\n            <div class=\"tree-inner\" ng-click=\"$parent.maxRevisions = maxRevisions + 5\">\n              <i class=\"tree-icon fa fa-li fa-plus-square-o\"></i>\n              <span class=\"tree-filename\">Show more...</span>\n            </div>\n            <div class=\"tree-bg\"></div>\n          </div>\n        </li>\n      </ul>\n    </li>\n  </ul>\n  <ul class=\"file-tree plunker-collections fa-ul\" ng-show=\"sidebar.project.isSaved()\" ng-init=\"showCollections = false; maxCollections = 5\">\n    <li>\n      <div class=\"tree-entry tree-folder\" ng-class=\"{collapsed: !showCollections}\">\n        <div class=\"tree-inner\" ng-click=\"showCollections = !showCollections\">\n          <i class=\"tree-icon fa fa-li fa-hdd-o\"></i>\n          <span class=\"tree-filename\">Collections <span class=\"label label-default\" ng-bind=\"sidebar.project.plunk.collections.length | number\" ng-show=\"!showHistory && sidebar.project.plunk.collections\"></span></span>\n        </div>\n        <div class=\"tree-bg\"></div>\n      </div>\n      <ul class=\"file-tree fa-ul\" ng-show=\"showCollections\">\n        <li ng-repeat=\"coll in sidebar.project.plunk.collections | limitTo:maxCollections\">\n          <div class=\"tree-entry tree-file\">\n            <div class=\"tree-inner\" >\n              <i class=\"tree-icon fa fa-li fa-star-o\"></i>\n              <span class=\"tree-filename\">\n                <a ng-href=\"/{{coll}}\" target=\"_self\" ng-bind=\"coll\"></a>\n              </span>\n            </div>\n            <div class=\"tree-bg\"></div>\n          </div>\n        </li>\n        <li ng-if=\"sidebar.project.plunk.revisions.length > maxCollections\">\n          <div class=\"tree-entry tree-file\">\n            <div class=\"tree-inner\" ng-click=\"$parent.maxCollections = maxCollections + 5\">\n              <i class=\"tree-icon fa fa-li fa-plus-square-o\"></i>\n              <span class=\"tree-filename\">Show more...</span>\n            </div>\n            <div class=\"tree-bg\"></div>\n          </div>\n        </li>\n      </ul>\n    </li>\n  </ul>\n</div>",
+    templateUrl: "components/sidebar/sidebar.html",
     controller: require("./sidebar/sidebarController"),
     controllerAs: "sidebar"
   };
 }]);
+
 },{"../../vendor/angular-timeago/angular-timeago":36,"./commander":2,"./project":11,"./sidebar/sidebarController":18,"./sidebar/tree/fileTree":19}],18:[function(require,module,exports){
 module.exports = ["project", function (project) {
   this.tree = {root: project.root};
@@ -2430,7 +2457,7 @@ angular.module("plunker.directive.fileTree", [
       tree: "=",
       closed: "@"
     },
-    template: "<ul class=\"file-tree fa-ul\">\r\n  <li ng-repeat=\"entry in tree | toArray | orderBy:'filename'\">\r\n    <div class=\"tree-entry tree-folder\" ng-if=\"entry.isDirectory()\" ng-class=\"{collapsed: collapsed}\">\r\n      <div class=\"tree-inner\" ng-click=\"collapsed=!collapsed\">\r\n        <i class=\"tree-icon fa-li fa fa-folder{{!collapsed && '-open' || ''}}\"></i>\r\n        <span class=\"tree-filename\" >{{entry.filename}} <span class=\"label label-default\" ng-show=\"collapsed\" ng-bind=\"entry.children.length\"></span></span>\r\n        <div class=\"tree-actions\">\r\n          <button class=\"btn btn-xs btn-link tree-add-file\" tooltip=\"Create directory\" tooltip-append-to-body=\"true\" ng-click=\"createDir($event, entry)\"><i class=\"fa fa-folder\"></i></button>\r\n          <button class=\"btn btn-xs btn-link tree-add-dir\" tooltip=\"Create file\" tooltip-append-to-body=\"true\" ng-click=\"createFile($event, entry)\"><i class=\"fa fa-file\"></i></button>\r\n          <button class=\"btn btn-xs btn-link tree-remove-entry\" tooltip=\"Delete this directory and all its files\" tooltip-append-to-body=\"true\" ng-click=\"remove($event, entry)\" ng-if=\"!entry.isRoot\"><i class=\"fa fa-times\"></i></button>\r\n        </div>\r\n      </div>\r\n      <div class=\"tree-bg\"></div>\r\n      <file-tree-recurse tree=\"entry.children\"></file-tree-recurse>\r\n    </div>\r\n    <div class=\"tree-entry tree-file\" ng-if=\"entry.isFile()\" ng-class=\"{active: isActive(entry), open: isOpen(entry)}\">\r\n      <div class=\"tree-inner\" ng-click=\"open($event, entry)\" ng-dblclick=\"rename($event, entry)\">\r\n        <i class=\"tree-icon fa-li fa fa-file-text{{!isOpen(entry) && '-o' || ''}}\"></i>\r\n        <div class=\"tree-filename\" ng-bind=\"entry.filename\"></div>\r\n        <div class=\"tree-actions\">\r\n          <button class=\"btn btn-xs btn-link tree-open-down\" tooltip=\"Open in new space below (CTRL-Click)\" tooltip-append-to-body=\"true\" ng-hide=\"isOpen(entry)\" ng-click=\"open($event, entry, {split: 'parent'})\"><i class=\"fa fa-caret-square-o-down\"></i></button>\r\n          <button class=\"btn btn-xs btn-link tree-open-right\" tooltip=\"Open in new space to the right (SHIFT-Click)\" tooltip-append-to-body=\"true\" ng-hide=\"isOpen(entry)\" ng-click=\"open($event, entry, {split: 'child'})\"><i class=\"fa fa-caret-square-o-right\"></i></button>\r\n          <button class=\"btn btn-xs btn-link tree-remove-entry\" tooltip=\"Delete this file\" tooltip-append-to-body=\"true\" ng-click=\"remove($event, entry)\"><i class=\"fa fa-times\"></i></button>\r\n        </div>\r\n      </div>\r\n      <div class=\"tree-bg\"></div>\r\n    </div>\r\n  </li>\r\n</ul>\r\n",
+    templateUrl: "components/sidebar/tree/fileTree.html",
     link: function($scope, $element, $attrs){
       var openRight = false
         , openDown = false;
@@ -2505,6 +2532,16 @@ angular.module("plunker.directive.fileTree", [
             }
           });
         }
+      };
+
+      $scope.hello = function($event, parent) {
+        $event.stopPropagation();
+        notifier.fileUploader().then(function (filename){
+          console.log(filename);
+          if (filename) {
+            commander.execute("file.create", {parent: parent, filename: filename});
+          }
+        }); 
       };
 
       $scope.createDir = function ($event, parent) {
