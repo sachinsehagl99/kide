@@ -2,12 +2,12 @@
   "server": {
     "api": {
       "host": "localhost",
-      "port": "8080"
+      "port": "80"
     },
     "run": {
       "path": "",
       "host": "localhost",
-      "port": "8080"  
+      "port": "80"  
     }
   },
   "database": {
