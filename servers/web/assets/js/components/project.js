@@ -755,7 +755,7 @@ angular.module("plunker.project", [
 .value("defaultProjectFiles", [{
     type: "file",
     filename: "index.html",
-    contents: '<!DOCTYPE html>\n<html>\n\n<head>\n  <link rel="stylesheet" href="lib/style.css">\n  <script src="lib/script.js"></script>\n</head>\n\n<body>\n  <h1>Hello Plunker</h1>\n</body>\n\n</html>'
+    contents: '<!DOCTYPE html>\n<html>\n\n<head>\n  <link rel="stylesheet" href="lib/style.css">\n  <script src="lib/script.js"></script>\n</head>\n\n<body>\n  <h1>Hello cuboid.io</h1>\n</body>\n\n</html>'
   },{
     type: "directory",
     filename: "lib",
