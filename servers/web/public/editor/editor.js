@@ -830,7 +830,6 @@ angular.module("plunker.service.notifier", [
 	    xhr.open("POST", postUrl, true);
 	    xhr.onload = function (e) {
 	      if (this.status == 200) {
-		console.log("Form sent!");
                 $modalInstance.close(f.name);
 	      }
 	    };

@@ -1,7 +1,7 @@
 {
   "url": {
-    "api": "http://localhost:80",
-    "run": "http://localhost:80",
-    "web": "http://localhost:80"
+    "api": "http://localhost:8080",
+    "run": "http://localhost:8080",
+    "web": "http://localhost:8080"
   }
 }

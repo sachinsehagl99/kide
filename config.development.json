@@ -1,13 +1,13 @@
 {
   "server": {
     "api": {
-      "host": "0.0.0.0",
-      "port": "80"
+      "host": "127.0.0.1",
+      "port": "8080"
     },
     "run": {
       "path": "",
-      "host": "0.0.0.0",
-      "port": "80"  
+      "host": "127.0.0.1",
+      "port": "8080"  
     }
   },
   "database": {
@@ -28,7 +28,8 @@
       },
       "google": {
         "clientID": "721383437750-gkpam2jrasavf8qduj5e54kn1l094ri9.apps.googleusercontent.com",
-        "clientSecret": "xsHhfOd_-paFPksucFrXwmbi"
+        "clientSecret": "xsHhfOd_-paFPksucFrXwmbi",
+        "callbackURL": "localhost"
       },
       "twitter": {
         "consumerKey": "AmJMqcNknaL7SdrtujTHjwt2X",
