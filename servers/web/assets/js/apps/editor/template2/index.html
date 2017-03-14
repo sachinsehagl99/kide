@@ -10,28 +10,11 @@
   </style>
 </head><body>
 
-  <script src="cordova.js"></script>
-
   <script src="stage.cordova.js"></script>
 
   <script src="app.js"></script>
 
-  <script src="qunit.js></script>
+  <script src="qunit.js"></script>
 
-  <script>
-
-    window.onload = function () {
-	function receiveMessage(e) {
-            QUnit.testDone(function (result) {
-               event.source.postMessage(result, e.origin);
-            });
-            QUnit.test( "hello test", function( assert ) {
-                assert.ok( 1 == "1", "Passed!" );
-            });
-
-         
-	window.addEventListener('message', receiveMessage);
-    }
-
-  </script>
+  <script src="test.js"></script>
 </body></html>

@@ -51,9 +51,28 @@ angular.module('plunker', [
   $rootScope.$on("project.open.error", success("Failed to open project"));
   $rootScope.$on("project.destroy.error", error("Failed to destroy project"));
   $rootScope.$on("project.openTree.error", error("Failed to open tree"));
+
+  $rootScope.$on("preview.toggle.success", function () {
+
+
+    function receiveMessage(e) {
+      alert(JSON.stringify(e.data));
+    }
+
+    window.addEventListener( "message", receiveMessage);
+    setTimeout(function () {
+
+      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      receiver.postMessage("Hello There!", window.location.origin); 
+    }, 2000);
+
+  });
+
 }])
 
 .controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier", function ($scope, $location, urlState, commander, project, notifier) {
+
+
   commander.addCommand({
     name: "editor.reset",
     handler: function () {
@@ -79,6 +98,16 @@ angular.module('plunker', [
               type: "file",
               filename: "textures.js",
               contents: Fs.readFileSync(__dirname + "/editor/template2/textures.js", "utf8")
+            },
+            {
+              type: "file",
+              filename: "qunit.js",
+              contents: Fs.readFileSync(__dirname + "/editor/template2/qunit.js", "utf8")
+            },
+            {
+              type: "file",
+              filename: "test.js",
+              contents: Fs.readFileSync(__dirname + "/editor/template2/test.js", "utf8")
             }
           ]
         });
