@@ -212,10 +212,10 @@ exports.register = function (plugin, options, next) {
  
   plugin.route({
     method: "GET",
-    path: "/previews/{previewId}/uploads/{imageId}",
+    path: "/previews/{previewId}/media/{imageId}",
     config: {
       handler: function (request, reply) {
-        reply.file(__dirname + "/uploads/" + request.params.imageId); 
+        reply.file(__dirname + "/media/" + request.params.imageId); 
       }
     }
   });

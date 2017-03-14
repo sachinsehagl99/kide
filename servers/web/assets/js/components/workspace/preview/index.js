@@ -70,13 +70,13 @@ angular.module("plunker.pane.preview", [
   panes.registerHandler("preview", {
     template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
     link: function ($scope) {
-      $scope.settings = settings;
+/*      $scope.settings = settings;*/
 
-      $scope.$watch("settings.previewer.autoRefresh", function (autoRefresh, prevAutoRefresh) {
-        if (autoRefresh && prevAutoRefresh === false) {
-          commander.execute("preview.refresh");
-        }
-      });
+      //$scope.$watch("settings.previewer.autoRefresh", function (autoRefresh, prevAutoRefresh) {
+        //if (autoRefresh && prevAutoRefresh === false) {
+          //commander.execute("preview.refresh");
+        //}
+      /*});*/
     }
   });
   

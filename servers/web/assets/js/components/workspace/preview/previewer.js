@@ -14,7 +14,7 @@ angular.module("plunker.directive.previewer", [
 
 .directive("plunkerPreviewer", ["$rootScope", "$timeout", "$interval", "$http", "commander", "project", "settings", "oplog", "config", function ($rootScope, $timeout, $interval, $http, commander, project, settings, oplog, config) {
   var previewUrl = config.url.run + "/previews/" + genid();
-  var updateStream = oplog.local.fork().filter(function (e) { return settings.previewer.autoRefresh && started && (active || previewWindow); });
+  //var updateStream = oplog.local.fork().filter(function (e) { return settings.previewer.autoRefresh && started && (active || previewWindow); });
   var previewWindow = null;
   var checkPreviewWindowInterval = null;
   var debouncedUpdateStream = null;
@@ -27,16 +27,16 @@ angular.module("plunker.directive.previewer", [
     handler: refreshPreviews
   });
 
-  $rootScope.$watch(function () { return settings.previewer.refreshInterval; }, function (refreshInterval) {
-    if (debouncedUpdateStream) {
-      updateStream._removeConsumer(debouncedUpdateStream);
-    }
+  /*$rootScope.$watch(function () { return settings.previewer.refreshInterval; }, function (refreshInterval) {*/
+    //if (debouncedUpdateStream) {
+      //updateStream._removeConsumer(debouncedUpdateStream);
+    //}
 
-    debouncedUpdateStream = updateStream.debounce(refreshInterval).each(function () {
-      refreshPreviewJson();
-      refreshPreviewWindow();
-    });
-  });
+    //debouncedUpdateStream = updateStream.debounce(refreshInterval).each(function () {
+      //refreshPreviewJson();
+      //refreshPreviewWindow();
+    //});
+  /*});*/
 
   var directive = {
     restrict: "E",

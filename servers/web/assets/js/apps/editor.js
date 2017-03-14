@@ -63,18 +63,23 @@ angular.module('plunker', [
             {
               type: "file",
               filename: "index.html",
-              contents: Fs.readFileSync(__dirname + "/editor/template/index.html", "utf8")
+              contents: Fs.readFileSync(__dirname + "/editor/template2/index.html", "utf8")
             },
             {
               type: "file",
-              filename: "style.css",
-              contents: Fs.readFileSync(__dirname + "/editor/template/style.css", "utf8")
+              filename: "app.js",
+              contents: Fs.readFileSync(__dirname + "/editor/template2/app.js", "utf8")
             },
             {
               type: "file",
-              filename: "script.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template/script.js", "utf8")
+              filename: "stage.cordova.js",
+              contents: Fs.readFileSync(__dirname + "/editor/template2/stage.cordova.js", "utf8")
             },
+            {
+              type: "file",
+              filename: "textures.js",
+              contents: Fs.readFileSync(__dirname + "/editor/template2/textures.js", "utf8")
+            }
           ]
         });
       });
