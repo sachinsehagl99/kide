@@ -7,7 +7,7 @@ var Inject = require("gulp-inject");
 var Watchify = require("watchify");
 var Source = require("vinyl-source-stream");
 var Sequence = require("run-sequence");
-
+var browserify = require('gulp-browserify');
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -31,6 +31,15 @@ Gulp.task("editor:styles:build", [ "editor:styles:clean" ], function () {
 });
 
 Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
+
+    // Single entry point to browserify 
+    //Gulp.src('./assets/js/apps/editor.js')
+        //.pipe(browserify({
+      //transform: ['coffeeify'],
+      //extensions: ['.coffee']
+        //}))
+        //.pipe(Gulp.dest('./public/editor'))
+
   var bundler = Watchify({
     entries: [
       "./assets/js/apps/editor.js"
@@ -47,7 +56,7 @@ Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
   function rebundle () {
     return bundler.bundle()
       .on("error", function (e) {
-        Gutil.log("Bundling error", e.message);
+	Gutil.log("Bundling error", e.message);
       })
       .pipe(Source("editor.js"))
       //.pipe(Rename(function (path) {
@@ -62,11 +71,6 @@ Gulp.task("editor:inject", function () {
     .pipe(Inject(Gulp.src([ "public/editor/*.js", "public/editor/*.css" ], { read: false }), {
       ignorePath: "/public",
       addRootSlash: true
-    }))
-    .pipe(Inject(Gulp.src("public/config.json"), {
-      transform: function (filepath, file) {
-        return '<script>angular.module("plunker.service.config", []).value("config",JSON.parse(atob("' + file.contents.toString("base64") + '")));</script>';
-      }
     }))
     .pipe(Gulp.dest("views"));
 });

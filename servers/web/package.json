@@ -28,17 +28,18 @@
     "handlebars": "^2.0.0-alpha.4"
   },
   "devDependencies": {
+    "brfs": "^1.1.1",
+    "coffeeify": "^0.6.0",
+    "gulp": "^3.6.2",
+    "gulp-browserify": "^0.5.1",
+    "gulp-inject": "^0.4.1",
+    "gulp-less": "^1.2.3",
+    "gulp-rev": "^0.4.0",
+    "gulp-rimraf": "^0.1.0",
+    "gulp-util": "^2.2.14",
     "passport-dropbox-oauth2": "~0.1.5",
     "run-sequence": "^0.3.6",
     "vinyl-source-stream": "^0.1.1",
-    "gulp-rimraf": "^0.1.0",
-    "gulp-util": "^2.2.14",
-    "gulp-rev": "^0.4.0",
-    "gulp-inject": "^0.4.1",
-    "gulp": "^3.6.2",
-    "gulp-less": "^1.2.3",
-    "watchify": "^0.10.1",
-    "coffeeify": "^0.6.0",
-    "brfs": "^1.1.1"
+    "watchify": "^0.10.1"
   }
 }

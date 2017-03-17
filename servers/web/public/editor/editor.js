@@ -3490,40 +3490,22 @@ var _ = require("lodash");
 module.exports =
 angular.module("plunker.pane.preview", [
   "ui.bootstrap",
-
   require("../../project").name,
   require("../../commander").name,
   require("../../settings").name,
   require("../../urlState").name,
-
-  require("../panes").name,
-  
+  require("../panes").name, 
   require("./previewer").name,
 ])
 
 .run(["$rootScope", "panes", "project", "commander", "settings", function ($rootScope, panes, project, commander, settings) {
   
-  //commander.addCommand({
-    //name: "preview.toggle",
-    //description: "Toggle the preview window",
-    //hotkeys: "Mod-Shift-Enter",
-    //handler: ["open", "workspace", togglePreview],
-    //defaults: { open: void 0 }
-  //});
-  
-  commander.addCommand({
+   commander.addCommand({
     name: "preview.open",
     description: "Open the preview window",
     handler: ["open", "workspace", openPreview],
     defaults: { open: true }
   });
-
-  //commander.addCommand({
-    //name: "preview.close",
-    //description: "Close the preview window",
-    //handler: ["open", "workspace", togglePreview],
-    //defaults: { open: false }
-  //});
 
   function openPreview (open, workspace) {
     var coords = workspace.getCoords('preview', 'preview');
@@ -3550,15 +3532,6 @@ angular.module("plunker.pane.preview", [
   
   panes.registerHandler("preview", {
     template: "<div class=\"pane-header\">\r\n  <div class=\"pane-title\" ng-click=\"workspace.activate(paneNum)\">Live preview</div>\r\n  <div class=\"pane-actions\">\r\n  \t<div class=\"pane-options\">\r\n\t  \t<button class=\"btn btn-xs btn-link\" ng-class=\"{active: showQRCode}\" ng-click=\"toggleQRCode()\" tooltip=\"Show QR code for preview link\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\"><i class=\"fa fa-qrcode\"></i></button>\r\n\t  \t<button class=\"btn btn-xs btn-link\" ng-class=\"{active: showPreviewWindow}\" ng-click=\"togglePreviewWindow()\" tooltip=\"Toggle the preview in a separate window\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\"><i class=\"fa fa-external-link-square\"></i></button>\r\n\t  \t<button class=\"btn btn-xs btn-link\" ng-class=\"{active: settings.previewer.autoRefresh}\" ng-click=\"settings.previewer.autoRefresh = !settings.previewer.autoRefresh\" tooltip=\"Toggle auto-refresh ({{settings.previewer.autoRefresh && 'enabled' || 'disabled'}})\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\"><i class=\"fa fa-refresh\"></i></button>\r\n\t  </div>\r\n    <button class=\"btn btn-xs btn-primary\" ng-click=\"workspace.activate(workspace.split(paneNum, true))\" tooltip=\"Split horizontally\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">|</button>\r\n    <button class=\"btn btn-xs btn-primary\" ng-click=\"workspace.activate(workspace.split(paneNum, false))\" tooltip=\"Split vertically\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">-</button>\r\n    <button class=\"btn btn-xs btn-danger\" ng-click=\"workspace.close(paneNum)\" tooltip=\"Close\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">X</button>\r\n  </div>\r\n</div>\r\n<div class=\"pane-content previewer\" ng-class=\"{qrcode: showQRCode}\" ng-click=\"workspace.activate(paneNum)\">\r\n\t<div class=\"qrcode-overlay\" ng-class=\"{active: showQRCode}\">\r\n\t\t<h3>Scan the QR code below to open the preview on your phone of tablet</h3>\r\n\t\t<p><a ng-href=\"{{previewUrl}}\" target=\"_blank\" ng-bind=\"previewUrl\"></a></p>\r\n\t\t<p><qrcode url=\"{{previewUrl}}\" width=\"256\" height=\"256\"></qrcode></p>\r\n\t</div>\r\n\t<plunker-previewer></plunker-previewer>\r\n</div>\r\n",
-    link: function ($scope) {
-/*      $scope.settings = settings;*/
-
-      //$scope.$watch("settings.previewer.autoRefresh", function (autoRefresh, prevAutoRefresh) {
-        //if (autoRefresh && prevAutoRefresh === false) {
-          //commander.execute("preview.refresh");
-        //}
-      /*});*/
-    }
   });
   
 }])
@@ -3583,7 +3556,7 @@ angular.module("plunker.pane.preview", [
       return coords ? "y" : null;
     },
     write: function (open) {
-      return commander.execute("preview.toggle", {open: open === "y"});
+      //return commander.execute("preview.toggle", {open: open === "y"});
     }
   });
 }])
@@ -3619,17 +3592,6 @@ angular.module("plunker.directive.previewer", [
     hotkeys: "Mod-Enter",
     handler: refreshPreviews
   });
-
-  /*$rootScope.$watch(function () { return settings.previewer.refreshInterval; }, function (refreshInterval) {*/
-    //if (debouncedUpdateStream) {
-      //updateStream._removeConsumer(debouncedUpdateStream);
-    //}
-
-    //debouncedUpdateStream = updateStream.debounce(refreshInterval).each(function () {
-      //refreshPreviewJson();
-      //refreshPreviewWindow();
-    //});
-  /*});*/
 
   var directive = {
     restrict: "E",

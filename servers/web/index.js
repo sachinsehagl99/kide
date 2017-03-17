@@ -14,8 +14,13 @@ var DropboxStrategy = require("passport-dropbox-oauth2").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 var TwitterStrategy = require("passport-twitter").Strategy;
 var _ = require("lodash");
-
+var handlebars = require('handlebars');
 var Profiles = require("./lib/profiles");
+
+
+handlebars.registerHelper('json', function(context) {
+    return JSON.stringify(context);
+});
 
 var internals = {
   profileBuilders: {}
@@ -117,7 +122,7 @@ exports.register = function (plugin, options, next) {
   plugin.views({
     engines: {
       html: { 
-        module: require('handlebars') 
+        module: handlebars 
       }
     },
     path: './views',
@@ -169,8 +174,10 @@ exports.register = function (plugin, options, next) {
     method: 'GET',
     path: '/edit/{path*}',
     config: {
-      handler: {
-        view: "editor.html"
+      handler: function (request, reply){
+        var config = this.config.server;
+        var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
+        reply.view("editor", context); 
       }
     }
   });

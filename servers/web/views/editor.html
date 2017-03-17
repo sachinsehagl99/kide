@@ -14,9 +14,15 @@
     <script src="/editor/editor.js"></script>
     <!-- endinject -->
 
-    <!-- inject:json -->
-    <script>angular.module("plunker.service.config", []).value("config",JSON.parse(atob("ewogICJ1cmwiOiB7CiAgICAiYXBpIjogImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsCiAgICAicnVuIjogImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsCiAgICAid2ViIjogImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIKICB9Cn0K")));</script>
-    <!-- endinject -->
+    <script>
+      angular.module("plunker.service.config", []).value("config",{
+	  "url": {
+	    "api": "http://localhost:8080",
+	    "run": {{{json url}}}.run,
+	    "web": "http://localhost:8080"
+	  }
+       });
+  </script>
   </head>
 
   <body ng-controller="EditorController" plunker-overlay="editor">

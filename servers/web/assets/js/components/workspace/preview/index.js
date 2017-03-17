@@ -7,40 +7,22 @@ var _ = require("lodash");
 module.exports =
 angular.module("plunker.pane.preview", [
   "ui.bootstrap",
-
   require("../../project").name,
   require("../../commander").name,
   require("../../settings").name,
   require("../../urlState").name,
-
-  require("../panes").name,
-  
+  require("../panes").name, 
   require("./previewer").name,
 ])
 
 .run(["$rootScope", "panes", "project", "commander", "settings", function ($rootScope, panes, project, commander, settings) {
   
-  //commander.addCommand({
-    //name: "preview.toggle",
-    //description: "Toggle the preview window",
-    //hotkeys: "Mod-Shift-Enter",
-    //handler: ["open", "workspace", togglePreview],
-    //defaults: { open: void 0 }
-  //});
-  
-  commander.addCommand({
+   commander.addCommand({
     name: "preview.open",
     description: "Open the preview window",
     handler: ["open", "workspace", openPreview],
     defaults: { open: true }
   });
-
-  //commander.addCommand({
-    //name: "preview.close",
-    //description: "Close the preview window",
-    //handler: ["open", "workspace", togglePreview],
-    //defaults: { open: false }
-  //});
 
   function openPreview (open, workspace) {
     var coords = workspace.getCoords('preview', 'preview');
@@ -67,15 +49,6 @@ angular.module("plunker.pane.preview", [
   
   panes.registerHandler("preview", {
     template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
-    link: function ($scope) {
-/*      $scope.settings = settings;*/
-
-      //$scope.$watch("settings.previewer.autoRefresh", function (autoRefresh, prevAutoRefresh) {
-        //if (autoRefresh && prevAutoRefresh === false) {
-          //commander.execute("preview.refresh");
-        //}
-      /*});*/
-    }
   });
   
 }])
@@ -100,7 +73,7 @@ angular.module("plunker.pane.preview", [
       return coords ? "y" : null;
     },
     write: function (open) {
-      return commander.execute("preview.toggle", {open: open === "y"});
+      //return commander.execute("preview.toggle", {open: open === "y"});
     }
   });
 }])
