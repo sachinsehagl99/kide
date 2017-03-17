@@ -20,29 +20,29 @@ angular.module("plunker.pane.preview", [
 
 .run(["$rootScope", "panes", "project", "commander", "settings", function ($rootScope, panes, project, commander, settings) {
   
-  commander.addCommand({
-    name: "preview.toggle",
-    description: "Toggle the preview window",
-    hotkeys: "Mod-Shift-Enter",
-    handler: ["open", "workspace", togglePreview],
-    defaults: { open: void 0 }
-  });
+  //commander.addCommand({
+    //name: "preview.toggle",
+    //description: "Toggle the preview window",
+    //hotkeys: "Mod-Shift-Enter",
+    //handler: ["open", "workspace", togglePreview],
+    //defaults: { open: void 0 }
+  //});
   
   commander.addCommand({
     name: "preview.open",
     description: "Open the preview window",
-    handler: ["open", "workspace", togglePreview],
+    handler: ["open", "workspace", openPreview],
     defaults: { open: true }
   });
 
-  commander.addCommand({
-    name: "preview.close",
-    description: "Close the preview window",
-    handler: ["open", "workspace", togglePreview],
-    defaults: { open: false }
-  });
+  //commander.addCommand({
+    //name: "preview.close",
+    //description: "Close the preview window",
+    //handler: ["open", "workspace", togglePreview],
+    //defaults: { open: false }
+  //});
 
-  function togglePreview (open, workspace) {
+  function openPreview (open, workspace) {
     var coords = workspace.getCoords('preview', 'preview');
     
     if (open === void 0) open = !coords;
@@ -62,8 +62,6 @@ angular.module("plunker.pane.preview", [
         
         workspace.open(coords, "preview", "preview");
       }
-    } else if (coords) {
-      workspace.close(coords);
     }
   }
   

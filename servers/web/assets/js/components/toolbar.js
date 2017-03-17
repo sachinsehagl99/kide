@@ -22,7 +22,7 @@ angular.module("plunker.component.toolbar", [
   return {
     restrict: "E",
     replace: true,
-    template: Fs.readFileSync(__dirname + "/toolbar/toolbar.html", "utf8"),
+    templateUrl: "components/toolbar/toolbar.html",
     controllerAs: "toolbar",
     controller: ["$scope", "$modal", "paneManager", "project", "visitor", "workspace", "commander", function ($scope, $modal, paneManager, project, visitor, workspace, commander) {
       var self = this;
@@ -45,8 +45,8 @@ angular.module("plunker.component.toolbar", [
         commander.execute("comments.toggle");
       };
      
-      this.togglePreview = function() {
-        commander.execute("preview.toggle");
+      this.refreshPreview = function() {
+        commander.execute("preview.refresh");
       };
      
       this.openTemplates = function() {

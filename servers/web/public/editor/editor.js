@@ -38,36 +38,36 @@ angular.module('plunker', [
 
 
 .run(["$rootScope", "notifier", function ($rootScope, notifier) {
-  var success = function (message) { return function () { notifier.success(message); }; };
-  var error = function (message) { return function () { notifier.error(message); }; };
+/*  var success = function (message) { return function () { notifier.success(message); }; };*/
+  //var error = function (message) { return function () { notifier.error(message); }; };
   
-  $rootScope.$on("project.save.success", success("Project saved"));
-  $rootScope.$on("project.fork.success", success("Project forked"));
-  $rootScope.$on("project.open.success", success("Project opened"));
-  $rootScope.$on("project.destroy.success", success("Project destroyed"));
-  $rootScope.$on("project.openTree.success", success("File tree loaded"));
+  //$rootScope.$on("project.save.success", success("Project saved"));
+  //$rootScope.$on("project.fork.success", success("Project forked"));
+  //$rootScope.$on("project.open.success", success("Project opened"));
+  //$rootScope.$on("project.destroy.success", success("Project destroyed"));
+  //$rootScope.$on("project.openTree.success", success("File tree loaded"));
   
-  $rootScope.$on("project.save.error", error("Failed to save project"));
-  $rootScope.$on("project.fork.error", error("Failed to fork project"));
-  $rootScope.$on("project.open.error", success("Failed to open project"));
-  $rootScope.$on("project.destroy.error", error("Failed to destroy project"));
-  $rootScope.$on("project.openTree.error", error("Failed to open tree"));
+  //$rootScope.$on("project.save.error", error("Failed to save project"));
+  //$rootScope.$on("project.fork.error", error("Failed to fork project"));
+  //$rootScope.$on("project.open.error", success("Failed to open project"));
+  //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
+  //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
 
-  $rootScope.$on("preview.toggle.success", function () {
+  //$rootScope.$on("preview.toggle.success", function () {
 
 
-    function receiveMessage(e) {
-      alert(JSON.stringify(e.data));
-    }
+    //function receiveMessage(e) {
+      //alert(JSON.stringify(e.data));
+    //}
 
-    window.addEventListener( "message", receiveMessage);
-    setTimeout(function () {
+    //window.addEventListener( "message", receiveMessage);
+    //setTimeout(function () {
 
-      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      receiver.postMessage("Hello There!", window.location.origin); 
-    }, 2000);
+      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      //receiver.postMessage("Hello There!", window.location.origin); 
+    //}, 2000);
 
-  });
+  //});
 
 }])
 
@@ -149,6 +149,8 @@ angular.module('plunker', [
       });
     }]
   });
+  
+  commander.execute("preview.open");
 
   var plunkIdState = urlState.addState({
     name: "plunkId",
@@ -2692,7 +2694,7 @@ angular.module("plunker.component.toolbar", [
   return {
     restrict: "E",
     replace: true,
-    template: "<div class=\"toolbar-ops\">\n  <div class=\"toolbar-group\">\n    <div class=\"btn-group\" ng-if=\"toolbar.isSavable()\">\n      <button class=\"btn btn-sm btn-primary\" ng-click=\"toolbar.save()\" tooltip=\"Save a new version\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">Save</button>\n      <button class=\"btn btn-sm btn-primary\" ng-click=\"toolbar.edit()\" tooltip=\"Edit the details of this plunk\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\"><i class=\"fa fa-cog\"></i></button>\n    </div>\n    <div class=\"btn-group\" ng-if=\"toolbar.isPublishable()\">\n      <button class=\"btn btn-sm btn-default\" ng-click=\"toolbar.publish()\" tooltip=\"Publish this plunk to a collection\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">Publish</button>\n    </div>\n    <div class=\"btn-group\" ng-if=\"toolbar.isForkable()\">\n      <button class=\"btn btn-sm btn-default\" ng-click=\"toolbar.fork()\" tooltip=\"Create a fork of this plunk\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">Fork</button>\n    </div>\n    <div class=\"btn-group\">\n      <button class=\"btn btn-sm btn-success\" ng-click=\"toolbar.new()\" tooltip=\"Start a new project (CTL-N)\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">New</button>\n      <button class=\"btn btn-sm btn-success\" ng-click=\"toolbar.openTemplates()\" tooltip=\"Start a new project based on a template (CTL-SHIFT-N)\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\"><i class=\"fa fa-archive\"></i></button>\n    </div>\n    <div class=\"btn-group\" ng-if=\"toolbar.isSaved() && toolbar.isSavable()\">\n      <button class=\"btn btn-sm btn-danger\" ng-click=\"toolbar.destroy()\" tooltip=\"Delete this plunk\" tooltip-placement=\"bottom\" tooltip-append-to-body=\"true\">Delete</button>\n    </div>\n  </div>\n  <div class=\"toolbar-group\">\n    <div class=\"btn-group\">\n      <button class=\"btn btn-sm btn-info\" ng-class=\"{active:toolbar.isOpen('preview', 'preview')}\" ng-click=\"toolbar.togglePreview()\" tooltip=\"Toggle preview (CTRL-SHIFT-ENTER)\" tooltip-append-to-body=\"true\" tooltip-placement=\"bottom\">Preview</button>\n    </div>\n  </div>\n  <div class=\"toolbar-group\" ng-if=\"toolbar.isSaved()\">\n    <div class=\"btn-group\">\n      <button class=\"btn btn-sm btn-default\" ng-class=\"{active:toolbar.isCommentsOpen()}\" ng-click=\"toolbar.toggleComments()\" tooltip=\"Toggle comments pane\" tooltip-append-to-body=\"true\" tooltip-placement=\"bottom\">Comments</button>\n    </div>\n  </div>\n</div>\n",
+    templateUrl: "components/toolbar/toolbar.html",
     controllerAs: "toolbar",
     controller: ["$scope", "$modal", "paneManager", "project", "visitor", "workspace", "commander", function ($scope, $modal, paneManager, project, visitor, workspace, commander) {
       var self = this;
@@ -2715,8 +2717,8 @@ angular.module("plunker.component.toolbar", [
         commander.execute("comments.toggle");
       };
      
-      this.togglePreview = function() {
-        commander.execute("preview.toggle");
+      this.refreshPreview = function() {
+        commander.execute("preview.refresh");
       };
      
       this.openTemplates = function() {
@@ -2753,6 +2755,7 @@ angular.module("plunker.component.toolbar", [
     }]
   };
 }]);
+
 },{"../../vendor/borderLayout/borderLayout.coffee":38,"../../vendor/ui-bootstrap/ui-bootstrap":42,"./commander":2,"./project":11,"./visitor":23,"./workspace":29}],21:[function(require,module,exports){
 var angular = window.angular;
 
@@ -3500,29 +3503,29 @@ angular.module("plunker.pane.preview", [
 
 .run(["$rootScope", "panes", "project", "commander", "settings", function ($rootScope, panes, project, commander, settings) {
   
-  commander.addCommand({
-    name: "preview.toggle",
-    description: "Toggle the preview window",
-    hotkeys: "Mod-Shift-Enter",
-    handler: ["open", "workspace", togglePreview],
-    defaults: { open: void 0 }
-  });
+  //commander.addCommand({
+    //name: "preview.toggle",
+    //description: "Toggle the preview window",
+    //hotkeys: "Mod-Shift-Enter",
+    //handler: ["open", "workspace", togglePreview],
+    //defaults: { open: void 0 }
+  //});
   
   commander.addCommand({
     name: "preview.open",
     description: "Open the preview window",
-    handler: ["open", "workspace", togglePreview],
+    handler: ["open", "workspace", openPreview],
     defaults: { open: true }
   });
 
-  commander.addCommand({
-    name: "preview.close",
-    description: "Close the preview window",
-    handler: ["open", "workspace", togglePreview],
-    defaults: { open: false }
-  });
+  //commander.addCommand({
+    //name: "preview.close",
+    //description: "Close the preview window",
+    //handler: ["open", "workspace", togglePreview],
+    //defaults: { open: false }
+  //});
 
-  function togglePreview (open, workspace) {
+  function openPreview (open, workspace) {
     var coords = workspace.getCoords('preview', 'preview');
     
     if (open === void 0) open = !coords;
@@ -3542,8 +3545,6 @@ angular.module("plunker.pane.preview", [
         
         workspace.open(coords, "preview", "preview");
       }
-    } else if (coords) {
-      workspace.close(coords);
     }
   }
   

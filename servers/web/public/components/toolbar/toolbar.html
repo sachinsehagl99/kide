@@ -20,7 +20,7 @@
   </div>
   <div class="toolbar-group">
     <div class="btn-group">
-      <button class="btn btn-sm btn-info" ng-class="{active:toolbar.isOpen('preview', 'preview')}" ng-click="toolbar.togglePreview()" tooltip="Toggle preview (CTRL-SHIFT-ENTER)" tooltip-append-to-body="true" tooltip-placement="bottom">Preview</button>
+      <button class="btn btn-sm btn-info" ng-click="toolbar.refreshPreview()">Preview</button>
     </div>
   </div>
   <div class="toolbar-group" ng-if="toolbar.isSaved()">

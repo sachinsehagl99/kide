@@ -37,36 +37,36 @@ angular.module('plunker', [
 
 
 .run(["$rootScope", "notifier", function ($rootScope, notifier) {
-  var success = function (message) { return function () { notifier.success(message); }; };
-  var error = function (message) { return function () { notifier.error(message); }; };
+/*  var success = function (message) { return function () { notifier.success(message); }; };*/
+  //var error = function (message) { return function () { notifier.error(message); }; };
   
-  $rootScope.$on("project.save.success", success("Project saved"));
-  $rootScope.$on("project.fork.success", success("Project forked"));
-  $rootScope.$on("project.open.success", success("Project opened"));
-  $rootScope.$on("project.destroy.success", success("Project destroyed"));
-  $rootScope.$on("project.openTree.success", success("File tree loaded"));
+  //$rootScope.$on("project.save.success", success("Project saved"));
+  //$rootScope.$on("project.fork.success", success("Project forked"));
+  //$rootScope.$on("project.open.success", success("Project opened"));
+  //$rootScope.$on("project.destroy.success", success("Project destroyed"));
+  //$rootScope.$on("project.openTree.success", success("File tree loaded"));
   
-  $rootScope.$on("project.save.error", error("Failed to save project"));
-  $rootScope.$on("project.fork.error", error("Failed to fork project"));
-  $rootScope.$on("project.open.error", success("Failed to open project"));
-  $rootScope.$on("project.destroy.error", error("Failed to destroy project"));
-  $rootScope.$on("project.openTree.error", error("Failed to open tree"));
+  //$rootScope.$on("project.save.error", error("Failed to save project"));
+  //$rootScope.$on("project.fork.error", error("Failed to fork project"));
+  //$rootScope.$on("project.open.error", success("Failed to open project"));
+  //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
+  //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
 
-  $rootScope.$on("preview.toggle.success", function () {
+  //$rootScope.$on("preview.toggle.success", function () {
 
 
-    function receiveMessage(e) {
-      alert(JSON.stringify(e.data));
-    }
+    //function receiveMessage(e) {
+      //alert(JSON.stringify(e.data));
+    //}
 
-    window.addEventListener( "message", receiveMessage);
-    setTimeout(function () {
+    //window.addEventListener( "message", receiveMessage);
+    //setTimeout(function () {
 
-      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      receiver.postMessage("Hello There!", window.location.origin); 
-    }, 2000);
+      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      //receiver.postMessage("Hello There!", window.location.origin); 
+    //}, 2000);
 
-  });
+  //});
 
 }])
 
@@ -148,6 +148,8 @@ angular.module('plunker', [
       });
     }]
   });
+  
+  commander.execute("preview.open");
 
   var plunkIdState = urlState.addState({
     name: "plunkId",
