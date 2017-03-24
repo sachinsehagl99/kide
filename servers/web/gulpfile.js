@@ -26,7 +26,6 @@ Gulp.task("editor:styles:build", [ "editor:styles:clean" ], function () {
     .pipe(Less({
       paths: [ ".", __dirname + "assets/css" ]
     }))
-    .pipe(Rev())
     .pipe(Gulp.dest("public/editor"));
 });
 
