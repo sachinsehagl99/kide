@@ -36,7 +36,7 @@ angular.module('plunker', [
 }])
 
 
-.run(["$rootScope", "notifier", function ($rootScope, notifier) {
+.run(["$rootScope", "notifier", "config", function ($rootScope, notifier, config) {
 /*  var success = function (message) { return function () { notifier.success(message); }; };*/
   //var error = function (message) { return function () { notifier.error(message); }; };
   
@@ -52,22 +52,16 @@ angular.module('plunker', [
   //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
   //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
 
-  //$rootScope.$on("preview.toggle.success", function () {
+    function receiveMessage(e) {
+      alert(JSON.stringify(e.data));
+    }
 
+    window.addEventListener( "message", receiveMessage);
+    setTimeout(function () {
 
-    //function receiveMessage(e) {
-      //alert(JSON.stringify(e.data));
-    //}
-
-    //window.addEventListener( "message", receiveMessage);
-    //setTimeout(function () {
-
-      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      //receiver.postMessage("Hello There!", window.location.origin); 
-    //}, 2000);
-
-  //});
-
+      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      receiver.postMessage("Hello There!", config.url.run); 
+    }, 2000);
 }])
 
 .controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier", function ($scope, $location, urlState, commander, project, notifier) {
