@@ -96,28 +96,28 @@ internals.prepareFile = function (preview, targetPath, next) {
   _.forEach(sourceTree, function (sha, path) {
     _.forEach(internals.compilers, function (compiler) {
       if (targetPath === compiler.transformPath.call(compiler, path)) {
-        var buf = internals.blobs.get(sha);
-        
-        // The buffer fell out of the blob cache
-        if (!buf) { next(Boom.notFound("Preview file expired")); }
-        else {
-          compiler.compile.call(compiler, path, targetPath, buf.toString("utf8"), function (err, compiled) {
-            if (err) next(err);
-            else {
-              var buf = Buffer(compiled);
-              next(null, buf);
-              
-              // Cache the compiled file
-              internals.blobs.set(sha + ext, buf);
-              sourceTree[targetPath] = sha + ext;
-              preview.map[path] = targetPath;
-            }
-          });
-        }
-        
-        // Escape from booth loops
-        found = true;
-        return false;
+	var buf = internals.blobs.get(sha);
+	
+	// The buffer fell out of the blob cache
+	if (!buf) { next(Boom.notFound("Preview file expired")); }
+	else {
+	  compiler.compile.call(compiler, path, targetPath, buf.toString("utf8"), function (err, compiled) {
+	    if (err) next(err);
+	    else {
+	      var buf = Buffer(compiled);
+	      next(null, buf);
+	      
+	      // Cache the compiled file
+	      internals.blobs.set(sha + ext, buf);
+	      sourceTree[targetPath] = sha + ext;
+	      preview.map[path] = targetPath;
+	    }
+	  });
+	}
+	
+	// Escape from booth loops
+	found = true;
+	return false;
       }
     });
     
@@ -149,12 +149,12 @@ exports.register = function (plugin, options, next) {
   
   plugin.method({
     name: "prepareFile",
-    fn: internals.prepareFile
+    method: internals.prepareFile
   });
   
   plugin.method({
     name: "fetchTree",
-    fn: internals.fetchTree
+    method: internals.fetchTree
   });
   
   plugin.route({
@@ -162,14 +162,14 @@ exports.register = function (plugin, options, next) {
     path: basePath + "/sha/{sha}/{path*}",
     config: {
       handler: function (request, reply) {
-        request.server.methods.fetchTree(request.params.sha, function (err, files) {
-          if (err) return reply(err);
-          
-          var previewId = "sha:" + request.params.sha;
-          var preview = internals.getOrCreatePreview(previewId, files);
-          
-          internals.serveTree(request, reply, preview);
-        });
+	request.server.methods.fetchTree(request.params.sha, function (err, files) {
+	  if (err) return reply(err);
+	  
+	  var previewId = "sha:" + request.params.sha;
+	  var preview = internals.getOrCreatePreview(previewId, files);
+	  
+	  internals.serveTree(request, reply, preview);
+	});
       }
     }
   });
@@ -178,35 +178,35 @@ exports.register = function (plugin, options, next) {
     method: 'POST', 
     path: '/media/submit',
     config: {
-        payload: {
-            output: 'stream',
-            parse: true,
-            allow: 'multipart/form-data'
-        },
+	payload: {
+	    output: 'stream',
+	    parse: true,
+	    allow: 'multipart/form-data'
+	},
 
-        handler: function (request, reply) {
-            var data = request.payload;
-            if (data.file) {
-                var name = data.file.hapi.filename;
-                var path = __dirname + "/uploads/" + name;
-                var file = fs.createWriteStream(path);
+	handler: function (request, reply) {
+	    var data = request.payload;
+	    if (data.file) {
+		var name = data.file.hapi.filename;
+		var path = __dirname + "/uploads/" + name;
+		var file = fs.createWriteStream(path);
 
-                file.on('error', function (err) { 
-                    console.error(err) 
-                });
+		file.on('error', function (err) { 
+		    console.error(err) 
+		});
 
-                data.file.pipe(file);
+		data.file.pipe(file);
 
-                data.file.on('end', function (err) { 
-                    var ret = {
-                        filename: data.file.hapi.filename,
-                        headers: data.file.hapi.headers
-                    }
-                    reply(JSON.stringify(ret));
-                })
-            }
+		data.file.on('end', function (err) { 
+		    var ret = {
+			filename: data.file.hapi.filename,
+			headers: data.file.hapi.headers
+		    }
+		    reply(JSON.stringify(ret));
+		})
+	    }
 
-        }
+	}
     } 
   });
  
@@ -215,7 +215,7 @@ exports.register = function (plugin, options, next) {
     path: "/previews/{previewId}/media/{imageId}",
     config: {
       handler: function (request, reply) {
-        reply.file(__dirname + "/media/" + request.params.imageId); 
+	reply.file(__dirname + "/media/" + request.params.imageId); 
       }
     }
   });
@@ -225,9 +225,9 @@ exports.register = function (plugin, options, next) {
     path: basePath + "/previews/{previewId}/{path*}",
     config: {
       handler: function (request, reply) {
-        var preview = internals.previews.get(request.params.previewId);
-        
-        internals.serveTree(request, reply, preview);
+	var preview = internals.previews.get(request.params.previewId);
+	
+	internals.serveTree(request, reply, preview);
       }
     }
   });
@@ -237,28 +237,30 @@ exports.register = function (plugin, options, next) {
     path: '/previews/{previewId}',
     config: {
       validate: {
-        payload: {
-          files: Joi.array().required().includes(Joi.object({
-            contents: Joi.string().required(),
-            path: Joi.string().required().regex(/^(?:\.[a-zA-Z0-9]|[a-zA-Z0-9])[\w-]*(?:\.[\w-]+)*(?:\/[a-zA-Z0-9][\w-]*(?:\.[\w-]+)*)*$/)
-          }))
-        }
+	payload: {
+	  files: Joi.array().required().includes(Joi.object({
+	    contents: Joi.string().required(),
+	    path: Joi.string().required().regex(/^(?:\.[a-zA-Z0-9]|[a-zA-Z0-9])[\w-]*(?:\.[\w-]+)*(?:\/[a-zA-Z0-9][\w-]*(?:\.[\w-]+)*)*$/)
+	  }))
+	}
       },
       handler: function (request, reply) {
-        var previewId = request.params.previewId || genid();
-        var preview = internals.getOrCreatePreview(previewId, request.payload.files);
-        
-        if (request.mime === "application/x-www-form-urlencoded") {
-          internals.serveTree(request, reply, preview);
-        } else {
-          reply({url: internals.urlForPreview(previewId)});
-        }
+	var previewId = request.params.previewId || genid();
+	var preview = internals.getOrCreatePreview(previewId, request.payload.files);
+	
+	if (request.mime === "application/x-www-form-urlencoded") {
+	  internals.serveTree(request, reply, preview);
+	} else {
+	  reply({url: internals.urlForPreview(previewId)});
+	}
       }
     }
   });
   
   return next();
 };
+
+exports.register.attributes = {name: 'run'};
 
 internals.serveTree = function (request, reply, preview) {
   var path = request.params.path;

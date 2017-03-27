@@ -1,26 +1,54 @@
-var Hapi = require("hapi");
-var Hoek = require("hoek");
+var Glue = require('glue');
+var Hapi = require('hapi');
+var Config = require("./config.json");
 
-var Config = require("./config." + (process.env.NODE_ENV || "development"));
 
+var manifest = {
+  connections: [{
+    host: Config.server.web.host,
+    port: Config.server.web.port,
+    labels: ['web'],
+  }, {
+    host: Config.server.run.host,
+    port: Config.server.run.port,
+    labels: ['run'],
+    routes:{
+      cors: true  
+    }
+  }],
+  registrations: [{
+    plugin: {
+      register: './servers/web',
+      options: {
+        config: Config
+      }
+    },
+    options: {
+      select: ['web']
+    }
+  }, {
+    plugin: {
+      register: './servers/run',
+      options: {
+        config: Config
+      }
+    },
+    options: {
+      select: ['run']
+    }
+  }]
+};
 
-var api = new Hapi.Server(Config.server.api.host, Config.server.api.port, { cors: true });
+var options = {
+  relativeTo: __dirname,
+};
 
-api.pack.require({
-  //"./servers/api": { config: Config },
-  "./servers/run": { config: Config },
-  "./servers/web": { config: Config },
-}, function (err) {
+Glue.compose(manifest, options, function(err, server) {
+  if (err) {
+    throw err;
+  }
 
-  Hoek.assert(!err, "[ERR] Failed loading API server:", err);
-  
-  api.start(function () {
-    console.log("[OK] Server started");
+  server.start(function() {
+    console.log('Hapi days!');
   });
-});
-
-api.pack.require("good", {
-  subscribers: { console: ['ops', 'request', 'log', 'error'] }
-}, function (err) {
-  if (err) console.error("[ERR] Failed to load good", err);
 });

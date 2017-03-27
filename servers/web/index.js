@@ -16,7 +16,8 @@ var TwitterStrategy = require("passport-twitter").Strategy;
 var _ = require("lodash");
 var handlebars = require('handlebars');
 var Profiles = require("./lib/profiles");
-
+var Vision = require("vision");
+var Inert = require('inert');
 
 handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
@@ -53,10 +54,6 @@ internals.profileBuilders.github = function (json) {
 };
 
 
-exports.name = "web";
-exports.version = require("./package.json").version;
-exports.path = __dirname;
-
 exports.register = function (plugin, options, next) {
   var context = {
     config: options.config,
@@ -64,10 +61,29 @@ exports.register = function (plugin, options, next) {
   };
   
   internals.macPrefix = options.config.auth.macPrefix;
+
+  plugin.register(Inert); 
+
+  plugin.register(Vision, function (err){
+    if (err) {
+      console.log('Cannot register vision')
+    }
+
+    plugin.views({
+      engines: {
+        html: handlebars 
+      },
+      relativeTo: __dirname,
+      path: 'views',
+      partialsPath: "views/partials", 
+      helpersPath: "views/helpers", 
+      //isCached: false
+    });
+  });
   
   plugin.bind(context);
   
-  plugin.ext('onPreResponse', internals.onPreResponse);
+  //plugin.ext('onPreResponse', internals.onPreResponse);
   
   Passport.framework({
     initialize: internals.initialize.bind(context),
@@ -92,6 +108,7 @@ exports.register = function (plugin, options, next) {
       expiresIn: 1000 * 60,
       staleIn: 1000 * 30,
       staleTimeout: 1000 * 10,
+      generateTimeout: 100
     }
   });
   
@@ -100,6 +117,7 @@ exports.register = function (plugin, options, next) {
       expiresIn: 1000 * 60,
       staleIn: 1000 * 30,
       staleTimeout: 1000 * 10,
+      generateTimeout: 100
     }
   });
 
@@ -108,6 +126,7 @@ exports.register = function (plugin, options, next) {
       expiresIn: 1000 * 60,
       staleIn: 1000 * 30,
       staleTimeout: 1000 * 10,
+      generateTimeout: 100
     }
   });
 
@@ -116,20 +135,10 @@ exports.register = function (plugin, options, next) {
       expiresIn: 1000 * 60,
       staleIn: 1000 * 30,
       staleTimeout: 1000 * 10,
+      generateTimeout: 100
     }
   });
 
-  plugin.views({
-    engines: {
-      html: { 
-        module: handlebars 
-      }
-    },
-    path: './views',
-    partialsPath: "./views/partials", 
-    helpersPath: "./views/helpers", 
-    isCached: false
-  });
   
   plugin.state('plunker.tok', {
     ttl: 24 * 60 * 60 * 1000,     // One day
@@ -146,7 +155,7 @@ exports.register = function (plugin, options, next) {
       auth: false,
       handler: function (request, reply) {
 
-        Passport.authenticate(request.params.service)(request, reply);
+	Passport.authenticate(request.params.service)(request, reply);
       } 
     }
   });
@@ -157,14 +166,14 @@ exports.register = function (plugin, options, next) {
     config: {
       auth: false,
       handler: function (request, reply) {
-        
-        Passport.authenticate(request.params.service)(request, reply, function () {
-          reply.view("auth/complete.html", {
-            payload: "auth." + Buffer(JSON.stringify({
-              status: "success"
-            })).toString("base64")
-          });
-        });
+	
+	Passport.authenticate(request.params.service)(request, reply, function () {
+	  reply.view("auth/complete.html", {
+	    payload: "auth." + Buffer(JSON.stringify({
+	      status: "success"
+	    })).toString("base64")
+	  });
+	});
       }
     }
   });
@@ -175,9 +184,9 @@ exports.register = function (plugin, options, next) {
     path: '/edit/{path*}',
     config: {
       handler: function (request, reply){
-        var config = this.config.server;
-        var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
-        reply.view("editor", context); 
+	var config = this.config.server;
+	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
+	reply.view("editor", context); 
       }
     }
   });
@@ -187,17 +196,10 @@ exports.register = function (plugin, options, next) {
     path: '/',
     config: {
       handler: function (request, reply) {
-        var context = {config: this.local};
-        
-        request.server.methods.fetchPlunks("in:plunker/public", function (err, plunks) {
-          if (err) return reply(err);
-          
-          context.plunks = plunks;
-        
-          reply.view("home", context, {
-            layout: "landing"
-          });
-        });
+	var context = {config: this.local};
+	  reply.view("home", context, {
+	    layout: "landing"
+	  });
       }
     }
   });
@@ -207,40 +209,40 @@ exports.register = function (plugin, options, next) {
     path: '/plunks/{plunkId}',
     config: {
       handler: function (request, reply) {
-        var context = {config: this.local};
-        var fetchPlunk = function (plunkId) {
-          return When.promise(function(resolve, reject) {
-            request.server.methods.fetchPlunk(plunkId, function (err, result) {
-              if (err) return reject(err);
-              resolve(result);
-            });
-          });
-        };
-        var fetchComments = function (plunkId) {
-          return When.promise(function(resolve, reject) {
-            request.server.methods.fetchComments(plunkId, function (err, result) {
-              if (err) return reject(err);
-              resolve(result);
-            });
-          });
-        };
-        
-        When.join(
-          fetchPlunk(request.params.plunkId),
-          fetchComments(request.params.plunkId)
-        ).then(function (results) {
-          var plunk = results[0];
-          var comments = results[1];
-          
-          context.plunk = plunk;
-          context.comments = comments;
-          context.subtitle = " - " + plunk.description;
-          context.previewSha = plunk.revisions[plunk.revisions.length - 1].tree;
-        
-          reply.view("details", context, {
-            layout: "landing"
-          });
-        }, reply);
+	var context = {config: this.local};
+	var fetchPlunk = function (plunkId) {
+	  return When.promise(function(resolve, reject) {
+	    request.server.methods.fetchPlunk(plunkId, function (err, result) {
+	      if (err) return reject(err);
+	      resolve(result);
+	    });
+	  });
+	};
+	var fetchComments = function (plunkId) {
+	  return When.promise(function(resolve, reject) {
+	    request.server.methods.fetchComments(plunkId, function (err, result) {
+	      if (err) return reject(err);
+	      resolve(result);
+	    });
+	  });
+	};
+	
+	When.join(
+	  fetchPlunk(request.params.plunkId),
+	  fetchComments(request.params.plunkId)
+	).then(function (results) {
+	  var plunk = results[0];
+	  var comments = results[1];
+	  
+	  context.plunk = plunk;
+	  context.comments = comments;
+	  context.subtitle = " - " + plunk.description;
+	  context.previewSha = plunk.revisions[plunk.revisions.length - 1].tree;
+	
+	  reply.view("details", context, {
+	    layout: "landing"
+	  });
+	}, reply);
       }
     }
   });
@@ -250,41 +252,41 @@ exports.register = function (plugin, options, next) {
     path: '/users/{username}',
     config: {
       handler: function (request, reply) {
-        var context = {config: this.local};
-        var fetchUser = function (username) {
-          return When.promise(function(resolve, reject) {
-            request.server.methods.fetchUser(username, function (err, result) {
-              if (err) return reject(err);
-              resolve(result);
-            });
-          });
-        };
-        var fetchPlunks = function (q) {
-          return When.promise(function(resolve, reject) {
-            request.server.methods.fetchPlunks(q, function (err, result) {
-              if (err) return reject(err);
-              resolve(result);
-            });
-          });
-        };
-        var q = ["@" + request.params.username];
-        var identity = request.state["plunker.tok"];
-        
-        if (!identity || request.params.username !== identity.user_name) {
-          q.push("in:plunker/public");
-        }
-        
-        When.join(
-          fetchUser(request.params.username),
-          fetchPlunks(q.join(" "))
-        ).then(function (results) {
-          context.user = results[0];
-          context.plunks = results[1];
-          
-          reply.view("user", context, {
-            layout: "landing"
-          });
-        });
+	var context = {config: this.local};
+	var fetchUser = function (username) {
+	  return When.promise(function(resolve, reject) {
+	    request.server.methods.fetchUser(username, function (err, result) {
+	      if (err) return reject(err);
+	      resolve(result);
+	    });
+	  });
+	};
+	var fetchPlunks = function (q) {
+	  return When.promise(function(resolve, reject) {
+	    request.server.methods.fetchPlunks(q, function (err, result) {
+	      if (err) return reject(err);
+	      resolve(result);
+	    });
+	  });
+	};
+	var q = ["@" + request.params.username];
+	var identity = request.state["plunker.tok"];
+	
+	if (!identity || request.params.username !== identity.user_name) {
+	  q.push("in:plunker/public");
+	}
+	
+	When.join(
+	  fetchUser(request.params.username),
+	  fetchPlunks(q.join(" "))
+	).then(function (results) {
+	  context.user = results[0];
+	  context.plunks = results[1];
+	  
+	  reply.view("user", context, {
+	    layout: "landing"
+	  });
+	});
       }
     }
   });
@@ -295,9 +297,9 @@ exports.register = function (plugin, options, next) {
     path: '/{path*}',
     config: {
       handler: {
-        directory: {
-          path: Path.join(__dirname, "public")
-        }
+	directory: {
+	  path: Path.join(__dirname, "public")
+	}
       }
     }
   });
@@ -307,14 +309,18 @@ exports.register = function (plugin, options, next) {
     path: "/{p*}",
     config: {
       handler: function (request, reply) {
-        reply.view("notfound", {}, {
-          layout: "landing"
-        }).code(404);
+	reply.view("notfound", {}, {
+	  layout: "landing"
+	}).code(404);
       }
     }
   });
 
   return next();
+};
+
+exports.register.attributes = {
+    pkg: require('./package.json')
 };
 
 internals.onPreResponse = function (request, reply) {

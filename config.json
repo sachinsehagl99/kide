@@ -2,18 +2,18 @@
   "server": {
     "web": {
       "path": "",
-      "host": "127.0.0.1",
+      "host": "localhost",
       "port": "8080"
     },
     "api": {
       "path": "",
-      "host": "127.0.0.1",
-      "port": "8080"
+      "host": "localhost",
+      "port": "7070"
     },
     "run": {
       "path": "",
-      "host": "127.0.0.1",
-      "port": "8080"  
+      "host": "localhost",
+      "port": "9090"  
     }
   },
   "database": {
