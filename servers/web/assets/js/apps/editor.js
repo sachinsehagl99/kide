@@ -1,27 +1,30 @@
-require("../../vendor/angular/angular.js");
-
 var Fs = require("fs");
 var _ = require("lodash");
 
-var angular = window.angular;
-require("../../vendor/ui-bootstrap/ui-bootstrap.js");
+require("../components/commander");
+require("../components/notifier");
+require("../components/project");
+require("../components/toolbar");
+require("../components/sidebar");
+require("../components/overlayer");
+require("../components/workspace");
+require("../components/urlState");
+require("../components/userPane");
+require("../components/commentsPane");
 
-module.exports =
-angular.module('plunker', [
+module.exports = angular.module('plunker', [
   "ui.bootstrap",
-  
   "fa.directive.borderLayout",
-
-  require("../components/commander").name,
-  require("../components/notifier").name,
-  require("../components/project").name,
-  require("../components/toolbar").name,
-  require("../components/sidebar").name,
-  require("../components/overlayer").name,
-  require("../components/workspace").name,
-  require("../components/urlState").name,
-  require("../components/userPane").name,
-  require("../components/commentsPane").name,
+  "plunker.service.commander",
+  "plunker.service.notifier",
+  "plunker.project",
+  "plunker.component.toolbar",
+  "plunker.component.sidebar",
+  "plunker.component.overlayer",
+  "plunker.component.workspace",
+  "plunker.urlState",
+  "plunker.component.userPane",
+  "plunker.commentsPane"
 ])
 
 .config(["$locationProvider", function($locationProvider){
@@ -37,7 +40,7 @@ angular.module('plunker', [
 
 
 .run(["$rootScope", "notifier", "config", function ($rootScope, notifier, config) {
-/*  var success = function (message) { return function () { notifier.success(message); }; };*/
+  //var success = function (message) { return function () { notifier.success(message); }; };
   //var error = function (message) { return function () { notifier.error(message); }; };
   
   //$rootScope.$on("project.save.success", success("Project saved"));
@@ -52,16 +55,16 @@ angular.module('plunker', [
   //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
   //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
 
-    function receiveMessage(e) {
-      alert(JSON.stringify(e.data));
-    }
+    //function receiveMessage(e) {
+      //alert(JSON.stringify(e.data));
+    //}
 
-    window.addEventListener( "message", receiveMessage);
-    setTimeout(function () {
+    //window.addEventListener( "message", receiveMessage);
+    //setTimeout(function () {
 
-      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      receiver.postMessage("Hello There!", config.url.run); 
-    }, 2000);
+      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      //receiver.postMessage("Hello There!", config.url.run); 
+    //}, 2000);
 }])
 
 .controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier", function ($scope, $location, urlState, commander, project, notifier) {
@@ -71,40 +74,40 @@ angular.module('plunker', [
     name: "editor.reset",
     handler: function () {
       return commander.execute("project.reset").then(function () {
-        return commander.execute("project.openTree", {
-          tree: [
-            {
-              type: "file",
-              filename: "index.html",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/index.html", "utf8")
-            },
-            {
-              type: "file",
-              filename: "app.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/app.js", "utf8")
-            },
-            {
-              type: "file",
-              filename: "stage.cordova.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/stage.cordova.js", "utf8")
-            },
-            {
-              type: "file",
-              filename: "textures.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/textures.js", "utf8")
-            },
-            {
-              type: "file",
-              filename: "qunit.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/qunit.js", "utf8")
-            },
-            {
-              type: "file",
-              filename: "test.js",
-              contents: Fs.readFileSync(__dirname + "/editor/template2/test.js", "utf8")
-            }
-          ]
-        });
+	return commander.execute("project.openTree", {
+	  tree: [
+	    {
+	      type: "file",
+	      filename: "index.html",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/index.html", "utf8")
+	    },
+	    {
+	      type: "file",
+	      filename: "app.js",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/app.js", "utf8")
+	    },
+	    {
+	      type: "file",
+	      filename: "stage.cordova.js",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/stage.cordova.js", "utf8")
+	    },
+	    {
+	      type: "file",
+	      filename: "textures.js",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/textures.js", "utf8")
+	    },
+	    {
+	      type: "file",
+	      filename: "qunit.js",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/qunit.js", "utf8")
+	    },
+	    {
+	      type: "file",
+	      filename: "test.js",
+	      contents: Fs.readFileSync(__dirname + "/editor/template2/test.js", "utf8")
+	    }
+	  ]
+	});
       });
     }
   });
@@ -118,27 +121,27 @@ angular.module('plunker', [
       if (project.plunk && project.plunk.id === plunkId) return;
     
       return commander.execute("project.open", {plunkId: plunkId}).then(function () {
-        if (tree) {
-          return commander.execute("project.openTree", {tree: tree}).catch(function (err) {
-            notifier.error("Failed to open the tree: " + treeState.read());
-            
-            return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
-              return commander.execute("editor.reset").then(function () {
-                notifier.error("Failed to open the given tree and the plunk's last revision");
-              });
-            });
-          });
-        } else {
-          return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
-            return commander.execute("editor.reset").then(function () {
-              notifier.error("Failed to open the plunk's last revision");
-            });
-          });
-        }
+	if (tree) {
+	  return commander.execute("project.openTree", {tree: tree}).catch(function (err) {
+	    notifier.error("Failed to open the tree: " + treeState.read());
+	    
+	    return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
+	      return commander.execute("editor.reset").then(function () {
+		notifier.error("Failed to open the given tree and the plunk's last revision");
+	      });
+	    });
+	  });
+	} else {
+	  return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
+	    return commander.execute("editor.reset").then(function () {
+	      notifier.error("Failed to open the plunk's last revision");
+	    });
+	  });
+	}
       }, function (err) {
-        return commander.execute("editor.reset").then(function () {
-          notifier.error("Failed to open plunk");
-        });
+	return commander.execute("editor.reset").then(function () {
+	  notifier.error("Failed to open plunk");
+	});
       });
     }]
   });
@@ -160,9 +163,9 @@ angular.module('plunker', [
     },
     write: function (plunkId) {
       if (plunkId) {
-        return commander.execute("editor.open", {plunkId: plunkId});
+	return commander.execute("editor.open", {plunkId: plunkId});
       } else {
-        return commander.execute("editor.reset");
+	return commander.execute("editor.reset");
       }
     }
   });
@@ -189,12 +192,10 @@ angular.module('plunker', [
     },
     write: function (tree) {
       if (tree) {
-        return commander.execute("project.openTree", {tree: tree});
+	return commander.execute("project.openTree", {tree: tree});
       } else if (project.isSaved()) {
-        return commander.execute("project.openTree", {tree: project.getLastRevision().tree});
+	return commander.execute("project.openTree", {tree: project.getLastRevision().tree});
       }
     }
   });
-}])
-
-;
+}]);

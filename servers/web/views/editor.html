@@ -9,6 +9,8 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="/editor/editor.css">
     <!-- endinject -->
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/ui-bootstrap/ui-bootstrap.js"></script>
     <script src="vendor/ace/src-noconflict/ace.js"></script>
     <!-- inject:js -->
     <script src="/editor/editor.js"></script>
@@ -33,13 +35,13 @@
         <plunker-toolbar></plunker-toolbar>
       </div>
       
-      <div fa-pane="sidebar" pane-anchor="west" pane-size="250px" pane-min="200px" pane-max="300px" pane-handle="4" pane-no-toggle="true" >
+      <div fa-pane="sidebar" pane-anchor="west" pane-size="40%">
+        check this out
+      </div>
+      <div fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
       
-      <div fa-pane="comments" pane-anchor="east" pane-size="25%" pane-min="400px" pane-max="50%" pane-handle-obj="{open: '4px', closed: 0}" pane-closed="true" pane-no-toggle="true">
-        <plunker-comments-pane></plunker-comments-pane>
-      </div>
       
       <div fa-pane="workspace">
         <div plunker-updater-overlay></div>
