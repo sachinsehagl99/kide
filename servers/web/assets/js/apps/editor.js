@@ -55,16 +55,16 @@ module.exports = angular.module('plunker', [
   //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
   //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
 
-    //function receiveMessage(e) {
-      //alert(JSON.stringify(e.data));
-    //}
+    function receiveMessage(e) {
+      alert(JSON.stringify(e.data));
+    }
 
-    //window.addEventListener( "message", receiveMessage);
-    //setTimeout(function () {
+    window.addEventListener( "message", receiveMessage);
+    setTimeout(function () {
 
-      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      //receiver.postMessage("Hello There!", config.url.run); 
-    //}, 2000);
+      var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
+      receiver.postMessage("Hello There!", config.url.run); 
+    }, 2000);
 }])
 
 .controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier", function ($scope, $location, urlState, commander, project, notifier) {
@@ -146,7 +146,7 @@ module.exports = angular.module('plunker', [
     }]
   });
   
-  commander.execute("preview.open");
+  commander.execute("preview.refresh");
 
   var plunkIdState = urlState.addState({
     name: "plunkId",

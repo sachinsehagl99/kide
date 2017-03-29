@@ -5,8 +5,7 @@ var _ = require("lodash");
 
 require("../../../../vendor/qrcode/qrcode");
 
-module.exports = 
-angular.module("plunker.directive.previewer", [
+module.exports = angular.module("plunker.directive.previewer", [
   require("../../settings").name,
   require("../../commander").name,
   require("../../oplog").name,
@@ -29,7 +28,7 @@ angular.module("plunker.directive.previewer", [
   var directive = {
     restrict: "E",
     replace: true,
-    template: '<iframe id="plunkerPreviewIframe" name="plunkerPreviewIframe" src="about:blank" width="100%" height="100%" frameborder="0"></iframe>',
+    template: '<iframe style="display:none" id="plunkerPreviewIframe" name="plunkerPreviewIframe" src="about:blank" width="100%" height="100%" frameborder="0"></iframe>',
     link: function($scope, $element, $attrs) {
       $scope.previewUrl = previewUrl;
       $scope.refresh = refreshPreviewJson;
