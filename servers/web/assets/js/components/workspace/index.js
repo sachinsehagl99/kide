@@ -8,10 +8,8 @@ require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
 
 
-module.exports =
-angular.module("plunker.component.workspace", [
-  "fa.directive.borderLayout",
-  
+module.exports = angular.module("plunker.component.workspace", [
+  //"fa.directive.borderLayout",
   require("./panes").name,
   require("./empty").name,
   require("./code").name,
@@ -181,28 +179,23 @@ angular.module("plunker.component.workspace", [
         if (paneScope) paneScope.$destroy();
         
         $element.empty();
-        
         paneScope = $scope.$new();
         paneScope.paneNum = parseInt(paneNum, 10);
         paneScope.$type = paneDef.type;
         paneScope.$id = paneDef.id;
-        
         paneElement = angular.element(paneHandler.template);
-
         paneHandler.preLink(paneScope, paneElement);
-        
         $compile(paneElement)(paneScope);
         $element.append(paneElement);
-        
         paneHandler.link(paneScope, paneElement);
-
-        paneScope.$watch(function () {
-          return workspace.getActivePaneNum() === paneScope.paneNum;
-        }, function (active) {
-          if (active) //$timeout(function () {
-            paneScope.$broadcast("pane-active");
-          //});
-        });
+        paneHandler.loadComplete();
+        //paneScope.$watch(function () {
+          //return workspace.getActivePaneNum() === paneScope.paneNum;
+        //}, function (active) {
+          //if (active) //$timeout(function () {
+            //paneScope.$broadcast("pane-active");
+          ////});
+        //});
 
       });
       

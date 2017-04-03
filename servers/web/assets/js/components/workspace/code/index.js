@@ -1,17 +1,10 @@
-var angular = window.angular;
-
 var Fs = require('fs');
 
-module.exports =
-angular.module("plunker.pane.code", [
+module.exports = angular.module("plunker.pane.code", [
   "ui.bootstrap",
-  
-  
   require("../../project").name,
-  require("../../markdown").name,
-  
-  require("../panes").name,
-  
+  require("../../markdown").name, 
+  require("../panes").name, 
   require("./codeEditor").name,
 ])
 

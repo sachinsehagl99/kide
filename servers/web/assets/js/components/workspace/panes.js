@@ -1,9 +1,6 @@
-var angular = window.angular;
-
 var _ = require("lodash");
 
-module.exports =
-angular.module("plunker.component.workspace.panes", [])
+module.exports = angular.module("plunker.component.workspace.panes", [])
 
 .factory("panes", [function () {
   var panes = {
@@ -11,7 +8,12 @@ angular.module("plunker.component.workspace.panes", [])
     registerHandler: function (type, paneHandler) {
       panes.handlers[type] = _.defaults(paneHandler, {
         preLink: angular.noop,
-        link: angular.noop
+        link: angular.noop,
+        loadComplete: function () {
+          console.log("==========");
+          console.log(type);
+          console.log("==========");
+        }
       });
     },
     getHandler: function (type) {
