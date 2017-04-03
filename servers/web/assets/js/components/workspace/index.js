@@ -188,7 +188,7 @@ module.exports = angular.module("plunker.component.workspace", [
         $compile(paneElement)(paneScope);
         $element.append(paneElement);
         paneHandler.link(paneScope, paneElement);
-        paneHandler.loadComplete();
+        paneHandler.loadComplete($element);
         //paneScope.$watch(function () {
           //return workspace.getActivePaneNum() === paneScope.paneNum;
         //}, function (active) {
