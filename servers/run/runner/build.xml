@@ -1,0 +1,33 @@
+<project name="jsonrunner" default='dist'  basedir=".">
+  <property name="src" value="src"/>
+  <property name="build" value="build"/>
+  <property name="build-classes" value="build/classes"/>
+  <property name="dist" value="dist"/>
+  <property name="junit4" value="lib/junit4-4.11.jar"/>
+  <property name="json-simple"  value="lib/json-simple-1.1.1.jar"/> 
+ 
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+  </target>
+
+  <target name="mkdir" depends="clean">
+    <mkdir dir="${build-classes}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+
+  <target name="compile" depends="mkdir">
+    <javac includeantruntime="false" 
+           srcdir="${src}" 
+           destdir="${build-classes}">
+      <classpath>
+        <pathelement location="${junit4}"/>
+        <pathelement location="${json-simple}"/>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="dist" depends="compile">
+    <jar destfile="${dist}/${ant.project.name}.jar" basedir="${build-classes}" />
+  </target> 
+</project>
