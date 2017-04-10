@@ -9,8 +9,8 @@ import static org.junit.Assert.*;
 public class palindromeStringTest extends Base {
 
     @Test
-    public void revTest() {
-      description = "this should reverse the string";
+    public void t1() {
+      description = "1.this should reverse the string";
       String  a="Madam";
       palindromeString obj = new palindromeString();
       String b = obj.rev(a);  
@@ -18,8 +18,8 @@ public class palindromeStringTest extends Base {
     }
 
     @Test
-    public void checkTest() {
-      description = "this should check if the reverse of the strings are equal to each other";
+    public void t2() {
+      description = "2.this should check if the reverse of the strings are equal to each other";
       palindromeString obj = new palindromeString();
       int result = obj.check("hello", "hello"); 
       int expResult = 1;
@@ -27,29 +27,34 @@ public class palindromeStringTest extends Base {
     }
 
 
-    //@Test
-    //public void checkTest1() {
-      //palindromeString obj = new palindromeString();
-      //int result = obj.check("hello", "hi"); 
-      //int expResult = 0;
-      //assertEquals(expResult,result);
-    //}
+    @Test
+    public void t3() {
+       description = "3.this should check if the reverse of the strings are equal to each other";
 
-    //@Test
-   //public void mainTestPalindrome() throws java.io.IOException{
-        //ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
-	//System.setIn(in);
-	//palindromeString.main();
-        //assertEquals("input a number\npalindrome", outContent.toString().toLowerCase());
+	palindromeString obj = new palindromeString();
+      int result = obj.check("hello", "hi"); 
+      int expResult = 0;
+      assertEquals(expResult,result);
+    }
+
+    @Test
+   public void t4() throws java.io.IOException{
+         description = "4.call the main fucntion";
+
+	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
+	System.setIn(in);
+	palindromeString.main();
+        assertEquals("input a number\npalindrome", outContent.toString().toLowerCase());
      
-   //}
+   }
 
-   //@Test
-   //public void mainTestNotPalindrome() throws java.io.IOException{
-        //ByteArrayInputStream in = new ByteArrayInputStream("hello".getBytes());
-	//System.setIn(in);
-	//palindromeString.main();
-        //assertEquals("input a number\nnot palindrome", outContent.toString());
-   //}
+   @Test
+   public void t5() throws java.io.IOException{
+         description = "5.Main";
+        ByteArrayInputStream in = new ByteArrayInputStream("hello".getBytes());
+	System.setIn(in);
+	palindromeString.main();
+        assertEquals("input a number\nnot palindrome", outContent.toString());
+   }
 }
 
