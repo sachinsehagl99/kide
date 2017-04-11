@@ -1,8 +1,6 @@
 var ace = window.ace;
-var angular = window.angular;
 
-module.exports =
-angular.module("plunker.directive.codeEditor", [
+module.exports = angular.module("plunker.directive.codeEditor", [
   require("../../commander").name,
   require("../../oplog").name,
 ])
