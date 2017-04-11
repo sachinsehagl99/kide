@@ -5,19 +5,26 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.lang.reflect.*;
 
 public class palindromeStringTest extends Base {
 
     @Test
     public void t1() {
-      description = "1.this should reverse the string";
+      description = "ok, lets create a function that will take a string parameter and return the reverse";
       String  a="Madam";
+
       palindromeString obj = new palindromeString();
-      String b = obj.rev(a);  
-      assertEquals("hey there","madaM",b);
+      try {
+        Method m = obj.getClass().getDeclaredMethod("rev");
+        Object b = m.invoke(a);
+        assertEquals(1, 0);
+      } catch (Exception e){
+        assertEquals(0, 1);
+      }
     }
 
-    @Test
+/*    @Test
     public void t2() {
       description = "2.this should check if the reverse of the strings are equal to each other";
       palindromeString obj = new palindromeString();
@@ -55,6 +62,6 @@ public class palindromeStringTest extends Base {
 	System.setIn(in);
 	palindromeString.main();
         assertEquals("input a number\nnot palindrome", outContent.toString());
-   }
+   }*/
 }
 
