@@ -14,11 +14,22 @@ public class palindromeStringTest extends Base {
       description = "ok, lets create a function that will take a string parameter and return the reverse";
       String  a="Madam";
 
+String b = "";
       palindromeString obj = new palindromeString();
       try {
-        Method m = obj.getClass().getDeclaredMethod("rev");
-        Object b = m.invoke(a);
-        assertEquals(1, 0);
+        //Method m = obj.getClass().getMethod("rev");
+//        Object b = m.invoke(obj, a);
+//
+Method[] methods = obj.getClass().getMethods();
+for (Method m : methods) {
+  //System.out.println(m.getName());
+  if (m.getName().equals("rev")) {
+    b = m.invoke(obj, a).toString();
+    //hasMethod = true;
+    break;
+  }
+}
+        assertEquals("madaM", b);
       } catch (Exception e){
         assertEquals(0, 1);
       }
