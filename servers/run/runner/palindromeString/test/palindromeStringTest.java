@@ -7,7 +7,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.lang.reflect.*;
 
+
 public class palindromeStringTest extends Base {
+	
 
     @Test
     public void t1() {
@@ -17,25 +19,22 @@ public class palindromeStringTest extends Base {
 String b = "";
       palindromeString obj = new palindromeString();
       try {
-        //Method m = obj.getClass().getMethod("rev");
-//        Object b = m.invoke(obj, a);
-//
-Method[] methods = obj.getClass().getMethods();
-for (Method m : methods) {
-  //System.out.println(m.getName());
-  if (m.getName().equals("rev")) {
-    b = m.invoke(obj, a).toString();
-    //hasMethod = true;
-    break;
-  }
-}
-        assertEquals("madaM", b);
-      } catch (Exception e){
-        assertEquals(0, 1);
-      }
-    }
+	Method m=getMethod(obj,"rev");
+		if(m!=null)
+		{
+			b = m.invoke(obj, a).toString();
+    			assertEquals("madaM", b);
+        	}
+        	else
+		{
+	        	assertEquals(0, 1);
+        	}
+	}
+	catch(Exception e){}
 
-/*    @Test
+ }
+/*
+    @Test
     public void t2() {
       description = "2.this should check if the reverse of the strings are equal to each other";
       palindromeString obj = new palindromeString();
@@ -43,7 +42,6 @@ for (Method m : methods) {
       int expResult = 1;
       assertEquals(expResult,result);
     }
-
 
     @Test
     public void t3() {
