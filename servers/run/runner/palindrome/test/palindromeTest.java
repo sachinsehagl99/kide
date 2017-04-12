@@ -5,66 +5,97 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.lang.reflect.*;
 
-public class palindromeTest
+public class palindromeTest extends Base
  {
 
-  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  
-
-  @Before
-  public void setUpStream() {
-     System.setOut(new PrintStream(outContent));
-  }
-
-  @After
-  public void cleanUpStream() {
-     System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-  }
-
     @Test
-    public void revTest() {
-      System.out.println("Should reverse the number");
+    public void t1() {
+       description = "Find the reverse of the number using function 'rev'";
       int a=121;
+      int b = 0;
       palindrome obj = new palindrome();
-      int b = obj.rev(a);  
-      assertEquals(121,b);
-    }
+      try {
+	Method m=getMethod(obj,"rev");
+		if(m!=null)
+		{
+			b = Integer.parseInt(m.invoke(obj, a).toString());
+    			assertEquals(121, b);
+        	}
+        }
+	catch(Exception e){}
+     }
 
     @Test
-    public void checkTest() {
-      System.out.println("should check between two numbers");
+    public void t2() {
+       description = "Check between the reversed number and the original a function named 'check'";
       palindrome obj = new palindrome();
-      int result = obj.check(121, 121); 
-      int expResult = 1;
-      assertEquals(expResult,result);
-    }
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 121,121).toString());
+    			assertEquals(1, b);
+        	}
+        }
+	catch(Exception e){}
+     }
 
 
     @Test
-    public void checkTest1() {
-      System.out.println("shyould check between two numbers");
+    public void t3() {
+      description = "Check between the reversed number and the original a function named 'check'";
       palindrome obj = new palindrome();
-      int result = obj.check(121, 123); 
-      int expResult = 0;
-      assertEquals(expResult,result);
-    }
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 123,321).toString());
+    			assertEquals(0, b);
+        	}
+        }
+	catch(Exception e){}
+     }
 
     @Test
-   public void mainTestPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
+   public void t4() throws java.io.IOException{
+       description = "call the main fucntion";
+	palindrome obj = new palindrome();
+	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in);
-	palindrome.main();
-        assertEquals("input a number\npalindrome", outContent.toString().toLowerCase());
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\npalindrome\n", outContent.toString());
      
-   }
+
+    		}
+        }
+	catch(Exception e){}
+    
+        }
 
    @Test
-   public void mainTestNotPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("hello".getBytes());
+   public void t5() throws java.io.IOException{
+        description = "call the main fucntion";
+	palindrome obj = new palindrome();
+	ByteArrayInputStream in = new ByteArrayInputStream("123".getBytes());
 	System.setIn(in);
-	palindrome.main();
-     assertEquals("input a number\nnot palindrome", outContent.toString());
-   }
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nnot palindrome\n", outContent.toString());
+     
+
+    		}
+        }
+	catch(Exception e){}
+    
+        }
 }
 

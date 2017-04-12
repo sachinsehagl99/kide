@@ -28,9 +28,9 @@ public class niven
          int check= obj.check(a, b);
 
          if(check == 1){
-           System.out.print("niven");
+           System.out.println("niven");
          } else {
-           System.out.print("not niven");
+           System.out.println("not niven");
          } 
        }
 }
