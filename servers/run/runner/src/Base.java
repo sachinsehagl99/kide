@@ -29,10 +29,9 @@ public class Base{
   public static String getDescription() {
     return description;
   }
-  
 
   public static Method getMethod(Object obj,String fn_Name){
-	Method fun=null;
+	Method fun = null;
 	 try {
             Method[] methods = obj.getClass().getMethods();
 		for (Method m : methods) {
@@ -43,8 +42,10 @@ public class Base{
 		}
          }
       	 catch (Exception e){}
+         if(fun == null){
+
+	        	assertEquals(0, 1);
+         }
 	 return fun;
- 
-	
   }
 }
