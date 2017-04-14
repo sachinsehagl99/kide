@@ -7,7 +7,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import java.lang.reflect.*;
 
+
 public class palindromeStringTest extends Base {
+	
 
     @Test
     public void t1() {
@@ -17,62 +19,87 @@ public class palindromeStringTest extends Base {
 String b = "";
       palindromeString obj = new palindromeString();
       try {
-        //Method m = obj.getClass().getMethod("rev");
-//        Object b = m.invoke(obj, a);
-//
-Method[] methods = obj.getClass().getMethods();
-for (Method m : methods) {
-  //System.out.println(m.getName());
-  if (m.getName().equals("rev")) {
-    b = m.invoke(obj, a).toString();
-    //hasMethod = true;
-    break;
-  }
-}
-        assertEquals("madaM", b);
-      } catch (Exception e){
-        assertEquals(0, 1);
-      }
-    }
+	Method m=getMethod(obj,"rev");
+		if(m!=null)
+		{
+			b = m.invoke(obj, a).toString();
+    			assertEquals("madaM", b);
+        	}
+        }
+	catch(Exception e){}
 
-/*    @Test
+ }
+    @Test
     public void t2() {
       description = "2.this should check if the reverse of the strings are equal to each other";
+      int b;
       palindromeString obj = new palindromeString();
-      int result = obj.check("hello", "hello"); 
-      int expResult = 1;
-      assertEquals(expResult,result);
+      try {
+		Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+			b = Integer.parseInt(m.invoke(obj, "hello","hello").toString());
+    			assertEquals(1, b);
+        	}
+        }
+	catch(Exception e){}
     }
-
 
     @Test
     public void t3() {
-       description = "3.this should check if the reverse of the strings are equal to each other";
-
-	palindromeString obj = new palindromeString();
-      int result = obj.check("hello", "hi"); 
-      int expResult = 0;
-      assertEquals(expResult,result);
+      description = "3.this should check if the reverse of the strings are not equal to each other";
+      int b;
+      palindromeString obj = new palindromeString();
+      try {
+		Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+			b = Integer.parseInt(m.invoke(obj, "hello","hi").toString());
+    			assertEquals(0, b);
+        	}
+        }
+	catch(Exception e){}
     }
 
     @Test
    public void t4() throws java.io.IOException{
          description = "4.call the main fucntion";
-
+	 palindromeString obj = new palindromeString();
 	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
 	System.setIn(in);
-	palindromeString.main();
-        assertEquals("input a number\npalindrome", outContent.toString().toLowerCase());
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\npalindrome", outContent.toString());
      
-   }
+
+    		}
+        }
+	catch(Exception e){}
+    
+         }
 
    @Test
    public void t5() throws java.io.IOException{
-         description = "5.Main";
-        ByteArrayInputStream in = new ByteArrayInputStream("hello".getBytes());
+        description = "5.call the main function";
+	 palindromeString obj = new palindromeString();
+	ByteArrayInputStream in = new ByteArrayInputStream("Hello".getBytes());
 	System.setIn(in);
-	palindromeString.main();
-        assertEquals("input a number\nnot palindrome", outContent.toString());
-   }*/
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nnot palindrome", outContent.toString());
+     
+
+    		}
+        }
+	catch(Exception e){}
+    
+   }
+
 }
 
