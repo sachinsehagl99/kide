@@ -1,57 +1,28 @@
-var ace = window.ace;
+var codemirror = require("codemirror");
 
-module.exports = angular.module("plunker.directive.codeEditor", [
-  require("../../commander").name,
-  require("../../oplog").name,
-])
+module.exports = angular.module("plunker.directive.codeEditor", [])
 
-.directive("codeEditor", ["$rootScope", "$q", "commander", "oplog", function($rootScope, $q, commander, oplog){
-  var AceEditor = ace.require("ace/editor").Editor
-    , Renderer = ace.require("ace/virtual_renderer").VirtualRenderer;
+.directive("codeEditor", ["$rootScope", "$q", function($rootScope, $q){
 
   return {
     restrict: "E",
     replace: true,
     template: "<div></div>",
-    scope: {
-      editSession: "="
-    },
     link: function($scope, $element, $attrs){
-      var editor = new AceEditor(new Renderer($element[0], "ace/theme/textmate"));
+
+		window.onload = function() {
+      codemirror($element[0], {
+				theme: "zenburn",
+				lineWrapping: true,
+				lineNumbers: true,
+				styleActiveLine: true,
+				matchBrackets: true,
+  value: "function myScript(){return 100;}\n",
+  mode:  "javascript"
+});
+}
       
-      editor.setSession($scope.editSession);
-      
-      withModule("ace/ext/language_tools").then(function() {
-        editor.setOptions({
-          enableBasicAutocompletion: true,
-          enableSnippets: true      
-        });
-      });
-
-      commander.attachTo(editor);
-
-      $scope.$on("pane-active", function(e){
-        editor.focus();
-      });
-
-      $scope.$on("fa-pane-resize", function () {
-        editor.resize();
-      });
-
-      $scope.$on("$destroy", function () {
-        editor.blur();
-      });
+      //editor.setSession($scope.editSession);
     }
   };
-  
-  function withModule(moduleName) {
-    var dfd = $q.defer();
-    
-    ace.config.loadModule(moduleName, function(module){
-      if (module) { dfd.resolve(module); }
-      else { dfd.reject("Failed to load module") }
-    });
-    
-    return dfd.promise;
-  }
 }]);
