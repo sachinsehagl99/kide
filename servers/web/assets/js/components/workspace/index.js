@@ -1,16 +1,15 @@
 var Fs = require("fs");
 var _ = require("lodash");
-var angular = window.angular;
 
 var Workspace = require("./workspace");
 
+require("ui-codemirror");
 require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
 
 
 module.exports = angular.module("plunker.component.workspace", [
-  //"fa.directive.borderLayout",
-  require("./code").name,
+  "ui.codemirror",
   require("./preview").name,
 ])
 
