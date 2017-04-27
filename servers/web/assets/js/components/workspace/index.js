@@ -10,8 +10,6 @@ require("../../../vendor/mousetrap/mousetrap");
 
 module.exports = angular.module("plunker.component.workspace", [
   //"fa.directive.borderLayout",
-  require("./panes").name,
-  require("./empty").name,
   require("./code").name,
   require("./preview").name,
 ])
@@ -154,49 +152,62 @@ module.exports = angular.module("plunker.component.workspace", [
   };
 }])
 
-.directive("plunkerWorkspacePane", ["$compile", "$timeout", "workspace", "panes", function ($compile, $timeout, workspace, panes) {
-  return {
-    restrict: "A",
-    require: "^plunkerWorkspace",
-    link: function ($scope, $element, $attrs, workspaceController) {
-      var paneScope = null;
-      var paneElement = null;
-      var paneNum = null;
-      
-      $scope.workspace = workspaceController;
-      
-      $attrs.$observe("plunkerWorkspacePane", function (newPaneNum) {
-        paneNum = newPaneNum;
-      });
-      
-      $scope.$watch(getPaneDef, function (paneDef) {
-        if (!paneDef) return;
-        
-        var paneHandler = panes.getHandler(paneDef.type);
-        
-        if (!paneHandler) throw new Error("WTFBBQ, how did we get an unsupported pane type?");
-        
-        if (paneScope) paneScope.$destroy();
-        
-        $element.empty();
-        paneScope = $scope.$new();
-        paneScope.paneNum = parseInt(paneNum, 10);
-        paneScope.$type = paneDef.type;
-        paneScope.$id = paneDef.id;
-        paneElement = angular.element(paneHandler.template);
-        paneHandler.preLink(paneScope, paneElement);
-        $compile(paneElement)(paneScope);
-        $element.append(paneElement);
-        paneHandler.link(paneScope, paneElement);
-        paneHandler.loadComplete($element);
-      });
-      
-      
-      function getPaneDef () {
-        return workspace.panes[paneNum];
-      }
-    }
-  };
-}])
 
-.run(require("./commands"));
+
+.controller('CodemirrorCtrl', ['$scope',
+  function($scope) {
+    $scope.piecesOfCode = [{
+      code: '// Javascript code in here.\n function foo(msg) {\n\tvar r = Math.random();\n\treturn "" + r + " : " + msg;\n}',
+      options: {
+        theme: "zenburn",
+        mode: "javascript",
+        lineNumbers: true
+      }
+    }];
+  }
+])
+/*.directive("plunkerWorkspacePane", ["$compile", "$timeout", "workspace", "panes", function ($compile, $timeout, workspace, panes) {*/
+  //return {
+    //restrict: "A",
+    //require: "^plunkerWorkspace",
+    //link: function ($scope, $element, $attrs, workspaceController) {
+      //var paneScope = null;
+      //var paneElement = null;
+      //var paneNum = null;
+      
+      //$scope.workspace = workspaceController;
+      
+      //$attrs.$observe("plunkerWorkspacePane", function (newPaneNum) {
+        //paneNum = newPaneNum;
+      //});
+      
+      //$scope.$watch(getPaneDef, function (paneDef) {
+        //if (!paneDef) return;
+        
+        //var paneHandler = panes.getHandler(paneDef.type);
+        
+        //if (!paneHandler) throw new Error("WTFBBQ, how did we get an unsupported pane type?");
+        
+        //if (paneScope) paneScope.$destroy();
+        
+        //$element.empty();
+        //paneScope = $scope.$new();
+        //paneScope.paneNum = parseInt(paneNum, 10);
+        //paneScope.$type = paneDef.type;
+        //paneScope.$id = paneDef.id;
+        //paneElement = angular.element(paneHandler.template);
+        //paneHandler.preLink(paneScope, paneElement);
+        //$compile(paneElement)(paneScope);
+        //$element.append(paneElement);
+
+      //});
+      
+      
+      //function getPaneDef () {
+        //return workspace.panes[paneNum];
+      //}
+    //}
+  //};
+/*}])*/
+
+//.run(require("./commands"));

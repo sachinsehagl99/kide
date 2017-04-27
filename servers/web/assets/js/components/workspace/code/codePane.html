@@ -2,12 +2,10 @@
   <div class="pane-title" ng-bind="entry.getPath()" ng-click="workspace.activate(paneNum)"></div>
 </div>
 <div class="pane-content" ng-click="workspace.activate(paneNum)">
-	<!--<code-editor></code-editor>-->
+	<!--<code-editor ui-codemirror="piecesOfCode[0].options" ng-model="piecesOfCode[0].code"></code-editor>-->
 
 
-<section ng-controller="CodemirrorCtrl">
 
-  <div ui-codemirror="piecesOfCode[0].options" ng-model="piecesOfCode[0].code"></div>
+  <div ng-controller="CodemirrorCtrl" ui-codemirror="piecesOfCode[0].options" ng-model="piecesOfCode[0].code"></div>
     
-</section>
 </div>
