@@ -1,20 +1,17 @@
 var angular = window.angular;
 
 var Fs = require("fs");
-
-
 require("../../../vendor/angular-timeago/angular-timeago");
+require("../project");
+require("../commander");
+require("./tree/fileTree");
 
-
-module.exports =
-angular.module("plunker.component.sidebar", [
+module.exports = angular.module("plunker.component.sidebar", [
   "yaru22.angular-timeago",
   "ui.bootstrap",
-  
-  require("../project").name,
-  require("../commander").name,
-  
-  require("./tree/fileTree").name
+  "plunker.project",
+  "plunker.service.commander",
+  "plunker.directive.fileTree"
 ])
 
 .filter("slice", function () {
