@@ -1,16 +1,15 @@
 var Fs = require("fs");
 var _ = require("lodash");
-
 var Workspace = require("./workspace");
 
-require("ui-codemirror");
 require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
-
+require("ui-codemirror");
+require("./preview");
 
 module.exports = angular.module("plunker.component.workspace", [
   "ui.codemirror",
-  require("./preview").name,
+  "plunker.pane.preview"
 ])
 
 
@@ -151,10 +150,9 @@ module.exports = angular.module("plunker.component.workspace", [
   };
 }])
 
+.controller('CodemirrorCtrl', ['$scope', "project", function($scope, project) {
+   console.log(project.entries);
 
-
-.controller('CodemirrorCtrl', ['$scope',
-  function($scope) {
     $scope.piecesOfCode = [{
       code: '// Javascript code in here.\n function foo(msg) {\n\tvar r = Math.random();\n\treturn "" + r + " : " + msg;\n}',
       options: {
@@ -165,6 +163,7 @@ module.exports = angular.module("plunker.component.workspace", [
     }];
   }
 ])
+
 /*.directive("plunkerWorkspacePane", ["$compile", "$timeout", "workspace", "panes", function ($compile, $timeout, workspace, panes) {*/
   //return {
     //restrict: "A",

@@ -1,8 +1,9 @@
 var Fs = require('fs');
+require("./codeEditor");
 
 module.exports = angular.module("plunker.pane.code", [
   "ui.bootstrap",
-  require("./codeEditor").name,
+  "plunker.directive.codeEditor"
 ])
 
 .run(["$modal", "panes", "project", function ($modal, panes, project) {
