@@ -6,11 +6,9 @@
     <base href="/edit">
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
-
     <!-- inject:css -->
     <link rel="stylesheet" href="/editor/editor.css">
     <!-- endinject -->
-
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
   </head>
@@ -34,21 +32,13 @@
     </div>    
     <div growl></div>
     <plunker-previewer></plunker-previewer>
-
-
-      <script src="http://codemirror.net/lib/codemirror.js"></script>
-      <!--<script src="http://codemirror.net/mode/scheme/scheme.js"></script>-->
-      <script src="http://codemirror.net/mode/javascript/javascript.js"></script>
-    
-
+    <script src="http://codemirror.net/lib/codemirror.js"></script>
+    <script src="http://codemirror.net/mode/javascript/javascript.js"></script>
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/ui-bootstrap/ui-bootstrap.js"></script>
-    <script src="vendor/ace/src-noconflict/ace.js"></script>
-
     <!-- inject:js -->
     <script src="/editor/editor.js"></script>
     <!-- endinject -->
-
     <script>
       angular.module("plunker.service.config", []).value("config",{
 	  "url": {
