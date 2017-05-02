@@ -186,6 +186,7 @@ module.exports = angular.module("plunker.component.workspace", [
           code: entries.contents,
           options: {
             theme: "zenburn",
+	    lineWrapping: true,
             mode: "javascript",
             lineNumbers: true
           }
