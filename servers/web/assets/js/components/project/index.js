@@ -3,20 +3,19 @@ var angular = window.angular;
 var Fs = require("fs");
 var _ = require("lodash");
 
-require("../../vendor/ngTagsInput/ngTagsInput");
+require("../../../vendor/ngTagsInput/ngTagsInput");
 
-module.exports =
-angular.module("plunker.project", [
+module.exports = angular.module("plunker.project", [
   "ngTagsInput",
   
   "plunker.service.config",
   
-  require("./commander").name,
-  require("./marked").name,
-  require("./visitor").name,
+  require("../commander").name,
+  require("../marked").name,
+  require("../visitor").name,
   
-  require("./project/textEntry").name,
-  require("./project/directoryEntry").name,
+  require("./textEntry").name,
+  require("./directoryEntry").name,
 
 ])
 
@@ -518,7 +517,7 @@ angular.module("plunker.project", [
     description: "Open the template selection window",
     handler: ["$modal", function ($modal) {
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/templates.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/templates.html", "utf8"),
         windowClass: "plunker-templates",
         size: "lg",
         controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
@@ -593,7 +592,7 @@ angular.module("plunker.project", [
       };
 
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/edit.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/edit.html", "utf8"),
         controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
           $scope.project = _.clone(editing);
           
@@ -626,7 +625,7 @@ angular.module("plunker.project", [
     description: "Show the project publishing dialog",
     handler: ["$modal", function ($modal) {
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/publish.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/publish.html", "utf8"),
         size: "lg",
         controller: ["$scope", "$modalInstance", "notifier", function ($scope, $modalInstance, notifier) {
           $scope.refreshCollections = function (username, scopeKey) {
