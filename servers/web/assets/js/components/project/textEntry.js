@@ -16,13 +16,13 @@ module.exports = angular.module("plunker.project.textEntry", [
   //var UndoManager = ace.require("ace/undomanager").UndoManager;
 
 
-  function TextEntry (parent, filename, id) {
+  function TextEntry (parent, filename, active, id) {
     Entry.call(this, parent, filename, id);
     
     var self = this;
-    var remoteEvent = false;
-    
+    var remoteEvent = false; 
     this.contents = "";
+    this.active = active;
     //this.editSession = new EditSession("");
     //this.editSession.setUndoManager(new UndoManager());
     //this.editSession.setTabSize(settings.editor.tabSize);

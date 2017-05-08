@@ -113,12 +113,9 @@ module.exports = angular.module("plunker.project", [
   Project.prototype.isWritableBy = function (user) {
     return this.isSaved() && user && this.plunk.user.id === user.id; };
   
-  Project.prototype.create = function (parent, filename, type) {
-    if (!type) type = TextEntry;
-    
+  Project.prototype.create = function (parent, filename, active) { 
     if (parent.hasChildByFilename(filename)) throw new Error("An entry already exists with the same filename: " + filename);
-    
-    var entry = new type(parent, filename);
+    var entry = new TextEntry(parent, filename, active);
     
     parent.addChild(entry);
     
@@ -208,7 +205,7 @@ module.exports = angular.module("plunker.project", [
       }
       
       function fileCreate (parent, entry) {
-        return commander.execute("file.create", {parent: parent, filename: entry.filename}).then(function (file) {
+        return commander.execute("file.create", {parent: parent, filename: entry.filename, active: entry.active}).then(function (file) {
           return commander.execute("text.insert", {path: file.getPath(), offset: 0, text: entry.contents});
         });
       }
@@ -689,9 +686,9 @@ module.exports = angular.module("plunker.project", [
   commander.addCommand({
     name: "file.create",
     description: "Create a new file",
-    handler: ["parent", "filename", "type", project.create.bind(project)],
+    handler: ["parent", "filename", "active", project.create.bind(project)],
     defaults: function () {
-      return { parent: project.root, filename: "Untitled" + untitled++, type: TextEntry };
+      return { parent: project.root, filename: "Untitled" + untitled++, active: false };
     }
   });  
   
