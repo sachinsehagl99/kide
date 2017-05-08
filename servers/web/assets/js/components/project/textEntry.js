@@ -19,7 +19,7 @@ module.exports = angular.module("plunker.project.textEntry", [
   function TextEntry (parent, filename, active, id) {
     Entry.call(this, parent, filename, id);
     
-    var self = this;
+    //var self = this;
     var remoteEvent = false; 
     this.contents = "";
     this.active = active;

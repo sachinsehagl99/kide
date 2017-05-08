@@ -212,7 +212,7 @@ module.exports = angular.module("plunker.project", [
     });
   };
   
-  Project.prototype.openTree = function (tree, activate) {
+  Project.prototype.openTree = function (tree) {
     var self = this;
     var sha = _.isString(tree) ? tree : null;
     
@@ -227,13 +227,14 @@ module.exports = angular.module("plunker.project", [
         self.tree = sha;
       });
       
-      if (activate) {
         returnPromise = returnPromise.then(function () {
-          return self.withPath(activate, function (entry) {
-            return commander.execute("workspace.open", {type: 'code', id: entry.entryId, blank: true });
+          _.each(self.entries, function (entry){
+            if(entry.active){
+              return commander.execute("workspace.open", {type: 'code', id: entry.entryId, blank: true });
+            }
           });
         });
-      }
+
       
       return returnPromise;
     });
@@ -458,8 +459,7 @@ module.exports = angular.module("plunker.project", [
       message: "Loading project files"
     },
     description: "Open an existing project",
-    handler: ["tree", "activate", project.openTree.bind(project)],
-    defaults: { activate: /^(index|example|default|readme)\.(html|md|htm)$/i }
+    handler: ["tree", project.openTree.bind(project)]
   });
   
   commander.addCommand({
