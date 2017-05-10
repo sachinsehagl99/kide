@@ -172,8 +172,7 @@ module.exports = angular.module("plunker.component.workspace", [
   }
 ])
 
-.controller('CodemirrorCtrl', ['$scope', "workspace", "project",
-  function($scope, workspace, project) {
+.controller('CodemirrorCtrl', ['$scope', "workspace", "project", function($scope, workspace, project) {
 
     function getPaneDef() {
       return workspace.panes[0];
@@ -181,16 +180,22 @@ module.exports = angular.module("plunker.component.workspace", [
 
     $scope.$watch(getPaneDef, function(paneDef) {
       var entries = project.entries[paneDef.id];
+      
       if (entries) {
-        $scope.piecesOfCode = [{
+        $scope.entries = {
           code: entries.contents,
           options: {
             theme: "zenburn",
 	    lineWrapping: true,
             mode: "javascript",
-            lineNumbers: true
+            lineNumbers: true,
+            onLoad: function (cm) {
+              cm.on('change', function (cMirror){
+                entries.contents = cMirror.getValue();
+              });  
+            }
           }
-        }];
+        };
       }
     })
   }

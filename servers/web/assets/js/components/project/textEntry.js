@@ -11,15 +11,11 @@ module.exports = angular.module("plunker.project.textEntry", [
 
 
 .factory("TextEntry", ["Entry", "oplog", "settings", function (Entry, oplog, settings) {
-  //var EditSession = ace.require("ace/edit_session").EditSession;
-  //var Range = ace.require("ace/range").Range;
-  //var UndoManager = ace.require("ace/undomanager").UndoManager;
 
 
   function TextEntry (parent, filename, active, id) {
     Entry.call(this, parent, filename, id);
     
-    //var self = this;
     var remoteEvent = false; 
     this.contents = "";
     this.active = active;
