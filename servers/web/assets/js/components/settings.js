@@ -1,7 +1,6 @@
 var angular = window.angular;
 
-module.exports = 
-angular.module("plunker.service.settings", [
+module.exports = angular.module("plunker.service.settings", [
 ])
 
 .factory("settings", [function () {

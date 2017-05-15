@@ -3,20 +3,19 @@ var angular = window.angular;
 var Fs = require("fs");
 var _ = require("lodash");
 
-require("../../vendor/ngTagsInput/ngTagsInput");
+require("../../../vendor/ngTagsInput/ngTagsInput");
 
-module.exports =
-angular.module("plunker.project", [
+module.exports = angular.module("plunker.project", [
   "ngTagsInput",
   
   "plunker.service.config",
   
-  require("./commander").name,
-  require("./marked").name,
-  require("./visitor").name,
+  require("../commander").name,
+  require("../marked").name,
+  require("../visitor").name,
   
-  require("./project/textEntry").name,
-  require("./project/directoryEntry").name,
+  require("./textEntry").name,
+  require("./directoryEntry").name,
 
 ])
 
@@ -114,12 +113,9 @@ angular.module("plunker.project", [
   Project.prototype.isWritableBy = function (user) {
     return this.isSaved() && user && this.plunk.user.id === user.id; };
   
-  Project.prototype.create = function (parent, filename, type) {
-    if (!type) type = TextEntry;
-    
+  Project.prototype.create = function (parent, filename, active) { 
     if (parent.hasChildByFilename(filename)) throw new Error("An entry already exists with the same filename: " + filename);
-    
-    var entry = new type(parent, filename);
+    var entry = new TextEntry(parent, filename, active);
     
     parent.addChild(entry);
     
@@ -209,14 +205,14 @@ angular.module("plunker.project", [
       }
       
       function fileCreate (parent, entry) {
-        return commander.execute("file.create", {parent: parent, filename: entry.filename}).then(function (file) {
+        return commander.execute("file.create", {parent: parent, filename: entry.filename, active: entry.active}).then(function (file) {
           return commander.execute("text.insert", {path: file.getPath(), offset: 0, text: entry.contents});
         });
       }
     });
   };
   
-  Project.prototype.openTree = function (tree, activate) {
+  Project.prototype.openTree = function (tree) {
     var self = this;
     var sha = _.isString(tree) ? tree : null;
     
@@ -231,13 +227,14 @@ angular.module("plunker.project", [
         self.tree = sha;
       });
       
-      if (activate) {
         returnPromise = returnPromise.then(function () {
-          return self.withPath(activate, function (entry) {
-            return commander.execute("workspace.open", {type: 'code', id: entry.entryId, blank: true });
+          _.each(self.entries, function (entry){
+            if(entry.active){
+              return commander.execute("workspace.open", {type: 'code', id: entry.entryId, blank: true });
+            }
           });
         });
-      }
+
       
       return returnPromise;
     });
@@ -462,8 +459,7 @@ angular.module("plunker.project", [
       message: "Loading project files"
     },
     description: "Open an existing project",
-    handler: ["tree", "activate", project.openTree.bind(project)],
-    defaults: { activate: /^(index|example|default|readme)\.(html|md|htm)$/i }
+    handler: ["tree", project.openTree.bind(project)]
   });
   
   commander.addCommand({
@@ -518,7 +514,7 @@ angular.module("plunker.project", [
     description: "Open the template selection window",
     handler: ["$modal", function ($modal) {
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/templates.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/templates.html", "utf8"),
         windowClass: "plunker-templates",
         size: "lg",
         controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
@@ -593,7 +589,7 @@ angular.module("plunker.project", [
       };
 
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/edit.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/edit.html", "utf8"),
         controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
           $scope.project = _.clone(editing);
           
@@ -626,7 +622,7 @@ angular.module("plunker.project", [
     description: "Show the project publishing dialog",
     handler: ["$modal", function ($modal) {
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/project/publish.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/publish.html", "utf8"),
         size: "lg",
         controller: ["$scope", "$modalInstance", "notifier", function ($scope, $modalInstance, notifier) {
           $scope.refreshCollections = function (username, scopeKey) {
@@ -690,9 +686,9 @@ angular.module("plunker.project", [
   commander.addCommand({
     name: "file.create",
     description: "Create a new file",
-    handler: ["parent", "filename", "type", project.create.bind(project)],
+    handler: ["parent", "filename", "active", project.create.bind(project)],
     defaults: function () {
-      return { parent: project.root, filename: "Untitled" + untitled++, type: TextEntry };
+      return { parent: project.root, filename: "Untitled" + untitled++, active: false };
     }
   });  
   

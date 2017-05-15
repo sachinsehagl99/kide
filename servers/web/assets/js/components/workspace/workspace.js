@@ -7,8 +7,7 @@ function Workspace () {
   this.layout = [[]];
   this.history = [];
   this.panes = {};
-  this.paneCoords = {};
-  
+  this.paneCoords = {};  
   this.split([0, 0]);
 }
 
