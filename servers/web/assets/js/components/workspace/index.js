@@ -180,7 +180,8 @@ module.exports = angular.module("plunker.component.workspace", [
 
     $scope.$watch(getPaneDef, function(paneDef) {
       var entries = project.entries[paneDef.id];
-
+      $scope.paneDefId = paneDef.id; 
+      
       if (entries) {
         $scope.entries = {
           code: entries.contents,
@@ -191,7 +192,7 @@ module.exports = angular.module("plunker.component.workspace", [
             lineNumbers: true,
             onLoad: function (cm) {
               cm.on('change', function (cMirror){
-                //entries.contents = cMirror.getValue();
+                project.entries[$scope.paneDefId].contents = cMirror.getValue();
               });  
             }
           }
