@@ -6,58 +6,86 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.Description;
+import java.lang.reflect.*;
 
-public class primeTest
+public class primeTest extends Base
  {
 
-  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  public static String desc; 
-
-  @Before
-  public void setUpStream() {
-     System.setOut(new PrintStream(outContent));
-  }
-
-  @After
-  public void cleanUpStream() {
-     System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-  }
-
     @Test 
-    public void primeTest_not_divisible() {
-      primeTest.desc = "check this out";
-     //Description testone=Description.createTestDescription("primeTest","testone");
-      //System.out.println("Should find divisible by any varriable ,if not divisible return 0");
+    public void t1() {
+      description = "lets find if the number is prime and return 0 using 'prime_check'";
+    
       int a=7;
+	int b=0;	
       prime obj = new prime();
-      int b = obj.prime_check(a);  
-      assertEquals(0,b);
-    }
+      try{
+	Method m=getMethod(obj,"prime_check");
+		if(m!=null)
+		{
+			b=Integer.parseInt(m.invoke(obj,a).toString());
+			assertEquals(0,b);
+		}
+	}
+	catch(Exception e){}
+	}
     @Test
-    public void primeTest_divisible() {
-     System.out.println("Should find divisible by any varriable ,if divisible return 1");
+    public void t2() {
+    description = "lets find if the number is  prime and return 1 using 'prime_check'";
+
       int a=6;
+      int b=0;
       prime obj = new prime();
-      int b = obj.prime_check(a);  
-      assertEquals(1,b);
+      try{
+	Method m=getMethod(obj,"prime_check");
+		if(m!=null)
+		{
+			b=Integer.parseInt(m.invoke(obj,a).toString());
+			assertEquals(1,b);
+		}
+	}
+	catch(Exception e){}
     }
 
 
    @Test
-   public void mainTestPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+   public void t3() throws java.io.IOException{
+         description = "call the main fucntion";
+	prime obj = new prime();
+	ByteArrayInputStream in = new ByteArrayInputStream("7".getBytes());
 	System.setIn(in);
-	prime.main();
-        assertEquals("input a number\nprime", outContent.toString().toLowerCase());
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nprime\n", outContent.toString());
      
-   }
+
+    		}
+        }
+	catch(Exception e){}
+    
+        }
 
    @Test
-   public void mainTestNotPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("123".getBytes());
+   public void t4() throws java.io.IOException{
+       description = "call the main fucntion";
+	prime obj = new prime();
+	ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
 	System.setIn(in);
-	prime.main();
-     assertEquals("input a number\nnot prime", outContent.toString());
-   }
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nnot prime\n", outContent.toString());
+     
+
+    		}
+        }
+	catch(Exception e){}
+    
+
+        }
 }
 

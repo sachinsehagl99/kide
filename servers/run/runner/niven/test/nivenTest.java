@@ -5,66 +5,99 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.lang.reflect.*;
 
-public class nivenTest
+public class nivenTest extends Base
  {
 
-  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-  
-
-  @Before
-  public void setUpStream() {
-     System.setOut(new PrintStream(outContent));
-  }
-
-  @After
-  public void cleanUpStream() {
-     System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-  }
-
     @Test
-    public void niTest() {
-      System.out.println("Find the sum of the digits");
+    public void t1() {
+        description = "Lets find the sum fo the digits using the fuction 'digit_sum'";
       int a=18;
+      int b = 0;
       niven obj = new niven();
-      int b = obj.digit_sum(a);  
-      assertEquals(9,b);
-    }
-
-    @Test
-    public void checkTest() {
-      System.out.println("should check if divisible");
-      niven obj = new niven();
-      int result = obj.check(18, 9); 
-      int expResult = 1;
-      assertEquals(expResult,result);
-    }
+      try {
+	Method m=getMethod(obj,"digit_sum");
+		if(m!=null)
+		{
+			b = Integer.parseInt(m.invoke(obj, a).toString());
+    			assertEquals(9, b);
+        	}
+        }
+	catch(Exception e){}
 
 
-    @Test
-    public void checkTest1() {
-      System.out.println("shyould check if divisible");
-      niven obj = new niven();
-      int result = obj.check(19, 10); 
-      int expResult = 0;
-      assertEquals(expResult,result);
-    }
-
-    @Test
-   public void mainTestPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
-	System.setIn(in);
-	niven.main();
-        assertEquals("input a number\nniven", outContent.toString().toLowerCase());
      
-   }
+      System.out.println("Find the sum of the digits");
+     }
+
+    @Test
+    public void t2() {
+       description = "lets check if the original number is divisible by the sum using the function 'check'";
+      niven obj = new niven();
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 18,9).toString());
+    			assertEquals(1, b);
+        	}
+        }
+	catch(Exception e){}
+     }
+
+
+    @Test
+    public void t3() {
+       description = "lets check if the original number is divisible by the sum using the function 'check'";
+      niven obj = new niven();
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 19,9).toString());
+    			assertEquals(0, b);
+        	}
+        }
+	catch(Exception e){}
+      
+      }
+
+    @Test
+   public void t4() throws java.io.IOException{
+       description = "call the main fucntion";
+	niven obj = new niven();
+	ByteArrayInputStream in = new ByteArrayInputStream("18".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nniven\n", outContent.toString().toLowerCase());     
+
+    		}
+        }
+	catch(Exception e){}
+    }
 
    @Test
-   public void mainTestNotPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("123".getBytes());
+   public void t5() throws java.io.IOException{
+        description = "call the main fucntion";
+	niven obj = new niven();
+	ByteArrayInputStream in = new ByteArrayInputStream("19".getBytes());
 	System.setIn(in);
-	niven.main();
-     assertEquals("input a number\nnot niven", outContent.toString());
-   }
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nnot niven\n", outContent.toString().toLowerCase());     
+
+    		}
+        }
+	catch(Exception e){}
+    
+     }
 }
 

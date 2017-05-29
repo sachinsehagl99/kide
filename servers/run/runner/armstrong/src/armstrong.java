@@ -4,7 +4,7 @@ public class armstrong
 {
 	public int arm(int a)
 	{
-		int b=10;
+		int b=371;
 		return b;
 	}
 	public int check(int a,int b)
@@ -28,9 +28,9 @@ public class armstrong
          int check= obj.check(a, b);
 
          if(check == 1){
-           System.out.print("armstrong");
+           System.out.println("armstrong");
          } else {
-           System.out.print("not armstrong");
+           System.out.println("not armstrong");
          } 
        }
 }

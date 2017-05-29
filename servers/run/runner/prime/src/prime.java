@@ -18,9 +18,9 @@ public class prime
          prime obj = new  prime();
          int b = obj.prime_check(a);
         if(b == 0){
-           System.out.print("prime");
+           System.out.println("prime");
          } else {
-           System.out.print("not prime");
+           System.out.println("not prime");
          } 
        }
 }

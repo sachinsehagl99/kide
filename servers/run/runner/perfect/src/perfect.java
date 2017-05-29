@@ -28,9 +28,9 @@ public class perfect
          int check= obj.check(a, b);
 
          if(check == 1){
-           System.out.print("perfect");
+           System.out.println("perfect");
          } else {
-           System.out.print("not perfect");
+           System.out.println("not perfect");
          } 
        }
 }

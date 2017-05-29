@@ -33,6 +33,8 @@
       <classpath>
         <pathelement location="${junit4}"/>
         <pathelement location="${build-classes}"/>
+	<pathelement location="../build/classes"/>
+	
       </classpath>
     </javac>
   </target>

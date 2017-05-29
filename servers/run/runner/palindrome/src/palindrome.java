@@ -28,9 +28,9 @@ public class palindrome
          int check= obj.check(a, b);
 
          if(check == 1){
-           System.out.print("palindrome");
+           System.out.println("palindrome");
          } else {
-           System.out.print("not palindrome");
+           System.out.println("not palindrome");
          } 
        }
 }

@@ -5,54 +5,99 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.lang.reflect.*;
 
 public class armstrongTest extends Base
  {
 
 
     @Test
-    public void armTest() {
-      description = "Should find the armstrong";
-      int a=121;
+    public void t1() {
+      description = "Find the summation of the cube of the digits of a number using a function named 'arm'";
+      int a=371;
+      int b = 0;
       armstrong obj = new armstrong();
-      int b = obj.arm(a);  
-      assertEquals(10,b);
-    }
+      try {
+	Method m=getMethod(obj,"arm");
+		if(m!=null)
+		{
+			b = Integer.parseInt(m.invoke(obj, a).toString());
+    			assertEquals(371, b);
+        	}
+        }
+	catch(Exception e){}
+
+
+     }
 
     @Test
-    public void checkTest() {
-      System.out.println("should check between two numbers");
+    public void t2() {
+       description = "Check between the armstrong number and the original a function named 'check'";
       armstrong obj = new armstrong();
-      int result = obj.check(10, 10); 
-      int expResult = 1;
-      assertEquals(expResult,result);
-    }
-
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 371,371).toString());
+    			assertEquals(1, b);
+        	}
+        }
+	catch(Exception e){}
+     }
 
     @Test
-    public void checkTest1() {
-      System.out.println("shyould check between two numbers");
+    public void t3() {
+     description = "Check between the armstrong number and the original a function named 'check'";
       armstrong obj = new armstrong();
-      int result = obj.check(10, 11); 
-      int expResult = 0;
-      assertEquals(expResult,result);
-    }
+      try {
+	Method m=getMethod(obj,"check");
+		if(m!=null)
+		{
+		       int b = Integer.parseInt(m.invoke(obj, 121,10).toString());
+    			assertEquals(0, b);
+        	}
+        }
+	catch(Exception e){}
+     }
 
     @Test
-   public void mainTestPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+   public void t4() throws java.io.IOException{
+        description = "call the main fucntion";
+	 armstrong obj = new armstrong();
+	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
 	System.setIn(in);
-	armstrong.main();
-        assertEquals("input a number\narmstrong", outContent.toString().toLowerCase());
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\narmstrong", outContent.toString());
      
-   }
+
+    		}
+        }
+	catch(Exception e){}
+    
+        }
 
    @Test
-   public void mainTestNotPalindrome() throws java.io.IOException{
-        ByteArrayInputStream in = new ByteArrayInputStream("123".getBytes());
+   public void t5() throws java.io.IOException{
+       description = "call the main fucntion";
+	 armstrong obj = new armstrong();
+	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in);
-	armstrong.main();
-     assertEquals("input a number\nnot armstrong", outContent.toString());
-   }
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		   m.invoke(obj);
+		   assertEquals("input a number\nnot armstrong", outContent.toString());
+     
+
+    		}
+        }
+	catch(Exception e){}
+    
+        }
 }
 

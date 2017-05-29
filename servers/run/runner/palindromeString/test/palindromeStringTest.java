@@ -72,7 +72,7 @@ String b = "";
 		if(m!=null)
 		{
 		   m.invoke(obj);
-		   assertEquals("input a number\npalindrome", outContent.toString());
+		   assertEquals("input a number\npalindrome\n", outContent.toString());
      
 
     		}
@@ -92,7 +92,7 @@ String b = "";
 		if(m!=null)
 		{
 		   m.invoke(obj);
-		   assertEquals("input a number\nnot palindrome", outContent.toString());
+		   assertEquals("input a number\nnot palindrome\n", outContent.toString());
      
 
     		}
