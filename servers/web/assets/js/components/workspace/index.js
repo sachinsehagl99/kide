@@ -4,8 +4,8 @@ var Workspace = require("./workspace");
 
 require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
-require("ui-codemirror");
 require("./preview");
+require("ui-codemirror");
 
 module.exports = angular.module("plunker.component.workspace", [
   "ui.codemirror",

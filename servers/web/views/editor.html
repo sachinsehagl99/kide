@@ -7,7 +7,7 @@
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/editor/editor.css">
+    <link rel="stylesheet" href="editor/editor.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
@@ -19,13 +19,20 @@
         <h1 class="plunker-brand"><a href="/" target="_self">cuboid.io</a></h1>
         <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
       </div>
-      <div fa-pane="sidebar" pane-anchor="west" pane-size="40%">
-        check this out
+      <div class="hintContainer" fa-pane="sidebar" pane-anchor="west" pane-size="28%">
+
+	<div class="panel panel-default" style="margin-top:20%">
+	  <div class="panel-heading">Panel heading without title</div>
+	  <div class="panel-body">
+	    Panel content
+	  </div>
+	</div>
+
       </div>
-      <div fa-pane="sidebar" pane-anchor="west" pane-size="12%">
+      <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
-      <div fa-pane="workspace">
+      <div fa-pane="workspace" pane-anchor="west" pane-size="60%">
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
