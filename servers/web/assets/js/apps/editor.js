@@ -81,7 +81,14 @@ module.exports = angular.module('plunker', [
 		filename: "index.js",  
 		contents: Fs.readFileSync(__dirname + "/editor/template3/index.js", "utf8"),
                 active: true
+	      },
+              {
+		type: "file",
+		filename: "app.js",  
+		contents: Fs.readFileSync(__dirname + "/editor/template3/app.js", "utf8"),
+                active: false
 	      }
+              
 	    //{
 	      //type: "file",
 	      //filename: "index.html",
