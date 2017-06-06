@@ -1,5 +1,4 @@
 var Glue = require('glue');
-var Hapi = require('hapi');
 var Config = require("./config.json");
 
 
@@ -15,6 +14,10 @@ var manifest = {
     routes:{
       cors: true  
     }
+  },{
+    host: Config.server.api.host,
+    port: Config.server.api.port,
+    labels: ['api']
   }],
   registrations: [{
     plugin: {
@@ -35,6 +38,17 @@ var manifest = {
     },
     options: {
       select: ['run']
+    }
+  },
+  {
+    plugin: {
+      register: './servers/api',
+      options: {
+        config: Config
+      }
+    },
+    options: {
+      select: ['api']
     }
   }]
 };

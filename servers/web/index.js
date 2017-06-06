@@ -181,11 +181,12 @@ exports.register = function (plugin, options, next) {
   // Index html
   plugin.route({
     method: 'GET',
-    path: '/edit/{path*}',
+    path: '/edit/{path}',
     config: {
       handler: function (request, reply){
 	var config = this.config.server;
-	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
+	var param = request.params;
+	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path + "Test"}};
 	reply.view("editor", context); 
       }
     }
@@ -197,12 +198,15 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	  reply.view("home", context, {
-	    layout: "landing"
+	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/retrieve", function(err, res, body){
+            context.body = {plunk: JSON.parse(body)};
+            reply.view("home", context,{
+	      layout: "landing"
 	  });
-      }
+       });
     }
-  });
+  }
+ });
   
   plugin.route({
     method: 'GET',

@@ -12,7 +12,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 ])
 
 .directive("plunkerPreviewer", ["$rootScope", "$timeout", "$interval", "$http", "commander", "project", "settings", "oplog", "config", function ($rootScope, $timeout, $interval, $http, commander, project, settings, oplog, config) {
-  var previewUrl = config.url.run + "/previews/" + genid();
+  var previewUrl = config.url.run;
   var previewWindow = null;
   var checkPreviewWindowInterval = null;
   var debouncedUpdateStream = null;
@@ -92,7 +92,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
   function refreshPreviews () {
     refreshPreviewJson();
-    refreshPreviewWindow();
+    //refreshPreviewWindow();
   }
 
   function refreshPreviewJson () {
@@ -102,8 +102,8 @@ module.exports = angular.module("plunker.directive.previewer", [
     // Allow events to start arriving from the Stream
     started = true;
 
-    var iframe = angular.element(document.getElementById("plunkerPreviewIframe"))
-      , json = {
+    //var iframe = angular.element(document.getElementById("plunkerPreviewIframe"))
+    var json = {
         files: _.map(project.entries, function (entry) {
           if (entry.isFile()) {
             return {
@@ -115,12 +115,12 @@ module.exports = angular.module("plunker.directive.previewer", [
       };
 
     return $http.post(previewUrl, json).then(function (resp) {
-      iframe.attr("src", resp.data.url);
+      console.log(resp);
+      //iframe.attr("src", resp.data.url);
     }, function (err) {
-      iframe.attr("src", "about:blank");
+      //iframe.attr("src", "about:blank");
     });
-  }
-
+	
   function refreshPreviewWindow() {
     if (!previewWindow || previewWindow.closed) return;
     if (_.isEmpty(project.entries)) return;
@@ -149,6 +149,9 @@ module.exports = angular.module("plunker.directive.previewer", [
     document.body.appendChild(form);
     
     debugger;
+	console.log(entry.c);
+  
+
     form.submit();
 
     document.body.removeChild(form);

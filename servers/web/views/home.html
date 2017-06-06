@@ -2,8 +2,8 @@
   <div class="col-xs-12">
     <h2>Trending projects</h2>
     <div class="plunk-list">
-    {{#each plunks}}
-      <div id="{{id}}" class="col-xs-12 col-md-6 col-lg-4">
+    {{#each body.plunk}}
+      <div id="{{name}}" class="col-xs-12 col-md-6 col-lg-4">
         {{> plunk}}
       </div>
       {{/each}}
