@@ -181,11 +181,12 @@ exports.register = function (plugin, options, next) {
   // Index html
   plugin.route({
     method: 'GET',
-    path: '/edit/{path*}',
+    path: '/edit/{path}',
     config: {
       handler: function (request, reply){
 	var config = this.config.server;
-	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
+	var param = request.params;
+	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path + "Test"}};
 	reply.view("editor", context); 
       }
     }

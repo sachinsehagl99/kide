@@ -174,21 +174,21 @@ exports.register = function (plugin, options, next) {
     }
   });
 
-plugin.route({
-	method: 'POST',
-	path: '/java/{testName}',
-	handler: function (request,reply){
-		var testName = encodeURIComponent(request.params.testName);
-		var payload = request.payload;
-		var path = __dirname + "/" + payload.file_name;
-		fs.writeFile(path, payload.file_content, function (err){
-                  if(err) {
-                    return console.log(err);
-                  }
-				runner(testName, path);
-		});
+  plugin.route({
+    method: 'POST',
+    path: '/java/{testName}',
+    handler: function (request,reply){
+      var testName = encodeURIComponent(request.params.testName);
+      var payload = request.payload;
+      var path = __dirname + "/" + payload.file_name;
+      fs.writeFile(path, payload.file_content, function (err){
+        if(err) {
+          return console.log(err);
         }
-});
+        runner(testName, path);
+       });
+     }
+  });
 
   plugin.route({ 
     method: 'POST', 
