@@ -197,12 +197,15 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	  reply.view("home", context, {
-	    layout: "landing"
+	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/retrieve", function(err, res, body){
+            context.body = {plunk: JSON.parse(body)};
+            reply.view("home", context,{
+	      layout: "landing"
 	  });
-      }
+       });
     }
-  });
+  }
+ });
   
   plugin.route({
     method: 'GET',

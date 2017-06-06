@@ -9,8 +9,7 @@ function PlunkQueryBuilder () {
   this.packages = [];
   this.phrases = [];
   this.terms = [];
-  this.collections = [];
-  
+  this.collections = [];  
   this.userId = "";
 }
 
