@@ -181,13 +181,18 @@ exports.register = function (plugin, options, next) {
   // Index html
   plugin.route({
     method: 'GET',
-    path: '/edit/{path}',
+    path: '/edit/{path*}',
     config: {
       handler: function (request, reply){
 	var config = this.config.server;
 	var param = request.params;
-	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path + "Test"}};
+
+        Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/get_files/" + param.path, function (err, res, body){
+	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path}, "course_files": body};
 	reply.view("editor", context); 
+});
+
+
       }
     }
   });

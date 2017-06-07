@@ -120,6 +120,7 @@ module.exports = angular.module("plunker.directive.previewer", [
     }, function (err) {
       //iframe.attr("src", "about:blank");
     });
+  }
 	
   function refreshPreviewWindow() {
     if (!previewWindow || previewWindow.closed) return;

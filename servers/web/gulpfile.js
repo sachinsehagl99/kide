@@ -32,12 +32,12 @@ Gulp.task("editor:styles:build", [ "editor:styles:clean" ], function () {
 Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
 
     // Single entry point to browserify 
-    //Gulp.src('./assets/js/apps/editor.js')
-        //.pipe(browserify({
-      //transform: ['coffeeify'],
-      //extensions: ['.coffee']
-        //}))
-        //.pipe(Gulp.dest('./public/editor'))
+    /*Gulp.src('./assets/js/apps/editor.js')
+        .pipe(browserify({
+      transform: ['coffeeify'],
+      extensions: ['.coffee']
+        }))
+        .pipe(Gulp.dest('./public/editor'))*/
 
   var bundler = Watchify({
     entries: [
