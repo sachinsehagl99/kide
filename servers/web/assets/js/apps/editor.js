@@ -67,7 +67,7 @@ module.exports = angular.module('plunker', [
     //}, 2000);
 }])
 
-.controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier", function ($scope, $location, urlState, commander, project, notifier) {
+.controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier","config", function ($scope, $location, urlState, commander, project, notifier,config) {
 
 
   commander.addCommand({
@@ -75,57 +75,7 @@ module.exports = angular.module('plunker', [
     handler: function () {
       return commander.execute("project.reset").then(function () {
 	return commander.execute("project.openTree", {
-	  tree: [
-	      {
-		type: "file",
-		filename: "index.js",  
-		contents: Fs.readFileSync(__dirname + "/editor/template3/index.js", "utf8"),
-                active: true
-	      },
-              {
-		type: "file",
-		filename: "app.js",  
-		contents: Fs.readFileSync(__dirname + "/editor/template3/app.js", "utf8"),
-                active: false
-	      }
-              
-	    //{
-	      //type: "file",
-	      //filename: "index.html",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/index.html", "utf8"),
-              //active: true
-	    //},
-	    //{
-	      //type: "file",
-	      //filename: "app.js",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/app.js", "utf8"),
-              //active: false
-	    //},
-	    //{
-	      //type: "file",
-	      //filename: "stage.cordova.js",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/stage.cordova.js", "utf8"),
-              //active: false
-	    //},
-	    //{
-	      //type: "file",
-	      //filename: "textures.js",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/textures.js", "utf8"),
-              //active: false
-	    //},
-	    //{
-	      //type: "file",
-	      //filename: "qunit.js",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/qunit.js", "utf8"),
-              //active: false
-	    //},
-	    //{
-	      //type: "file",
-	      //filename: "test.js",
-	      //contents: Fs.readFileSync(__dirname + "/editor/template2/test.js", "utf8"),
-              //active: false
-	    //}
-	  ]
+	  tree: JSON.parse(config.course_files) 
 	});
       });
     }

@@ -8,7 +8,7 @@ exports.register = function (server , options , next){
 		handler : function(request, reply) {
 		    if(!request.query.id){		
                            
-			db.collection("hello_collection").find({}).toArray(function(err, items){
+			db.collection("course_collection").find({}).toArray(function(err, items){
 		 		
 		 		reply(items);
 				db.close();
@@ -28,6 +28,18 @@ exports.register = function (server , options , next){
          
 		}
 	
+	});
+	server.route({
+		method:'GET',
+		path: '/get_files/{course_id}',
+		handler : function( request, reply){
+			var param = request.params;
+			db.collection("course_files_collection").find({"course_id":param.course_id}).toArray(function(err , items){
+				reply(items);
+				db.close();
+
+			});
+		}
 	});
 return next();
 };
