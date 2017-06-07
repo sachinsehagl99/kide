@@ -187,7 +187,7 @@ exports.register = function (plugin, options, next) {
 	var config = this.config.server;
 	var param = request.params;
 
-        Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/get_files/" + param.path, function (err, res, body){
+        Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/coursefile/" + param.path, function (err, res, body){
 	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path}, "course_files": body};
 	reply.view("editor", context); 
 });
@@ -203,7 +203,7 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/retrieve", function(err, res, body){
+	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, body){
             context.body = {plunk: JSON.parse(body)};
             reply.view("home", context,{
 	      layout: "landing"

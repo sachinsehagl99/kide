@@ -130,10 +130,6 @@ internals.prepareFile = function (preview, targetPath, next) {
   }
 };
 
-exports.name = "run";
-exports.version = require("./package.json").version;
-exports.path = __dirname;
-
 exports.register = function (plugin, options, next) {
   
   var context = {
@@ -276,7 +272,9 @@ exports.register = function (plugin, options, next) {
   return next();
 };
 
-exports.register.attributes = {name: 'run'};
+exports.register.attributes = {
+    pkg: require('./package.json')
+};
 
 internals.serveTree = function (request, reply, preview) {
   var path = request.params.path;
