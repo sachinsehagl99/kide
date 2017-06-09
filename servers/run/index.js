@@ -176,14 +176,18 @@ exports.register = function (plugin, options, next) {
     handler: function (request,reply){
       var testName = encodeURIComponent(request.params.testName);
       var payload = request.payload;
-      var path = __dirname + "/" + payload.file_name;
-      fs.writeFile(path, payload.file_content, function (err){
-        if(err) {
-          return console.log(err);
-        }
-        runner(testName, path);
-       });
-     }
+      var path = __dirname + "/" + payload.files[0].path;
+console.log("=============");
+console.log(testName);
+console.log(payload);
+console.log(path);
+      //fs.writeFile(path, payload.file_content, function (err){
+        //if(err) {
+          //return console.log(err);
+        //}
+        //runner(testName, path);
+      //});
+    }
   });
 
   plugin.route({ 

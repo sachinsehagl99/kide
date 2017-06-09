@@ -178,25 +178,6 @@ exports.register = function (plugin, options, next) {
     }
   });
   
-  // Index html
-  plugin.route({
-    method: 'GET',
-    path: '/edit/{path*}',
-    config: {
-      handler: function (request, reply){
-	var config = this.config.server;
-	var param = request.params;
-
-        Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/coursefile/" + param.path, function (err, res, body){
-	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port + "/" + param.path}, "course_files": body};
-	reply.view("editor", context); 
-});
-
-
-      }
-    }
-  });
-  
   plugin.route({
     method: 'GET',
     path: '/',
@@ -208,10 +189,31 @@ exports.register = function (plugin, options, next) {
             reply.view("home", context,{
 	      layout: "landing"
 	  });
-       });
+        });
+      }
     }
-  }
- });
+  });
+  
+  // Index html
+  plugin.route({
+    method: 'GET',
+    path: '/edit/{courseId*}',
+    config: {
+      handler: function (request, reply){
+	var server = this.config.server;
+	var param = request.params;
+        
+        Request("http://" + server.api.host + ":" + server.api.port + "/coursefile/" + param.courseId, function (err, res, body){
+          Request("http://" + server.api.host + ":" + server.api.port + "/course/" + param.courseId, function (err, res, courseDetails) {
+            courseDetails = JSON.parse(courseDetails);
+	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseDetails[0].testname}, "course_files": body};
+	    reply.view("editor", context); 
+          });
+        });
+      }
+    }
+  });
+  
   
   plugin.route({
     method: 'GET',
