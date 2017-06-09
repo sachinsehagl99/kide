@@ -178,6 +178,8 @@ exports.register = function (plugin, options, next) {
       var payload = request.payload;
       var path = __dirname + "/" + payload.files[0].path;
 console.log("=============");
+console.log("check this out");
+console.log("=============");
 console.log(testName);
 console.log(payload);
 console.log(path);

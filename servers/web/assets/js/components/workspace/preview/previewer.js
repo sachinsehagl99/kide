@@ -80,10 +80,10 @@ module.exports = angular.module("plunker.directive.previewer", [
       });
 
       // Wait for the iframe to actually be in the DOM
-      $timeout(function(){
-        refreshPreviewJson();
-        refreshPreviewWindow();
-      });
+      //$timeout(function(){
+        //refreshPreviewJson();
+        //refreshPreviewWindow();
+      //});
     }
   };
 
@@ -104,14 +104,14 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     //var iframe = angular.element(document.getElementById("plunkerPreviewIframe"))
     var json = {
-        files: _.map(project.entries, function (entry) {
-          if (entry.isFile()) {
-            return {
-              path: entry.getPath(),
-              contents: entry.contents,
-            };
-          }
-        })
+	files: _.map(project.entries, function (entry) {
+	  if (entry.isFile()) {
+	    return {
+	      path: entry.getPath(),
+	      contents: entry.contents,
+	    };
+	  }
+	})
       };
 
     return $http.post(previewUrl, json).then(function (resp) {
