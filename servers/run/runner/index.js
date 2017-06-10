@@ -15,20 +15,22 @@ module.exports = function(name,build_dir, src_file, test_build_dir, test_file) {
 		class_path = hamcrest_path + ':' + junit_path +':'+ json_class_path + ':' + test_build_dir +':' + json_runner +':' + json_simple ;
             
             shelljs.exec('java -cp ' + class_path + ' org.junit.runner.JsonRunner ' + name, {silent: true}, function(code, arr) {
-              console.log(JSON.parse(arr));
-              //for (var key in arr) {
-                //var obj = arr[key];
-                //var desc = obj.description;
-                //var stats = obj.status;
-                //if (stats == "failed") {
-                  //console.log(desc);
-                  //break;
-                //}
-               //}
+
+             arr = JSON.parse(arr);
+
+	      for (var key in arr) {
+
+
+		var obj = arr[key];
+		var desc = obj.description;
+		var stats = obj.status;
+		if (stats == "failed") {
+		  console.log(obj);
+		  break;
+		}
+	       }
               });
           }
-
-
 
         });
       }
