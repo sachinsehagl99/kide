@@ -105,10 +105,12 @@ module.exports = angular.module("plunker.directive.previewer", [
     //var iframe = angular.element(document.getElementById("plunkerPreviewIframe"))
     var json = {
 	files: _.map(project.entries, function (entry) {
+
 	  if (entry.isFile()) {
 	    return {
 	      path: entry.getPath(),
 	      contents: entry.contents,
+	      active: entry.active
 	    };
 	  }
 	})

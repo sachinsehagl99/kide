@@ -184,9 +184,14 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, body){
-            context.body = {plunk: JSON.parse(body)};
-            reply.view("home", context,{
+	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, data){
+            var data = JSON.parse(data);
+
+            for(var key in data){
+              data[key].plunkId = Genid();
+            }
+            context.body = {plunk: data};
+            reply.view("home", context, {
 	      layout: "landing"
 	  });
         });
@@ -197,16 +202,16 @@ exports.register = function (plugin, options, next) {
   // Index html
   plugin.route({
     method: 'GET',
-    path: '/edit/{courseId*}',
+    path: '/edit/{courseId}/{plunkId}',
     config: {
       handler: function (request, reply){
 	var server = this.config.server;
 	var param = request.params;
-        
+
         Request("http://" + server.api.host + ":" + server.api.port + "/coursefile/" + param.courseId, function (err, res, body){
           Request("http://" + server.api.host + ":" + server.api.port + "/course/" + param.courseId, function (err, res, courseDetails) {
             courseDetails = JSON.parse(courseDetails);
-	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseDetails[0].testname}, "course_files": body};
+	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseDetails[0].testname + "/" + param.plunkId}, "course_files": body};
 	    reply.view("editor", context); 
           });
         });

@@ -10,6 +10,7 @@ var Marked = require("marked");
 var Request = require("request");
 var _ = require('lodash');
 var fs = require("fs");
+var mkdirp = require("mkdirp");
 var runner = require("./runner");
 var internals = {
   compilers: [
@@ -172,23 +173,55 @@ exports.register = function (plugin, options, next) {
 
   plugin.route({
     method: 'POST',
-    path: '/java/{testName}',
+    path: '/java/{testName}/{pathId}',
     handler: function (request,reply){
-      var testName = encodeURIComponent(request.params.testName);
+
+      var params = request.params;
+      var testName = encodeURIComponent(params.testName);
+      var pathId = encodeURIComponent(params.pathId);
       var payload = request.payload;
-      var path = __dirname + "/" + payload.files[0].path;
-console.log("=============");
-console.log("check this out");
-console.log("=============");
-console.log(testName);
-console.log(payload);
-console.log(path);
-      //fs.writeFile(path, payload.file_content, function (err){
-        //if(err) {
-          //return console.log(err);
-        //}
-        //runner(testName, path);
-      //});
+      var src_dir = __dirname + "/" + pathId+"/src";
+      var build_dir=__dirname + "/" + pathId + "/build/classes";
+      var test_build_dir = __dirname + "/" + pathId + "/build/test/classes";
+      var test_file = __dirname + "/runner/" + testName + "/test/" + testName + "Test.java";
+  
+       mkdirp(test_build_dir,function (err){
+	if(err){
+		throw err;
+
+	} 
+       mkdirp(build_dir, function (err){
+	if (err){
+		throw err;
+	}
+       mkdirp(src_dir, function (err) {
+        if(err) {
+          throw err;
+        } 
+
+        
+	var entry_file = '';
+	for(var key in payload.files){
+	  var filepath =src_dir + "/" + payload.files[key].path;
+	  var filecontent = payload.files[key].contents;
+	  fs.writeFile(filepath, filecontent, function (err){
+	    if(err) {
+	      return console.log(err);
+	    }
+
+	  });
+
+           if(payload.files[key].active){
+             entry_file = filepath;
+           }
+	}
+
+	 runner(testName+'Test',build_dir, entry_file,test_build_dir, test_file);
+
+      });
+	
+       });
+      });
     }
   });
 
