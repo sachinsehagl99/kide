@@ -216,8 +216,13 @@ exports.register = function (plugin, options, next) {
            }
 	}
 
-	 runner(testName+'Test',build_dir, entry_file,test_build_dir, test_file);
-
+         runner(testName+'Test',build_dir, entry_file,test_build_dir, test_file, function (obj) {
+         
+reply(obj);
+});
+         //reply("hello world");
+	 //reply();
+         
       });
 	
        });
