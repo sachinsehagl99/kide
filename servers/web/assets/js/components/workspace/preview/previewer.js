@@ -78,12 +78,6 @@ module.exports = angular.module("plunker.directive.previewer", [
       $scope.$on("$destroy", function() {
         active = false;
       });
-
-      // Wait for the iframe to actually be in the DOM
-      //$timeout(function(){
-        //refreshPreviewJson();
-        //refreshPreviewWindow();
-      //});
     }
   };
 
@@ -117,10 +111,19 @@ module.exports = angular.module("plunker.directive.previewer", [
       };
 
     return $http.post(previewUrl, json).then(function (resp) {
-      console.log(resp);
-      //iframe.attr("src", resp.data.url);
-    }, function (err) {
-      //iframe.attr("src", "about:blank");
+      function show_message () {
+        document.getElementById("testPrompt").style.backgroundColor="red"; 
+        document.getElementById("testmessage").innerHTML = resp.data.description;
+        window.cache_message = resp.data.description;
+      }
+
+      if(!window.cache_message){
+        show_message();
+      } else if(resp.data.description != window.cache_message){
+        document.getElementById("testPrompt").style.backgroundColor="green"; 
+        document.getElementById("testmessage").innerHTML = window.cache_message;
+        setTimeout(show_message, 800); 
+      } 
     });
   }
 	
