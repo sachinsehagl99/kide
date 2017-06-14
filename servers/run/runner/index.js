@@ -16,8 +16,6 @@ module.exports = function(name,build_dir, src_file, test_build_dir, test_file, c
              arr = JSON.parse(arr);
 
 	      for (var key in arr) {
-
-
 		var obj = arr[key];
 		var desc = obj.description;
 		var stats = obj.status;
