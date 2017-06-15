@@ -28,55 +28,10 @@ module.exports = angular.module("plunker.directive.previewer", [
   var directive = {
     restrict: "E",
     replace: true,
-    template: '<iframe style="display:none" id="plunkerPreviewIframe" name="plunkerPreviewIframe" src="about:blank" width="100%" height="100%" frameborder="0"></iframe>',
-    link: function($scope, $element, $attrs) {
-      $scope.previewUrl = previewUrl;
-      $scope.refresh = refreshPreviewJson;
-      $scope.showQRCode = false;
-      $scope.showPreviewWindow = !!previewWindow;
-
-      $scope.toggleQRCode = function () {
-        $scope.showQRCode = !$scope.showQRCode;
-      };
-
-      $scope.togglePreviewWindow = function (open) {
-        if (open === void 0) open = !$scope.showPreviewWindow;
-
-        closeWindow();
-
-        if (open) {
-          previewWindow = window.open("about:blank", "plunkerPreviewWindow", "resizable=yes,scrollbars=yes,status=yes,toolbar=yes");
-          $scope.showPreviewWindow = true;
-
-          checkPreviewWindowInterval = $interval(checkPreviewWindow, 100);
-
-          refreshPreviewWindow();
-        }
-
-        function closeWindow () {
-          if (previewWindow) previewWindow.close();
-
-          previewWindow = null;
-          $scope.showPreviewWindow = false;
-        }
-
-        function checkPreviewWindow () {
-          if (!previewWindow || previewWindow.closed) {
-            closeWindow();
-
-            $interval.cancel(checkPreviewWindowInterval);
-          }
-        }
-      };
-
-      active = true;
-      
+    templateUrl: 'components/workspace/preview/previewer.html',
+    link: function($scope, $element, $attrs) { 
       $scope.$on("project.setTree.success", function (){
         refreshPreviews();
-      });
-
-      $scope.$on("$destroy", function() {
-        active = false;
       });
     }
   };
@@ -85,18 +40,9 @@ module.exports = angular.module("plunker.directive.previewer", [
 
 
   function refreshPreviews () {
-    refreshPreviewJson();
-    //refreshPreviewWindow();
-  }
 
-  function refreshPreviewJson () {
-    if (!active) return;
     if (_.isEmpty(project.entries)) return;
 
-    // Allow events to start arriving from the Stream
-    started = true;
-
-    //var iframe = angular.element(document.getElementById("plunkerPreviewIframe"))
     var json = {
 	files: _.map(project.entries, function (entry) {
 
@@ -110,58 +56,12 @@ module.exports = angular.module("plunker.directive.previewer", [
 	})
       };
 
-    return $http.post(previewUrl, json).then(function (resp) {
-      function show_message () {
-        document.getElementById("testPrompt").style.backgroundColor="red"; 
-        document.getElementById("testmessage").innerHTML = resp.data.description;
-        window.cache_message = resp.data.description;
-      }
 
-      if(!window.cache_message){
-        show_message();
-      } else if(resp.data.description != window.cache_message){
-        document.getElementById("testPrompt").style.backgroundColor="green"; 
-        document.getElementById("testmessage").innerHTML = window.cache_message;
-        setTimeout(show_message, 800); 
-      } 
+    return $http.post(previewUrl, json).then(function (resp) {
+      $rootScope.description = resp.data.description;
     });
   }
-	
-  function refreshPreviewWindow() {
-    if (!previewWindow || previewWindow.closed) return;
-    if (_.isEmpty(project.entries)) return;
 
-    var form = document.createElement("form");
-
-    form.style.display = "none";
-    form.setAttribute("method", "post");
-    form.setAttribute("action", previewUrl);
-    form.setAttribute("target", "plunkerPreviewWindow");
-    
-    for (var entryId in project.entries) {
-      var entry = project.entries[entryId];
-      var field;
-
-      if (entry.type === 'file') {
-        field = document.createElement("input");
-        field.setAttribute("type", "hidden");
-        field.setAttribute("name", "files[" + entry.getPath() + "]");
-        field.setAttribute("value", entry.contents);
-        
-        form.appendChild(field);
-      }
-    }
-
-    document.body.appendChild(form);
-    
-    debugger;
-	console.log(entry.c);
-  
-
-    form.submit();
-
-    document.body.removeChild(form);
-  }
 }])
 
 
