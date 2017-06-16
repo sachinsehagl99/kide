@@ -36,6 +36,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
 
     return $http.post(previewUrl, json).then(function (resp) {
+      $rootScope.status = resp.data.status;
       $rootScope.description = resp.data.description;
     });
   }
