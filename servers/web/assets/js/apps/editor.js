@@ -80,42 +80,7 @@ module.exports = angular.module('plunker', [
       });
     }
   });
-  
-/*  commander.addCommand({*/
-    //name: "editor.open",
-    //defaults: {
-      //tree: ""
-    //}, handler: ["plunkId", "tree", function (plunkId, tree) {
-      //if (project.plunk && project.plunk.id === plunkId) return;
-    
-      //return commander.execute("project.open", {plunkId: plunkId}).then(function () {
-	//if (tree) {
-	  //return commander.execute("project.openTree", {tree: tree}).catch(function (err) {
-	    //notifier.error("Failed to open the tree: " + treeState.read());
-	    
-	    //return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
-	      //return commander.execute("editor.reset").then(function () {
-		//notifier.error("Failed to open the given tree and the plunk's last revision");
-	      //});
-	    //});
-	  //});
-	//} else {
-	  //return commander.execute("project.openTree", {tree: project.getLastRevision().tree}).catch(function (err) {
-	    //return commander.execute("editor.reset").then(function () {
-	      //notifier.error("Failed to open the plunk's last revision");
-	    //});
-	  //});
-	//}
-      //}, function (err) {
-	//return commander.execute("editor.reset").then(function () {
-	  //notifier.error("Failed to open plunk");
-	//});
-      //});
-    //}]
-  /*});*/
-  
-  commander.execute("preview.refresh");
-
+   
   urlState.addState({
     name: "plunkId",
     queue: "project",
@@ -133,33 +98,4 @@ module.exports = angular.module('plunker', [
       return commander.execute("editor.reset");
     }
   });
-
-  /*var treeState = urlState.addState({*/
-    //name: "tree",
-    //queue: "project",
-    //scope: $scope,
-    //decode: function () {
-      //return $location.search().t;
-    //},
-    //encode: function (tree) {
-      //var search = $location.search();
-      
-      //if (tree && tree !== project.tree) search.t = tree;
-      //else delete search.t;
-      
-      //return $location.search(search);
-    //},
-    //read: function () {
-      //if (project.isSaved()) return project.tree === project.getLastRevision().tree ? "" : project.tree;
-      
-      //return project.tree; // TODO
-    //},
-    //write: function (tree) {
-      //if (tree) {
-	//return commander.execute("project.openTree", {tree: tree});
-      //} else if (project.isSaved()) {
-	//return commander.execute("project.openTree", {tree: project.getLastRevision().tree});
-      //}
-    //}
-  /*})*/;
 }]);

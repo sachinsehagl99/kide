@@ -30,8 +30,7 @@ module.exports = angular.module("plunker.project", [
     this.root = new DirectoryEntry(null, "Project");
     this.entries = {};
     this.plunk = null;
-    this.tree = null;
-    
+    this.tree = null;    
     this.root.getPath = function() { return ""; };
   }
   
@@ -737,32 +736,4 @@ module.exports = angular.module("plunker.project", [
   });
 
   return project;
-  
-  
-}])
-
-
-
-
-
-
-
-
-.value("defaultProjectFiles", [{
-    type: "file",
-    filename: "index.html",
-    contents: '<!DOCTYPE html>\n<html>\n\n<head>\n  <link rel="stylesheet" href="lib/style.css">\n  <script src="lib/script.js"></script>\n</head>\n\n<body>\n  <h1>Hello cuboid.io</h1>\n</body>\n\n</html>'
-  },{
-    type: "directory",
-    filename: "lib",
-    children: [{
-      type: "file",
-      filename: "style.css",
-      contents: "h1 {\n  color: red;\n}"
-    },{
-      type: "file",
-      filename: "script.js",
-      contents: "// comment"
-    }]
-  }]
-);
+}]);
