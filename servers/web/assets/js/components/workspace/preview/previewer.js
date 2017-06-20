@@ -17,6 +17,8 @@ module.exports = angular.module("plunker.directive.previewer", [
     handler: refreshPreviews
   });
 
+  var testMethod = 1;
+
   function refreshPreviews () {
     var previewUrl = config.url.run;
 
@@ -32,9 +34,14 @@ module.exports = angular.module("plunker.directive.previewer", [
 	    };
 	  }
 	})
-      };
+    };
 
+    if($rootScope.status == "passed"){ 
+      testMethod = testMethod+1; 
+    }
+    json.testMethod = testMethod;
 
+ 
     return $http.post(previewUrl, json).then(function (resp) {
       $rootScope.status = resp.data.status;
       $rootScope.description = resp.data.description;
