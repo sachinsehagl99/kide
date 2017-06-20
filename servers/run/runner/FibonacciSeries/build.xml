@@ -32,14 +32,13 @@
         <pathelement location="${junit4}"/>
         <pathelement location="${build-classes}"/>
 	<pathelement location="${json-runner}"/>
-
       </classpath>
     </javac>
   </target>
 
   <target name="run-test" depends="compile-test">
     <java classname="org.junit.runner.JsonRunner">
-      <arg value="ArmstrongTest#${testName}"/>
+      <arg value="FibonacciSeriesTest"/>
       <classpath>
         <pathelement location="${hamcrest-core}"/>
         <pathelement location="${junit4}"/>
