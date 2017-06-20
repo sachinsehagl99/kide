@@ -2,35 +2,33 @@ import java.io.*;
 
 public class Armstrong
 {
-	public int arm(int a)
-	{
-		int b=371;
-		return b;
-	}
-	public int check(int a,int b)
-	{
-		if(a==b)
-		{
-                        return 1;
-		}
+	public static void main()throws IOException
+	{//------------------------------------------------------------------
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Input The number");
+		int a;
+		a=Integer.parseInt(br.readLine());
+		//-----------------------------------------------------------
+		int b,dup,sum=0;
+		dup=a;
+		System.out.println(dup);
+		//--------------------------------------------------
+		do{
+			b=a%10;
+			a=a/10;
+			System.out.println(+b);
+			//------------------------------------------
+			sum = sum + (b * b * b);
+			System.out.println(+sum);
+			//------------------------------------------------
+		}while(a!=0);
+		//------------------------------------------------------
+		if(sum == dup)
+			System.out.println("The Number is an Armstrong Number");
+		//---------------------------------------------------------------
 		else
-		{
-                        return 0;
-	        }
-       }
-
-       public static void main() throws java.io.IOException{
-         System.out.println("input a number"); 
-	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	 int a=Integer.parseInt(br.readLine());
-         Armstrong obj = new  Armstrong();
-         int b = obj.arm(a);
-         int c= obj.check(a, b);
-
-         if(c == 1){
-           System.out.println("armstrong");
-         } else {
-           System.out.println("not armstrong");
-         } 
-       }
+			System.out.println("The Number is not an Armstrong Number");
+			
+	//------------------------------------------------
+	}
 }
