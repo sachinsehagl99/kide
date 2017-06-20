@@ -2,25 +2,45 @@ import java.io.*;
 
 public class Prime
 {
-	public int prime_check(int a)
-	{
-		int b=0;
-		if(a%2==0)
-			b=1;
-		else
-			b=0;
-		return b;
-	}
-	public static void main() throws java.io.IOException{
-         System.out.println("input a number"); 
-	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+	public static void main() throws IOException{
+	//----------------------------------------------
+         System.out.println("Input a number"); 
+	  BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 	 int a=Integer.parseInt(br.readLine());
-         Prime obj = new  Prime();
-         int b = obj.prime_check(a);
-        if(b == 0){
-           System.out.println("prime");
-         } else {
-           System.out.println("not prime");
-         } 
-       }
+	 int flag = 0;
+	//-------------------------------------------
+	  if(a==1 || a==2)
+	  {
+		System.out.println("The number is prime");
+	  }
+	  //---------------------------------------------------
+	  else
+	  {
+		for(int i=2 ;i< a ;i++)
+		{
+		   //-------------------------------------------
+		    System.out.println(+i);
+		    //------------------------------------------
+			if(a % i == 0)
+			{
+				System.out.println(+i);
+				flag ++;
+				System.out.println(+flag);
+
+			}
+		}
+		//----------------------------------------
+		if(flag == 0)
+		{
+			System.out.println("The Number is prime");
+		}
+		//--------------------------------------------
+		else
+		{
+			System.out.println("The Number is not prime");
+  		}
+	        
+       	  }
+      }
 }
+
