@@ -13,7 +13,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t1() throws java.io.IOException 
 	{
-	   description = "Initailize a main function using throws IOEXception Example 'public static void main()throws IOEXception{ *program*} ";
+	   description = "1. Initailize a main function. Ex- 'public static void main() throws IOEXception{}' ";
 	   Prime obj = new Prime();
 	   try {
 	
@@ -26,7 +26,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t2() throws java.io.IOException 
 	{
-	   description = " Within the code part of main write the code line to input and use the tag 'Input a number'";
+	   description = "2. Write a print statement and print 'Input a number'.3. Write a input statement and input a integer value";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
 	   System.setIn(in); 
@@ -45,7 +45,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t3() throws java.io.IOException 
 	{
-	   description = "Write an if else statment to check if the input is 1 or 2 then print 'The number is prime' ";
+	   description = "4. Write an if statment to check if the input is 1 then print 'The number is prime' ";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
 	   System.setIn(in); 
@@ -64,7 +64,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t4() throws java.io.IOException 
 	{
-	   description = "Write an if else statment to check if the input is 1 or 2 then print 'The number is prime' ";
+	   description = "5. Write within the if statment to check if the input is 2 then print 'The number is prime' ";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("2".getBytes());
 	   System.setIn(in); 
@@ -84,7 +84,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t5() throws java.io.IOException 
 	{
-	   description = "within the else statment run a for loop from 2 till one less than the inputed number and print all the numbers in loop varriable using only print statement";
+	   description = "6. Within the else statment write a for loop from 2, till one less than the inputed number and print all the numbers in loop variable using only print statement";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	   System.setIn(in); 
@@ -104,7 +104,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t6() throws java.io.IOException 
 	{
-	   description = "within the for loop use an if else statement to check if the inputed number is divisible by the value in loop varriable an print them within the if else segment ";
+	   description = "7. Within the for loop write an if statement to check if the inputed number is divisible by the value in loop varriable and print them within it ";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	   System.setIn(in); 
@@ -124,7 +124,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t7() throws java.io.IOException 
 	{
-	   description = "within the if else statment increment the value of the flag varriable which needs to be initialized at the start of the main with an initial value zero and print the vaule of flag within the if else";
+	   description = "8. Within the if  statement increment the value of the flag varriable which needs to be initialized at the start of the main with an initial value zero and print the vaule of flag within the if";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	   System.setIn(in); 
@@ -144,7 +144,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t8() throws java.io.IOException 
 	{
-	   description = "exit the for loop and then using aa if else statement check if the value of the flag varriable is zero or not";
+	   description = "9. Close the for loop. Now use an if statement to check if the value of the flag varriable is zero or not";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	   System.setIn(in); 
@@ -164,7 +164,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t9() throws java.io.IOException 
 	{
-	   description = "exit the for loop and then using aa if else statement check if the value of the flag varriable is zero or not";
+	   description = "10. After ending the if statement, use  else statement to print 'The Number is not prime'";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
 	   System.setIn(in); 
@@ -178,9 +178,26 @@ public class PrimeTest extends Base
 	   	}
 	   }
 	   catch(Exception e){}
+
+	}
+
+
+	@Test
+       	public void t10() {
+	    description="You have succefully Compeleted the program!!!!";
+	    
+	    
+	    try
+	    {
+		    assertEquals(0,0);
+	    }
+	    catch(Exception e){
+	    }
+
 	 
         }
-
-
 }
+
+
+
 
