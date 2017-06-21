@@ -11,7 +11,7 @@ public class PalindromeTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "Initialize a main function using throws IOException ,Example-public static void main() throws java.io.IOException{program}";
+         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
 	Palindrome obj = new Palindrome();
 	try {
 		Method m=getMethod(obj,"main");
@@ -27,7 +27,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t2() throws java.io.IOException{
-		description = " Within the code part of main write the code line to input and use the tag 'Enter a number'";
+		description = "2. Write a print statement and print 'Enter a number'. 3. Write a input statement and input a integer value.";
 	Palindrome obj = new Palindrome();
  	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -46,7 +46,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t3() throws java.io.IOException{
-		description = "Store the value of a in integer type variable and print it";
+		description = "4. Copy the inputed value into another integer type varriable and then print it using print statement.";
 	Palindrome obj = new Palindrome();
  	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -65,7 +65,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t4() throws java.io.IOException{
-		description = "Write a while loop to extract the number until the number is greater than 0 and print the remainder value";
+		description = "5. Write a while loop to extract the number until the number is greater than 0 and print the remainder value.";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -85,7 +85,7 @@ public class PalindromeTest extends Base
 
 		@Test
 	public void t5() throws java.io.IOException{
-		description = "Within the While loop print the sum value after extraction";
+		description = "6. Within the While loop print the sum value after extraction.";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -105,7 +105,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t6() throws java.io.IOException{
-		description = "Write a if statement to check the number is palindrome or not";
+		description = "7. Write a if statement to check the number is palindrome or not";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -125,7 +125,7 @@ public class PalindromeTest extends Base
 
 @Test
 	public void t7() throws java.io.IOException{
-		description = "Write a else statement to check the number is palindrome or not";
+		description = "8. Write a else statement to print the number 'not palindrome'.";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("10".getBytes());
 	System.setIn(in); 
@@ -141,6 +141,16 @@ public class PalindromeTest extends Base
 	   }
 	   catch(Exception e){}
 					
+	}
+
+@Test
+	public void t8(){
+		description = "You have succefully Compeleted the program!!!!";
+		try{
+		assertEquals(0,0);
+		   }
+		catch(Exception e){}
+	
 	}
 
 
