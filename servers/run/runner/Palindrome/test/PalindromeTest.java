@@ -27,7 +27,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t2() throws java.io.IOException{
-		description = "2. Write a print statement and print 'Enter a number'. 3. Write a input statement and input a integer value.";
+		description = "2. Write a print statement and print 'Enter a number:'. 3. Write a input statement and input a integer value.";
 	Palindrome obj = new Palindrome();
  	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 

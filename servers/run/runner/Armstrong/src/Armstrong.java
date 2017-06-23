@@ -5,7 +5,7 @@ public class Armstrong
 	public static void main()throws IOException
 	{//------------------------------------------------------------------
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Input The number");
+		System.out.println("Input the number");
 		int a;
 		a=Integer.parseInt(br.readLine());
 		//-----------------------------------------------------------
@@ -24,10 +24,10 @@ public class Armstrong
 		}while(a!=0);
 		//------------------------------------------------------
 		if(sum == dup)
-			System.out.println("The Number is an Armstrong Number");
+			System.out.println("The number is an armstrong number");
 		//---------------------------------------------------------------
 		else
-			System.out.println("The Number is not an Armstrong Number");
+			System.out.println("The number is not an armstrong number");
 			
 	//------------------------------------------------
 	}
