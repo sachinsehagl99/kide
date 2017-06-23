@@ -2,30 +2,26 @@ import java.io.*;
 
 public class Fibonacci 
 {
+	 public static void main(String args[]) throws java.io.IOException{
 
-	public int fibo(int n)
-	{
-		int a = 0,b=0,c=1;
-		for(int i = 1; i <= n; i++)
-        	{
-			a = b;
-           		b = c;
-			c=a+b;
-            
-		}
-	
-		return c;	
-	}
-
-        public static void main() throws java.io.IOException{
-
-	System.out.println("Enter value of n:");
+	System.out.print("Enter value of n:");
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 	int n=Integer.parseInt(br.readLine());
-	Fibonacci obj = new  Fibonacci();
-	int d= obj.fibo(n);
-	   System.out.println("Fibonacci Series:"+d);
+	int a = 0,b=1,c;
+	System.out.println("Fibonnaci Series:");
+	System.out.println(a);
+	System.out.println(b);
+	for(int i = 3; i <= n; i++)
+        {
+		c=a+b;
+		System.out.println(c);
+		a=b;
+		b=c;
+            
+	}
        
 	}
+
+
     
 }
