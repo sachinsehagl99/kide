@@ -9,6 +9,7 @@ public class Palindrome
          System.out.println("Enter a number:"); 
 	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
 	 int a=Integer.parseInt(br.readLine());
+	 System.err.println(+a);
 //-------------------------------------------------------------
  
          temp=a; 
