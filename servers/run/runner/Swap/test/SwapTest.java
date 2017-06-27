@@ -77,16 +77,7 @@ public class SwapTest extends Base
 
 
 	
-	@Test
-	public void t5(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
 	
-	}
-
 
 }
 

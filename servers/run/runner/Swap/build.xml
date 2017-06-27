@@ -20,7 +20,7 @@
 
   <target name="compile" depends="mkdir">
     <javac includeantruntime="false" 
-           srcdir="${src}" 
+	    srcdir="SrcTemplate/${srcDir}" 
            destdir="${build-classes}"/>
   </target>
 
