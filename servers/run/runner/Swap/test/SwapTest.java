@@ -11,7 +11,7 @@ public class SwapTest extends Base
  {
    @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
+         description = "Create a main method";
 	Swap obj = new Swap();
 	try {
 		Method m=getMethod(obj,"main");
@@ -26,7 +26,26 @@ public class SwapTest extends Base
 
     @Test
     public void t2() throws java.io.IOException{
-	description = "2. Write a print statement and print 'Enter the value of a:'and 'Enter the value of b:',Write a input statements and input integer variablea , b";
+	description = "Take input in variable 'a'";
+	Swap obj = new Swap();
+	System.setIn(StubbedInputStream.stubInputStream().toReturn("10").atSomePoint());		
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of a:10", outContent.toString());
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
+
+    @Test
+    public void t3() throws java.io.IOException{
+	description = "Take input in variable 'b'";
 	Swap obj = new Swap();
 	System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());		
 	 try {
@@ -35,32 +54,17 @@ public class SwapTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:", outContent.toString());
+		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
 		   
 		   }
 	   }
 	   catch(Exception e){}
 					
 	}
-    @Test
-    public void t3() throws java.io.IOException{
-	description = "3. Write logic to swap two numbers using third variable and print the value of third variable";
-	Swap obj = new Swap();
- 	System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
-		
-		 Method m = getMethod(obj,"main");
-		   if(m!=null)
-		{
-		    m.invoke(obj);
-		   assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
-		  }
-	   }
-	   catch(Exception e){}
-					
-	}
-	@Test
+
+    	@Test
     public void t4() throws java.io.IOException{
-	description = "4. After Swap print the value of a and b using print statement";
+	description = "Put the value of 'a' in 'temp' variable";
 	Swap obj = new Swap();
  		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
 	
@@ -68,16 +72,50 @@ public class SwapTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:10\nAfter swaping:\nValue of a:20\nValue of b:10\n", outContent.toString());
+		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
 					
 	}
 
+@Test
+public void t5() throws java.io.IOException {
+  description = "Put the value of 'b' in 'a' variable";  
+  Swap obj = new Swap();
+
+ 		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
+
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
+	   	}
+
+	   }
+	   catch(Exception e){}
+}
+
+
+@Test
+public void t6() throws java.io.IOException {
+  description = "Put the value of 'temp' in 'b' variable";  
+  Swap obj = new Swap();
+
+ 		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
+
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
+	   	}
+
+	   }
+	   catch(Exception e){}
+}
 
 	
-	
-
 }
 
