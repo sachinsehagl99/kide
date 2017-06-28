@@ -20,7 +20,7 @@
 
   <target name="compile" depends="mkdir">
     <javac includeantruntime="false" 
-           srcdir="${src}" 
+	    srcdir="SrcTemplate/${testName}" 
            destdir="${build-classes}"/>
   </target>
 
@@ -38,7 +38,7 @@
 
   <target name="run-test" depends="compile-test">
     <java classname="org.junit.runner.JsonRunner">
-      <arg value="FibonacciTest"/>
+	    <arg value="FibonacciTest#${testName}"/>
       <classpath>
         <pathelement location="${hamcrest-core}"/>
         <pathelement location="${junit4}"/>

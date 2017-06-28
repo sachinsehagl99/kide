@@ -2,35 +2,29 @@ import java.io.*;
 
 public class Niven
 {
-	public int digit_sum(int a)
-	{
-		int b=9;
-		return b;
-	}
-	public int check(int a,int b)
-	{
-		if(a%b==0)
-		{
-                        return 1;
-		}
-		else
-		{
-                        return 0;
-	        }
-       }
-
-       public static void main() throws java.io.IOException{
-         System.out.println("input a number"); 
+    public static void main() throws java.io.IOException
+    {
+	 //---------------------------------------------------------------
+         System.out.print("Enter a number:"); 
 	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	 int a=Integer.parseInt(br.readLine());
-         Niven obj = new  Niven();
-         int b = obj.digit_sum(a);
-         int check= obj.check(a, b);
-
-         if(check == 1){
-           System.out.println("niven");
-         } else {
-           System.out.println("not niven");
-         } 
-       }
+	 int n=Integer.parseInt(br.readLine());
+	 //--------------------------------------------------------------------
+         int c = n, d, sum = 0;
+	 System.out.println(c);
+	 //--------------------------------------------------------------------
+         while(c>0)
+         {
+            d = c%10;
+            sum = sum + d;
+            c = c/10;
+	    System.out.println(sum);
+         }
+	 //--------------------------------------------------------------------
+         
+        if(n%sum == 0)
+            System.out.println("Number is a Niven Number.");
+	//--------------------------------------------------------------------
+        else
+            System.out.println("Number is not a Niven Number.");     
+    }
 }

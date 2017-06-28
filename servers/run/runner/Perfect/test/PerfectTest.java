@@ -9,93 +9,114 @@ import java.lang.reflect.*;
 
 public class PerfectTest extends Base
  {
-
-  @Test
-    public void t1() {
-       description = "Find the sum of the factors using a function 'perfectsum'";
-      int a=6;
-      int b = 0;
-     Perfect obj = new Perfect();
-      try {
-	Method m=getMethod(obj,"perfectSum");
-		if(m!=null)
-		{
-			b = Integer.parseInt(m.invoke(obj, a).toString());
-    			assertEquals(6, b);
-        	}
-        }
-	catch(Exception e){}
-     }
-
-    @Test
-    public void t2() {
-       description = "Check between the sum of the factors and the original using a function named 'check'";
-       Perfect obj = new Perfect();
-      try {
-	Method m=getMethod(obj,"check");
-		if(m!=null)
-		{
-		       int b = Integer.parseInt(m.invoke(obj, 6,6).toString());
-    			assertEquals(1, b);
-        	}
-        }
-	catch(Exception e){}
-     }
-
-
-    @Test
-    public void t3() {
-       description = "Check between the sum of the factors and the original a function named 'check'";
-      Perfect obj = new Perfect();
-      try {
-	Method m=getMethod(obj,"check");
-		if(m!=null)
-		{
-		       int b = Integer.parseInt(m.invoke(obj, 7,1).toString());
-    			assertEquals(0, b);
-        	}
-        }
-	catch(Exception e){}
-     }
-
-    @Test
-   public void t4() throws java.io.IOException{
-        description = "call the main fucntion";
+	 @Test
+   public void t1() throws java.io.IOException{
+         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
 	Perfect obj = new Perfect();
-	ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
-	System.setIn(in);
 	try {
 		Method m=getMethod(obj,"main");
-		if(m!=null)
-		{
-		   m.invoke(obj);
-		   assertEquals("input a number\nperfect\n", outContent.toString());
+	        assertEquals(m.getName(),"main");
      
 
     		}
-        }
-	catch(Exception e){}
-    }
-
-   @Test
-   public void t5() throws java.io.IOException{
-	 description = "call the main fucntion";
-	Perfect obj = new Perfect();
-	ByteArrayInputStream in = new ByteArrayInputStream("7".getBytes());
-	System.setIn(in);
-	try {
-		Method m=getMethod(obj,"main");
-		if(m!=null)
-		{
-		   m.invoke(obj);
-		   assertEquals("input a number\nnot perfect\n", outContent.toString());
-     
-
-    		}
-        }
+        
 	catch(Exception e){}
     
-
         }
-}
+
+	@Test
+	public void t2() throws java.io.IOException{
+		description = "2. Write a print statement and print 'Enter a number:'. Write a input statement and input a integer value.";
+	Perfect obj = new Perfect();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+	@Test
+	public void t3() throws java.io.IOException{
+		description = "3. Start a for loop";
+	Perfect obj = new Perfect();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:1\n3\n7\n14\n28\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+	
+		@Test
+	public void t4() throws java.io.IOException{
+		description = "4. After ending a for-loop start a if-statement to check if the sum is eual to the inputed value and print 'Number is Perfect'";
+	Perfect obj = new Perfect();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:1\n3\n7\n14\n28\nNumber is Perfect\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+		@Test
+	public void t5() throws java.io.IOException{
+		description = "5. Write a else-statement to print 'Number is not Perfect'";
+	Perfect obj = new Perfect();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:1\n4\n41\nNumber is not Perfect\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+
+	@Test
+	public void t6(){
+		description = "You have succefully Compeleted the program!!!!";
+		try{
+		assertEquals(0,0);
+		   }
+		catch(Exception e){}
+	
+	}
+
+
+
+
+
+
+
+
+ }
 

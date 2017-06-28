@@ -11,7 +11,7 @@ public class ExtractTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
+         description = "Create a main method";
 	Extract obj = new Extract();
 	try {
 		Method m=getMethod(obj,"main");
@@ -26,7 +26,7 @@ public class ExtractTest extends Base
 
 	@Test
     public void t2() throws java.io.IOException{
-	description = "2. Write a print statement and print 'Enter a three digit number:',Write a input statement and input a integer variable";
+	description = "2. Take input in variable 'a'";
 	Extract obj = new Extract();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -36,7 +36,7 @@ public class ExtractTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\n", outContent.toString());
+		    assertEquals("Enter a three digit number:\n134", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -46,7 +46,7 @@ public class ExtractTest extends Base
 
 	@Test
     public void t3() throws java.io.IOException{
-	description = "3. Extract the number and print ones position value of the inputed number";
+	description = "3. Extract ones position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -66,7 +66,7 @@ public class ExtractTest extends Base
 
 		@Test
      public void t4() throws java.io.IOException{
-	description = "4. Extract the number and print tens position value of the inputed number";
+	description = "4. Extract tens position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -86,7 +86,7 @@ public class ExtractTest extends Base
 
 		@Test
    public void t5() throws java.io.IOException{
-	description = "5. Extract the number and print hundreds position value of the inputed number";
+	description = "5. Extract hundreds position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -104,19 +104,5 @@ public class ExtractTest extends Base
 					
 	}
 
-	@Test
-	public void t6(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
 	
-	}
-
-
-
-
-
-
  }

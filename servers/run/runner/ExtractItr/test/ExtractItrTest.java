@@ -11,7 +11,7 @@ public class ExtractItrTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
+         description = "Create a main method";
 	ExtractItr obj = new ExtractItr();
 	try {
 		Method m=getMethod(obj,"main");
@@ -26,7 +26,7 @@ public class ExtractItrTest extends Base
 
 	@Test
     public void t2() throws java.io.IOException{
-	description = "2. Write a print statement and print 'Enter a number:',Write a input statement and input a integer variable";
+	description = "Take a input in 'a' variable";
 	ExtractItr obj = new ExtractItr();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -36,7 +36,7 @@ public class ExtractItrTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n", outContent.toString());
+		    assertEquals("Enter a number:\n134After Extraction:\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -46,27 +46,7 @@ public class ExtractItrTest extends Base
 
 	@Test
     public void t3() throws java.io.IOException{
-	description = "3. Write another print statement and print 'After Extraction:'";
-	ExtractItr obj = new ExtractItr();
-	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
-	System.setIn(in); 
-
-  	try {
-	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
-		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number:\nAfter Extraction:\n", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-		@Test
-     public void t4() throws java.io.IOException{
-	description = "4. Use a while loop till inputed integer variable is greater than 0 and print remainder in it ";
+	description = "Extract number using while-loop";
 	ExtractItr obj = new ExtractItr();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -83,19 +63,6 @@ public class ExtractItrTest extends Base
 	   catch(Exception e){}
 					
 	}
-
-		@Test
-	public void t6(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
-	
-	}
-
-
-
 
 
 

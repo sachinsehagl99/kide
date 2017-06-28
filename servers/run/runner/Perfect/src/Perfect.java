@@ -2,35 +2,31 @@ import java.io.*;
 
 public class Perfect
 {
-	public int perfectSum(int a)
-	{
-		int b=1+2+3;
-		return b;
-	}
-	public int check(int a,int b)
-	{
-		if(a==b)
-		{
-                        return 1;
-		}
-		else
-		{
-                        return 0;
-	        }
-       }
-
-       public static void main() throws java.io.IOException{
-         System.out.println("input a number"); 
+    public static void main() throws java.io.IOException
+    {
+     //---------------------------------------------------------------
+         int sum = 0;
+         System.out.print("Enter a number:"); 
 	 BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	 int a=Integer.parseInt(br.readLine());
-         Perfect obj = new  Perfect();
-         int b = obj.perfectSum(a);
-         int check= obj.check(a, b);
-
-         if(check == 1){
-           System.out.println("perfect");
-         } else {
-           System.out.println("not perfect");
-         } 
-       }
-}
+	 int n=Integer.parseInt(br.readLine());
+	 //-------------------------------------------------------------
+         for(int i = 1; i < n; i++)
+         {
+            if(n % i == 0)
+            {
+                sum = sum + i;
+		System.out.println(sum);
+            }
+         }
+	 //-------------------------------------------------------------
+        if(sum == n)
+        {
+            System.out.println("Number is Perfect");
+        }
+	//---------------------------------------------------------------
+        else
+        {
+            System.out.println("Number is not Perfect");
+        }   
+    }
+ }
