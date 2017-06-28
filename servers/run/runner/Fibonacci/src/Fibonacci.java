@@ -1,31 +1,31 @@
 import java.io.*;
 
-public class Fibonacci 
+
+public class Fibonacci
 {
-
-	public int fibo(int n)
-	{
-		int a = 0,b=0,c=1;
-		for(int i = 1; i <= n; i++)
-        	{
+	public static void main()throws IOException
+  	{
+	//----------------------------------------------------------
+     		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+     		System.out.print("Enter a number :"); 
+     		int n = Integer.parseInt(br.readLine());
+      		//-------------------------------------------------------------------
+     	        int a=0, b=1 ,c=0;   	
+          	while(c<n)          	
+		{
+              		c = a + b;
 			a = b;
-           		b = c;
-			c=a+b;
-            
-		}
-	
-		return c;	
-	}
+             		b = c;
+			System.out.println(c);
+         	}
+      
+     		//--------------------------------------------------------------------
+         
+           	if(c==n) 
+		System.out.println("Fibonacci");
+		//----------------------------------------------------------------------
+           	else
+              	System.out.println("Not Fibonacci");
 
-        public static void main() throws java.io.IOException{
-
-	System.out.println("Enter value of n:");
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	int n=Integer.parseInt(br.readLine());
-	Fibonacci obj = new  Fibonacci();
-	int d= obj.fibo(n);
-	   System.out.println("Fibonacci Series:"+d);
-       
-	}
-    
+   	}
 }

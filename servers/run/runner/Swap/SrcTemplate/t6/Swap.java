@@ -12,9 +12,9 @@ public class Swap{
 	int temp = 0;
 	temp = a;
 	a = b;
-	//-----Do not show--------//
-	//b = temp;
-	//--------End of do not show---------//
+	//DONOTSHOW
+	b = temp;
+	//ENDDONOTSSHOW
 	System.out.println(b);
     }
 

@@ -13,7 +13,7 @@ public class PrimeTest extends Base
 	@Test
 	public void t1() throws java.io.IOException 
 	{
-	   description = "1. Initailize a main function. Ex- 'public static void main() throws IOEXception{}' ";
+	   description = "create a main method";
 	   Prime obj = new Prime();
 	   try {
 	
