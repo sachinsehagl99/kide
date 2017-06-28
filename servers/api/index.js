@@ -1,10 +1,4 @@
-//var mongo = require('mongoskini');
-//var db = mongo.db("mongodb://localhost:27017/connect_db", {
-  //native_parser: true
-//});
-//var ObjectID = mongo.ObjectID;
 var mongoose = require('mongoose');
-
 var models = require("./models/all-models");
 
 exports.register = function(server, options, next) {
@@ -34,7 +28,25 @@ exports.register = function(server, options, next) {
 	});
     }
   });	
+  server.route({
+    method: 'GET',
+    path: '/files/{course_name}/{template_name}',
+    handler: function(request , reply){
+	var file = 
+	var files = [{ 
+		type : "file",
+		filename : request.params.course_name + ".java",
+		contents : fs.readFileSync('../run/runner/request.params.course_name/src/filename', 'utf8'),
+		active   : true
 
+	}]
+	console.log(files);
+	//reply();
+
+
+	}	
+
+   });
   return next();
 };
 
