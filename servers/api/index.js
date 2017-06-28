@@ -1,10 +1,4 @@
-//var mongo = require('mongoskini');
-//var db = mongo.db("mongodb://localhost:27017/connect_db", {
-  //native_parser: true
-//});
-//var ObjectID = mongo.ObjectID;
 var mongoose = require('mongoose');
-
 var models = require("./models/all-models");
 
 exports.register = function(server, options, next) {

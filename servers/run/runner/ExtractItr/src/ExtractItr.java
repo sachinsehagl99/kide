@@ -13,8 +13,6 @@ public class ExtractItr
 	int a=Integer.parseInt(br.readLine());
 	//----------------------------------------------------------
 	System.out.println("After Extraction:");
-
-	//-----------------------------------------------------------
         while(a>0)
 	{
             r=a%10;
@@ -22,8 +20,6 @@ public class ExtractItr
 	    System.out.println(+r);
 	}
         
+    }
 
-
-
-}
 }

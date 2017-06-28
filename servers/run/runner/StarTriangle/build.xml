@@ -38,7 +38,7 @@
 
   <target name="run-test" depends="compile-test">
     <java classname="org.junit.runner.JsonRunner">
-      <arg value="StarTriangleTest"/>
+	    <arg value="StarTriangleTest#${testName}"/>
       <classpath>
         <pathelement location="${hamcrest-core}"/>
         <pathelement location="${junit4}"/>
