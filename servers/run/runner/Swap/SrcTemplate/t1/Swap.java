@@ -4,11 +4,11 @@ public class Swap{
 
     //============== Write your code in the block ==============//
 
-    //-----do not show ---------//
+    //IGNORE
    // public static void main() {
     
     //}
-    //--- end of donot show ----//
+    //END
 
     //==========================================================//
 }

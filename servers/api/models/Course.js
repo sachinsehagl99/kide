@@ -5,14 +5,9 @@ if (mongoose.connection.readyState === 0) {
 }
 
 
-var newSchema = new Schema({
-  
+var newSchema = new Schema({  
   'name': { type: String },
   'description': { type: String },
-  'testname': {type: String },
-  'createdAt': { type: Date, default: Date.now },
-  'updatedAt': { type: Date, default: Date.now }
-   
 },{collection : 'Course'});
 
 newSchema.pre('save', function(next){

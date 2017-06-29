@@ -5,15 +5,12 @@ if (mongoose.connection.readyState === 0) {
 }
 
 
-var newSchema = new Schema({
-  
-  'course_id': { type: String },
+var newSchema = new Schema({  
+  'course_id': { type: Schema.Types.ObjectId, ref: 'Course' },
   'filename': { type: String },
   'contents': { type: String },
   'type': { type: String },
   'active': { type: Boolean },
-  'createdAt': { type: Date, default: Date.now },
-  'updatedAt': { type: Date, default: Date.now }
 },{collection: 'CourseFile'});
 
 newSchema.pre('save', function(next){

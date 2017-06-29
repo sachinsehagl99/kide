@@ -7,10 +7,9 @@ public class Swap{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	System.out.print("Enter the value of a:");
 	//============== Write your code within the block =======//
-	//------Do not show-------//
+	//IGNORE
 	//a = Integer.parseInt(br.readLine());
-	//------End of do not show------//
-	//=========================================
+	//END
 	System.out.print(a);
     }
 
