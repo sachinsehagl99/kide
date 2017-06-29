@@ -45,7 +45,6 @@ exports.register = function(server, options, next) {
 		filename : request.params.course_name + ".java",
 		contents : file_content, 
 		active   : true
-
 	}]
 	reply(files);
 

@@ -210,11 +210,8 @@ exports.register = function (plugin, options, next) {
         var courseName = request.params.courseName;
 
         Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/t1", function (err, res, body){
-          //Request("http://" + server.api.host + ":" + server.api.port + "/course/" + param.courseId, function (err, res, courseDetails) {
-            //courseDetails = JSON.parse(courseDetails);
 	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}, "course_files": body};
 	    reply.view("editor", context); 
-          //});
         });
       }
     }

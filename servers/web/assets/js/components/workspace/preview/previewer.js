@@ -36,8 +36,10 @@ module.exports = angular.module("plunker.directive.previewer", [
 	})
     };
 
-    if($rootScope.status == "passed"){ 
+    if($rootScope.status == "passed"){
+      $rootScope.$broadcast("project.test.success"); 
       testMethod = testMethod+1; 
+      //$rootScope.$broadcast("project.test.success", testMethod); 
     }
     json.testMethod = testMethod;
 
@@ -48,9 +50,9 @@ module.exports = angular.module("plunker.directive.previewer", [
     });
   }
 
-  $rootScope.$on("project.setTree.success", function (){
-    refreshPreviews();
-  });
+  //$rootScope.$on("project.setTree.success", function (){
+    //refreshPreviews();
+  //});
 
   var directive = {
     restrict: "E",
