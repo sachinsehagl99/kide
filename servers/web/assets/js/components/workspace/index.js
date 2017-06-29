@@ -175,7 +175,7 @@ module.exports = angular.module("plunker.component.workspace", [
 .controller('CodemirrorCtrl', ['$scope', "workspace", "project", function($scope, workspace, project) {
 
     function getPaneDef() {
-      return workspace.panes[0];
+      return workspace.panes[workspace.nextPaneNum - 1];
     }
 
     $scope.$watch(getPaneDef, function(paneDef) {

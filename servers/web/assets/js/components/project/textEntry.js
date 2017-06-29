@@ -75,7 +75,7 @@ module.exports = angular.module("plunker.project.textEntry", [
   TextEntry.prototype.destroy = function () {
     Entry.prototype.destroy.call(this);
     
-    this.remoteEvents.destroy();
+    //this.remoteEvents.destroy();
     
     //this.editSession = null;
   };

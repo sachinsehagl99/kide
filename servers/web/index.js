@@ -216,8 +216,23 @@ exports.register = function (plugin, options, next) {
       }
     }
   });
-  
-  
+
+  plugin.route({
+    method: 'GET',
+    path: '/getFiles/{courseName}/{templateName}',
+    config:{
+      handler: function (request, reply){
+	var server = this.config.server;
+        var courseName = request.params.courseName;
+        var templateName = request.params.templateName;
+
+        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/" + templateName, function (err, res, body){
+          reply(body);
+        });
+      }
+    }
+  });
+   
   plugin.route({
     method: 'GET',
     path: '/plunks/{plunkId}',
