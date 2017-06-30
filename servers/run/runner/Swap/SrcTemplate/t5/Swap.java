@@ -16,8 +16,6 @@ public class Swap{
 	//IGNORE
 	//a= b;
 	//END
-
-
 	//======================================================//
 	System.out.println(a);
     }

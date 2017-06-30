@@ -17,7 +17,9 @@ public class Swap{
 	b = temp;
 	//END
 	//=========================================================//
-	System.out.println(b);
+	System.out.println("Value of b:"+b);
+	System.out.println("Value of a:"+a);
+
     }
 
 }

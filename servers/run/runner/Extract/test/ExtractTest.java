@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,14 +12,14 @@ public class ExtractTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "Create a main method";
+	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
+        description = "Create a main method";
 	Extract obj = new Extract();
 	try {
 		Method m=getMethod(obj,"main");
 	        assertEquals(m.getName(),"main");
-     
-
-    		}
+		
+            }
         
 	catch(Exception e){}
     
@@ -26,6 +27,7 @@ public class ExtractTest extends Base
 
 	@Test
     public void t2() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
 	description = "2. Take input in variable 'a'";
 	Extract obj = new Extract();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
@@ -46,6 +48,7 @@ public class ExtractTest extends Base
 
 	@Test
     public void t3() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
 	description = "3. Extract ones position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
@@ -66,6 +69,7 @@ public class ExtractTest extends Base
 
 		@Test
      public void t4() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h4.txt")).useDelimiter("\\Z").next();
 	description = "4. Extract tens position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
@@ -86,6 +90,7 @@ public class ExtractTest extends Base
 
 		@Test
    public void t5() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h5.txt")).useDelimiter("\\Z").next();
 	description = "5. Extract hundreds position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());

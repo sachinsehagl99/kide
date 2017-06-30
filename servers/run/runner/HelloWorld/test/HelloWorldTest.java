@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,7 +14,8 @@ public class HelloWorldTest extends Base
 
    @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function.Example-public static void main() throws java.io.IOException{}";
+	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
+        description = "Create a main method";
 	HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
@@ -31,7 +33,8 @@ public class HelloWorldTest extends Base
 
     @Test
    public void t2() throws java.io.IOException{
-         description = "Write a print statement and print 'Hello World!'";
+	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+        description = "Print 'Hello World!'";
 	HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
@@ -46,20 +49,7 @@ public class HelloWorldTest extends Base
 	catch(Exception e){}
     
         }
-
-   @Test
-       	public void t8() {
-	    description="You have succefully Compeleted the program!!!!";
-	    
-	    
-	    try
-	    {
-		    assertEquals(0,0);
-	    }
-	    catch(Exception e){
-	    }
-	
-	}	  
+  
  }
 
 

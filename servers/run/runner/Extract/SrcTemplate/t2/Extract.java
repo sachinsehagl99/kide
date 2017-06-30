@@ -10,7 +10,7 @@ public class Extract
         System.out.println("Enter a three digit number:");
 	//============== Write your code within the block =======//
 	//------Do not show-------//
-	//a = Integer.parseInt(br.readLine());
+	a = Integer.parseInt(br.readLine());
 	//------End of do not show------//
 	//=======================================================
 	System.out.print(a);

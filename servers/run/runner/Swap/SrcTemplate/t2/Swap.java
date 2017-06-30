@@ -10,8 +10,7 @@ public class Swap{
 	//IGNORE
 	//a = Integer.parseInt(br.readLine());
 	//END
-	
-	//=========================================
+	//=======================================================//
 	System.out.print(a);
     }
 

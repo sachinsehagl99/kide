@@ -11,8 +11,8 @@ public class Extract
 	a=Integer.parseInt(br.readLine());
 	//============== Write your code within the block =======//
 	//------Do not show-------//
-	//r=a%10;
-	//a=a/10;
+	r=a%10;
+	a=a/10;
 	//------End of do not show------//
 	//=======================================================
         System.out.println("Ones position:"+r);

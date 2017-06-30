@@ -16,9 +16,9 @@ public class Fibonacci
 
         //============== Write your code in the block ==============//
 	//-----do not show ---------//
-		//c = a + b;
-		//a = b;
-             	//b = c;
+		c = a + b;
+		a = b;
+             	b = c;
 	//--- end of donot show ----//
 	//==========================================================//
 		System.out.println(c);
