@@ -1,4 +1,4 @@
-const regex = /(^[a-zA-Z0-9!%^@_\s.*;{}()[\]":=\/+]*)IGNORE|[^END]+$/g;
+const regex = /(^[a-zA-Z0-9!%^@_\s.*;,{}()[\]":=\/+]*)IGNORE|[^END]+$/g;
 
 module.exports = function(str) {
   var m, result = "";
