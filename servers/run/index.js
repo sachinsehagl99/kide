@@ -184,7 +184,7 @@ exports.register = function (plugin, options, next) {
       var build_dir=__dirname + "/" + pathId + "/build/classes";
       var test_build_dir = __dirname + "/" + pathId + "/build/test/classes";
       var test_file = __dirname + "/runner/" + testName + "/test/" + testName + "Test.java";
-       var testMethod = "t"+payload.testMethod;
+       var testMethod = payload.testMethod;
 
        mkdirp(test_build_dir,function (err){
 	if(err){

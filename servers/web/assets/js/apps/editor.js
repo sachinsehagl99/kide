@@ -41,22 +41,6 @@ module.exports = angular.module('plunker', [
 
 .controller("EditorController", function ($rootScope, $scope, $location, urlState, commander, project, notifier,config) {
 
-
-  commander.addCommand({
-    name: "editor.reset",
-    handler: function () {
-      return commander.execute("project.reset").then(function () {
-	return commander.execute("project.openTree", {
-	  tree: JSON.parse(config.course_files) 
-	});
-      });
-    }
-  });
-
-  $rootScope.$on("project.setTree.success", function () {
-    commander.execute("preview.refresh");
-  });
-
   urlState.addState({
     name: "plunkId",
     queue: "project",
@@ -71,7 +55,7 @@ module.exports = angular.module('plunker', [
       return project.isSaved() ? project.plunk.id : void 0;
     },
     write: function (plunkId) {
-      return commander.execute("editor.reset");
+      //return commander.execute("editor.reset");
     }
   });
   
