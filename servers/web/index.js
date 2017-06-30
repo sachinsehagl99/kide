@@ -202,24 +202,37 @@ exports.register = function (plugin, options, next) {
   // Index html
   plugin.route({
     method: 'GET',
-    path: '/edit/{courseId}/{plunkId}',
+    path: '/edit/{courseName}/{plunkId}',
     config: {
       handler: function (request, reply){
 	var server = this.config.server;
 	var param = request.params;
+        var courseName = request.params.courseName;
 
-        Request("http://" + server.api.host + ":" + server.api.port + "/coursefile/" + param.courseId, function (err, res, body){
-          Request("http://" + server.api.host + ":" + server.api.port + "/course/" + param.courseId, function (err, res, courseDetails) {
-            courseDetails = JSON.parse(courseDetails);
-	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseDetails[0].testname + "/" + param.plunkId}, "course_files": body};
+        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/t1", function (err, res, body){
+	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}, "course_files": body};
 	    reply.view("editor", context); 
-          });
         });
       }
     }
   });
-  
-  
+
+  plugin.route({
+    method: 'GET',
+    path: '/getFiles/{courseName}/{templateName}',
+    config:{
+      handler: function (request, reply){
+	var server = this.config.server;
+        var courseName = request.params.courseName;
+        var templateName = request.params.templateName;
+
+        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/" + templateName, function (err, res, body){
+          reply(body);
+        });
+      }
+    }
+  });
+   
   plugin.route({
     method: 'GET',
     path: '/plunks/{plunkId}',

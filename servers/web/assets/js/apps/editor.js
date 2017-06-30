@@ -39,48 +39,8 @@ module.exports = angular.module('plunker', [
 }])
 
 
-.run(["$rootScope", "notifier", "config", function ($rootScope, notifier, config) {
-  //var success = function (message) { return function () { notifier.success(message); }; };
-  //var error = function (message) { return function () { notifier.error(message); }; };
-  
-  //$rootScope.$on("project.save.success", success("Project saved"));
-  //$rootScope.$on("project.fork.success", success("Project forked"));
-  //$rootScope.$on("project.open.success", success("Project opened"));
-  //$rootScope.$on("project.destroy.success", success("Project destroyed"));
-  //$rootScope.$on("project.openTree.success", success("File tree loaded"));
-  
-  //$rootScope.$on("project.save.error", error("Failed to save project"));
-  //$rootScope.$on("project.fork.error", error("Failed to fork project"));
-  //$rootScope.$on("project.open.error", success("Failed to open project"));
-  //$rootScope.$on("project.destroy.error", error("Failed to destroy project"));
-  //$rootScope.$on("project.openTree.error", error("Failed to open tree"));
+.controller("EditorController", function ($rootScope, $scope, $location, urlState, commander, project, notifier,config) {
 
-    //function receiveMessage(e) {
-      //alert(JSON.stringify(e.data));
-    //}
-
-    //window.addEventListener( "message", receiveMessage);
-    //setTimeout(function () {
-
-      //var receiver = document.getElementById("plunkerPreviewIframe").contentWindow;
-      //receiver.postMessage("Hello There!", config.url.run); 
-    //}, 2000);
-}])
-
-.controller("EditorController", ["$scope", "$location", "urlState", "commander", "project", "notifier","config", function ($scope, $location, urlState, commander, project, notifier,config) {
-
-
-  commander.addCommand({
-    name: "editor.reset",
-    handler: function () {
-      return commander.execute("project.reset").then(function () {
-	return commander.execute("project.openTree", {
-	  tree: JSON.parse(config.course_files) 
-	});
-      });
-    }
-  });
-   
   urlState.addState({
     name: "plunkId",
     queue: "project",
@@ -95,7 +55,8 @@ module.exports = angular.module('plunker', [
       return project.isSaved() ? project.plunk.id : void 0;
     },
     write: function (plunkId) {
-      return commander.execute("editor.reset");
+      //return commander.execute("editor.reset");
     }
   });
-}]);
+  
+});

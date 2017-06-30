@@ -12,10 +12,9 @@ public class Swap{
 
 	int temp = 0;
 	//============== Write your code within the block =======//
-	//-----Do not show--------//
-	temp=a;
-	//--------End of do not show---------//
-
+	//IGNORE
+	//temp=a;
+	//END
 	//======================================================//
 	System.out.println(temp);
     }

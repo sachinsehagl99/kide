@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var models = require("./models/all-models");
+var fs = require('fs');
+var filter_file = require("./filter_file");
 
 exports.register = function(server, options, next) {
   server.route({
@@ -28,7 +30,28 @@ exports.register = function(server, options, next) {
 	});
     }
   });	
+    server.route({
+    method: 'GET',
+    path: '/files/{course_name}/{template_name}',
+    handler: function(request , reply){
+	var coursefile = request.params.course_name;
+	var templatename = request.params.template_name;
+        var program = coursefile+".java";
+        var file_content = fs.readFileSync(__dirname + '/../run/runner/'+coursefile+'/SrcTemplate/'+templatename+'/'+program, 'utf8');
+        file_content = filter_file(file_content);
 
+	var files = [{ 
+		type : "file",
+		filename : request.params.course_name + ".java",
+		contents : file_content, 
+		active   : true
+	}]
+	reply(files);
+
+
+	}	
+
+   });;
   return next();
 };
 
