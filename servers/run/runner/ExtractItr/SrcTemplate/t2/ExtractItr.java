@@ -10,7 +10,7 @@ public class ExtractItr
         System.out.println("Enter a number:");
 	//============== Write your code within the block =======//
 	//------Do not show-------//
-	//a = Integer.parseInt(br.readLine());
+	a = Integer.parseInt(br.readLine());
 	//------End of do not show------//
 	//=======================================================
 	System.out.print(a);

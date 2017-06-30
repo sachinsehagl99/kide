@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,7 +13,8 @@ public class FibonacciTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "Create a main method";
+	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
+        description = "Create a main method";
 	Fibonacci obj = new Fibonacci();
 	try {
 		Method m=getMethod(obj,"main");
@@ -25,9 +27,10 @@ public class FibonacciTest extends Base
     
         }
 
-		@Test
-	public void t2() throws java.io.IOException{
-		description = "Take a input in 'n' variable";
+	@Test
+    public void t2() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+	description = "Take a input in 'n' variable";
 	Fibonacci obj = new Fibonacci();
  	ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
 	System.setIn(in); 
@@ -45,8 +48,9 @@ public class FibonacciTest extends Base
 	}
 
 	@Test
-	public void t3() throws java.io.IOException{
-		description = "Write necessary code within while-loop";
+    public void t3() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
+	description = "Write necessary code within while-loop";
 	Fibonacci obj = new Fibonacci();
 	ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
 	System.setIn(in); 
@@ -68,8 +72,9 @@ public class FibonacciTest extends Base
 
 		
 	@Test
-	public void t4() throws java.io.IOException{
-		description = "Check if c is equal to n and print 'Fibonacci'";
+    public void t4() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h4.txt")).useDelimiter("\\Z").next();
+	description = "Check if c is equal to n and print 'Fibonacci'";
 	Fibonacci obj = new Fibonacci();
 	ByteArrayInputStream in = new ByteArrayInputStream("3".getBytes());
 	System.setIn(in); 
@@ -88,8 +93,9 @@ public class FibonacciTest extends Base
 	}
 
 	@Test
-	public void t5() throws java.io.IOException{
-		description = "Print 'Not Fibonacci' using else";
+    public void t5() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h5.txt")).useDelimiter("\\Z").next();
+	description = "Print 'Not Fibonacci' using else";
 	Fibonacci obj = new Fibonacci();
 	ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
 	System.setIn(in); 

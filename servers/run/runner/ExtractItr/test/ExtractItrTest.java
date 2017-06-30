@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,7 +12,8 @@ public class ExtractItrTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "Create a main method";
+	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
+        description = "Create a main method";
 	ExtractItr obj = new ExtractItr();
 	try {
 		Method m=getMethod(obj,"main");
@@ -26,6 +28,7 @@ public class ExtractItrTest extends Base
 
 	@Test
     public void t2() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
 	description = "Take a input in 'a' variable";
 	ExtractItr obj = new ExtractItr();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
@@ -46,6 +49,7 @@ public class ExtractItrTest extends Base
 
 	@Test
     public void t3() throws java.io.IOException{
+	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
 	description = "Extract number using while-loop";
 	ExtractItr obj = new ExtractItr();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());

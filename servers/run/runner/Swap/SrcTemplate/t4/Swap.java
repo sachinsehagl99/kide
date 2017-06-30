@@ -13,7 +13,7 @@ public class Swap{
 	int temp = 0;
 	//============== Write your code within the block =======//
 	//-----Do not show--------//
-	//temp=a;
+	temp=a;
 	//--------End of do not show---------//
 
 	//======================================================//

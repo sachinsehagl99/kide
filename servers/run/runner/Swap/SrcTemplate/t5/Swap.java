@@ -14,7 +14,7 @@ public class Swap{
 	temp = a;
 	//============== Write your code within the block =======//
 	//-----Do not show--------//
-	//a= b;
+	a= b;
 	//--------End of do not show---------//
 
 

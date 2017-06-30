@@ -20,8 +20,8 @@ public class Fibonacci
 
 	//============== Write your code in the block ==============//
 	//-----do not show ---------//
-	//if(c==n)
-	//System.out.println("Fibonacci");
+	if(c==n)
+	System.out.println("Fibonacci");
 	//--- end of donot show ----//
 	//==========================================================//
 	   

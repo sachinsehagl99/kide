@@ -10,7 +10,7 @@ public class Fibonacci
         System.out.print("Enter a number :");
         //============== Write your code in the block ==============//
 	//-----do not show ---------//
-	//n = Integer.parseInt(br.readLine());
+	n = Integer.parseInt(br.readLine());
 	//--- end of donot show ----//
 	//==========================================================//
 	System.out.println(n);

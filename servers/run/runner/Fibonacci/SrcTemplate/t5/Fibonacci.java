@@ -23,8 +23,8 @@ public class Fibonacci
 	
 	//============== Write your code in the block ==============//
 	//-----do not show ---------//
-	//else
-	//System.out.println("Not Fibonacci");
+	else
+	System.out.println("Not Fibonacci");
 	//--- end of donot show ----//
 	//==========================================================//
 	   

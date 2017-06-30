@@ -15,7 +15,9 @@ public class Swap{
 	//DONOTSHOW
 	b = temp;
 	//ENDDONOTSSHOW
-	System.out.println(b);
+	System.out.println("Value of b:"+b);
+	System.out.println("Value of a:"+a);
+
     }
 
 }
