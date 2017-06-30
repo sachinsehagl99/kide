@@ -8,7 +8,7 @@ public class Swap{
 	System.out.print("Enter the value of a:");
 	//============== Write your code within the block =======//
 	//IGNORE
-	//a = Integer.parseInt(br.readLine());
+	a = Integer.parseInt(br.readLine());
 	//END
 	//=======================================================//
 	System.out.print(a);

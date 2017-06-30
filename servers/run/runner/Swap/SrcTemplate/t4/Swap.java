@@ -13,7 +13,7 @@ public class Swap{
 	int temp = 0;
 	//============== Write your code within the block =======//
 	//IGNORE
-	//temp=a;
+	temp=a;
 	//END
 	//======================================================//
 	System.out.println(temp);

@@ -14,7 +14,7 @@ public class Swap{
 	temp = a;
 	//============== Write your code within the block =======//
 	//IGNORE
-	//a= b;
+	a= b;
 	//END
 	//======================================================//
 	System.out.println(a);
