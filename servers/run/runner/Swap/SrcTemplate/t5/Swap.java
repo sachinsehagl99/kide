@@ -13,9 +13,9 @@ public class Swap{
 	int temp = 0;
 	temp = a;
 	//============== Write your code within the block =======//
-	//-----Do not show--------//
+	//IGNORE
 	//a= b;
-	//--------End of do not show---------//
+	//END
 
 
 	//======================================================//

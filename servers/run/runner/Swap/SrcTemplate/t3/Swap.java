@@ -10,9 +10,9 @@ public class Swap{
         
 	System.out.print("Enter the value of b:");
 	//============== Write your code within the block =======//
-	//------Do not show-------//
+	//IGNORE
 	//b = Integer.parseInt(br.readLine());
-	//------End of do not show------//
+	//END
 	//=========================================
 	System.out.println(b);
 
