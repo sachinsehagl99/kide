@@ -14,7 +14,7 @@ public class SwapTest extends Base
  {
    @Test
    public void t1() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
+	hint = "public static void main() throws IOException {\n \n}";
 	description = "Create a main method";
         Swap obj = new Swap();
 	try {
@@ -30,7 +30,7 @@ public class SwapTest extends Base
 
     @Test
     public void t2() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+	hint = "a = Integer.parseInt(br.readLine());\n";
 	description = "Take input in variable 'a'";
 	Swap obj = new Swap();
 	System.setIn(StubbedInputStream.stubInputStream().toReturn("10").atSomePoint());		
@@ -50,7 +50,7 @@ public class SwapTest extends Base
 
     @Test
     public void t3() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
+	hint = "b = Integer.parseInt(br.readLine());\n";
 	description = "Take input in variable 'b'";
 	Swap obj = new Swap();
 	System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());		
@@ -70,7 +70,7 @@ public class SwapTest extends Base
 
     	@Test
     public void t4() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h4.txt")).useDelimiter("\\Z").next();
+	hint = "temp=a;";
 	description = "Put the value of 'a' in 'temp' variable";
 	Swap obj = new Swap();
  		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
@@ -88,7 +88,7 @@ public class SwapTest extends Base
 
 	@Test
     public void t5() throws java.io.IOException {
-	hint = new Scanner(new File("Hint/h5.txt")).useDelimiter("\\Z").next();
+	hint = "a= b;";
 	description = "Put the value of 'b' in 'a' variable";  
 	Swap obj = new Swap();
  		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
@@ -107,7 +107,7 @@ public class SwapTest extends Base
 
 	@Test
     public void t6() throws java.io.IOException {
-	hint = new Scanner(new File("Hint/h6.txt")).useDelimiter("\\Z").next();
+	hint = "b = temp;";
   	description = "Put the value of 'temp' in 'b' variable";  
   	Swap obj = new Swap();
  		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());	 	try {
