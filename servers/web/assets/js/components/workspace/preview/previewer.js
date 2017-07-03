@@ -46,8 +46,7 @@ module.exports = angular.module("plunker.directive.previewer", [
         if (entry.isFile()) {
           return {
             path: entry.getPath(),
-            contents: entry.contents,
-            active: entry.active
+            contents: entry.contents
           };
         }
       })
