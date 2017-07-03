@@ -17,10 +17,7 @@ module.exports = function(name, testMethod, build_dir, src_file, test_build_dir,
 
 	      for (var key in arr) {
 		var obj = arr[key];
-		var desc = obj.description;
-		var stats = obj.status;
 		callback(obj);
-		return;
 	       }
               });
           }

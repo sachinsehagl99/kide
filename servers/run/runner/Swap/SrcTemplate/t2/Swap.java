@@ -5,7 +5,6 @@ public class Swap{
     public static void main(String args[]) throws IOException{
 	int a = 0;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.println(br);
 	System.out.print("Enter the value of a:");
 	//============== Write your code within the block =======//
 	//IGNORE

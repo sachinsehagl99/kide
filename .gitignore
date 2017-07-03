@@ -1,6 +1,6 @@
 .c9
 .git
-
 node_modules
+servers/run/runner/**/*.class
 
 
