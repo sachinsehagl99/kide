@@ -19,9 +19,10 @@ public class SwapTest extends Base
         Swap obj = new Swap();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
-     
-
+		String m1= m.toString();
+		System.err.println(m1);
+		assertEquals(m1,"public static void Swap.main() throws java.io.IOException");
+    		
     		}
         
 	catch(Exception e){}
