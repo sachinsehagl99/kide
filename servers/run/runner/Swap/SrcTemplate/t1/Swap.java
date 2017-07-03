@@ -4,9 +4,10 @@ public class Swap{
 
     //============== Write your code in the block ==============//
     //IGNORE
-    // public static void main() {
-   
-    //}
+    public static void main() throws IOException{
+	    	    
+    
+    }
     //END
     //==========================================================//
 }
