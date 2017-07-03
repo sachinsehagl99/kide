@@ -1,22 +1,17 @@
-var angular = window.angular;
-var ace = window.ace;
-
 var _ = require("lodash");
 
-
-module.exports =
-angular.module("plunker.service.commander", [
+module.exports = angular.module("plunker.service.commander", [
   require("./notifier").name,
   require("./overlayer").name,
 ])
 
 .factory("commander", [ "$rootScope", "$q", "$document", "$injector", "notifier", "overlayer", function ($rootScope, $q, $document, $injector, notifier, overlayer) {
-  var HashHandler = ace.require("ace/keyboard/hash_handler").HashHandler;
-  var Event = ace.require("ace/lib/event");
-  var KeyUtil = ace.require("ace/lib/keys");
-  var UserAgent = ace.require("ace/lib/useragent");
+  //var HashHandler = ace.require("ace/keyboard/hash_handler").HashHandler;
+  //var Event = ace.require("ace/lib/event");
+  //var KeyUtil = ace.require("ace/lib/keys");
+  //var UserAgent = ace.require("ace/lib/useragent");
   
-  var hashHandler = new HashHandler();
+//  var hashHandler = new HashHandler();
   var commands = {};
   
   var service = {
@@ -28,15 +23,15 @@ angular.module("plunker.service.commander", [
     removeInterceptor: removeInterceptor
   };
   
-  Event.addCommandKeyListener($document[0], function (e, hashId, keyCode) {
-    var keyString = KeyUtil.keyCodeToString(keyCode);
-    var command = hashHandler.findKeyCommand(hashId, keyString);
+  //Event.addCommandKeyListener($document[0], function (e, hashId, keyCode) {
+    //var keyString = KeyUtil.keyCodeToString(keyCode);
+    //var command = hashHandler.findKeyCommand(hashId, keyString);
     
-    if (command && command.exec) {
-      command.exec(e);
-      Event.stopEvent(e);
-    }
-  });
+    //if (command && command.exec) {
+      //command.exec(e);
+      //Event.stopEvent(e);
+    //}
+  //});
   
   return service;
   
@@ -59,20 +54,20 @@ angular.module("plunker.service.commander", [
   }
   
   function addHotkey (commandId, hotkey) {
-    var command = commands[commandId];
-    var modKey = UserAgent.isMac ? "Cmd" : "Ctrl";
+/*    var command = commands[commandId];*/
+    //var modKey = UserAgent.isMac ? "Cmd" : "Ctrl";
     
-    hotkey = hotkey.replace("Mod", modKey);
+    //hotkey = hotkey.replace("Mod", modKey);
     
-    if (!command) throw new Error("Unable to run non-existent command: " + commandId);
+    //if (!command) throw new Error("Unable to run non-existent command: " + commandId);
     
-    hashHandler.bindKey(hotkey, function (event, hotkey) {
-      executeCommand(commandId, {event: event, hotkey: hotkey});
+    //hashHandler.bindKey(hotkey, function (event, hotkey) {
+      //executeCommand(commandId, {event: event, hotkey: hotkey});
       
-      return true;
-    });
+      //return true;
+    //});
     
-    command.hotkeys.push(hotkey);
+    /*command.hotkeys.push(hotkey);*/
   }
   
   function addInterceptor (commandId, interceptor) {
@@ -82,7 +77,7 @@ angular.module("plunker.service.commander", [
   }
   
   function attachTo (editorInst) {
-    editorInst.keyBinding.addKeyboardHandler(hashHandler, 0);
+/*    editorInst.keyBinding.addKeyboardHandler(hashHandler, 0);*/
   }
   
   function executeCommand (commandId, locals) {
@@ -140,19 +135,19 @@ angular.module("plunker.service.commander", [
 }])
 
 .factory("keybindings", ["$injector", "$document", "commands", function($injector, $document, commands){
-  var HashHandler = ace.require("ace/keyboard/hash_handler").HashHandler;
-  var Event = ace.require("ace/lib/event");
-  var KeyUtil = ace.require("ace/lib/keys");
+  //var HashHandler = ace.require("ace/keyboard/hash_handler").HashHandler;
+  //var Event = ace.require("ace/lib/event");
+  //var KeyUtil = ace.require("ace/lib/keys");
   
-  var hashHandler = new HashHandler();
+  //var hashHandler = new HashHandler();
   
-  Event.addCommandKeyListener($document.find("body")[0], function (e, hashId, keyCode) {
-    var keyString = KeyUtil.keyCodeToString(keyCode);
-    var command = hashHandler.findKeyCommand(hashId, keyString);
+  //Event.addCommandKeyListener($document.find("body")[0], function (e, hashId, keyCode) {
+    //var keyString = KeyUtil.keyCodeToString(keyCode);
+    //var command = hashHandler.findKeyCommand(hashId, keyString);
     
-    if (command && command.exec) {
-      command.exec(e);
-      event.stopEvent(e);
-    }
-  });
+    //if (command && command.exec) {
+      //command.exec(e);
+      //event.stopEvent(e);
+    //}
+  //});
 }]);

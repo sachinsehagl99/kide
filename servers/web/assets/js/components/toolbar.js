@@ -1,17 +1,11 @@
-var angular = window.angular;
-
 var Fs = require("fs");
-
 require("../../vendor/ui-bootstrap/ui-bootstrap");
 require("../../vendor/borderLayout/borderLayout.coffee");
 
 
-module.exports =
-angular.module("plunker.component.toolbar", [
+module.exports = angular.module("plunker.component.toolbar", [
   "ui.bootstrap",
-
-  "fa.directive.borderLayout",
-  
+  "fa.directive.borderLayout", 
   require("./workspace").name,
   require("./project").name,
   require("./visitor").name,

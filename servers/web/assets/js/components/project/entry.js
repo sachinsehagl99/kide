@@ -2,8 +2,7 @@ var angular = window.angular;
 
 var Genid = require("genid");
 
-module.exports =
-angular.module("plunker.project.entry", [
+module.exports = angular.module("plunker.project.entry", [
 ])
 
 

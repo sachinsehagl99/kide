@@ -2,8 +2,7 @@ var angular = window.angular;
 
 var Highland = require("highland");
 
-module.exports =
-angular.module("plunker.oplog", [
+module.exports = angular.module("plunker.oplog", [
 ])
 
 .factory("oplog", ["$rootScope", function ($rootScope) {

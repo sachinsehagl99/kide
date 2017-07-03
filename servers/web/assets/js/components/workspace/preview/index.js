@@ -4,8 +4,7 @@ var Fs = require('fs');
 var _ = require("lodash");
 
 
-module.exports =
-angular.module("plunker.pane.preview", [
+module.exports = angular.module("plunker.pane.preview", [
   "ui.bootstrap",
   require("../../project").name,
   require("../../commander").name,

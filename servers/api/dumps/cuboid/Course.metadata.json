@@ -1,0 +1,1 @@
+{ "options" : { "create" : "Course", "autoIndexId" : true, "flags" : 1 }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "cuboid.Course", "name" : "_id_" } ] }

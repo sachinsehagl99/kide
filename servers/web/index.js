@@ -178,32 +178,61 @@ exports.register = function (plugin, options, next) {
     }
   });
   
-  // Index html
-  plugin.route({
-    method: 'GET',
-    path: '/edit/{path*}',
-    config: {
-      handler: function (request, reply){
-	var config = this.config.server;
-	var context = {"url": {"run": "http://" + config.run.host + ":" + config.run.port}};
-	reply.view("editor", context); 
-      }
-    }
-  });
-  
   plugin.route({
     method: 'GET',
     path: '/',
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	  reply.view("home", context, {
-	    layout: "landing"
+	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, data){
+            var data = JSON.parse(data);
+
+            for(var key in data){
+              data[key].plunkId = Genid();
+            }
+            context.body = {plunk: data};
+            reply.view("home", context, {
+	      layout: "landing"
 	  });
+        });
       }
     }
   });
   
+  // Index html
+  plugin.route({
+    method: 'GET',
+    path: '/edit/{courseName}/{plunkId}',
+    config: {
+      handler: function (request, reply){
+	var server = this.config.server;
+	var param = request.params;
+        var courseName = request.params.courseName;
+
+        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/t1", function (err, res, body){
+	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}, "course_files": body};
+	    reply.view("editor", context); 
+        });
+      }
+    }
+  });
+
+  plugin.route({
+    method: 'GET',
+    path: '/getFiles/{courseName}/{templateName}',
+    config:{
+      handler: function (request, reply){
+	var server = this.config.server;
+        var courseName = request.params.courseName;
+        var templateName = request.params.templateName;
+
+        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/" + templateName, function (err, res, body){
+          reply(body);
+        });
+      }
+    }
+  });
+   
   plugin.route({
     method: 'GET',
     path: '/plunks/{plunkId}',

@@ -10,6 +10,7 @@ var Marked = require("marked");
 var Request = require("request");
 var _ = require('lodash');
 var fs = require("fs");
+var mkdirp = require("mkdirp");
 var runner = require("./runner");
 var internals = {
   compilers: [
@@ -130,10 +131,6 @@ internals.prepareFile = function (preview, targetPath, next) {
   }
 };
 
-exports.name = "run";
-exports.version = require("./package.json").version;
-exports.path = __dirname;
-
 exports.register = function (plugin, options, next) {
   
   var context = {
@@ -174,21 +171,62 @@ exports.register = function (plugin, options, next) {
     }
   });
 
-plugin.route({
-	method: 'POST',
-	path: '/java/{testName}',
-	handler: function (request,reply){
-		var testName = encodeURIComponent(request.params.testName);
-		var payload = request.payload;
-		var path = __dirname + "/" + payload.file_name;
-		fs.writeFile(path, payload.file_content, function (err){
-                  if(err) {
-                    return console.log(err);
-                  }
-				runner(testName, path);
-		});
-        }
-});
+  plugin.route({
+    method: 'POST',
+    path: '/java/{testName}/{pathId}',
+    handler: function (request,reply){
+
+      var params = request.params;
+      var testName = encodeURIComponent(params.testName);
+      var pathId = encodeURIComponent(params.pathId);
+      var payload = request.payload;
+      var src_dir = __dirname + "/" + pathId+"/src";
+      var build_dir=__dirname + "/" + pathId + "/build/classes";
+      var test_build_dir = __dirname + "/" + pathId + "/build/test/classes";
+      var test_file = __dirname + "/runner/" + testName + "/test/" + testName + "Test.java";
+       var testMethod = payload.testMethod;
+
+       mkdirp(test_build_dir,function (err){
+	if(err){
+		throw err;
+
+	} 
+       mkdirp(build_dir, function (err){
+	if (err){
+		throw err;
+	}
+       mkdirp(src_dir, function (err) {
+        if(err) {
+          throw err;
+        } 
+
+        
+	var entry_file = '';
+	for(var key in payload.files){
+	  var filepath =src_dir + "/" + payload.files[key].path;
+	  var filecontent = payload.files[key].contents;
+	  fs.writeFile(filepath, filecontent, function (err){
+	    if(err) {
+	      return console.log(err);
+	    }
+
+	  });
+
+           if(payload.files[key].active){
+             entry_file = filepath;
+           }
+	}
+
+        runner(testName+'Test', testMethod,  build_dir, entry_file,test_build_dir, test_file, function (obj) {   
+          reply(obj);
+        });
+         
+      });
+	
+       });
+      });
+    }
+  });
 
   plugin.route({ 
     method: 'POST', 
@@ -276,7 +314,9 @@ plugin.route({
   return next();
 };
 
-exports.register.attributes = {name: 'run'};
+exports.register.attributes = {
+    pkg: require('./package.json')
+};
 
 internals.serveTree = function (request, reply, preview) {
   var path = request.params.path;

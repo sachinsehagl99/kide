@@ -7904,6 +7904,14 @@ ul.plunker-taglist a:hover:before {
   margin-left: 1em;
   margin-top: 4px;
 }
+.hintContainer {
+  background: #f5f5f5;
+  padding: 8px;
+}
+.sidebar {
+  background: #21252b;
+  color: #6b717d;
+}
 .pane-sidebar {
   background-image: url(http://i.imgur.com/Xekh6w4.png);
 }
