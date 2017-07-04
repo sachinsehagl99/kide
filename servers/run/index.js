@@ -12,26 +12,28 @@ var _ = require('lodash');
 var fs = require("fs");
 var mkdirp = require("mkdirp");
 var runner = require("./runner");
+var bodyParser =  require('hapi-bodyparser');
+
 var internals = {
-  compilers: [
-    {
-      targetExtension: ".html",
-      transformPath: function (path) {
-        return Path.join(Path.dirname(path), Path.basename(path, Path.extname(path)) + ".html");
-      },
-      compile: function (fromPath, toPath, contents, cb) {
-        console.log("compiling", fromPath, toPath);
-        Marked(contents, cb);
-      }
+  compilers: [{
+    targetExtension: ".html",
+    transformPath: function(path) {
+      return Path.join(Path.dirname(path), Path.basename(path, Path.extname(path)) + ".html");
+    },
+    compile: function(fromPath, toPath, contents, cb) {
+      console.log("compiling", fromPath, toPath);
+      Marked(contents, cb);
     }
-  ]
+  }]
 };
 
 // LRU cache of sha1 -> Buffer
 // For compiled files, these will be stored as sha1.ext -> Buffer
 internals.blobs = LRU({
-  max: 100 * 1024 * 1024,          // 100MB
-  length: function (buf) { return buf.length; }
+  max: 100 * 1024 * 1024, // 100MB
+  length: function(buf) {
+    return buf.length;
+  }
 });
 
 // LRU cache of previewId -> {filename: sha1}
@@ -40,25 +42,28 @@ internals.previews = LRU(1024);
 // Regex to determine if file is the index
 internals.indexFileRegex = /^(index|readme|example|demo)\.(html?|md)$/i;
 
-internals.findIndex = function (tree) {
-  return _.findKey(tree, function (file, path) {
+internals.findIndex = function(tree) {
+  return _.findKey(tree, function(file, path) {
     return internals.indexFileRegex.test(path);
   });
 };
 
-internals.fetchTree = function (sha, next) {
-  Request.get({url: "http://localhost:8001/trees/" + sha, json: true}, function (err, resp, body) {
+internals.fetchTree = function(sha, next) {
+  Request.get({
+    url: "http://localhost:8001/trees/" + sha,
+    json: true
+  }, function(err, resp, body) {
     if (err) return next(err);
     if (resp.statusCode >= 400) return next(body);
-    
+
     var files = {};
-    
+
     addEntries(resp.body, "");
-    
+
     next(null, files);
-    
-    function addEntries (entries, path) {
-      _.forEach(entries, function (entry) {
+
+    function addEntries(entries, path) {
+      _.forEach(entries, function(entry) {
         if (entry.type === 'directory') {
           addEntries(entry.children, path + entry.filename + "/");
         } else if (entry.type === 'file') {
@@ -73,100 +78,105 @@ internals.fetchTree = function (sha, next) {
 };
 
 // Given a previewId, return the correct preview url
-internals.urlForPreview = function (previewId) {
+internals.urlForPreview = function(previewId) {
   internals.url.pathname = "previews/" + previewId;
-  
+
   return Url.format(internals.url) + "/";
 };
 
-internals.prepareFile = function (preview, targetPath, next) {
+internals.prepareFile = function(preview, targetPath, next) {
   var sourceTree = preview.tree;
   var sourceSha = sourceTree[targetPath];
   var found = false;
-  
+
   // No compilation needed
   if (sourceSha) {
     var buf = internals.blobs.get(sourceSha);
-    
+
     if (buf) return next(null, buf);
     else return next(Boom.notFound("Preview file expired"));
   }
-  
+
   var ext = Path.extname(targetPath);
-  
-  _.forEach(sourceTree, function (sha, path) {
-    _.forEach(internals.compilers, function (compiler) {
+
+  _.forEach(sourceTree, function(sha, path) {
+    _.forEach(internals.compilers, function(compiler) {
       if (targetPath === compiler.transformPath.call(compiler, path)) {
-	var buf = internals.blobs.get(sha);
-	
-	// The buffer fell out of the blob cache
-	if (!buf) { next(Boom.notFound("Preview file expired")); }
-	else {
-	  compiler.compile.call(compiler, path, targetPath, buf.toString("utf8"), function (err, compiled) {
-	    if (err) next(err);
-	    else {
-	      var buf = Buffer(compiled);
-	      next(null, buf);
-	      
-	      // Cache the compiled file
-	      internals.blobs.set(sha + ext, buf);
-	      sourceTree[targetPath] = sha + ext;
-	      preview.map[path] = targetPath;
-	    }
-	  });
-	}
-	
-	// Escape from booth loops
-	found = true;
-	return false;
+        var buf = internals.blobs.get(sha);
+
+        // The buffer fell out of the blob cache
+        if (!buf) {
+          next(Boom.notFound("Preview file expired"));
+        } else {
+          compiler.compile.call(compiler, path, targetPath, buf.toString("utf8"), function(err, compiled) {
+            if (err) next(err);
+            else {
+              var buf = Buffer(compiled);
+              next(null, buf);
+
+              // Cache the compiled file
+              internals.blobs.set(sha + ext, buf);
+              sourceTree[targetPath] = sha + ext;
+              preview.map[path] = targetPath;
+            }
+          });
+        }
+
+        // Escape from booth loops
+        found = true;
+        return false;
       }
     });
-    
+
     return !found;
   });
-  
+
   if (!found) {
     console.log("Not found!", targetPath);
     next(Boom.notFound());
   }
 };
 
-exports.register = function (plugin, options, next) {
-  
+exports.register = function(plugin, options, next) {
+
   var context = {
     config: options.config
   };
-  
+
   var basePath = options.config.server.run.path || "";
-  
-  internals.url = { hostname: options.config.server.run.host };
+
+  internals.url = {
+    hostname: options.config.server.run.host
+  };
   if (options.config.server.run.port) internals.url.port = options.config.server.run.port;
 
   plugin.bind(context);
-  
+
+  plugin.register(bodyParser);
+
   plugin.method({
     name: "prepareFile",
     method: internals.prepareFile
   });
-  
+
   plugin.method({
     name: "fetchTree",
     method: internals.fetchTree
   });
-  
+
   plugin.route({
     method: "GET",
     path: basePath + "/sha/{sha}/{path*}",
     config: {
-      handler: function (request, reply) {
-	request.server.methods.fetchTree(request.params.sha, function (err, files) {
-	  if (err) return reply(err);
-	  
-	  var previewId = "sha:" + request.params.sha;
-	  var preview = internals.getOrCreatePreview(previewId, files);
-	  
-	  internals.serveTree(request, reply, preview);
-	});
+      handler: function(request, reply) {
+        request.server.methods.fetchTree(request.params.sha, function(err, files) {
+          if (err) return reply(err);
+
+          var previewId = "sha:" + request.params.sha;
+          var preview = internals.getOrCreatePreview(previewId, files);
+
+          internals.serveTree(request, reply, preview);
+        });
       }
     }
   });
@@ -174,198 +184,197 @@ exports.register = function (plugin, options, next) {
   plugin.route({
     method: 'POST',
     path: '/java/{testName}/{pathId}',
-    handler: function (request,reply){
-
+    handler: function(request, reply) {
       var params = request.params;
       var testName = encodeURIComponent(params.testName);
       var pathId = encodeURIComponent(params.pathId);
-      var payload = request.payload;
-      var src_dir = __dirname + "/" + pathId+"/src";
-      var build_dir=__dirname + "/" + pathId + "/build/classes";
+      var src_dir = __dirname + "/" + pathId + "/src";
+      var build_dir = __dirname + "/" + pathId + "/build/classes";
       var test_build_dir = __dirname + "/" + pathId + "/build/test/classes";
       var test_file = __dirname + "/runner/" + testName + "/test/" + testName + "Test.java";
-       var testMethod = payload.testMethod;
+      var payload = request.payload;
+      var testMethod = payload.testMethod;
 
-       mkdirp(test_build_dir,function (err){
-	if(err){
-		throw err;
-
-	} 
-       mkdirp(build_dir, function (err){
-	if (err){
-		throw err;
-	}
-       mkdirp(src_dir, function (err) {
-        if(err) {
+      mkdirp(test_build_dir, function(err) {
+        if (err) {
           throw err;
-        } 
 
-        
-	var entry_file = '';
-	for(var key in payload.files){
-	  var filepath =src_dir + "/" + payload.files[key].path;
-	  var filecontent = payload.files[key].contents;
-	  fs.writeFile(filepath, filecontent, function (err){
-	    if(err) {
-	      return console.log(err);
-	    }
+        }
+        mkdirp(build_dir, function(err) {
+          if (err) {
+            throw err;
+          }
+          mkdirp(src_dir, function(err) {
+            if (err) {
+              throw err;
+            }
 
-	  });
 
-           if(payload.files[key].active){
-             entry_file = filepath;
-           }
-	}
+            var entry_file = '';
+            for (var key in payload.files) {
+              var filepath = src_dir + "/" + payload.files[key].path;
+              var filecontent = payload.files[key].contents;
+              fs.writeFile(filepath, filecontent, function(err) {
+                if (err) {
+                  return err;
+                }
 
-        runner(testName+'Test', testMethod,  build_dir, entry_file,test_build_dir, test_file, function (obj) {   
-          reply(obj);
+              });
+
+              if (payload.files[key].active) {
+                entry_file = filepath;
+              }
+            }
+             
+	    runner(testName + 'Test', testMethod, build_dir, entry_file, test_build_dir, test_file, function(obj) {
+	      reply(obj);
+	    });
+          });
         });
-         
-      });
-	
-       });
       });
     }
   });
 
-  plugin.route({ 
-    method: 'POST', 
+  plugin.route({
+    method: 'POST',
     path: '/media/submit',
     config: {
-	payload: {
-	    output: 'stream',
-	    parse: true,
-	    allow: 'multipart/form-data'
-	},
+      payload: {
+        output: 'stream',
+        parse: true,
+        allow: 'multipart/form-data'
+      },
 
-	handler: function (request, reply) {
-	    var data = request.payload;
-	    if (data.file) {
-		var name = data.file.hapi.filename;
-		var path = __dirname + "/uploads/" + name;
-		var file = fs.createWriteStream(path);
+      handler: function(request, reply) {
+        var data = request.payload;
+        if (data.file) {
+          var name = data.file.hapi.filename;
+          var path = __dirname + "/uploads/" + name;
+          var file = fs.createWriteStream(path);
 
-		file.on('error', function (err) { 
-		    console.error(err) 
-		});
+          file.on('error', function(err) {
+            console.error(err)
+          });
 
-		data.file.pipe(file);
+          data.file.pipe(file);
 
-		data.file.on('end', function (err) { 
-		    var ret = {
-			filename: data.file.hapi.filename,
-			headers: data.file.hapi.headers
-		    }
-		    reply(JSON.stringify(ret));
-		})
-	    }
+          data.file.on('end', function(err) {
+            var ret = {
+              filename: data.file.hapi.filename,
+              headers: data.file.hapi.headers
+            }
+            reply(JSON.stringify(ret));
+          })
+        }
 
-	}
-    } 
+      }
+    }
   });
- 
+
   plugin.route({
     method: "GET",
     path: "/previews/{previewId}/media/{imageId}",
     config: {
-      handler: function (request, reply) {
-	reply.file(__dirname + "/media/" + request.params.imageId); 
+      handler: function(request, reply) {
+        reply.file(__dirname + "/media/" + request.params.imageId);
       }
     }
   });
- 
+
   plugin.route({
     method: "GET",
     path: basePath + "/previews/{previewId}/{path*}",
     config: {
-      handler: function (request, reply) {
-	var preview = internals.previews.get(request.params.previewId);
-	
-	internals.serveTree(request, reply, preview);
+      handler: function(request, reply) {
+        var preview = internals.previews.get(request.params.previewId);
+
+        internals.serveTree(request, reply, preview);
       }
     }
   });
-  
+
   plugin.route({
     method: 'POST',
     path: '/previews/{previewId}',
     config: {
       validate: {
-	payload: {
-	  files: Joi.array().required().includes(Joi.object({
-	    contents: Joi.string().required(),
-	    path: Joi.string().required().regex(/^(?:\.[a-zA-Z0-9]|[a-zA-Z0-9])[\w-]*(?:\.[\w-]+)*(?:\/[a-zA-Z0-9][\w-]*(?:\.[\w-]+)*)*$/)
-	  }))
-	}
+        payload: {
+          files: Joi.array().required().includes(Joi.object({
+            contents: Joi.string().required(),
+            path: Joi.string().required().regex(/^(?:\.[a-zA-Z0-9]|[a-zA-Z0-9])[\w-]*(?:\.[\w-]+)*(?:\/[a-zA-Z0-9][\w-]*(?:\.[\w-]+)*)*$/)
+          }))
+        }
       },
-      handler: function (request, reply) {
-	var previewId = request.params.previewId || genid();
-	var preview = internals.getOrCreatePreview(previewId, request.payload.files);
-	
-	if (request.mime === "application/x-www-form-urlencoded") {
-	  internals.serveTree(request, reply, preview);
-	} else {
-	  reply({url: internals.urlForPreview(previewId)});
-	}
+      handler: function(request, reply) {
+        var previewId = request.params.previewId || genid();
+        var preview = internals.getOrCreatePreview(previewId, request.payload.files);
+
+        if (request.mime === "application/x-www-form-urlencoded") {
+          internals.serveTree(request, reply, preview);
+        } else {
+          reply({
+            url: internals.urlForPreview(previewId)
+          });
+        }
       }
     }
   });
-  
+
   return next();
 };
 
 exports.register.attributes = {
-    pkg: require('./package.json')
+  pkg: require('./package.json')
 };
 
-internals.serveTree = function (request, reply, preview) {
+internals.serveTree = function(request, reply, preview) {
   var path = request.params.path;
-  
+
   if (!preview) return reply(Boom.notFound());
-  
+
   if (!path) {
     var index = internals.findIndex(preview.tree);
-    
+
     if (!index) return reply(Boom.notFound());
-    
+
     path = Path.basename(index, Path.extname(index)) + ".html";
   }
-  
-  request.server.methods.prepareFile(preview, path, function (err, buf) {
+
+  request.server.methods.prepareFile(preview, path, function(err, buf) {
     if (err) return reply(err);
-    
+
     return reply(buf).type(Mime.lookup(path));
   });
 };
 
-internals.getOrCreatePreview = function (previewId, files) {
+internals.getOrCreatePreview = function(previewId, files) {
   var preview = internals.previews.get(previewId) || {
     map: {},
     tree: {},
   };
-  
+
   var tree = preview.tree;
-  
+
   // Determine the sha hash for each file's content and save the contents to the cache
-  _.forEach(files, function (file) {
+  _.forEach(files, function(file) {
     var buf = new Buffer(file.contents);
     var sha = Crypto
       .createHash('sha1')
       .update(buf)
       .digest('hex');
-      
+
     if (tree[file.path] && tree[file.path] !== sha && preview.map[file.path]) {
       console.log("cleaning up", file.path);
       delete tree[preview.map[file.path]];
     }
-    
+
     tree[file.path] = sha;
-    
+
     internals.blobs.set(sha, buf);
   });
-  
+
   // Save the tree to the cache
   internals.previews.set(previewId, preview);
-  
+
   return preview;
 };

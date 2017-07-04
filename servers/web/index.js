@@ -77,7 +77,6 @@ exports.register = function (plugin, options, next) {
       path: 'views',
       partialsPath: "views/partials", 
       helpersPath: "views/helpers", 
-      //isCached: false
     });
   });
   
@@ -235,15 +234,16 @@ exports.register = function (plugin, options, next) {
     method: 'POST',
     path: '/java/{testName}/{pathId}',
     handler: function (request,reply){ 
+      var server = this.config.server;
       var params = request.params;
       var testName = encodeURIComponent(params.testName);
       var pathId = encodeURIComponent(params.pathId);
       var payload = request.payload;
       var url =  "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
 
-      Request.post({url:url, form: payload}, function(err,httpResponse,body){
-        console.log(body); 
-      })
+      Request.post({url:url, form: payload}, function(err, httpResponse, body){
+	reply(body); 
+      });      
     }
   });
    
