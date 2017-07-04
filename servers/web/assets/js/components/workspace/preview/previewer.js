@@ -9,7 +9,7 @@ module.exports = angular.module("plunker.directive.previewer", [
   "plunker.oplog"
 ])
 
-.directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, commander, project, settings, oplog, config) {
+.directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, $location, commander, project, settings, oplog, config) {
 
   commander.addCommand({
     name: "preview.refresh",
@@ -25,7 +25,10 @@ module.exports = angular.module("plunker.directive.previewer", [
   $rootScope.testMethod = 1;
 
   function getSrcTemplate(testMethod) {
-    $http.get("/getFiles/Swap/" + testMethod).then(function(resp) {
+    var location_path = $location.path();
+
+    location_path = location_path.split("/")[2];
+    $http.get("/getFiles/"+ location_path + "/" + testMethod).then(function(resp) {
       commander.execute("project.reset").then(function() {
         commander.execute("project.openTree", {
           tree: resp.data
