@@ -12,6 +12,7 @@
     "boom": "~2.4.1",
     "fs-extra": "^3.0.1",
     "genid": "~0.1.0",
+    "hapi-bodyparser": "^1.0.2",
     "joi": "^4.7.0",
     "lodash": "~2.4.1",
     "lru-cache": "~2.5.0",

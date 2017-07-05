@@ -32,7 +32,7 @@ exports.register = function(server, options, next) {
   });	
     server.route({
     method: 'GET',
-    path: '/files/{course_name}/{template_name}',
+    path: '/getFiles/{course_name}/{template_name}',
     handler: function(request , reply){
 	var coursefile = request.params.course_name;
 	var templatename = request.params.template_name;

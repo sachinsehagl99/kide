@@ -77,7 +77,6 @@ exports.register = function (plugin, options, next) {
       path: 'views',
       partialsPath: "views/partials", 
       helpersPath: "views/helpers", 
-      //isCached: false
     });
   });
   
@@ -199,7 +198,6 @@ exports.register = function (plugin, options, next) {
     }
   });
   
-  // Index html
   plugin.route({
     method: 'GET',
     path: '/edit/{courseName}/{plunkId}',
@@ -208,11 +206,10 @@ exports.register = function (plugin, options, next) {
 	var server = this.config.server;
 	var param = request.params;
         var courseName = request.params.courseName;
+	var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}};
 
-        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/t1", function (err, res, body){
-	    var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}, "course_files": body};
-	    reply.view("editor", context); 
-        });
+	 reply.view("editor", context); 
+;
       }
     }
   });
@@ -226,10 +223,27 @@ exports.register = function (plugin, options, next) {
         var courseName = request.params.courseName;
         var templateName = request.params.templateName;
 
-        Request("http://" + server.api.host + ":" + server.api.port + "/files/" + courseName + "/" + templateName, function (err, res, body){
+        Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName, function (err, res, body){
           reply(body);
         });
       }
+    }
+  });
+
+  plugin.route({
+    method: 'POST',
+    path: '/java/{testName}/{pathId}',
+    handler: function (request,reply){ 
+      var server = this.config.server;
+      var params = request.params;
+      var testName = encodeURIComponent(params.testName);
+      var pathId = encodeURIComponent(params.pathId);
+      var payload = request.payload;
+      var url =  "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
+
+      Request.post({url:url, form: payload}, function(err, httpResponse, body){
+	reply(body); 
+      });      
     }
   });
    
