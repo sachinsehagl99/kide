@@ -13,11 +13,13 @@ public class FibonacciSeriesTest extends Base
 
 @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
-	FibonacciSeries obj = new FibonacciSeries();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        FibonacciSeries obj = new FibonacciSeries();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void FibonacciSeries.main() throws java.io.IOException");
      
 
     		}
@@ -25,79 +27,87 @@ public class FibonacciSeriesTest extends Base
 	catch(Exception e){}
     
         }
-
-	@Test
-	public void t2() throws java.io.IOException{
-		description = "2. Write a print statement and print 'Enter the value:'. Write a input statement and input a integer value.";
-	FibonacciSeries obj = new FibonacciSeries();
- 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
-	System.setIn(in); 
- 	try {
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	FibonacciSeries obj = new FibonacciSeries();	
+	 try {
 	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value:", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-		@Test
-	public void t3() throws java.io.IOException{
-		description = "3. Initialize a=0 and b=1 and print the value of a and b using print statement";
-	FibonacciSeries obj = new FibonacciSeries();
- 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
-	System.setIn(in); 
- 	try {
-	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
-		{
-		    m.invoke(obj);
-		    assertEquals("Enter the value:0\n1\n", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-		@Test
-	public void t4() throws java.io.IOException{
-		description = "4. Start a for loop from 3, till the loop variable is less equal to the inputed number. Print the value of c within it";
-	FibonacciSeries obj = new FibonacciSeries();
- 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
-	System.setIn(in); 
- 	try {
-	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
-		{
-		    m.invoke(obj);
-		    assertEquals("Enter the value:0\n1\n1\n2\n3\n", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-	@Test
-	public void t5(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
 		   }
-		catch(Exception e){}
-	
+	   }
+	   catch(Exception e){}
+					
 	}
 
+@Test
+	public void t3() throws java.io.IOException{
+	hint = "n = Integer.parseInt(br.readLine());\n";		
+	description = "Take input in variable n";
+	FibonacciSeries obj = new FibonacciSeries();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of n:5\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
 
+@Test
+	public void t4() throws java.io.IOException{
+	hint = "int a = 0,b=1,c;\nSystem.out.println(a);\nSystem.out.println(b);\n";
+	description = "Initialize variable a=0, b=1, c and print the value of 'a' and 'b'";
+	FibonacciSeries obj = new FibonacciSeries();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of n:Fibonacci Series:\n0\n1\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
 
+@Test
+	public void t5() throws java.io.IOException{
+	hint = "for(int i = 3; i <= n; i++)\n{\nc=a+b;\nSystem.out.println(c);\na=b;\nb=c;\n}\n";
+	description = "Start a for loop for fixed number of iterations and write necessary code within it";
+	FibonacciSeries obj = new FibonacciSeries();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter the value of n:Fibonacci Series:\n0\n1\n1\n2\n3\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
 
-
-   
+	
 
 
    }

@@ -1,14 +1,12 @@
 import java.io.*;
 
+public class ExtractItr{
 
-public class ExtractItr
-{
-	//============== Write your code in the block ==============//
-	//-----do not show ---------//
-	public static void main() throws java.io.IOException {
-	}
-	//--- end of donot show ----//
-	//==========================================================//
+    //=========== Write your code within the block ===========//
+    //IGNORE
+    public static void main() throws IOException {
+   
+    }
+    //END
+    //========================================================//
 }
-
-

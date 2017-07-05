@@ -12,14 +12,15 @@ import java.lang.reflect.*;
 public class InputTest extends Base
  {
 
-   @Test
+  @Test
    public void t1() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
-        description = "Create a main method";
-	Input obj = new Input();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Input obj = new Input();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Input.main() throws java.io.IOException");
      
 
     		}
@@ -27,13 +28,30 @@ public class InputTest extends Base
 	catch(Exception e){}
     
         }
-
-   
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Input obj = new Input();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
  
 
     @Test
-   public void t2() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+   public void t3() throws java.io.IOException{
+	hint = "a = Integer.parseInt(br.readLine());";
         description = "Take a input in variable 'a'";
 	Input obj = new Input();
 	ByteArrayInputStream in = new ByteArrayInputStream("10".getBytes());

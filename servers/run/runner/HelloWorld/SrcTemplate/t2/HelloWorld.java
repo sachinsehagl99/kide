@@ -4,13 +4,12 @@ import java.io.*;
 public class HelloWorld
 {	
 
-	public static void main() throws java.io.IOException{
-	
-	//============== Write your code in the block ==============//
-	//-----do not show ---------//
+	public static void main() throws IOException{	
+	//=========== Write your code within the block ===========//
+	//IGNORE
 	System.out.println("Hello World!");
-	//--- end of donot show ----//
-	//==========================================================//
+	//END
+	//========================================================//
 	
 	}
 

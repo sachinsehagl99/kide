@@ -3,15 +3,12 @@ import java.io.*;
 public class Swap{
 	
     public static void main() throws IOException{
-	int a = 0;
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	System.out.print("Enter the value of a:");
-	//============== Write your code within the block =======//
+	//=========== Write your code within the block ===========//
 	//IGNORE
-	a = Integer.parseInt(br.readLine());
+	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	//END
-	//=======================================================//
-	System.out.print(a);
+	//========================================================//
+	System.out.print(br);
     }
 
 }

@@ -1,2 +1,0 @@
-n = Integer.parseInt(br.readLine());
-

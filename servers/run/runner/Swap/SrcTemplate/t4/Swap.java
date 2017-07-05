@@ -3,21 +3,19 @@ import java.io.*;
 public class Swap{
 	
     public static void main() throws IOException{
-	int a=0,b=0;
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int a = 0,b = 0;
 	System.out.print("Enter the value of a:");
-	a = Integer.parseInt(br.readLine());
+        a = Integer.parseInt(br.readLine());
+        
 	System.out.print("Enter the value of b:");
-	b = Integer.parseInt(br.readLine());
-
-	int temp = 0;
-	//============== Write your code within the block =======//
+	//=========== Write your code within the block ===========//
 	//IGNORE
-	temp=a;
+	b = Integer.parseInt(br.readLine());
 	//END
-	//======================================================//
-	System.out.println(temp);
+	//========================================================//
+	System.out.println(b);
+
     }
 
 }
-
