@@ -12,14 +12,16 @@ public class ExtractTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
-        description = "Create a main method";
-	Extract obj = new Extract();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Extract obj = new Extract();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
-		
-            }
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Extract.main() throws java.io.IOException");
+     
+
+    		}
         
 	catch(Exception e){}
     
@@ -27,8 +29,30 @@ public class ExtractTest extends Base
 
 	@Test
     public void t2() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
-	description = "2. Take input in variable 'a'";
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Extract obj = new Extract();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
+
+
+
+	@Test
+    public void t3() throws java.io.IOException{
+	hint = "a = Integer.parseInt(br.readLine());\n";
+	description = "Take input in variable 'a'";
 	Extract obj = new Extract();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -38,7 +62,7 @@ public class ExtractTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\n134", outContent.toString());
+		    assertEquals("Enter a three digit number:\n134\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -47,9 +71,9 @@ public class ExtractTest extends Base
 
 
 	@Test
-    public void t3() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
-	description = "3. Extract ones position value";
+    public void t4() throws java.io.IOException{
+	hint = "r=a%10;\na=a/10;\n";
+	description = "Extract ones position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -68,9 +92,9 @@ public class ExtractTest extends Base
 	}
 
 		@Test
-     public void t4() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h4.txt")).useDelimiter("\\Z").next();
-	description = "4. Extract tens position value";
+     public void t5() throws java.io.IOException{
+	hint = "r=a%10;\na=a/10;\n";	
+	description = "Extract tens position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 
@@ -89,9 +113,9 @@ public class ExtractTest extends Base
 	}
 
 		@Test
-   public void t5() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h5.txt")).useDelimiter("\\Z").next();
-	description = "5. Extract hundreds position value";
+   public void t6() throws java.io.IOException{
+	hint ="r=a%10;\na=a/10;\n";	
+	description = "Extract hundreds position value";
 	Extract obj = new Extract();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 

@@ -10,14 +10,15 @@ import java.lang.reflect.*;
 
 public class ExtractItrTest extends Base
  {
-	 @Test
+	@Test
    public void t1() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
-        description = "Create a main method";
-	ExtractItr obj = new ExtractItr();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        ExtractItr obj = new ExtractItr();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void ExtractItr.main() throws java.io.IOException");
      
 
     		}
@@ -25,10 +26,29 @@ public class ExtractItrTest extends Base
 	catch(Exception e){}
     
         }
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	ExtractItr obj = new ExtractItr();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
 
 	@Test
-    public void t2() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+    public void t3() throws java.io.IOException{
+	hint = "a = Integer.parseInt(br.readLine());\n";
 	description = "Take a input in 'a' variable";
 	ExtractItr obj = new ExtractItr();
  	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
@@ -48,8 +68,8 @@ public class ExtractItrTest extends Base
 
 
 	@Test
-    public void t3() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h3.txt")).useDelimiter("\\Z").next();
+    public void t4() throws java.io.IOException{
+	hint = "r=a%10;\na=a/10;\n";
 	description = "Extract number using while-loop";
 	ExtractItr obj = new ExtractItr();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());

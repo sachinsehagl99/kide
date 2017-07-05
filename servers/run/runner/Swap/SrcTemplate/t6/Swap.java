@@ -4,22 +4,20 @@ public class Swap{
 	
     public static void main() throws IOException{
 	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int a = 0,b = 0;
 	System.out.print("Enter the value of a:");
-	int a = Integer.parseInt(br.readLine());
+	a = Integer.parseInt(br.readLine());
 	System.out.print("Enter the value of b:");
-	int b = Integer.parseInt(br.readLine());
+	b = Integer.parseInt(br.readLine());
 
 	int temp = 0;
 	temp = a;
-	a = b;
-        //============== Write your code in the block ==============//
+	//============== Write your code within the block =======//
 	//IGNORE
-	b = temp;
+	a= b;
 	//END
-	//=========================================================//
-	System.out.println("Value of b:"+b);
-	System.out.println("Value of a:"+a);
-
+	//======================================================//
+	System.out.println(a);
     }
 
 }

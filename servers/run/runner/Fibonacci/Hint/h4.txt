@@ -1,3 +1,0 @@
-if(c==n)
-System.out.println("Fibonacci");
-

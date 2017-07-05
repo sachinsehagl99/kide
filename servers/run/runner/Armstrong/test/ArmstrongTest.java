@@ -11,20 +11,44 @@ public class ArmstrongTest extends Base
  {
      @Test
    public void t1() throws java.io.IOException{
-        description = "1. Initialize The main function\nEx- 'public static void main()throws IOException{}'";
-	Armstrong obj = new Armstrong();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Armstrong obj = new Armstrong();
 	try {
 		Method m=getMethod(obj,"main");
-		 assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Armstrong.main() throws java.io.IOException");
+     
 
+    		}
+        
+	catch(Exception e){}
+    
         }
-	catch(Exception e){ System.err.println(e);
-}
-                
- }
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Armstrong obj = new Armstrong();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
+
    @Test
-   public void t2() throws java.io.IOException{
-        description = "2. Write a print Statement and print 'Input the number'\n,Write the input statement and Input a integer value.";
+   public void t3() throws java.io.IOException{
+	hint = "a=Integer.parseInt(br.readLine());\n";
+        description = "Take input in variable 'a'";
 	Armstrong obj = new Armstrong();
 	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
 	System.setIn(in);
@@ -33,17 +57,17 @@ public class ArmstrongTest extends Base
 		if(m!=null)
 		{
 		  m.invoke(obj);
-                 assertEquals("Input the number\n",outContent.toString());		
+                 assertEquals("Input the number:371\n",outContent.toString());		
 			 
      		
     		}
         }
-	catch(Exception e){ System.err.println(e);
-}
+	catch(Exception e){}
     	        }
 	@Test
-	public void t3() throws java.io.IOException{
-        description = "3. Copy the inputed value into another integer type varriable and then print it using print statement";
+	public void t4() throws java.io.IOException{
+	hint = "dup=a;\n";
+        description = "Put the value of 'a' in 'dup' variable";
 	Armstrong obj = new Armstrong();
 	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
 	System.setIn(in);
@@ -52,39 +76,19 @@ public class ArmstrongTest extends Base
 		if(m!=null)
 		{
 		  m.invoke(obj);
-                  assertEquals("Input the number\n371\n",outContent.toString());		
+                  assertEquals("Input the number:371\n",outContent.toString());		
  
      		
     		}
         }
-	catch(Exception e){ System.err.println(e);
-}
+	catch(Exception e){}
     	    
         }
 
-	@Test
-	public void t4() throws java.io.IOException{
-        description = "4. Now use a do-while loop to extract the digits of the number and print the digits at every step";
-	Armstrong obj = new Armstrong();
-	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
-	System.setIn(in);
-	try {
-		Method m=getMethod(obj,"main");
-		if(m!=null)
-		{
-		  m.invoke(obj);
-                   assertEquals("Input the number\n371\n1\n7\n3\n",outContent.toString());		
- 
-     		
-    		}
-        }
-	catch(Exception e){ System.err.println(e);
-}
-    	    
-        }
 	@Test
 	public void t5() throws java.io.IOException{
-        description = "5. Next within the do-while loop find the sum of the cube of the digits and print it at every step";
+	hint = "b=a%10;\na=a/10;\n";
+        description = "Extract the number within do-while loop";
 	Armstrong obj = new Armstrong();
 	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
 	System.setIn(in);
@@ -93,19 +97,18 @@ public class ArmstrongTest extends Base
 		if(m!=null)
 		{
 		  m.invoke(obj);
-                  assertEquals("Input the number\n371\n1\n1\n7\n344\n3\n371\n",outContent.toString());		
+                   assertEquals("Input the number:1\n7\n3\n",outContent.toString());		
  
      		
     		}
         }
-	catch(Exception e){ System.err.println(e);
-}
+	catch(Exception e){}
     	    
         }
-
 	@Test
 	public void t6() throws java.io.IOException{
-        description = "6. After Ending the while loop, check the resultant value with the duplicate of inputed number using a if statement to check if it is an armstrong number or not";
+	hint = "sum = sum + (b * b * b);\n";
+        description = "Write necessary code for armstrong operation";
 	Armstrong obj = new Armstrong();
 	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
 	System.setIn(in);
@@ -114,19 +117,40 @@ public class ArmstrongTest extends Base
 		if(m!=null)
 		{
 		  m.invoke(obj);
-                  assertEquals("Input the number\n371\n1\n1\n7\n344\n3\n371\nThe number is an armstrong number\n",outContent.toString());		
+                  assertEquals("Input the number:1\n344\n371\n",outContent.toString());		
  
      		
     		}
         }
-	catch(Exception e){ System.err.println(e);
-}
+	catch(Exception e){}
     	    
         }
 
 	@Test
 	public void t7() throws java.io.IOException{
-        description = "7. After Ending the if statement,use else statement to print 'The Number is not an Armstrong Number'";
+	hint = "if(sum == dup)\nSystem.out.println(\"Armstrong number\");\n";
+        description = "Check if 'sum' is equal to 'dup' and print 'Armstrong number'";
+	Armstrong obj = new Armstrong();
+	ByteArrayInputStream in = new ByteArrayInputStream("371".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:Armstrong number\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+
+	@Test
+	public void t8() throws java.io.IOException{
+	hint = "else{\nSystem.out.println(\"Not an armstrong number\");\n}\n";
+        description = "Print 'Not an armstrong number' using else";
 	Armstrong obj = new Armstrong();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in);
@@ -135,26 +159,14 @@ public class ArmstrongTest extends Base
 		if(m!=null)
 		{
 		  m.invoke(obj);
-                  assertEquals("Input the number\n121\n1\n1\n2\n9\n1\n10\nThe number is not an armstrong number\n",outContent.toString());		
+                  assertEquals("Input the number:Not an armstrong number\n",outContent.toString());		
  
      		
     		}
         }
-	catch(Exception e){ System.err.println(e);}
+	catch(Exception e){}
 }
-    	@Test
-       	public void t8() {
-	    description="You have succefully Compeleted the program!!!!";
-	    
-	    
-	    try
-	    {
-		    assertEquals(0,0);
-	    }
-	    catch(Exception e){
-	    }
-	
-	}	
+    	
         
 
  } 

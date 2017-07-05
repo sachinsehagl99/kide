@@ -14,12 +14,13 @@ public class HelloWorldTest extends Base
 
    @Test
    public void t1() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h1.txt")).useDelimiter("\\Z").next();
-        description = "Create a main method";
-	HelloWorld obj = new HelloWorld();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void HelloWorld.main() throws java.io.IOException");
      
 
     		}
@@ -28,12 +29,9 @@ public class HelloWorldTest extends Base
     
         }
 
-   
- 
-
     @Test
    public void t2() throws java.io.IOException{
-	hint = new Scanner(new File("Hint/h2.txt")).useDelimiter("\\Z").next();
+	hint = "System.out.println(\"Hello World!\");\n";
         description = "Print 'Hello World!'";
 	HelloWorld obj = new HelloWorld();
 	try {

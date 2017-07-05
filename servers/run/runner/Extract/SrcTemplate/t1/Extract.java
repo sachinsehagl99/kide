@@ -1,17 +1,12 @@
 import java.io.*;
 
+public class Extract{
 
-public class Extract
-{
-	//============== Write your code in the block ==============//
-
-    //-----do not show ---------//
-    public static void main() throws java.io.IOException {
-    
+    //=========== Write your code within the block ===========//
+    //IGNORE
+    public static void main() throws IOException {
+   
     }
-    //--- end of donot show ----//
-
-       //==========================================================//
+    //END
+    //========================================================//
 }
-
-
