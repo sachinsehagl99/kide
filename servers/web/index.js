@@ -200,7 +200,7 @@ exports.register = function (plugin, options, next) {
   
   plugin.route({
     method: 'GET',
-    path: '/edit/{courseName}/{plunkId}',
+    path: '/edit/{courseName}/{testNo}/{plunkId}',
     config: {
       handler: function (request, reply){
 	var server = this.config.server;

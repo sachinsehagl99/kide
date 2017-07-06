@@ -7,7 +7,6 @@ module.exports =
 angular.module("plunker.directive.fileTree", [
   require("../../commander").name,
   require("../../notifier").name,
-
   require("../../workspace").name
 ])
 
