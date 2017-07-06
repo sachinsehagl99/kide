@@ -28,23 +28,25 @@ public class ExtractItrTest extends Base
         }
 @Test
     public void t2() throws java.io.IOException{
-	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	hint = "br = new BufferedReader(new InputStreamReader(System.in));\n";
 	description = "Use 'BufferedReader' to read input from user";
 	ExtractItr obj = new ExtractItr();	
 	 try {
 	
-		   Method m = getMethod(obj,"main");
+		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
+
 		    m.invoke(obj);
-		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
-		    assertEquals("java.io.BufferedReader", abc);
+                    Object br = Base.getDebuggingObject();
+		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
 		   }
-	   }
-	   catch(Exception e){}
-					
+	   } catch(Exception e){
+             assertEquals(1, 0);
+           }
 	}
+
 
 	@Test
     public void t3() throws java.io.IOException{

@@ -2,13 +2,14 @@ import java.io.*;
 
 public class Extract{
 	
-    public static void main() throws IOException{
+   public static void main() throws IOException{
+        BufferedReader br = null;
 	//=========== Write your code within the block ===========//
-	//IGNORE	
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	//IGNORE
+	br = new BufferedReader(new InputStreamReader(System.in));
 	//END
 	//========================================================//
-	System.out.print(br);
+	Base.debug(br);
     }
 
 }
