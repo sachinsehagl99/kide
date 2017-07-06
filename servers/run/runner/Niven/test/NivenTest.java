@@ -12,11 +12,13 @@ public class NivenTest extends Base
 
  @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
-	Niven obj = new Niven();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Niven obj = new Niven();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Niven.main() throws java.io.IOException");
      
 
     		}
@@ -24,11 +26,32 @@ public class NivenTest extends Base
 	catch(Exception e){}
     
         }
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Niven obj = new Niven();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
 
 
-	@Test
-	public void t2() throws java.io.IOException{
-		description = "2. Write a print statement and print 'Enter a number:'. Write a input statement and input a integer value.";
+
+@Test
+	public void t3() throws java.io.IOException{
+	hint = "n=Integer.parseInt(br.readLine());\n";
+	description = "Take input in variable n";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
 	System.setIn(in); 
@@ -38,7 +61,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:", outContent.toString());
+		    assertEquals("Enter a number:111\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -47,8 +70,9 @@ public class NivenTest extends Base
 
 
 	@Test
-	public void t3() throws java.io.IOException{
-		description = "3. Copy the inputed integer value into another variable and print the value of it";
+	public void t4() throws java.io.IOException{
+	hint = "c = n;\n";
+	description = "Put the value of 'n' in 'c' variable";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
 	System.setIn(in); 
@@ -65,27 +89,9 @@ public class NivenTest extends Base
 					
 	}
 @Test
-	public void t4() throws java.io.IOException{
-		description = "4. Start a while-loop to extract the number and add them after extraction untill the inputed number is greater than 0. Print the value of sum of digits";
-	Niven obj = new Niven();
- 	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
-	System.setIn(in); 
- 	try {
-	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
-		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number:111\n1\n2\n3\n", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-@Test
 	public void t5() throws java.io.IOException{
-		description = "5. Write a if-statement to check if the inputed number is divisable by the sum of digits and print 'Number is a Niven Number.'";
+	hint = "d = c%10;\nsum = sum + d;\nc = c/10;\n";
+	description = "Write necessary code within while-loop";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
 	System.setIn(in); 
@@ -95,7 +101,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:111\n1\n2\n3\nNumber is a Niven Number.\n", outContent.toString());
+		    assertEquals("Enter a number:1\n2\n3\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -104,7 +110,28 @@ public class NivenTest extends Base
 
 @Test
 	public void t6() throws java.io.IOException{
-		description = "6. Write a else-statement to print 'Number is not a Niven Number.'";
+	hint = "if(n%sum == 0)\nSystem.out.println(\"Niven Number\");\n";
+	description = "Check if 'n%sum' equal to 0 and print 'Niven Number' ";
+	Niven obj = new Niven();
+ 	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
+	System.setIn(in); 
+ 	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:Niven Number\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+@Test
+	public void t7() throws java.io.IOException{
+	hint = "else{\nSystem.out.println(\"Not a Niven Number\");\n}\n";
+	description = "Print 'Not a Niven Number' using else";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
 	System.setIn(in); 
@@ -114,30 +141,12 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:28\n8\n10\nNumber is not a Niven Number.\n", outContent.toString());
+		    assertEquals("Enter a number:Not a Niven Number\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
 					
 	}
-@Test
-	public void t7(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
-	
-	}
-
-
-
-
-
-
-
-
-
 
 
    }
