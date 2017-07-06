@@ -60,13 +60,6 @@ module.exports = angular.module("plunker.service.notifier", [
         return false;
       });
     },
-    modalSuccess: function () {
-      templateUrl: "",
-      controller: function ($scope, $modalInstance) {
-
-
-      }
-    },
     info: growl.addInfoMessage.bind(growl),
     error:  growl.addErrorMessage.bind(growl),
     success: growl.addSuccessMessage.bind(growl),
