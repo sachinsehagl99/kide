@@ -18,10 +18,14 @@
     <mkdir dir="${build-test-classes}"/>
   </target>
 
-  <target name="compile" depends="mkdir">
+   <target name="compile" depends="mkdir">
     <javac includeantruntime="false" 
-	    srcdir="SrcTemplate/${testName}" 
-           destdir="${build-classes}"/>
+	   srcdir="SrcTemplate/${testName}" 
+           destdir="${build-classes}">  
+      <classpath>
+	<pathelement location="${json-runner}"/>
+      </classpath>
+    </javac>
   </target>
 
   <target name="compile-test" depends="compile">

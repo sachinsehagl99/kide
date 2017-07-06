@@ -44,8 +44,7 @@ public class SwapTest extends Base
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
 		   }
-	   }
-	   catch(Exception e){
+	   } catch(Exception e){
              assertEquals(1, 0);
            }
 	}

@@ -14,11 +14,11 @@ public class Perfect{
 		if(n % i == 0)
             	{
                 	sum = sum + i;
+		}
 
 	//END
 	//========================================================//
 			System.out.println(sum);
-            	}
 	}
 
 
