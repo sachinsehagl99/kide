@@ -5,7 +5,7 @@ public class ExtractItr
 {
     public static void main() throws java.io.IOException{
 	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        int a,r;
+        int a = 0,r = 0;
 	System.out.println("Enter a number:");
 	//=========== Write your code within the block ===========//
 	//IGNORE
@@ -13,8 +13,6 @@ public class ExtractItr
 	//END
 	//========================================================//
 	System.out.print(a);
-	System.out.println("After Extraction:");
-
      }
 
 }

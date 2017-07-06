@@ -1,4 +1,4 @@
-const regex = /(^[a-zA-Z0-9!%^@_\s.*;,{}()[\]":=\/+]*)IGNORE|[^END]+$/g;
+const regex = /(^[a-zA-Z0-9!%^@_\s.*/-/+<>;,{}()[\]'":=\/*]*)IGNORE|END([a-zA-Z0-9!%^@_\s.*/-/+<>;,{}()[\]'":=\/*]*)/g;
 
 module.exports = function(str) {
   var m, result = "";
@@ -11,10 +11,11 @@ module.exports = function(str) {
 
     // The result can be accessed through the `m`-variable.
     m.forEach((match, groupIndex) => {
-      if (groupIndex == 0 && match)
+      if (groupIndex == 0)
         result = result + match;
     });
 
   }
-  return result.replace("//IGNORE", "");
+  result = result.replace("//IGNORE", "");
+  return result.replace("END", "");
 }
