@@ -10,13 +10,15 @@ import java.lang.reflect.*;
 
 public class PalindromeStringTest extends Base {
 	
-	 @Test
+	@Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
-	PalindromeString obj = new PalindromeString();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        PalindromeString obj = new PalindromeString();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void PalindromeString.main() throws java.io.IOException");
      
 
     		}
@@ -24,10 +26,30 @@ public class PalindromeStringTest extends Base {
 	catch(Exception e){}
     
         }
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	PalindromeString obj = new PalindromeString();	
+	 try {
+	
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
+		{
+		    m.invoke(obj);
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
+	   }
+	   catch(Exception e){}
+					
+	}
 
 	@Test
-	public void t2() throws java.io.IOException{
-		description = "2. Write a print statement and print 'Input a string:'. Write a input statement and input a string.";
+	public void t3() throws java.io.IOException{
+	hint = "String a= br.readLine();\n";
+	description = "Take input in string 'a'";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
 	System.setIn(in); 
@@ -37,7 +59,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:", outContent.toString());
+		    assertEquals("Input a string:madam\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -45,8 +67,9 @@ public class PalindromeStringTest extends Base {
 	}
 
 	@Test
-	public void t3() throws java.io.IOException{
-		description = "3. Reverse the inputed string and copy it into another variable. Print the value of another variable ";
+	public void t4() throws java.io.IOException{
+	hint = "String b=new StringBuffer(a).reverse().toString();\n";
+	description = "Put the reverse value of string 'a' in string 'b'";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
 	System.setIn(in); 
@@ -64,8 +87,9 @@ public class PalindromeStringTest extends Base {
 	}
 
 		@Test
-	public void t4() throws java.io.IOException{
-		description = "4. Write a if statement to check if the inputed string is same after reversing it ";
+	public void t5() throws java.io.IOException{
+	hint = "if(a.equals(b))\n{\nSystem.out.println(\"Palindrome\");\n}\n";
+	description = "Check if a is equal to b and print 'Palindrome'";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
 	System.setIn(in); 
@@ -75,7 +99,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:madam\nPalindrome\n", outContent.toString());
+		    assertEquals("Input a string:Palindrome\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -84,8 +108,9 @@ public class PalindromeStringTest extends Base {
 
 
 	@Test
-	public void t5() throws java.io.IOException{
-		description = "5. Write a else statement to print 'Not palindrome'";
+	public void t6() throws java.io.IOException{
+	hint = "else\n{\nSystem.out.println(\"Not palindrome\");\n}\n";
+	description = "Print 'Not palindrome' using else";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("aloka".getBytes());
 	System.setIn(in); 
@@ -95,33 +120,14 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:akola\nNot palindrome\n", outContent.toString());
+		    assertEquals("Input a string:Not palindrome\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
 					
 	}
 	
-	@Test
-	public void t6(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
 	
-	}
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

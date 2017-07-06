@@ -11,11 +11,13 @@ public class PalindromeTest extends Base
  {
 	 @Test
    public void t1() throws java.io.IOException{
-         description = "1. Initialize a main function. Ex-'public static void main() throws java.io.IOException{}' ";
-	Palindrome obj = new Palindrome();
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Palindrome obj = new Palindrome();
 	try {
 		Method m=getMethod(obj,"main");
-	        assertEquals(m.getName(),"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Palindrome.main() throws java.io.IOException");
      
 
     		}
@@ -23,30 +25,32 @@ public class PalindromeTest extends Base
 	catch(Exception e){}
     
         }
-
-
-	@Test
-	public void t2() throws java.io.IOException{
-		description = "2. Write a print statement and print 'Enter a number:'. Write a input statement and input a integer value.";
-	Palindrome obj = new Palindrome();
- 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
-	System.setIn(in); 
- 	try {
+@Test
+    public void t2() throws java.io.IOException{
+	hint = "BufferedReader br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Palindrome obj = new Palindrome();	
+	 try {
 	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
+		   Method m = getMethod(obj,"main");
+		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n", outContent.toString());
-	   	}
+		    String abc = (outContent.toString()).substring(0, (outContent.toString()).indexOf("@"));
+		    assertEquals("java.io.BufferedReader", abc);
+		   
+		   }
 	   }
 	   catch(Exception e){}
 					
 	}
 
+
+
 	@Test
 	public void t3() throws java.io.IOException{
-		description = "3. Copy the inputed value into another integer type varriable and then print it using print statement.";
+	hint = "a=Integer.parseInt(br.readLine());\n";
+	description = "Take a input in variable 'a'";
 	Palindrome obj = new Palindrome();
  	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -56,7 +60,7 @@ public class PalindromeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n121\n", outContent.toString());
+		    assertEquals("Enter a number:121\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -65,38 +69,18 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t4() throws java.io.IOException{
-		description = "4. Write a while loop to extract the number until the number is greater than 0 and print the remainder value.";
+	hint = "temp=a;\n";
+	description = "Put the value of 'a' in 'temp' variable";
 	Palindrome obj = new Palindrome();
-	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+ 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
-
-  	try {
+ 	try {
 	
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n121\n1\n2\n1\n", outContent.toString());
-	   	}
-	   }
-	   catch(Exception e){}
-					
-	}
-
-		@Test
-	public void t5() throws java.io.IOException{
-		description = "5. Within the While loop print the sum value after extraction.";
-	Palindrome obj = new Palindrome();
-	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
-	System.setIn(in); 
-
-  	try {
-	
-	   	Method m = getMethod(obj,"main");
-	   	if(m!=null)
-		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number:\n121\n1\n1\n2\n12\n1\n121\n", outContent.toString());
+		    assertEquals("Enter a number:121\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -104,8 +88,9 @@ public class PalindromeTest extends Base
 	}
 
 	@Test
-	public void t6() throws java.io.IOException{
-		description = "6. Write a if statement to check the number is palindrome or not";
+	public void t5() throws java.io.IOException{
+	hint = "r=a%10;\na=a/10;\n";
+	description = "Start a while-loop and write necessary code to extract the number";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -116,7 +101,48 @@ public class PalindromeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n121\n1\n1\n2\n12\n1\n121\npalindrome\n", outContent.toString());
+		    assertEquals("Enter a number:1\n2\n1\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+		@Test
+	public void t6() throws java.io.IOException{
+		description = "Within while-loop write necessary code to get sum of the numbers";
+	Palindrome obj = new Palindrome();
+	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+	System.setIn(in); 
+
+  	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:1\n12\n121\n", outContent.toString());
+	   	}
+	   }
+	   catch(Exception e){}
+					
+	}
+
+	@Test
+	public void t7() throws java.io.IOException{
+	hint = "if(temp==sum)\nSystem.out.println(\"palindrome\");\n";
+	description = "Check if 'temp' is equal to 'sum' and print 'Palindrome'";
+	Palindrome obj = new Palindrome();
+	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+	System.setIn(in); 
+
+  	try {
+	
+	   	Method m = getMethod(obj,"main");
+	   	if(m!=null)
+		{
+		    m.invoke(obj);
+		    assertEquals("Enter a number:Palindrome\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -124,8 +150,9 @@ public class PalindromeTest extends Base
 	}
 
 @Test
-	public void t7() throws java.io.IOException{
-		description = "7. Write a else statement to print the number 'not palindrome'.";
+	public void t8() throws java.io.IOException{
+	hint = "else{\nSystem.out.println(\"not palindrome\");\n}\n ";
+	description = "Print 'Not palindrome' using else";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("10".getBytes());
 	System.setIn(in); 
@@ -136,23 +163,12 @@ public class PalindromeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n10\n0\n0\n1\n1\nnot palindrome\n", outContent.toString());
+		    assertEquals("Enter a number:Not palindrome\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
 					
 	}
-
-@Test
-	public void t8(){
-		description = "You have succefully Compeleted the program!!!!";
-		try{
-		assertEquals(0,0);
-		   }
-		catch(Exception e){}
-	
-	}
-
 
 
 }
