@@ -37,6 +37,14 @@ module.exports = angular.module("plunker.service.notifier", [
         return false;
       });
     },
+    success: function (message){
+      return $modal.open({
+        templateUrl: "partials/modals/success.html",
+        scope: createScope({message: message})
+      }).result.catch(function (e) {
+        return false;
+      });
+    },
     fileUploader: function () {
       return $modal.open({
         templateUrl: "partials/modals/uploader.html",
@@ -62,7 +70,7 @@ module.exports = angular.module("plunker.service.notifier", [
     },
     info: growl.addInfoMessage.bind(growl),
     error:  growl.addErrorMessage.bind(growl),
-    success: growl.addSuccessMessage.bind(growl),
+    //success: growl.addSuccessMessage.bind(growl),
     warn:  growl.addWarnMessage.bind(growl),
   };
   
