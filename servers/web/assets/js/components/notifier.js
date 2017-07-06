@@ -3,8 +3,7 @@ var Fs = require("fs");
 require("../../vendor/ui-bootstrap/ui-bootstrap");
 require("../../vendor/angular-growl/angular-growl");
 
-module.exports =
-angular.module("plunker.service.notifier", [
+module.exports = angular.module("plunker.service.notifier", [
   "ui.bootstrap",
   "angular-growl"
 ])

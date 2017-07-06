@@ -1,15 +1,17 @@
 require("../../settings");
 require("../../commander");
 require("../../oplog");
+require("../../notifier");
 var _ = require("lodash");
 
 module.exports = angular.module("plunker.directive.previewer", [
   "plunker.service.settings",
   "plunker.service.commander",
+  "plunker.service.notifier",
   "plunker.oplog"
 ])
 
-.directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, $location, commander, project, settings, oplog, config) {
+.directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, $location, commander, project, settings, oplog, notifier, config) {
 
   commander.addCommand({
     name: "preview.refresh",
@@ -40,7 +42,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
   function refreshPreviews() {
     var testName = ($location.path()).split("/")[2];
-    var pathId = ($location.path()).split("/")[3];
+    var pathId = ($location.path()).split("/")[4];
 
     if (_.isEmpty(project.entries)) return;
     var json = {
@@ -63,8 +65,14 @@ module.exports = angular.module("plunker.directive.previewer", [
       $rootScope.hint = resp.data.hint;
 
       if ($rootScope.status == "passed") {
-        $rootScope.testMethod = $rootScope.testMethod + 1;
-        getSrcTemplate("t" + $rootScope.testMethod);
+        var testNo = ($location.path()).split("/")[3];
+
+        if($rootScope.testMethod < testNo){
+          $rootScope.testMethod = $rootScope.testMethod + 1;
+          getSrcTemplate("t" + $rootScope.testMethod);
+        } else {
+          notifier.success("yay!! thats all you need to do");
+        }
       }
     });
   }
