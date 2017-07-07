@@ -17,8 +17,8 @@ public class Palindrome{
 	}
 	//=========== Write your code within the block ===========//
 	//IGNORE
-	if(temp==sum)
-        System.out.println("Palindrome");
+	//if(temp==sum)
+        //System.out.println("Palindrome");
 	//END
 	//========================================================//
 

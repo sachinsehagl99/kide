@@ -49,7 +49,7 @@ public class PalindromeStringTest extends Base {
 
 	@Test
 	public void t3() throws java.io.IOException{
-	hint = "String a= br.readLine();\n";
+	hint = "a= br.readLine();\n";
 	description = "Take input in string 'a'";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());
@@ -69,7 +69,7 @@ public class PalindromeStringTest extends Base {
 
 	@Test
 	public void t4() throws java.io.IOException{
-	hint = "String b=new StringBuffer(a).reverse().toString();\n";
+	hint = "b=new StringBuffer(a).reverse().toString();\n";
 	description = "Put the reverse value of string 'a' in string 'b'";
 	PalindromeString obj = new PalindromeString();
  	ByteArrayInputStream in = new ByteArrayInputStream("madam".getBytes());

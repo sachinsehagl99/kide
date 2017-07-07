@@ -69,7 +69,7 @@ public class PerfectTest extends Base
 	@Test
 	public void t4() throws java.io.IOException{
 	hint = "if(n % i == 0)\n{\nsum = sum + i;\n";
-	description = "Within for check if 'n' is divisable by i and write necessary code to get 'sum'";
+	description = "Within for check if 'n' is divisible by i ,then add 'i' and store it in variable 'sum' ";
 	Perfect obj = new Perfect();
  	ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
 	System.setIn(in); 
@@ -88,7 +88,7 @@ public class PerfectTest extends Base
 	
 		@Test
 	public void t5() throws java.io.IOException{
-	hint = "if(sum == n)\n{\nSystem.out.println(\"Number is Perfect\");\n}\n";
+	hint = "if(sum == n)\n{\nSystem.out.println(\"Perfect\");\n}\n";
 	description = "Check if the 'sum' is equal to 'n' and print 'Perfect'";
 	Perfect obj = new Perfect();
  	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
@@ -108,7 +108,7 @@ public class PerfectTest extends Base
 
 		@Test
 	public void t6() throws java.io.IOException{
-	hint = "else\n{\nSystem.out.println(\"Number is not Perfect\");\n}\n";
+	hint = "else\n{\nSystem.out.println(\"Not Perfect\");\n}\n";
 	description = "Print Not Perfect using else";
 	Perfect obj = new Perfect();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());

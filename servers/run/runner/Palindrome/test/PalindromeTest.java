@@ -111,7 +111,8 @@ public class PalindromeTest extends Base
 
 		@Test
 	public void t6() throws java.io.IOException{
-		description = "Within while-loop write necessary code to get sum of the numbers";
+	hint = "sum=(sum*10)+r;\n";	
+	description = "Within while-loop write necessary code to get sum of the numbers";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
 	System.setIn(in); 
@@ -131,7 +132,7 @@ public class PalindromeTest extends Base
 
 	@Test
 	public void t7() throws java.io.IOException{
-	hint = "if(temp==sum)\nSystem.out.println(\"palindrome\");\n";
+	hint = "if(temp==sum)\nSystem.out.println(\"Palindrome\");\n";
 	description = "Check if 'temp' is equal to 'sum' and print 'Palindrome'";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
@@ -152,7 +153,7 @@ public class PalindromeTest extends Base
 
 @Test
 	public void t8() throws java.io.IOException{
-	hint = "else{\nSystem.out.println(\"not palindrome\");\n}\n ";
+	hint = "else{\nSystem.out.println(\"Not palindrome\");\n}\n ";
 	description = "Print 'Not palindrome' using else";
 	Palindrome obj = new Palindrome();
 	ByteArrayInputStream in = new ByteArrayInputStream("10".getBytes());

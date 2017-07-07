@@ -73,7 +73,7 @@ public class PrimeTest extends Base
 	public void t4() throws java.io.IOException 
 	{
 	   hint = "if(a % i == 0)\n{\nflag ++;\n}\n";
-	   description = "Check if 'a' is divisible by 'i' and write necessary code within it";
+	   description = "Check if 'a' is divisible by 'i' and increment variable 'flag' by 1";
 	   Prime obj = new Prime();
 	   ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
 	   System.setIn(in); 

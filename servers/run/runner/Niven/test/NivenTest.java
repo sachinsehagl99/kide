@@ -92,7 +92,7 @@ public class NivenTest extends Base
 @Test
 	public void t5() throws java.io.IOException{
 	hint = "d = c%10;\nsum = sum + d;\nc = c/10;\n";
-	description = "Write necessary code within while-loop";
+	description = "Add the sum of the digits";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
 	System.setIn(in); 

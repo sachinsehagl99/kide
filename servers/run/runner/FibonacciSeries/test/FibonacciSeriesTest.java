@@ -92,7 +92,7 @@ public class FibonacciSeriesTest extends Base
 @Test
 	public void t5() throws java.io.IOException{
 	hint = "for(int i = 3; i <= n; i++)\n{\nc=a+b;\nSystem.out.println(c);\na=b;\nb=c;\n}\n";
-	description = "Start a for loop and write necessary code within it";
+	description = "Generate fibonacci series within the variable 'c'";
 	FibonacciSeries obj = new FibonacciSeries();
  	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	System.setIn(in); 
