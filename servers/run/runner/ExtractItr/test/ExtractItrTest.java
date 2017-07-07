@@ -61,7 +61,7 @@ public class ExtractItrTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:\n134After Extraction:\n", outContent.toString());
+		    assertEquals("Enter a number:\n134", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}

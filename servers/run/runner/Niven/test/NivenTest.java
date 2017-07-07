@@ -112,7 +112,7 @@ public class NivenTest extends Base
 @Test
 	public void t6() throws java.io.IOException{
 	hint = "if(n%sum == 0)\nSystem.out.println(\"Niven Number\");\n";
-	description = "Check if 'n%sum' equal to 0 and print 'Niven Number' ";
+	description = "Check if 'n' is divisible by 'sum' and print 'Niven Number' ";
 	Niven obj = new Niven();
  	ByteArrayInputStream in = new ByteArrayInputStream("111".getBytes());
 	System.setIn(in); 

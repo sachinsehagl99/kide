@@ -3,8 +3,9 @@ import java.io.*;
 public class Palindrome{
 	
     public static void main() throws IOException{
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	int a;
+	BufferedReader br = null;
+	br = new BufferedReader(new InputStreamReader(System.in));
+	int a=0;
 	System.out.print("Enter a number:");
 	//=========== Write your code within the block ===========//
 	//IGNORE

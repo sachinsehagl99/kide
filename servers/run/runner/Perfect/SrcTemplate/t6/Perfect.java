@@ -3,8 +3,9 @@ import java.io.*;
 public class Perfect{
 	
     public static void main() throws IOException{
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	int n,sum = 0;
+	BufferedReader br = null;
+	br = new BufferedReader(new InputStreamReader(System.in));
+	int n=0,sum=0;
 	System.out.print("Enter a number:");
 	n = Integer.parseInt(br.readLine());
 	for(int i = 1; i < n; i++)
@@ -23,7 +24,7 @@ public class Perfect{
 	else
         {
             System.out.println("Not Perfect");
-        } 
+        }
 	//END
 	//========================================================//
 

@@ -4,8 +4,9 @@ import java.io.*;
 public class Fibonacci
 {
     public static void main()throws IOException{
-	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	int n;
+	BufferedReader br = null;
+	br=new BufferedReader(new InputStreamReader(System.in));
+	int n=0;
 	System.out.print("Enter a number :"); 
      	n = Integer.parseInt(br.readLine());
      	int a=0, b=1 ,c=0;   	
@@ -14,7 +15,6 @@ public class Fibonacci
 		c = a + b;
 		a = b;
              	b = c;
-		System.out.println(c);
         }
 
 	//=========== Write your code within the block ===========//

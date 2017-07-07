@@ -1,26 +1,35 @@
 import java.io.*;
 
-public class FibonacciSeries{
+public class Prime{
 	
     public static void main() throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
-	int n=0;
-	System.out.print("Enter the value of n:");
-	n = Integer.parseInt(br.readLine());
-	System.out.println("Fibonacci Series:");
-	int a = 0,b=1,c=0;
+	int a=0;
+	System.out.print("Input a number:");
+	a = Integer.parseInt(br.readLine());
+	int flag = 0;
+	for(int i=2 ;i< a ;i++)
+	{
+		if(a % i == 0)
+		{
+			flag ++;
+		}
+	}
+	if(flag == 0)
+	{
+		System.out.println("Prime");
+	}
 	//=========== Write your code within the block ===========//
 	//IGNORE
-	System.out.println(a);
-	System.out.println(b);
+	else
+	{
+		System.out.println("Not Prime");
+  	}
 	//END
 	//========================================================//
 
     }
 
+
 }
-
-
-
-

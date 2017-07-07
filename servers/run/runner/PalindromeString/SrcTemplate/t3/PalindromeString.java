@@ -3,11 +3,13 @@ import java.io.*;
 public class PalindromeString{
 	
     public static void main() throws IOException{
-	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	BufferedReader br = null;
+	br = new BufferedReader(new InputStreamReader(System.in));
+	String a=null;
 	System.out.print("Input a string:");
 	//=========== Write your code within the block ===========//
 	//IGNORE
-	String a= br.readLine();
+	a= br.readLine();
 	//END
 	//========================================================//
 	System.out.println(a);

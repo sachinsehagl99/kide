@@ -69,9 +69,9 @@ public class PerfectTest extends Base
 	@Test
 	public void t4() throws java.io.IOException{
 	hint = "if(n % i == 0)\n{\nsum = sum + i;\n";
-	description = "Within for check if  'n%i' is equalto 0 and write necessary code to get 'sum'";
+	description = "Within for check if 'n' is divisable by i and write necessary code to get 'sum'";
 	Perfect obj = new Perfect();
- 	ByteArrayInputStream in = new ByteArrayInputStream("28".getBytes());
+ 	ByteArrayInputStream in = new ByteArrayInputStream("6".getBytes());
 	System.setIn(in); 
  	try {
 	
@@ -79,7 +79,7 @@ public class PerfectTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:1\n3\n7\n14\n28\n", outContent.toString());
+		    assertEquals("Enter a number:1\n3\n6\n6\n6\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}

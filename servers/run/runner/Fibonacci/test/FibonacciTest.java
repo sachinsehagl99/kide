@@ -83,7 +83,7 @@ public class FibonacciTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number :1\n2\n3\n", outContent.toString());
+		    assertEquals("Enter a number :1\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -107,7 +107,7 @@ public class FibonacciTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number :1\n2\n3\nFibonacci\n", outContent.toString());
+		    assertEquals("Enter a number :Fibonacci\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -128,7 +128,7 @@ public class FibonacciTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number :1\n2\n3\n5\nNot Fibonacci\n", outContent.toString());
+		    assertEquals("Enter a number :Not Fibonacci\n", outContent.toString());
 	   	}
 	   }
 	   catch(Exception e){}
