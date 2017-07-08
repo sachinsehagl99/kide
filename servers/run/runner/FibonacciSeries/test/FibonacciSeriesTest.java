@@ -71,8 +71,8 @@ public class FibonacciSeriesTest extends Base
 
 @Test
 	public void t4() throws java.io.IOException{
-	hint = "int a = 0,b=1,c;\nSystem.out.println(a);\nSystem.out.println(b);\n";
-	description = "Initialize variable a=0, b=1, c and print the value of 'a' and 'b'";
+	hint = "System.out.println(a);\nSystem.out.println(b);\n";
+	description = "Print the value of 'a' and 'b'";
 	FibonacciSeries obj = new FibonacciSeries();
  	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	System.setIn(in); 
@@ -92,7 +92,7 @@ public class FibonacciSeriesTest extends Base
 @Test
 	public void t5() throws java.io.IOException{
 	hint = "for(int i = 3; i <= n; i++)\n{\nc=a+b;\nSystem.out.println(c);\na=b;\nb=c;\n}\n";
-	description = "Start a for loop for fixed number of iterations and write necessary code within it";
+	description = "Generate fibonacci series within the variable 'c'";
 	FibonacciSeries obj = new FibonacciSeries();
  	ByteArrayInputStream in = new ByteArrayInputStream("5".getBytes());
 	System.setIn(in); 

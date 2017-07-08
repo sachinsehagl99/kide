@@ -72,7 +72,7 @@ public class ExtractItrTest extends Base
 	@Test
     public void t4() throws java.io.IOException{
 	hint = "r=a%10;\na=a/10;\n";
-	description = "Extract number using while-loop";
+	description = "Extract digits from the number";
 	ExtractItr obj = new ExtractItr();
 	ByteArrayInputStream in = new ByteArrayInputStream("134".getBytes());
 	System.setIn(in); 

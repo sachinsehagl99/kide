@@ -1,18 +1,15 @@
 import java.io.*;
 
-public class Niven{
+public class Prime{
 	
     public static void main() throws IOException{
-	BufferedReader br = null;
-	br = new BufferedReader(new InputStreamReader(System.in));
-	int n=0;
-	System.out.print("Enter a number:");
+        BufferedReader br = null;
 	//=========== Write your code within the block ===========//
 	//IGNORE
-	n = Integer.parseInt(br.readLine());
+	br = new BufferedReader(new InputStreamReader(System.in));
 	//END
 	//========================================================//
-	System.out.println(n);
+	Base.debug(br);
     }
 
 }
