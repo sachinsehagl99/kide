@@ -74,7 +74,6 @@ exports.register = function(server, options, next) {
       var payload = request.payload;
       var url = "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
 
-console.log("hi-----");
       for (var key in payload.files) {
         var file_content = payload.files[key].contents;
         request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content);

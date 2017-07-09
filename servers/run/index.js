@@ -215,8 +215,6 @@ exports.register = function(plugin, options, next) {
               var filepath = src_dir + "/" + payload.files[key].path;
               var filecontent = payload.files[key].contents;
               
-              console.log(filecontent);
-              console.log(filepath);
               fs.writeFile(filepath, filecontent, function(err) {
                 if (err) {
                   return err;

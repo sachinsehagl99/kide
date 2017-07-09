@@ -27,13 +27,11 @@ function filterIgnore(str) {
     }
     result = result.replace("//IGNORE", "");
     return result.replace("END", "");
-
   }
   return str;
 }
 
 module.exports.geCodeTemplate = function(str) {
-  console.log("get ==>", str);
   str = "\n" + str;
   codeTemplate_arr = [];
   while ((m = regex.exec(str)) !== null) {
@@ -44,12 +42,10 @@ module.exports.geCodeTemplate = function(str) {
 }
 
 module.exports.insertToCodeTemplate = function(str) {
-  console.log("--->", str);
   var code = "";
 
   while ((m = regex3.exec(str)) !== null) {
     code = m[0];
-    //console.log(codeTemplate_arr[0] + m[0] + codeTemplate_arr[1]);
   }
 
   return codeTemplate_arr[0] + code + codeTemplate_arr[1];
