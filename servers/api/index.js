@@ -32,18 +32,6 @@ exports.register = function(server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/coursefile/{course_id}',
-    handler: function(request, reply) {
-      models.CourseFile.find({
-        "course_id": mongoose.Types.ObjectId(request.params.course_id)
-      }, function(err, data) {
-        reply(data);
-      });
-    }
-  });
-
-  server.route({
-    method: 'GET',
     path: '/getFiles/{course_name}/{template_name}',
     handler: function(request, reply) {
       var coursefile = request.params.course_name;
@@ -61,8 +49,6 @@ exports.register = function(server, options, next) {
     }
   });
 
-
-
   server.route({
     method: 'POST',
     path: '/java/{testName}/{pathId}',
@@ -78,8 +64,7 @@ exports.register = function(server, options, next) {
         var file_content = payload.files[key].contents;
         request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content);
       }
-
-      
+ 
       Request.post({url:url, form: payload}, function(err, httpResponse, body){
 	reply(body); 
       });      
