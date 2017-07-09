@@ -12,24 +12,27 @@ var codeTemplate_arr = [];
 function filterIgnore(str) {
   var m, result = "";
 
-  while ((m = regex2.exec(str)) !== null) {
-    // This is necessary to avoid infinite loops with zero-width matches
-    if (m.index === regex.lastIndex) {
-      regex.lastIndex++;
-    }
+  if (str.match(/IGNORE/g)) {
+    while ((m = regex2.exec(str)) !== null) {
+      // This is necessary to avoid infinite loops with zero-width matches
+      if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+      }
 
-    // The result can be accessed through the `m`-variable.
-    m.forEach((match, groupIndex) => {
-      if (groupIndex == 0)
-        result = result + match;
-    });
+      // The result can be accessed through the `m`-variable.
+      m.forEach((match, groupIndex) => {
+        if (groupIndex == 0)
+          result = result + match;
+      });
+    }
+    result = result.replace("//IGNORE", "");
+    return result.replace("END", "");
 
   }
-  result = result.replace("//IGNORE", "");
-  return result.replace("END", "");
+  return str;
 }
 
-module.exports.geCodeTemplate  = function(str) {
+module.exports.geCodeTemplate = function(str) {
   console.log("get ==>", str);
   str = "\n" + str;
   codeTemplate_arr = [];
