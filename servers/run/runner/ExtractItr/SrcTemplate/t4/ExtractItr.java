@@ -10,16 +10,15 @@ public class ExtractItr
 	System.out.println("Enter a number:");
 	a=Integer.parseInt(br.readLine());
 	System.out.println("After Extraction:");
-	while(a>0)
-	{
-	//=========== Write your code within the block ===========//
-	//IGNORE
+	while(a>0) {
+	    //=========== Write your code within the block ===========//
          	r=a%10;
          	a=a/10;
-	//END
-	//========================================================//
-		if(a==134) break;
-	    	System.out.println(+r);
+	    //========================================================//	
+	    //IGNORE
+            if(a==134) break;
+	    //END
+	    System.out.println(+r);
 	}
 
     }

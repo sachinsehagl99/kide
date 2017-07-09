@@ -9,11 +9,12 @@ public class ExtractItr
         int a=0,r=0;
 	System.out.println("Enter a number:");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	a = Integer.parseInt(br.readLine());
-	//END
-	//========================================================//
+	//========================================================//	
+	
+	//IGNORE
 	System.out.print(a);
+	//END
      }
 
 }

@@ -206,7 +206,7 @@ exports.register = function (plugin, options, next) {
 	var server = this.config.server;
 	var param = request.params;
         var courseName = request.params.courseName;
-	var context = {"url": {"run": "http://" + server.run.host + ":" + server.run.port + "/java/" + courseName + "/" + param.plunkId}};
+	var context = {"url": {"run": ""}};
 
 	 reply.view("editor", context); 
 ;
@@ -239,7 +239,7 @@ exports.register = function (plugin, options, next) {
       var testName = encodeURIComponent(params.testName);
       var pathId = encodeURIComponent(params.pathId);
       var payload = request.payload;
-      var url =  "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
+      var url =  "http://" + server.api.host + ":" + server.api.port + "/java/" + testName + "/" + pathId;
 
       Request.post({url:url, form: payload}, function(err, httpResponse, body){
 	reply(body); 
