@@ -11,12 +11,10 @@ public class PalindromeString{
 	a= br.readLine();
 	b=new StringBuffer(a).reverse().toString();
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(a.equals(b))
 		{
                     System.out.println("Palindrome");
 		}
-	//END
 	//========================================================//
 
     }

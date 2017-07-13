@@ -14,11 +14,12 @@ public class Armstrong{
 		b=a%10;
 		a=a/10;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 		sum = sum + (b * b * b);
-	//END
 	//========================================================//
+	
+	//IGNORE
 		System.out.println(+sum);
+	//END
 	}while(a!=0);
 
     }

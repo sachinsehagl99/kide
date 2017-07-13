@@ -13,7 +13,6 @@ public class FibonacciSeries{
 	System.out.println(a);
 	System.out.println(b);
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	for(int i = 3; i <= n; i++)
         {
 		c=a+b;
@@ -22,7 +21,6 @@ public class FibonacciSeries{
 		b=c;
             
 	}
-	//END
 	//========================================================//
 
     }

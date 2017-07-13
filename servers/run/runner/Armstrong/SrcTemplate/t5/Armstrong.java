@@ -12,13 +12,14 @@ public class Armstrong{
 	dup=a;
 	do{	
 	//=========== Write your code within the block ===========//
-	//IGNORE
 		b=a%10;
 		a=a/10;
-	//END
 	//========================================================//
+	
+	//IGNORE
 		if(a==371) break;
  		System.out.println(+b);
+        //END
 	}while(a!=0);
 
     }

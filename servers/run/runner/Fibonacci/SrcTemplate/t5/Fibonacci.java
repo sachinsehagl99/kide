@@ -18,10 +18,8 @@ public class Fibonacci
         }
 
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(c==n)
 	System.out.println("Fibonacci");
-	//END
 	//========================================================//
 	   
     }

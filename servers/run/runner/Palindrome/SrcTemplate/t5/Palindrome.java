@@ -12,13 +12,14 @@ public class Palindrome{
 	temp=a; 
 	while(a>0){ 
 	//=========== Write your code within the block ===========//
-	//IGNORE
 		r=a%10; 
 		a=a/10; 
-	//END
 	//========================================================//
+	//IGNORE
 		if(a==121) break;
 		System.out.println(+r);
+	//END
+	
 	}
 
     }

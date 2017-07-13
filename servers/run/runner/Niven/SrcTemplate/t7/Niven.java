@@ -19,11 +19,9 @@ public class Niven{
 	if(n%sum == 0)
         System.out.println("Niven Number");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else{
             System.out.println("Not a Niven Number"); 
 	}    
-	//END
 	//========================================================//
 
 	

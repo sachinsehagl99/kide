@@ -16,12 +16,10 @@ public class Perfect{
             	}
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(sum == n)
         {
             System.out.println("Perfect");
         }
-	//END
 	//========================================================//
 
 

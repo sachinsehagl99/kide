@@ -9,11 +9,12 @@ public class Fibonacci
 	int n=0;
 	System.out.print("Enter a number :");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	n = Integer.parseInt(br.readLine());
-	//END
 	//========================================================//
+	
+	//IGNORE
 	System.out.println(n);
+	//END
     }
 
 }

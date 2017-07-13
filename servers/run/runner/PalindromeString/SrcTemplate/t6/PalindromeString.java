@@ -15,12 +15,10 @@ public class PalindromeString{
 		System.out.println("Palindrome");
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else
 	{
 		System.out.println("Not palindrome");
 	}
-	//END
 	//========================================================//
 
     }

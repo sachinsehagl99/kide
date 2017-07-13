@@ -8,11 +8,12 @@ public class FibonacciSeries{
 	int n=0;
 	System.out.print("Enter the value of n:");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	n = Integer.parseInt(br.readLine());
-	//END
 	//========================================================//
+	
+	//IGNORE
 	System.out.println(n);
+	//END
     }
 
 }

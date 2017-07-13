@@ -11,11 +11,11 @@ public class Swap{
         
 	System.out.print("Enter the value of b:");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	b = Integer.parseInt(br.readLine());
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(b);
+	//END
 
     }
 

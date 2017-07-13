@@ -10,11 +10,11 @@ public class Niven{
 	n = Integer.parseInt(br.readLine());
 	int c=0, d=0, sum = 0;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	c = n;	 
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(c);
+	//END
 
 
     }

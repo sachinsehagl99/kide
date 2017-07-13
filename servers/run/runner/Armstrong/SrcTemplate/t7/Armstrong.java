@@ -16,10 +16,8 @@ public class Armstrong{
 		sum = sum + (b * b * b);
 	}while(a!=0);
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(sum == dup)
 	System.out.println("Armstrong number");
-	//END
 	//========================================================//
 
     }

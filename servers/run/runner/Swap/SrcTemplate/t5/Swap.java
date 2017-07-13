@@ -13,11 +13,11 @@ public class Swap{
 
 	int temp = 0;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	temp=a;
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(temp);
+	//END
     }
 
 }

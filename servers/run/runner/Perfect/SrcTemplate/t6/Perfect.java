@@ -20,12 +20,10 @@ public class Perfect{
             System.out.println("Number is Perfect");
         }
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else
         {
             System.out.println("Not Perfect");
         }
-	//END
 	//========================================================//
 
 

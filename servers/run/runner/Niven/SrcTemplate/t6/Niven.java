@@ -17,10 +17,8 @@ public class Niven{
          	c = c/10;
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(n%sum == 0)
         System.out.println("Niven Number");
-	//END
 	//========================================================//
 
 	

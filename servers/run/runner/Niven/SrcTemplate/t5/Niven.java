@@ -13,14 +13,15 @@ public class Niven{
 	while(c>0)
         {	
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	 	d = c%10;
          	sum = sum + d;
          	c = c/10;
-	//END
+	
 	//========================================================//
+	//IGNORE
 		if(c==111) break;
 		System.out.println(sum);
+	//END
 	}
 
     }

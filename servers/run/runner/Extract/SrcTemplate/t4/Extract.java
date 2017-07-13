@@ -10,10 +10,8 @@ public class Extract
 	System.out.println("Enter a three digit number:");
 	a=Integer.parseInt(br.readLine());
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	r=a%10;
 	a=a/10;
-	//END
 	//========================================================//
         System.out.println("Ones position:"+r);
     }

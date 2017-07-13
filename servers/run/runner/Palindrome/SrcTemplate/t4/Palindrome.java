@@ -10,11 +10,11 @@ public class Palindrome{
 	a = Integer.parseInt(br.readLine());
 	int temp=0,r=0,sum = 0;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	temp=a; 
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(+temp);
+	//END
 
     }
 

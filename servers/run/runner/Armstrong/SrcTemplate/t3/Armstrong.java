@@ -8,11 +8,12 @@ public class Armstrong{
 	int a=0;
 	System.out.print("Input the number:");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	a = Integer.parseInt(br.readLine());
-	//END
 	//========================================================//
+	
+	//IGNORE
 	System.out.println(a);
+	//END
     }
 
 }

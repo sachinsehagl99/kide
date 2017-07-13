@@ -11,10 +11,8 @@ public class FibonacciSeries{
 	System.out.println("Fibonacci Series:");
 	int a = 0,b=1,c=0;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	System.out.println(a);
 	System.out.println(b);
-	//END
 	//========================================================//
 
     }

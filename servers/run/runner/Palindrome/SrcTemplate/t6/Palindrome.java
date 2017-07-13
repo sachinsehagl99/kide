@@ -14,11 +14,11 @@ public class Palindrome{
 		r=a%10; 
 		a=a/10; 
 	//=========== Write your code within the block ===========//
-	//IGNORE
-		sum=(sum*10)+r;
-	//END
+			sum=(sum*10)+r;
 	//========================================================//
+	//IGNORE
 		System.out.println(+sum);
+	//END
 	}
 
     }

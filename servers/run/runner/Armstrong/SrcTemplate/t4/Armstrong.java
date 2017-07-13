@@ -10,11 +10,12 @@ public class Armstrong{
 	a = Integer.parseInt(br.readLine());
 	int b=0,dup=0,sum=0;
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	dup=a;
-	//END
 	//========================================================//
+	
+	//IGNORE
 	System.out.println(dup);
+        //END
 
     }
 

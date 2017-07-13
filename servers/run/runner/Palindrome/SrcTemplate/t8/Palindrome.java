@@ -18,11 +18,9 @@ public class Palindrome{
 	if(temp==sum)
         System.out.println("palindrome");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else{
              System.out.println("Not palindrome");
          }
-	//END
 	//========================================================//
 
     }

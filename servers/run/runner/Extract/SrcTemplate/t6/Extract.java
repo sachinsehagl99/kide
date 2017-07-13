@@ -16,10 +16,8 @@ public class Extract
 	a=a/10;
 	System.out.println("Tens position:"+r);
 	//=========== Write your code within the block ===========//
-	//IGNORE	
 	r=a%10;
 	a=a/10;
-	//END
 	//========================================================//
 	System.out.println("Hundreds position:"+r);
 

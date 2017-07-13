@@ -15,15 +15,16 @@ public class Fibonacci
 	{
 
         //=========== Write your code within the block ===========//
-	//IGNORE
 		c = a + b;
 		a = b;
              	b = c;
 
-	//END
 	//========================================================//
 		System.out.println(c);
+
+	        //IGNORE
 		if(n==3) break;
+	        //END
 		
          }
         

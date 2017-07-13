@@ -20,11 +20,9 @@ public class Fibonacci
 	System.out.println("Fibonacci");
 	
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else {
 	System.out.println("Not Fibonacci");
 	}
-	//END
 	//========================================================//
 	   
     }

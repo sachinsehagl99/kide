@@ -13,8 +13,7 @@ module.exports = angular.module("plunker.component.workspace", [
 ])
 
 
-.factory("workspace", ["$rootScope", "commander",
-  function($rootScope, commander) {
+.factory("workspace", ["$rootScope", "commander", function($rootScope, commander) {
     var workspace = new Workspace();
 
     $rootScope.$on("file.remove.success", function($event, locals, entry) {
@@ -160,7 +159,8 @@ module.exports = angular.module("plunker.component.workspace", [
   }
 ])
 
-.directive("plunkerWorkspace", [function() {
+.directive("plunkerWorkspace", [
+  function() {
     return {
       restrict: "E",
       replace: true,
@@ -172,32 +172,34 @@ module.exports = angular.module("plunker.component.workspace", [
   }
 ])
 
-.controller('CodemirrorCtrl', ['$scope', "workspace", "project", function($scope, workspace, project) {
+.controller('CodemirrorCtrl', function($scope, workspace, project) {
 
-    function getPaneDef() {
-      return workspace.panes[workspace.nextPaneNum - 1];
-    }
-
-    $scope.$watch(getPaneDef, function(paneDef) {
-      var entries = project.entries[paneDef.id];
-      $scope.paneDefId = paneDef.id; 
-      
-      if (entries) {
-        $scope.entries = {
-          code: entries.contents,
-          options: {
-            theme: "zenburn",
-	    lineWrapping: true,
-            mode: "javascript",
-            lineNumbers: true,
-            onLoad: function (cm) {
-              cm.on('change', function (cMirror){
-                project.entries[$scope.paneDefId].contents = cMirror.getValue();
-              });  
-            }
-          }
-        };
-      }
-    })
+  function getPaneDef() {
+    return workspace.panes[workspace.nextPaneNum - 1];
   }
-])
+
+  $scope.$watch(getPaneDef, function(paneDef) {
+    var entries = project.entries[paneDef.id];
+    $scope.paneDefId = paneDef.id;
+
+    if (entries) {
+      $scope.entries = {
+        code: entries.contents,
+        options: {
+          theme: "zenburn",
+          lineWrapping: true,
+          mode: "javascript",
+          lineNumbers: true,
+          onSet: function(cm){
+            cm.autoFormatRange({ch:0, line:0}, {line: cm.lineCount()});  
+          },
+          onLoad: function(cm) {
+            cm.on('change', function(cMirror) {
+              project.entries[$scope.paneDefId].contents = cMirror.getValue();
+            });
+          }
+        }
+      };
+    }
+  })
+})

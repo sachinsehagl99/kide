@@ -8,11 +8,11 @@ public class PalindromeString{
 	String a="";
 	System.out.print("Input a string:");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	a= br.readLine();
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(a);
+	//END
     }
 
 }

@@ -10,11 +10,11 @@ public class PalindromeString{
 	System.out.print("Input a string:");
 	a= br.readLine();
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	b=new StringBuffer(a).reverse().toString();
-	//END
 	//========================================================//
+	//IGNORE
 	System.out.println(b);
+	//END
 
     }
 

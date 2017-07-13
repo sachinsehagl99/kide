@@ -18,11 +18,9 @@ public class Armstrong{
 	if(sum == dup)
 	System.out.println("Armstrong number");
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else{
 	System.out.println("Not an armstrong number");
 	}
-	//END
 	//========================================================//
 
     }

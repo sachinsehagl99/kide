@@ -17,12 +17,10 @@ public class Prime{
 		}
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	if(flag == 0)
 	{
 		System.out.println("Prime");
 	}
-	//END
 	//========================================================//
 	
 

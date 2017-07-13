@@ -11,15 +11,15 @@ public class Perfect{
 	for(int i = 1; i < n; i++)
         {
 	//=========== Write your code within the block ===========//
-	//IGNORE
 		if(n % i == 0)
             	{
                 	sum = sum + i;
 		}
-
-	//END
 	//========================================================//
+	//IGNORE
 			System.out.println(sum);
+	//END
+
 	}
 
 

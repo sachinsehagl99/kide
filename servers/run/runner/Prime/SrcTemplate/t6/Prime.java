@@ -21,12 +21,10 @@ public class Prime{
 		System.out.println("Prime");
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
 	else
 	{
 		System.out.println("Not Prime");
   	}
-	//END
 	//========================================================//
 
     }

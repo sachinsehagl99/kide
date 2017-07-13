@@ -12,14 +12,14 @@ public class Prime{
 	for(int i=2 ;i< a ;i++)
 	{
 	//=========== Write your code within the block ===========//
-	//IGNORE
 		if(a % i == 0)
 		{
 			flag ++;
 		}	
-	//END
 	//========================================================//
+	//IGNORE
 		System.out.println(+flag);
+	//END
 	}
 
     }

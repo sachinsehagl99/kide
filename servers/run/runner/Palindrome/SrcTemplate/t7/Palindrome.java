@@ -16,10 +16,8 @@ public class Palindrome{
 		sum=(sum*10)+r;
 	}
 	//=========== Write your code within the block ===========//
-	//IGNORE
-	//if(temp==sum)
-        //System.out.println("Palindrome");
-	//END
+	if(temp==sum)
+        System.out.println("Palindrome");
 	//========================================================//
 
     }
