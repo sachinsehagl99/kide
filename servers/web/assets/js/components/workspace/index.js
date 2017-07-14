@@ -191,7 +191,7 @@ module.exports = angular.module("plunker.component.workspace", [
           mode: "javascript",
           lineNumbers: true,
           onSet: function(cm){
-            cm.autoFormatRange({ch:0, line:0}, {line: cm.lineCount()});  
+            cm.autoIndentRange({ch:0, line:0}, {line: cm.lineCount()});  
           },
           onLoad: function(cm) {
             cm.on('change', function(cMirror) {
