@@ -191,7 +191,9 @@ module.exports = angular.module("plunker.component.workspace", [
           mode: "javascript",
           lineNumbers: true,
           onSet: function(cm){
-            cm.autoIndentRange({ch:0, line:0}, {line: cm.lineCount()});  
+            for (var i = 0; i <= cm.lineCount(); i++) {
+              cm.indentLine(i, "smart");
+            }
           },
           onLoad: function(cm) {
             cm.on('change', function(cMirror) {
