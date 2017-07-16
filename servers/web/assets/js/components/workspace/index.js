@@ -159,49 +159,11 @@ module.exports = angular.module("plunker.component.workspace", [
   }
 ])
 
-.directive("plunkerWorkspace", [
-  function() {
+.directive("plunkerWorkspace", function() {
     return {
       restrict: "E",
       replace: true,
       template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
       controller: require("./controller"),
-      controllerAs: "workspace",
-      link: function($scope, $element, $attrs, workspaceController) {}
     };
-  }
-])
-
-.controller('CodemirrorCtrl', function($scope, workspace, project) {
-
-  function getPaneDef() {
-    return workspace.panes[workspace.nextPaneNum - 1];
-  }
-
-  $scope.$watch(getPaneDef, function(paneDef) {
-    var entries = project.entries[paneDef.id];
-    $scope.paneDefId = paneDef.id;
-
-    if (entries) {
-      $scope.entries = {
-        code: entries.contents,
-        options: {
-          theme: "zenburn",
-          lineWrapping: true,
-          mode: "javascript",
-          lineNumbers: true,
-          onSet: function(cm){
-            for (var i = 0; i <= cm.lineCount(); i++) {
-              cm.indentLine(i, "smart");
-            }
-          },
-          onLoad: function(cm) {
-            cm.on('change', function(cMirror) {
-              project.entries[$scope.paneDefId].contents = cMirror.getValue();
-            });
-          }
-        }
-      };
-    }
-  })
-})
+});
