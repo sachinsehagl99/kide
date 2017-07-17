@@ -19,7 +19,6 @@ module.exports = angular.module("plunker.directive.previewer", [
     handler: refreshPreviews
   });
 
-
   $rootScope.$on("project.setTree.success", function() {
     commander.execute("preview.refresh");
   });

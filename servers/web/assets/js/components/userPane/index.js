@@ -1,23 +1,20 @@
-var angular = window.angular;
-
 var Fs = require("fs");
 
 
-module.exports =
-angular.module("plunker.component.userPane", [
+module.exports = angular.module("plunker.component.userPane", [
   "ui.bootstrap",
   
-  require("./login").name,
-  require("./marked").name,
-  require("./notifier").name,
-  require("./visitor").name
+  require("../login").name,
+  require("../marked").name,
+  require("../notifier").name,
+  require("../visitor").name
 ])
 
 .directive("plunkerUserPane", [ "collectionsManager", function (collectionsManager) {
   return {
     restrict: "E",
     replace: true,
-    template: Fs.readFileSync(__dirname + "/userPane/userPane.html", "utf8"),
+    template: Fs.readFileSync(__dirname + "/userPane.html", "utf8"),
     controllerAs: "userPane",
     controller: ["$scope", "login", "visitor", function ($scope, login, visitor) {
       this.visitor = visitor;
@@ -37,7 +34,7 @@ angular.module("plunker.component.userPane", [
   var manager = {
     showCreateWindow: function () {
       return $modal.open({
-        template: Fs.readFileSync(__dirname + "/userPane/createCollection.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/createCollection.html", "utf8"),
         size: "lg",
         controller: ["$scope", "$modalInstance", "visitor", function ($scope, $modalInstance, visitor) {
           if (!visitor.isMember()) return $modalInstance.dismiss("Not logged in");
@@ -77,7 +74,7 @@ angular.module("plunker.component.userPane", [
     },
     show: function () {
       $modal.open({
-        template: Fs.readFileSync(__dirname + "/userPane/manageCollections.html", "utf8"),
+        template: Fs.readFileSync(__dirname + "/manageCollections.html", "utf8"),
         //size: "lg",
         controller: ["$scope", "$modalInstance", "visitor", function ($scope, $modalInstance, visitor) {
           $scope.collections = [];
