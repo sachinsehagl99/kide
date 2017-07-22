@@ -4,12 +4,23 @@ var fs = require('fs');
 var filter_file = require("./filter_file");
 var Request = require("request");
 var bodyParser =  require('hapi-bodyparser');
+var randToken = require('rand-token');
+
 
 exports.register = function(server, options, next) {
   var context = {config: options.config};
   
   server.bind(context);
   server.register(bodyParser);
+
+  server.route({
+    method: 'GET',
+    path: '/handshake',
+    handler: function(request, reply) {
+      var token = randToken.generate(16);
+      reply(token);
+    }
+  });
 
   server.route({
     method: 'GET',
@@ -34,6 +45,7 @@ exports.register = function(server, options, next) {
     method: 'GET',
     path: '/getFiles/{course_name}/{template_name}',
     handler: function(request, reply) {
+
       var coursefile = request.params.course_name;
       var templatename = request.params.template_name;
       var program = coursefile + ".java";

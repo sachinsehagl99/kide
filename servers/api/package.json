@@ -17,6 +17,7 @@
     "mongoose": "^4.10.5",
     "mongoose-migration": "^0.2.0",
     "mongoskin": "^2.1.0",
+    "rand-token": "^0.3.0",
     "request": "^2.81.0"
   }
 }

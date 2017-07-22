@@ -185,14 +185,24 @@ exports.register = function (plugin, options, next) {
 	var context = {config: this.local};
 	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, data){
             var data = JSON.parse(data);
-
+            var promisify = function(key) {
+              return new Promise(function (resolve, reject) {
+                Request('http://' + this.config.server.api.host + ":" + this.config.server.api.port + "/handshake", function (err, res, token) {
+                  data[key].plunkId = token;
+                  resolve();
+                });
+              });
+            };
+            var promises = [];
             for(var key in data){
-              data[key].plunkId = Genid();
+              promises.push(promisify(key));
             }
-            context.body = {plunk: data};
-            reply.view("home", context, {
-	      layout: "landing"
-	  });
+            Promise.all(promises).then(function () {
+              context.body = { plunk: data };
+              reply.view("home", context, {
+                layout: "landing"
+              });
+            });
         });
       }
     }
