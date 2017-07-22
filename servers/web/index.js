@@ -187,7 +187,7 @@ exports.register = function (plugin, options, next) {
             var data = JSON.parse(data);
             var promisify = function(key) {
               return new Promise(function (resolve, reject) {
-                Request('http://' + this.config.server.api.host + ":" + this.config.server.api.port + "/handshake", function (err, res, token) {
+                Request.get("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/handshake", function (err, res, token) {
                   data[key].plunkId = token;
                   resolve();
                 });
@@ -202,6 +202,8 @@ exports.register = function (plugin, options, next) {
               reply.view("home", context, {
                 layout: "landing"
               });
+            }).catch(function(err) {
+              console.log(err);
             });
         });
       }
