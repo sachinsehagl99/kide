@@ -183,11 +183,12 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, data){
+        var server = this.config.server;
+	Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data){
             var data = JSON.parse(data);
             var promisify = function(key) {
               return new Promise(function (resolve, reject) {
-                Request.get("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/handshake", function (err, res, token) {
+                Request.get("http://" + server.api.host + ":" + server.api.port + "/handshake", function (err, res, token) {
                   data[key].plunkId = token;
                   resolve();
                 });
