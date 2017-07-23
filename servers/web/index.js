@@ -229,14 +229,16 @@ exports.register = function (plugin, options, next) {
 
   plugin.route({
     method: 'GET',
-    path: '/getFiles/{courseName}/{templateName}',
+    path: '/getFiles/{courseName}/{templateName}/{sessionId}',
     config:{
       handler: function (request, reply){
 	var server = this.config.server;
-        var courseName = request.params.courseName;
-        var templateName = request.params.templateName;
+        var requestParams = request.params;
+        var courseName = requestParams.courseName;
+        var templateName = requestParams.templateName;
+        var sessionId = requestParams.sessionId;
 
-        Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName, function (err, res, body){
+        Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName + "/" + sessionId, function (err, res, body){
           reply(body);
         });
       }

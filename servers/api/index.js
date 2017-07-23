@@ -43,14 +43,16 @@ exports.register = function(server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/getFiles/{course_name}/{template_name}',
+    path: '/getFiles/{course_name}/{template_name}/{sessionId}',
     handler: function(request, reply) {
+      var requestParam = request.params;
+      var coursefile = requestParam.course_name;
+      var templatename = requestParam.template_name;
+      var sessionId = requestParam.sessionId;
 
-      var coursefile = request.params.course_name;
-      var templatename = request.params.template_name;
       var program = coursefile + ".java";
       var file_content = fs.readFileSync(__dirname + '/../run/runner/' + coursefile + '/SrcTemplate/' + templatename + '/' + program, 'utf8');
-      file_content = filter_file.geCodeTemplate(file_content);
+      file_content = filter_file.geCodeTemplate(file_content, sessionId);
       var files = [{
         type: "file",
         filename: request.params.course_name + ".java",
@@ -63,18 +65,18 @@ exports.register = function(server, options, next) {
 
   server.route({
     method: 'POST',
-    path: '/java/{testName}/{pathId}',
+    path: '/java/{testName}/{sessionId}',
     handler: function(request, reply) {
       var server = this.config.server;
       var params = request.params;
       var testName = encodeURIComponent(params.testName);
-      var pathId = encodeURIComponent(params.pathId);
+      var sessionId = encodeURIComponent(params.sessionId);
       var payload = request.payload;
-      var url = "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
+      var url = "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + sessionId;
 
       for (var key in payload.files) {
         var file_content = payload.files[key].contents;
-        request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content);
+        request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content, sessionId);
       }
  
       Request.post({url:url, form: payload}, function(err, httpResponse, body){

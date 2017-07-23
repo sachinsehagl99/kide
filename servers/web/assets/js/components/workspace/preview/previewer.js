@@ -27,8 +27,9 @@ module.exports = angular.module("plunker.directive.previewer", [
 
   function getSrcTemplate(testMethod) {
     var testName = ($location.path()).split("/")[2];
+    var sessionId = ($location.path()).split("/")[4];
 
-    $http.get("/getFiles/"+ testName + "/" + testMethod).then(function(resp) {
+    $http.get("/getFiles/"+ testName + "/" + testMethod + "/" + sessionId).then(function(resp) {
       commander.execute("project.reset").then(function() {
         commander.execute("project.openTree", {
           tree: resp.data

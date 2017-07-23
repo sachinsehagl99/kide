@@ -18,23 +18,46 @@ function filterIgnore(str) {
   return str;
 }
 
-module.exports.geCodeTemplate = function(str) {
+module.exports.geCodeTemplate = function(str, sessionId) {
   var regex = /([^]*[\/]+[=]+[\sA-Za-z]+[\s=]*[\/]+)|([\/]+[=]+[\/]+[^]*)/g;
   var m;
+  var code = [];
 
-  codeTemplate = [];
-  while ((m = regex.exec(str)) !== null) {
-    codeTemplate.push(m[0]);
+  for(var key in codeTemplate){
+    var code_obj = codeTemplate[key];
+    for(var k in code_obj){
+      if(k == "sessionId" && code_obj[k] == sessionId){
+        code_obj.code = [];
+      }
+    }
   }
-  return filterIgnore(codeTemplate[0] + "\n\n" + codeTemplate[1]);
+
+  while ((m = regex.exec(str)) !== null) {
+    code.push(m[0]);
+  }
+
+  codeTemplate.push({
+    sessionId: sessionId,
+    code: code 
+  });
+
+  return filterIgnore(code[0] + "\n\n" + code[1]);
 }
 
-module.exports.insertToCodeTemplate = function(str) {
+module.exports.insertToCodeTemplate = function(str, sessionId) {
   var regex = /[\/]+[=]+[^]+[\/]+[=]+[\/]+/g;
-  var m, code = "";
+  var m, code = "", codeSession = "";
 
   while ((m = regex.exec(str)) !== null) {
     code = m[0];
   }
-  return codeTemplate[0] + code + codeTemplate[1];
+
+  for(var key in codeTemplate){
+    var codeObj = codeTemplate[key];
+
+    if(codeObj.sessionId == sessionId){
+      codeSession = codeObj.code;
+    } 
+  } 
+  return codeSession[0] + code + codeSession[1];
 }
