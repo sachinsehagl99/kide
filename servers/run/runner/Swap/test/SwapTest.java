@@ -138,13 +138,31 @@ public class SwapTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:Value of b:10\nValue of a:20\n", outContent.toString());
+		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
 	   	}
 
 	   }
 	   catch(Exception e){}
 }
 
-	
+	@Test
+	public void t8()throws java.io.IOException{
+		hint = "System.out.println(\"The Value of a:\"+a);\nSystem.out.println(\"The Value of b:\"+b);";
+		description = "Print the value of a and print the value of b";
+		Swap obj = new Swap();
+		System.setIn(StubbedInputStream.stubInputStream().toReturn("10").then("20").atSomePoint());
+		try{
+		Method m = getMethod(obj , "main");
+		if(m!=null)
+		{
+			m.invoke(obj);
+			assertEquals("Enter the value of a:Enter the value of b:The Value of a:20\nThe Value of b:10\n",outContent.toString());
+
+		}
+		}
+		catch(Exception e){}
+		
+		
+	}	
 }
 
