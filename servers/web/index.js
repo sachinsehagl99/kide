@@ -240,6 +240,7 @@ exports.register = function (plugin, options, next) {
 
         Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName + "/" + sessionId, function (err, res, body){
           reply(body);
+	//console.log(body);
         });
       }
     }
@@ -258,6 +259,7 @@ exports.register = function (plugin, options, next) {
 
       Request.post({url:url, form: payload}, function(err, httpResponse, body){
 	reply(body); 
+	//console.log(body);
       });      
     }
   });

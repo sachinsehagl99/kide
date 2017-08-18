@@ -5,6 +5,8 @@ var filter_file = require("./filter_file");
 var Request = require("request");
 var bodyParser =  require('hapi-bodyparser');
 var randToken = require('rand-token');
+var JSONObject = require('json-object');
+var parse = require('parse-json'); 
 
 
 exports.register = function(server, options, next) {
@@ -49,6 +51,12 @@ exports.register = function(server, options, next) {
       var coursefile = requestParam.course_name;
       var templatename = requestParam.template_name;
       var sessionId = requestParam.sessionId;
+//========================================================//
+      models.Course.find({
+          "name": request.params.course_name
+        }, function(err, items) {
+	           
+//=========================================================//
 
       var program = coursefile + ".java";
       var file_content = fs.readFileSync(__dirname + '/../run/runner/' + coursefile + '/SrcTemplate/' + templatename + '/' + program, 'utf8');
@@ -57,9 +65,13 @@ exports.register = function(server, options, next) {
         type: "file",
         filename: request.params.course_name + ".java",
         contents: file_content,
+	definition: items[0].definition, 
         active: true
       }]
+    
       reply(files);
+      //console.log(files);
+    });
     }
   });
 
