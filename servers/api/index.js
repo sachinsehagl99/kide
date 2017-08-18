@@ -22,6 +22,16 @@ exports.register = function(server, options, next) {
     }
   });
 
+ server.route({
+   method: 'GET',
+   path: '/users/exists/{username}',
+   handler: function(request, reply){
+     var username = request.params.username;
+
+     reply(username);
+   } 
+  }); 
+
   server.route({
     method: 'GET',
     path: '/course/{id*}',
