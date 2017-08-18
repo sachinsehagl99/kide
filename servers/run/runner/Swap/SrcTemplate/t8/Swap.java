@@ -16,7 +16,8 @@ public class Swap{
 	a = b;
 	b = temp;
 	//=========== Write your code within the block ===========//
-	
+	System.out.println("The value of a:"+a);
+	System.out.println("The value of b:"+b);
 	//========================================================//
 	
     }
