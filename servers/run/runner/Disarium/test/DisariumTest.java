@@ -1,0 +1,263 @@
+import java.io.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+import java.lang.reflect.*;
+
+public class DisariumTest extends Base
+ {
+     @Test
+   public void t1() throws java.io.IOException{
+	hint = "public static void main() throws IOException {\n \n}";
+	description = "Create a main method";
+        Disarium obj = new Disarium();
+	try {
+		Method m=getMethod(obj,"main");
+		String m1=m.toString();
+	        assertEquals(m1,"public static void Disarium.main() throws java.io.IOException");
+     
+
+    		}
+        
+	catch(Exception e){}
+    
+        }
+    @Test
+    public void t2() throws java.io.IOException{
+	hint = "br = new BufferedReader(new InputStreamReader(System.in));\n";
+	description = "Use 'BufferedReader' to read input from user";
+	Disarium obj = new Disarium();	
+	 try {
+	
+		   Method m = getMethod(obj, "main");
+		   if(m!=null)
+		{
+
+		    m.invoke(obj);
+                    Object br = Base.getDebuggingObject();
+		    assertEquals("java.io.BufferedReader", br.getClass().getName());
+		   
+		   }
+	   } catch(Exception e){
+             assertEquals(1, 0);
+           }
+	}
+
+
+   @Test
+   public void t3() throws java.io.IOException{
+	hint = "a=Integer.parseInt(br.readLine());\n";
+        description = "Take input in variable 'a'";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                 assertEquals("Input the number:135\n",outContent.toString());		
+			 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	        }
+	@Test
+	public void t4() throws java.io.IOException{
+	hint = "dup=a;\n";
+        description = "Put the value of 'a' in 'dup' variable";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:135\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+
+	@Test
+	public void t5() throws java.io.IOException{
+	hint = "b=a%10;\na=a/10;\n";
+        description = "Extract the number within do-while loop";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                   assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+	@Test
+	public void t6() throws java.io.IOException{
+	hint = "i++;\n";
+        description = "Increment the counter varriable";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:1\n2\n3\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){
+		//assertEquals(0,1);	
+	}
+    	    
+        }
+
+	@Test
+	public void t7() throws java.io.IOException{
+	hint = "a=dup;\n";
+        description = "Put the value of 'dup' in 'a' variable";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:135\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+
+
+	@Test
+	public void t8() throws java.io.IOException{
+	hint = "b=a%10;\na=a/10;\n";
+        description = "Extract the number within do-while loop";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
+		    // assertEquals(0,1); 
+     		
+    		}
+        }
+	catch(Exception e){
+		//assertEquals(0,0);	
+	}
+    	    
+        }
+
+	
+	@Test
+	public void t9() throws java.io.IOException{
+	hint = "dis = dis + Math.pow(b,i);\n";
+        description = "Find the cummulative sum of the varriable to the power its index";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:125.0\n134.0\n135.0\n",outContent.toString());		
+ 		   //assertEquals(0,1);
+     		
+    		}
+        }
+	catch(Exception e){
+		//assertEquals(0,0);	
+	}
+	}
+
+	@Test
+	public void t10() throws java.io.IOException{
+	hint = "i--;\n";
+        description = "Decrement the counter varriable";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:2\n1\n0\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+
+
+	@Test
+	public void t11() throws java.io.IOException{
+	hint = "if(dup == dis )\nSystem.out.println(\"Disarium Number\");\n";
+        description = "Print 'Disarium number' using if";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("135".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:Disarium Number\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+	}
+
+	@Test
+	public void t12() throws java.io.IOException{
+	hint = "else \nSystem.out.println(\"Not a Disarium Number\");\n";
+        description = "Print 'Not an armstrong number' using else";
+	Disarium obj = new Disarium();
+	ByteArrayInputStream in = new ByteArrayInputStream("121".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  m.invoke(obj);
+                  assertEquals("Input the number:Not a Disarium Number\n",outContent.toString());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+	}
+
+ } 
