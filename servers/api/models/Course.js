@@ -8,7 +8,8 @@ if (mongoose.connection.readyState === 0) {
 var newSchema = new Schema({  
   'name': { type: String },
   'description': { type: String },
-  'test_no': {type: String }
+  'test_no': {type: String },
+  'definition':{type: String}
 },{collection : 'Course'});
 
 newSchema.pre('save', function(next){
