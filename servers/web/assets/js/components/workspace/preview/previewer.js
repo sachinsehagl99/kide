@@ -11,6 +11,7 @@ module.exports = angular.module("plunker.directive.previewer", [
   "plunker.oplog"
 ])
 
+
 .directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, $location, commander, project, settings, oplog, notifier, config) {
 
   commander.addCommand({
@@ -18,7 +19,6 @@ module.exports = angular.module("plunker.directive.previewer", [
     hotkeys: "Mod-Enter",
     handler: refreshPreviews
   });
-
 
   $rootScope.$on("project.setTree.success", function() {
     commander.execute("preview.refresh");
@@ -28,8 +28,10 @@ module.exports = angular.module("plunker.directive.previewer", [
 
   function getSrcTemplate(testMethod) {
     var testName = ($location.path()).split("/")[2];
+    var sessionId = ($location.path()).split("/")[4];
 
-    $http.get("/getFiles/"+ testName + "/" + testMethod).then(function(resp) {
+    $http.get("/getFiles/"+ testName + "/" + testMethod + "/" + sessionId).then(function(resp) {
+	$rootScope.definition = resp.data[0].definition;
       commander.execute("project.reset").then(function() {
         commander.execute("project.openTree", {
           tree: resp.data
@@ -60,6 +62,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     json.testMethod = "t" + $rootScope.testMethod;
     return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
+      $rootScope.instruction = resp.data.instruction;
       $rootScope.status = resp.data.status;
       $rootScope.description = resp.data.description;
       $rootScope.hint = resp.data.hint;

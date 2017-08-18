@@ -5,8 +5,8 @@ var Marked = require("marked");
 var Fs = require("fs");
 var _ = require("lodash");
 
-require("../../vendor/angular-timeago/angular-timeago");
-require("../../vendor/borderLayout/borderLayout.coffee");
+require("../../../vendor/angular-timeago/angular-timeago");
+require("../../../vendor/borderLayout/borderLayout.coffee");
 
 module.exports =
 angular.module("plunker.commentsPane", [
@@ -15,11 +15,11 @@ angular.module("plunker.commentsPane", [
   
   "plunker.service.config",
   
-  require("./commander").name,
-  require("./markdown").name,
-  require("./project").name,
-  require("./urlState").name,
-  require("./visitor").name,
+  require("../commander").name,
+  require("../markdown").name,
+  require("../project").name,
+  require("../urlState").name,
+  require("../visitor").name,
 ])
 
 .filter("slice", function () {
@@ -30,7 +30,7 @@ angular.module("plunker.commentsPane", [
   return {
     restrict: "E",
     replace: true,
-    template: Fs.readFileSync(__dirname + "/commentsPane/commentsPane.html", "utf8"),
+    template: Fs.readFileSync(__dirname + "/commentsPane.html", "utf8"),
     link: function ($scope, $element, $attrs) {
       var pane;
       

@@ -2,8 +2,7 @@ var angular = window.angular;
 
 var Fs = require("fs");
 
-module.exports =
-angular.module("plunker.component.overlayer", [
+module.exports = angular.module("plunker.component.overlayer", [
   "ui.bootstrap"
 ])
 
@@ -38,7 +37,7 @@ angular.module("plunker.component.overlayer", [
 .directive("plunkerOverlay", ["$compile", "overlayer", function ($compile, overlayer) {
   return {
     link: function ($scope, $element, $attrs) {
-      var overlayEl = angular.element(Fs.readFileSync(__dirname + "/overlayer/overlay.html", "utf8"));
+      var overlayEl = angular.element(Fs.readFileSync(__dirname + "/overlay.html", "utf8"));
       var queueId = $attrs.plunkerOverlay;
       
       $element.append(overlayEl);

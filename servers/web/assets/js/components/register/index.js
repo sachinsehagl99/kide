@@ -3,7 +3,7 @@ var angular = window.angular;
 var Fs = require("fs");
 var _ = require("lodash");
 
-require("../../vendor/ui-bootstrap/ui-bootstrap");
+require("../../../vendor/ui-bootstrap/ui-bootstrap");
 
 
 module.exports =
@@ -12,7 +12,7 @@ angular.module("plunker.component.register", [
   
   "plunker.service.config",
   
-  require("./oauth").name,
+  require("../oauth").name,
 ])
 
 .factory("register", ["$modal", "oauth", "visitor", function ($modal, oauth, visitor) {
@@ -20,7 +20,7 @@ angular.module("plunker.component.register", [
   
   register.open = function () {
     return $modal.open({
-      template: Fs.readFileSync(__dirname + "/register/register.html", "utf8"),
+      template: Fs.readFileSync(__dirname + "/register.html", "utf8"),
       controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
         
         $scope.resolve = $modalInstance.close.bind($modalInstance);

@@ -183,16 +183,29 @@ exports.register = function (plugin, options, next) {
     config: {
       handler: function (request, reply) {
 	var context = {config: this.local};
-	Request("http://" + this.config.server.api.host + ":" + this.config.server.api.port + "/course", function(err, res, data){
+        var server = this.config.server;
+	Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data){
             var data = JSON.parse(data);
-
+            var promisify = function(key) {
+              return new Promise(function (resolve, reject) {
+                Request.get("http://" + server.api.host + ":" + server.api.port + "/handshake", function (err, res, token) {
+                  data[key].plunkId = token;
+                  resolve();
+                });
+              });
+            };
+            var promises = [];
             for(var key in data){
-              data[key].plunkId = Genid();
+              promises.push(promisify(key));
             }
-            context.body = {plunk: data};
-            reply.view("home", context, {
-	      layout: "landing"
-	  });
+            Promise.all(promises).then(function () {
+              context.body = { plunk: data };
+              reply.view("home", context, {
+                layout: "landing"
+              });
+            }).catch(function(err) {
+              console.log(err);
+            });
         });
       }
     }
@@ -216,15 +229,18 @@ exports.register = function (plugin, options, next) {
 
   plugin.route({
     method: 'GET',
-    path: '/getFiles/{courseName}/{templateName}',
+    path: '/getFiles/{courseName}/{templateName}/{sessionId}',
     config:{
       handler: function (request, reply){
 	var server = this.config.server;
-        var courseName = request.params.courseName;
-        var templateName = request.params.templateName;
+        var requestParams = request.params;
+        var courseName = requestParams.courseName;
+        var templateName = requestParams.templateName;
+        var sessionId = requestParams.sessionId;
 
-        Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName, function (err, res, body){
+        Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName + "/" + sessionId, function (err, res, body){
           reply(body);
+	//console.log(body);
         });
       }
     }
@@ -243,6 +259,7 @@ exports.register = function (plugin, options, next) {
 
       Request.post({url:url, form: payload}, function(err, httpResponse, body){
 	reply(body); 
+	//console.log(body);
       });      
     }
   });

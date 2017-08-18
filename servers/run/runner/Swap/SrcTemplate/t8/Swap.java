@@ -14,12 +14,12 @@ public class Swap{
 	int temp = 0;
 	temp = a;
 	a = b;
-	//=========== Write your code within the block ===========//
 	b = temp;
+	//=========== Write your code within the block ===========//
+	System.out.println("The value of a:"+a);
+	System.out.println("The value of b:"+b);
 	//========================================================//
-	//IGNORE
-	System.out.println(b);
-        //END
+	
     }
 
 }

@@ -4,12 +4,25 @@ var fs = require('fs');
 var filter_file = require("./filter_file");
 var Request = require("request");
 var bodyParser =  require('hapi-bodyparser');
+var randToken = require('rand-token');
+var JSONObject = require('json-object');
+var parse = require('parse-json'); 
+
 
 exports.register = function(server, options, next) {
   var context = {config: options.config};
   
   server.bind(context);
   server.register(bodyParser);
+
+  server.route({
+    method: 'GET',
+    path: '/handshake',
+    handler: function(request, reply) {
+      var token = randToken.generate(16);
+      reply(token);
+    }
+  });
 
   server.route({
     method: 'GET',
@@ -32,37 +45,50 @@ exports.register = function(server, options, next) {
 
   server.route({
     method: 'GET',
-    path: '/getFiles/{course_name}/{template_name}',
+    path: '/getFiles/{course_name}/{template_name}/{sessionId}',
     handler: function(request, reply) {
-      var coursefile = request.params.course_name;
-      var templatename = request.params.template_name;
+      var requestParam = request.params;
+      var coursefile = requestParam.course_name;
+      var templatename = requestParam.template_name;
+      var sessionId = requestParam.sessionId;
+//========================================================//
+      models.Course.find({
+          "name": request.params.course_name
+        }, function(err, items) {
+	           
+//=========================================================//
+
       var program = coursefile + ".java";
       var file_content = fs.readFileSync(__dirname + '/../run/runner/' + coursefile + '/SrcTemplate/' + templatename + '/' + program, 'utf8');
-      file_content = filter_file.geCodeTemplate(file_content);
+      file_content = filter_file.geCodeTemplate(file_content, sessionId);
       var files = [{
         type: "file",
         filename: request.params.course_name + ".java",
         contents: file_content,
+	definition: items[0].definition, 
         active: true
       }]
+    
       reply(files);
+      //console.log(files);
+    });
     }
   });
 
   server.route({
     method: 'POST',
-    path: '/java/{testName}/{pathId}',
+    path: '/java/{testName}/{sessionId}',
     handler: function(request, reply) {
       var server = this.config.server;
       var params = request.params;
       var testName = encodeURIComponent(params.testName);
-      var pathId = encodeURIComponent(params.pathId);
+      var sessionId = encodeURIComponent(params.sessionId);
       var payload = request.payload;
-      var url = "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + pathId;
+      var url = "http://" + server.run.host + ":" + server.run.port + "/java/" + testName + "/" + sessionId;
 
       for (var key in payload.files) {
         var file_content = payload.files[key].contents;
-        request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content);
+        request.payload.files[key].contents = filter_file.insertToCodeTemplate(file_content, sessionId);
       }
  
       Request.post({url:url, form: payload}, function(err, httpResponse, body){
