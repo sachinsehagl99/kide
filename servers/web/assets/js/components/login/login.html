@@ -3,24 +3,24 @@
   <h4>Login to cuboid.io</h4>
 </div>
 <div class="modal-body">
-  <p>
-    Click on the button below that corresponds to the service you would like to
-    use to login to cuboid.io.
-  </p>
-  <p>
-    If you do not have an account on cuboid.io, click the service below that you
-    would like to associate with cuboid.io. Don't worry, you can associate more services later.
-  </p>
   <p class="alert alert-danger" ng-if="status.error">
     <button type="button" class="close" ng-click="status.error=null" aria-hidden="true">&times;</button>
     <span ng-bind="status.error"></span>
   </p>
   <div class="row">
-    <p class="col-xs-3 social-provider" ng-repeat="provider in providers">
-      <button class="btn btn-md social-login" ng-class="{active: identities[provider.id], 'btn-default': !identities[provider.id], 'btn-success': identities[provider.id]}" ng-click="login(provider.id)" ng-disabled="status.authInProgress">
-        <i class="fa fa-fw fa-4x" ng-class="provider.icon" style="display: block"></i>
-        <span ng-bind="provider.name"></span>
-      </button>
-    </p>
+     <div class="col-md-12">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled="status.authInProgress">Sign in</button>
+       <button class="btn btn-lg btn-primary btn-block" ng-click="register()">Register</button>
+    </div>
   </div>
 </div>

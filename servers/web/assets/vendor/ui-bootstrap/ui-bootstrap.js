@@ -1869,9 +1869,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
 
   .factory('$modalStack', ['$transition', '$timeout', '$document', '$compile', '$rootScope', '$$stackedMap',
     function ($transition, $timeout, $document, $compile, $rootScope, $$stackedMap) {
-
       var OPENED_MODAL_CLASS = 'modal-open';
-
       var backdropDomEl, backdropScope;
       var openedWindows = $$stackedMap.createNew();
       var $modalStack = {};
@@ -2105,6 +2103,7 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.transition'])
               if (modalOptions.controller) {
                 ctrlLocals.$scope = modalScope;
                 ctrlLocals.$modalInstance = modalInstance;
+                ctrlLocals.$elements = "hello";
                 angular.forEach(modalOptions.resolve, function (value, key) {
                   ctrlLocals[key] = tplAndVars[resolveIter++];
                 });

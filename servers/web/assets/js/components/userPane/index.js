@@ -2,8 +2,7 @@ var Fs = require("fs");
 
 
 module.exports = angular.module("plunker.component.userPane", [
-  "ui.bootstrap",
-  
+  "ui.bootstrap",  
   require("../login").name,
   require("../marked").name,
   require("../notifier").name,
