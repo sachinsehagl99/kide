@@ -124,9 +124,6 @@ Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
         Gutil.log("Bundling error", e.message);
       })
       .pipe(Source("landing.js"))
-      //.pipe(Rename(function (path) {
-      //  path.basename += "-" + Genid(8, "", "abcdefghijklmnopqrstuvwxyz0123456789");
-      //}))
       .pipe(Gulp.dest("public/landing"));
   }
 });

@@ -221,8 +221,7 @@ exports.register = function (plugin, options, next) {
         var courseName = request.params.courseName;
 	var context = {"url": {"run": ""}};
 
-	 reply.view("editor", context); 
-;
+	reply.view("editor", context);
       }
     }
   });
@@ -263,50 +262,34 @@ exports.register = function (plugin, options, next) {
       });      
     }
   });
-   
+ 
   plugin.route({
     method: 'GET',
-    path: '/plunks/{plunkId}',
+    path: '/login',
     config: {
-      handler: function (request, reply) {
-	var context = {config: this.local};
-	var fetchPlunk = function (plunkId) {
-	  return When.promise(function(resolve, reject) {
-	    request.server.methods.fetchPlunk(plunkId, function (err, result) {
-	      if (err) return reject(err);
-	      resolve(result);
-	    });
-	  });
-	};
-	var fetchComments = function (plunkId) {
-	  return When.promise(function(resolve, reject) {
-	    request.server.methods.fetchComments(plunkId, function (err, result) {
-	      if (err) return reject(err);
-	      resolve(result);
-	    });
-	  });
-	};
-	
-	When.join(
-	  fetchPlunk(request.params.plunkId),
-	  fetchComments(request.params.plunkId)
-	).then(function (results) {
-	  var plunk = results[0];
-	  var comments = results[1];
-	  
-	  context.plunk = plunk;
-	  context.comments = comments;
-	  context.subtitle = " - " + plunk.description;
-	  context.previewSha = plunk.revisions[plunk.revisions.length - 1].tree;
-	
-	  reply.view("details", context, {
-	    layout: "landing"
-	  });
-	}, reply);
+      handler: function (request, reply){
+        var context = {};
+        reply.view("login", context, {layout: "landing"});
       }
     }
   });
-  
+
+  plugin.route({
+    method: 'GET',
+    path: '/users/exists/{username}',
+    config: {
+      handler: function (request, reply){
+        var server = this.config.server;
+        var username = request.params.username;
+ 
+        Request("http://" +  server.api.host + ":" + server.api.port + '/users/exists/' + username, function (err, res, body){
+          console.log("==========");
+          console.log(body);
+        });  
+      }
+    }
+  });
+ 
   plugin.route({
     method: 'GET',
     path: '/users/{username}',

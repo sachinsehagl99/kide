@@ -1,36 +1,40 @@
-var angular = window.angular;
-
 var Fs = require("fs");
 var _ = require("lodash");
 
-require("../../../vendor/ui-bootstrap/ui-bootstrap");
 
-
-module.exports =
-angular.module("plunker.component.register", [
-  "ui.bootstrap",
-  
-  "plunker.service.config",
-  
+module.exports = angular.module("plunker.component.register", [
+  "ui.bootstrap",  
+  "plunker.service.config", 
   require("../oauth").name,
 ])
 
-.factory("register", ["$modal", "oauth", "visitor", function ($modal, oauth, visitor) {
+.factory("register", function ($rootScope, $modal, oauth, visitor) {
   var register = {};
-  
+
+  $rootScope.user = {
+    name: "bonnie",
+    email: "",
+    password: ""
+  };
+
   register.open = function () {
-    return $modal.open({
+    var modalInstance = $modal.open({
+      scope: $rootScope,
       template: Fs.readFileSync(__dirname + "/register.html", "utf8"),
-      controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
-        
+      controller: function ($scope, $modalInstance, $elements) {
+
+
+  $scope.user = {
+    name: "bonnie",
+    email: "",
+    password: ""
+  };
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
-        
         $scope.identities = oauth.identities;
         $scope.providers = oauth.providers;
-        
         $scope.state = {};
-        
+ 
         $scope.steps = [
           {
             id: 'identities',
@@ -64,18 +68,23 @@ angular.module("plunker.component.register", [
         $scope.step = $scope.steps[0];
         
         $scope.advance = function () {
-          var idx = $scope.steps.indexOf($scope.step);
-          var advance = $scope.step.advance || function () {
-            $scope.step = $scope.steps[idx + 1];
-          };
+            console.log("==========");
+            console.log($rootScope.user.name);
+            console.log($rootScope.user.email);
+           console.log($rootScope.user.password);
+
+/*          var idx = $scope.steps.indexOf($scope.step);*/
+          //var advance = $scope.step.advance || function () {
+            //$scope.step = $scope.steps[idx + 1];
+          //};
           
-          if (idx < 0) throw new Error("Internal logic error");
+          //if (idx < 0) throw new Error("Internal logic error");
           
-          if (!_.isFunction($scope.step.validate) || $scope.step.validate()) {
-            advance();
+          //if (!_.isFunction($scope.step.validate) || $scope.step.validate()) {
+            //advance();
             
-            if ($scope.step.onEnter) $scope.step.onEnter();
-          }
+            //if ($scope.step.onEnter) $scope.step.onEnter();
+          /*}*/
         };
         
         $scope.toggle = function (service) {
@@ -106,13 +115,14 @@ angular.module("plunker.component.register", [
             return !_.isEmpty(oauth.identities);
           }
         };
+      }
+    });
 
-      }]
-    }).result;  
+    return modalInstance.result;  
   };
   
   return register;
-}])
+})
 
 .directive("plunkerUserExists", ["$http", "config", function ($http, config) {
   return {
@@ -122,7 +132,7 @@ angular.module("plunker.component.register", [
         if (value) {
           model.$setValidity("checking", false);
           
-          $http.get(config.url.api + "/users/exists", {params: {username: value}}).then(function (response) {
+          $http.get("/users/exists", {params: {username: value}}).then(function (response) {
             console.log(response.data);
             model.$setValidity("exists", response.data !== 'true');
           }).finally(function () {
@@ -139,6 +149,4 @@ angular.module("plunker.component.register", [
       });
     }
   };
-}])
-
-;
+}]);

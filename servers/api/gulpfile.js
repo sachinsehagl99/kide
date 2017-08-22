@@ -9,7 +9,7 @@ Gulp.task('mongodump', function() {
 });
 
 ///////////////////
-Gulp.task('mongorestore', function() {
+Gulp.task('mongoupdate', function() {
   mongobackup.restore({
     db : 'cuboid',
     host : 'localhost',

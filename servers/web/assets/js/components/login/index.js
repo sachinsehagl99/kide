@@ -6,10 +6,8 @@ var _ = require("lodash");
 require("../../../vendor/ui-bootstrap/ui-bootstrap.js");
 
 
-module.exports =
-angular.module("plunker.component.login", [
+module.exports = angular.module("plunker.component.login", [
   "ui.bootstrap",
-
   require("../register").name,
   require("../oauth").name,
 ])
@@ -24,13 +22,15 @@ angular.module("plunker.component.login", [
       controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
-
         $scope.identities = oauth.identities;
-        $scope.providers = oauth.providers;
-        
+        $scope.providers = oauth.providers; 
         $scope.status = {};
         
         oauth.clearIdentities();
+
+        $scope.register = function () {
+          return $modalInstance.close(register.open());
+        }
         
         $scope.login = function (service) {
           $scope.status.authInProgress = oauth.identify(service).then(function (identities) {
@@ -61,6 +61,4 @@ angular.module("plunker.component.login", [
   };
   
   return login;
-}])
-
-;
+}]);
