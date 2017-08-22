@@ -1,12 +1,27 @@
 <div>
-
-<pre>{{definition}}</pre>
+<div class = "panel">
+<div class="panel-heading"></div>
+<div style="background:#ffffff" class="panel-body">
+<h3 id ="testmessage">{{definition}}</h3>
+</div>
+</div>
 <div class="panel panel-{{status == 'passed'? 'success' : 'danger'}}" style="margin-top:5%">
   <div class="panel-heading"></div>
   <div style="background:#ffffff" class="panel-body">
     <h3 id="testmessage">{{description}}</h3>
   </div>
 </div>
-<pre>{{instruction}}</pre>
-<pre>{{hint}}</pre>
+<div class="panel">
+<div class="panel-heading"></div>
+<div style="background:#ffffff" class="panel-body">
+<h3 id ="testmessage"><pre>{{instruction}}</pre></h3>
+</div>
+</div>
+	<hr>
+	<button type="button" class="btn btn-default" ng-click="isCollapsed()"style="background-color:#28b62c;font-size:10pt;color:white;width:350px">Hint</button>
+	<hr>
+	<div style="visibility: {{hintVar}}">
+	<div class="well well-sm"><pre>{{hint}}</pre></div>
+	</div>
+
 </div>
