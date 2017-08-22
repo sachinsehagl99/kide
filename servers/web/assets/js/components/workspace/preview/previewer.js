@@ -23,7 +23,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
   $rootScope.hintVar = "hidden";
   $rootScope.isCollapsed = function () {
-      $rootScope.hintVar= ($rootScope.hintVar == "hidden") ?  "" : "hidden";     
+     $rootScope.hintVar= ($rootScope.hintVar == "") ?  "hidden" : "";     
 
     /*if($rootScope.hintVar == "hidden"){
       $rootScope.hintVar = "";
@@ -75,7 +75,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     json.testMethod = "t" + $rootScope.testMethod;
     return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
-      $rootScope.someVar = "hidden";
+      $rootScope.hintVar = "hidden";
       $rootScope.instruction = resp.data.instruction;
       $rootScope.status = resp.data.status;
       $rootScope.description = resp.data.description;
