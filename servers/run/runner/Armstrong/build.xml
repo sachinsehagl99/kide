@@ -36,7 +36,6 @@
         <pathelement location="${junit4}"/>
         <pathelement location="${build-classes}"/>
 	<pathelement location="${json-runner}"/>
-
       </classpath>
     </javac>
   </target>

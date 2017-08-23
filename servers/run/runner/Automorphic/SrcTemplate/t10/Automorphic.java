@@ -21,10 +21,10 @@ public class Automorphic{
 	{
 		b=a%10;
 		a=a/10;			
+		auto = (b*j) + auto;
 		
 	//=========== Write your code within the block ===========//
-		auto = (b*j) + auto;
-			
+		j=10;			
 	//========================================================//
 	//IGNORE
 		System.out.println(+auto);

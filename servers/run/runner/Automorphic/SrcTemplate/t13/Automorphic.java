@@ -26,9 +26,12 @@ public class Automorphic{
 		i--;
     		
 	}while(i!=0);
+	if(auto == dup)
+		System.out.println("Automorphic Number");
+	
 	//=========== Write your code within the block ===========//
-		if(auto == dup)
-			System.out.println("Automorphic Number");
+	else
+		System.out.println("Not an Automorphic Number");
 	//========================================================//
 	
     }

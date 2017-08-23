@@ -145,30 +145,8 @@ public class AutomorphicTest extends Base
 	public void t7() throws java.io.IOException{
 	instruction = "Exchange the value between two variable\nStore the value of 'c' into another variable\n'b'. Ex: b=c;";
 	
-	hint = "a=dup;\n";
-        description = "Put the value of 'dup' in 'a' variable";
-	Automorphic obj = new Automorphic();
-	ByteArrayInputStream in = new ByteArrayInputStream("76".getBytes());
-	System.setIn(in);
-	try {
-		Method m=getMethod(obj,"main");
-		if(m!=null)
-		{
-		  m.invoke(obj);
-                  assertEquals("Input the number:76\n",outContent.toString());		
- 
-     		
-    		}
-        }
-	catch(Exception e){}
-    	    
-        }
-	
-	@Test
-	public void t8() throws java.io.IOException{
-	instruction = "variable = variable * variable represents performing the square of a number and saving it in the same variable";
-	hint = "a= a *a ;\n";
-        description = "Find the square of the value of 'a'";
+	hint = "a=dup * dup;\n";
+        description = "Put the square of the value of 'dup' in 'a' variable";
 	Automorphic obj = new Automorphic();
 	ByteArrayInputStream in = new ByteArrayInputStream("76".getBytes());
 	System.setIn(in);
@@ -186,10 +164,8 @@ public class AutomorphicTest extends Base
     	    
         }
 	
-
-
 	@Test
-	public void t9() throws java.io.IOException{
+	public void t8() throws java.io.IOException{
 	instruction = "A do-while loop is a control flow statement\nthat executes a block of code at least once,\nand then repeatedly executes the block,or not,\ndepending on a given boolean condition at the\n end of the block.";
 	hint = "b=a%10;\na=a/10;\n";
         description = "Extract the number within do-while loop";
@@ -214,7 +190,7 @@ public class AutomorphicTest extends Base
 
 	
 	@Test
-	public void t10() throws java.io.IOException{
+	public void t9() throws java.io.IOException{
 	instruction = "final value of varriable1 = (varriable2 * varriable3)+ initial value of variable1";
 	hint = "auto = (b*j) + auto;\n";
         description = "Write the equation so that the extracted digits form a number in reverse order";
@@ -237,7 +213,7 @@ public class AutomorphicTest extends Base
 	}
 
 	@Test
-	public void t11() throws java.io.IOException{
+	public void t10() throws java.io.IOException{
 	instruction = "Saving a numerical value in a variable";
 	hint = "j = 10; \n";
         description = "Set the value of j as 10 so that on 2nd iteration the value becomes a multiple of 10";
@@ -261,7 +237,7 @@ public class AutomorphicTest extends Base
 
 
 	@Test
-	public void t12() throws java.io.IOException{
+	public void t11() throws java.io.IOException{
 	instruction = "variable-- in the expanded form is represented as varriable = variable - 1 ";
 	hint = "i--;\n";
         description = "Decrement the counter varriable";
@@ -284,7 +260,7 @@ public class AutomorphicTest extends Base
 
 
 	@Test
-	public void t13() throws java.io.IOException{
+	public void t12() throws java.io.IOException{
 	instruction = "An if statement can be followed by an\noptional else statement, if executes when\nthe Boolean expression is true.";
 	
 	hint = "if(dup == auto )\nSystem.out.println(\"Automorphic Number\");\n";
@@ -306,7 +282,7 @@ public class AutomorphicTest extends Base
 	}
 
 	@Test
-	public void t14() throws java.io.IOException{
+	public void t13() throws java.io.IOException{
 	instruction = "else statement executes when the Boolean\nexpression is false";
 	hint = "else \nSystem.out.println(\"Not an Automorphic Number\");\n";
         description = "Print 'Not an Automorphic number' using else";
