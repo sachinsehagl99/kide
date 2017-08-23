@@ -20,6 +20,19 @@ module.exports = angular.module("plunker.directive.previewer", [
     handler: refreshPreviews
   });
 
+
+  $rootScope.hintVar = "hidden";
+  $rootScope.isCollapsed = function () {
+     $rootScope.hintVar= ($rootScope.hintVar == "") ?  "hidden" : "";     
+
+    /*if($rootScope.hintVar == "hidden"){
+      $rootScope.hintVar = "";
+    } else {
+      $rootScope.hintVar = "hidden";
+   	}*/
+  }
+
+
   $rootScope.$on("project.setTree.success", function() {
     commander.execute("preview.refresh");
   });
@@ -62,6 +75,7 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     json.testMethod = "t" + $rootScope.testMethod;
     return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
+      $rootScope.hintVar = "hidden";
       $rootScope.instruction = resp.data.instruction;
       $rootScope.status = resp.data.status;
       $rootScope.description = resp.data.description;
