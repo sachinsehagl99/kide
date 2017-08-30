@@ -33,15 +33,15 @@ public class HelloWorldTest extends Base
     @Test
    public void t2() throws java.io.IOException{
 	instruction = "System: It is a class in the java.lang package.\n\nout: It is a static member of the System\nclass, and is an instance of java.io.PrintStream.\n\nprintln: It is a method of java.io.PrintStream.\nThis method is overloaded to print message to\noutput destination, which is typically a\nconsole or file.";
-	hint = "System.out.println(\"Hello World!\");\n";
-        description = "Print 'Hello World!'";
+	hint = "System.out.println(\"Hello World\");\n";
+        description = "Print 'Hello World'";
 	HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
 		if(m!= null)
 		{
 		m.invoke(obj);
-	        assertEquals("Hello World!\n", outContent.toString());
+	        assertEquals("hello world\n", outContent.toString().toLowerCase());
      
 
     		}
