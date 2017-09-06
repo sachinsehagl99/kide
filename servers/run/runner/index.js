@@ -28,11 +28,11 @@ module.exports = function(name, testMethod, build_dir, src_file, test_build_dir,
         if (!code) {
           class_path = hamcrest_path + ':' + junit_path + ':' + test_build_dir + ':' + junit_json_runner + ':' + json_simple + ":" + build_dir;
           shelljs.exec('java -cp ' + class_path + ' org.junit.runner.JsonRunner ' + name + "#" + testMethod, {silent: true }, function(code, arr) {
-	     /*if(!code){
-		shelljs.exec('java -cp ' + build_dir + ' org.junit.runner.JsonRunner ' + ' ' + pro_name , function(code , output){
+	     if(!code){
+		shelljs.exec('java -cp ' + build_dir + ' ' + pro_name , function(code , output){
 			console.log(output);
 		});
-	     }*/
+	     }
 
             arr = JSON.parse(arr);
 	    for (var key in arr) {
