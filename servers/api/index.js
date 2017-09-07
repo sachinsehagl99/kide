@@ -106,9 +106,28 @@ exports.register = function(server, options, next) {
       });      
     }
   });
+  server.route({
+  	method: 'POST',
+	path :'/users',
+	handler : function (request , reply ){
+		var name = request.payload.name;
+		var email = request.payload.email;
+		var password = request.payload.password;
+
+                var User = new models.Users({
+		  'name' : name,
+		  'email' : email,
+		  'password' : password
+		});
+	
+               User.save(function (err){
+                 if(err) return handleError(err);
+               });
+	}
+  });
   return next();
 };
 
 exports.register.attributes = {
   pkg: require('./package.json')
-};
+}

@@ -23,7 +23,9 @@ public class ArmstrongTest extends Base
 
     		}
         
-	catch(Exception e){}
+	catch(Exception e){
+		assertEquals(0,1);
+	}
     
         }
 @Test

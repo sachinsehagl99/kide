@@ -38,7 +38,7 @@ module.exports = angular.module("plunker.component.login", [
   login.open = function () {
     
     return $modal.open({
-      template: "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"reject()\">&times;</button>\n  <h4>Login to cuboid.io</h4>\n</div>\n<div class=\"modal-body\">\n  <p class=\"alert alert-danger\" ng-if=\"status.error\">\n    <button type=\"button\" class=\"close\" ng-click=\"status.error=null\" aria-hidden=\"true\">&times;</button>\n    <span ng-bind=\"status.error\"></span>\n  </p>\n  <div class=\"row\">\n     <div class=\"col-md-12\">\n        <h2 class=\"form-signin-heading\">Please sign in</h2>\n        <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n        <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required=\"\" autofocus=\"\">\n        <label for=\"inputPassword\" class=\"sr-only\">Password</label>\n        <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required=\"\">\n        <div class=\"checkbox\">\n          <label>\n            <input type=\"checkbox\" value=\"remember-me\"> Remember me\n          </label>\n        </div>\n        <button class=\"btn btn-lg btn-primary btn-block\" ng-click=\"login()\" ng-disabled=\"status.authInProgress\">Sign in</button>\n       <button class=\"btn btn-lg btn-primary btn-block\" ng-click=\"register()\">Register</button>\n    </div>\n  </div>\n</div>\n",
+      template: "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"reject()\">&times;</button>\n  <h4>Login to cuboid.io</h4>\n</div>\n<div class=\"modal-body\">\n  <p class=\"alert alert-danger\" ng-if=\"status.error\">\n    <button type=\"button\" class=\"close\" ng-click=\"status.error=null\" aria-hidden=\"true\">&times;</button>\n    <span ng-bind=\"status.error\"></span>\n  </p>\n  <div class=\"row\">\n     <div class=\"col-md-12\">\n        <h2 class=\"form-signin-heading\">Please sign in</h2>\n        <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n        <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required=\"\" autofocus=\"\" ng-model=\"user.email\">\n        <label for=\"inputPassword\" class=\"sr-only\">Password</label>\n        <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required=\"\" ng-model=\"user.password\">\n        <div class=\"checkbox\">\n          <label>\n            <input type=\"checkbox\" value=\"remember-me\"> Remember me\n          </label>\n        </div>\n        <button class=\"btn btn-lg btn-primary btn-block\" ng-click=\"login()\" ng-disabled=\"status.authInProgress\">Sign in</button>\n       <button class=\"btn btn-lg btn-primary btn-block\" ng-click=\"register()\">Register</button>\n    </div>\n  </div>\n</div>\n",
       controller: ["$scope", "$modalInstance", function ($scope, $modalInstance) {
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
@@ -83,7 +83,7 @@ module.exports = angular.module("plunker.component.login", [
   return login;
 }]);
 
-},{"../../../vendor/ui-bootstrap/ui-bootstrap.js":12,"../oauth":6,"../register":7,"lodash":13}],3:[function(require,module,exports){
+},{"../../../vendor/ui-bootstrap/ui-bootstrap.js":14,"../oauth":6,"../register":7,"lodash":15}],3:[function(require,module,exports){
 var angular = window.angular;
 
 var Marked = require("marked");
@@ -138,7 +138,7 @@ angular.module("plunker.markdown", [
 }])
 
 ;
-},{"marked":14}],4:[function(require,module,exports){
+},{"marked":16}],4:[function(require,module,exports){
 var angular = window.angular;
 
 module.exports =
@@ -311,14 +311,10 @@ module.exports = angular.module("plunker.service.notifier", [
   };
 }]);
 
-},{"../../vendor/angular-growl/angular-growl":11,"../../vendor/ui-bootstrap/ui-bootstrap":12}],6:[function(require,module,exports){
-var angular = window.angular;
-
+},{"../../vendor/angular-growl/angular-growl":13,"../../vendor/ui-bootstrap/ui-bootstrap":14}],6:[function(require,module,exports){
 var _ = require("lodash");
 
-
-module.exports =
-angular.module("plunker.service.oauth", [
+module.exports = angular.module("plunker.service.oauth", [
   require("./visitor").name,
 ])
 
@@ -542,38 +538,35 @@ angular.module("plunker.service.oauth", [
 }])
 
 ;
-},{"./visitor":9,"lodash":13}],7:[function(require,module,exports){
+
+},{"./visitor":9,"lodash":15}],7:[function(require,module,exports){
 
 var _ = require("lodash");
-
+require("../../services/users");
+require("../../services/flash");
+require("../oauth");
 
 module.exports = angular.module("plunker.component.register", [
   "ui.bootstrap",  
   "plunker.service.config", 
-  require("../oauth").name,
+  "plunker.service.users",
+  "plunker.service.flash",
+  "plunker.service.oauth"
 ])
 
-.factory("register", function ($rootScope, $modal, oauth, visitor) {
+.factory("register", function ($rootScope, $modal, oauth, visitor, UserService) {
   var register = {};
-
-  $rootScope.user = {
-    name: "bonnie",
-    email: "",
-    password: ""
-  };
 
   register.open = function () {
     var modalInstance = $modal.open({
-      scope: $rootScope,
-      template: "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"reject()\">&times;</button>\n  <h4>Register with cuboid.io</h4>\n</div>\n<div class=\"modal-body\" ng-switch=\"step.id\">\n  <div ng-switch-when=\"identities\">\n    <p class=\"alert alert-danger\" ng-if=\"state.error\">\n      <button type=\"button\" class=\"close\" ng-click=\"state.error=null\" aria-hidden=\"true\">&times;</button>\n      <span ng-bind=\"state.error\"></span>\n    </p>\n    <div class=\"row\">\n     <div class=\"col-md-12\">\n<form name = \"addFriendForm\">\n        <h2 class=\"form-signin-heading\">Please Register</h2>\n        <label for=\"inputUserName\" class=\"sr-only\">Username</label>\n        <input type=\"text\" id=\"inputUsername\" class=\"form-control\" placeholder=\"username\" required=\"\" autofocus=\"\" value={{user.name}} ng-model={{user.name}}>\n        <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n        <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required=\"\" ng-model={{user.email}}>\n        <label for=\"inputPassword\" class=\"sr-only\">Password</label>\n        <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required=\"\" ng-model={{user.password}}>\n</form>  \n \n     </div> \n    </div>\n  </div> \n  <div ng-switch-when=\"profile\">\n    <p>\n      Build your profile.\n    </p>\n    <p class=\"alert alert-danger\" ng-if=\"state.error\">\n      <button type=\"button\" class=\"close\" ng-click=\"state.error=null\" aria-hidden=\"true\">&times;</button>\n      <span ng-bind=\"state.error\"></span>\n    </p>\n    <form class=\"form\" name=\"profileForm\" novalidate>\n      <div class=\"form-group\">\n        <label>Username:</label>\n        <div class=\"input-group\">\n          <i ng-if=\"profileForm.username.$error.required\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Username is required\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.checking\" class=\"fa fa fa-refresh fa-spin input-validity text-muted\" tooltip=\"Checking if user already exists\" tooltip-attach-to-body></i>\n          <i ng-if=\"profileForm.username.$error.exists\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"A user already exists with that username\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.pattern\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: only letterns and numbers allowed\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.minlength\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: must be at least 3 characters\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.maxlength\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: cannot be more than 40 characters\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$valid\" class=\"fa fa fa-check-circle input-validity text-success\"></i>\n          \n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.username\" name=\"username\" ng-pattern=\"/^[a-zA-Z0-9][-_a-zA-Z0-9]+[a-zA-Z0-9]+$/\" ng-minlength=\"3\" ng-maxlength=\"40\" ng-model-options=\"{ updateOn: 'default blur', debounce: { default: 200, blur: 0 } }\" plunker-user-exists required>\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.username.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.username\">\n                <a ng-click=\"profile.username=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Description:</label>\n        <div class=\"input-group\">\n          <textarea rows=\"2\" class=\"form-control\" ng-model=\"profile.description\" name=\"description\"></textarea>\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.description.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.description\">\n                <a ng-click=\"profile.description=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Company:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.company\" name=\"company\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.company.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.company\">\n                <a ng-click=\"profile.company=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Location:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.location\" name=\"location\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.location.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.location\">\n                <a ng-click=\"profile.location=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Website:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.website_url\" name=\"website_url\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.website_url.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.website_url\">\n                <a ng-click=\"profile.website_url=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>  \n</div>\n\n\n<div class=\"modal-footer\">\n  <div class=\"pull-right\">\n    <button ng-if=\"step.next\" class=\"btn btn-primary\" ng-click=\"advance()\" ng-bind=\"step.next\">Next</button>\n  </div> \n  <div class=\"pull-left\">\n    <button class=\"btn btn-link\" ng-click=\"reject('Clicked cancel')\">Cancel</button>\n  </div>\n</div>\n",
+      template: "<div class=\"modal-header\">\n  <button type=\"button\" class=\"close\" ng-click=\"reject()\">&times;</button>\n  <h4>Register with cuboid.io</h4>\n</div>\n<div class=\"modal-body\" ng-switch=\"step.id\">\n  <div ng-switch-when=\"identities\">\n    <p class=\"alert alert-danger\" ng-if=\"state.error\">\n      <button type=\"button\" class=\"close\" ng-click=\"state.error=null\" aria-hidden=\"true\">&times;</button>\n      <span ng-bind=\"state.error\"></span>\n    </p>\n    <div class=\"row\">\n     <div class=\"col-md-12\">\n<form name = \"addFriendForm\">\n        <h2 class=\"form-signin-heading\">Please Register</h2>\n        <label for=\"inputUserName\" class=\"sr-only\">Username</label>\n        <input type=\"text\" id=\"inputUsername\" class=\"form-control\" placeholder=\"username\" required=\"\" autofocus=\"\" ng-model=\"user.name\">\n        <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\n        <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required=\"\" ng-model=\"user.email\">\n        <label for=\"inputPassword\" class=\"sr-only\">Password</label>\n        <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required=\"\" ng-model=\"user.password\">\n</form>  \n \n     </div> \n    </div>\n  </div> \n  <div ng-switch-when=\"profile\">\n    <p>\n      Build your profile.\n    </p>\n    <p class=\"alert alert-danger\" ng-if=\"state.error\">\n      <button type=\"button\" class=\"close\" ng-click=\"state.error=null\" aria-hidden=\"true\">&times;</button>\n      <span ng-bind=\"state.error\"></span>\n    </p>\n    <form class=\"form\" name=\"profileForm\" novalidate>\n      <div class=\"form-group\">\n        <label>Username:</label>\n        <div class=\"input-group\">\n          <i ng-if=\"profileForm.username.$error.required\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Username is required\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.checking\" class=\"fa fa fa-refresh fa-spin input-validity text-muted\" tooltip=\"Checking if user already exists\" tooltip-attach-to-body></i>\n          <i ng-if=\"profileForm.username.$error.exists\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"A user already exists with that username\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.pattern\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: only letterns and numbers allowed\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.minlength\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: must be at least 3 characters\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$error.maxlength\" class=\"fa fa fa-times-circle input-validity text-danger\" tooltip=\"Invalid username: cannot be more than 40 characters\" tooltip-append-to-body=\"true\"></i>\n          <i ng-if=\"profileForm.username.$valid\" class=\"fa fa fa-check-circle input-validity text-success\"></i>\n          \n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.username\" name=\"username\" ng-pattern=\"/^[a-zA-Z0-9][-_a-zA-Z0-9]+[a-zA-Z0-9]+$/\" ng-minlength=\"3\" ng-maxlength=\"40\" ng-model-options=\"{ updateOn: 'default blur', debounce: { default: 200, blur: 0 } }\" plunker-user-exists required>\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.username.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.username\">\n                <a ng-click=\"profile.username=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Description:</label>\n        <div class=\"input-group\">\n          <textarea rows=\"2\" class=\"form-control\" ng-model=\"profile.description\" name=\"description\"></textarea>\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.description.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.description\">\n                <a ng-click=\"profile.description=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Company:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.company\" name=\"company\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.company.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.company\">\n                <a ng-click=\"profile.company=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Location:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.location\" name=\"location\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.location.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.location\">\n                <a ng-click=\"profile.location=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label>Website:</label>\n        <div class=\"input-group\">\n          <input type=\"text\" class=\"form-control\" ng-model=\"profile.website_url\" name=\"website_url\">\n          <div class=\"input-group-btn\">\n            <button type=\"button\" class=\"btn btn-default dropdown-toggle\" ng-disabled=\"profileData.website_url.length < 2\" data-toggle=\"dropdown\"><span class=\"caret\"></span></button>\n            <ul class=\"dropdown-menu pull-right\">\n              <li ng-repeat=\"option in profileData.website_url\">\n                <a ng-click=\"profile.website_url=option.value\">\n                  <span ng-bind=\"option.value\"></span>\n                  <em ng-bind-template=\"({{option.provider}})\"></em>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>  \n</div>\n\n\n<div class=\"modal-footer\">\n  <div class=\"pull-right\">\n    <button ng-if=\"step.next\" class=\"btn btn-primary\" ng-click=\"advance()\" ng-bind=\"step.next\">Next</button>\n  </div> \n  <div class=\"pull-left\">\n    <button class=\"btn btn-link\" ng-click=\"reject('Clicked cancel')\">Cancel</button>\n  </div>\n</div>\n",
       controller: function ($scope, $modalInstance, $elements) {
 
-
-  $scope.user = {
-    name: "bonnie",
-    email: "",
-    password: ""
-  };
+        $scope.user = {
+	    name: "",
+	    email: "",
+	    password: ""
+	};
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
         $scope.identities = oauth.identities;
@@ -613,23 +606,14 @@ module.exports = angular.module("plunker.component.register", [
         $scope.step = $scope.steps[0];
         
         $scope.advance = function () {
-            console.log("==========");
-            console.log($rootScope.user.name);
-            console.log($rootScope.user.email);
-           console.log($rootScope.user.password);
-
-/*          var idx = $scope.steps.indexOf($scope.step);*/
-          //var advance = $scope.step.advance || function () {
-            //$scope.step = $scope.steps[idx + 1];
-          //};
-          
-          //if (idx < 0) throw new Error("Internal logic error");
-          
-          //if (!_.isFunction($scope.step.validate) || $scope.step.validate()) {
-            //advance();
-            
-            //if ($scope.step.onEnter) $scope.step.onEnter();
-          /*}*/
+            UserService.Create($scope.user)
+                .then(function (response) {
+                    if (response.success) {
+                        FlashService.Success('Registration successful', true);
+                    } else {
+                        FlashService.Error(response.message);
+                    }
+                });
         };
         
         $scope.toggle = function (service) {
@@ -696,7 +680,7 @@ module.exports = angular.module("plunker.component.register", [
   };
 }]);
 
-},{"../oauth":6,"lodash":13}],8:[function(require,module,exports){
+},{"../../services/flash":10,"../../services/users":11,"../oauth":6,"lodash":15}],8:[function(require,module,exports){
 
 
 
@@ -915,7 +899,112 @@ angular.module("plunker.service.visitor", [
 
 
 ;
-},{"../../vendor/angular-cookie/angular-cookie.js":10,"lodash":13}],10:[function(require,module,exports){
+},{"../../vendor/angular-cookie/angular-cookie.js":12,"lodash":15}],10:[function(require,module,exports){
+module.exports = angular.module('plunker.service.flash', [])
+
+  .factory('FlashService', FlashService);
+
+    FlashService.$inject = ['$rootScope'];
+    function FlashService($rootScope) {
+        var service = {};
+
+        service.Success = Success;
+        service.Error = Error;
+
+        initService();
+
+        return service;
+
+        function initService() {
+            $rootScope.$on('$locationChangeStart', function () {
+                clearFlashMessage();
+            });
+
+            function clearFlashMessage() {
+                var flash = $rootScope.flash;
+                if (flash) {
+                    if (!flash.keepAfterLocationChange) {
+                        delete $rootScope.flash;
+                    } else {
+                        // only keep for a single location change
+                        flash.keepAfterLocationChange = false;
+                    }
+                }
+            }
+        }
+
+        function Success(message, keepAfterLocationChange) {
+            $rootScope.flash = {
+                message: message,
+                type: 'success', 
+                keepAfterLocationChange: keepAfterLocationChange
+            };
+        }
+
+        function Error(message, keepAfterLocationChange) {
+            $rootScope.flash = {
+                message: message,
+                type: 'error',
+                keepAfterLocationChange: keepAfterLocationChange
+            };
+        }
+    }
+
+
+
+},{}],11:[function(require,module,exports){
+module.exports = angular.module("plunker.service.users", [])
+
+.factory('UserService', function ($http) {
+        var service = {};
+
+        service.GetAll = GetAll;
+        service.GetById = GetById;
+        service.GetByUsername = GetByUsername;
+        service.Create = Create;
+        service.Update = Update;
+        service.Delete = Delete;
+
+        return service;
+
+        function GetAll() {
+            return $http.get('/users').then(handleSuccess, handleError('Error getting all users'));
+        }
+
+        function GetById(id) {
+            return $http.get('/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+        }
+
+        function GetByUsername(username) {
+            return $http.get('/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+        }
+
+        function Create(user) {
+            return $http.post('/users', user).then(handleSuccess, handleError('Error creating user'));
+        }
+
+        function Update(user) {
+            return $http.put('/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+        }
+
+        function Delete(id) {
+            return $http.delete('/users/' + id).then(handleSuccess, handleError('Error deleting user'));
+        }
+
+        // private functions
+
+        function handleSuccess(res) {
+            return res.data;
+        }
+
+        function handleError(error) {
+            return function () {
+                return { success: false, message: error };
+            };
+        }
+    })
+
+},{}],12:[function(require,module,exports){
 /*
  * Copyright 2013 Ivan Pusic
  * Contributors:
@@ -1027,7 +1116,7 @@ factory('ipCookie', ['$document',
     }());
   }
 ]);
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * angular-growl - v0.4.0 - 2013-11-19
  * https://github.com/marcorinck/angular-growl
@@ -1211,7 +1300,7 @@ angular.module('angular-growl').provider('growl', function () {
     }
   ];
 });
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
@@ -5328,7 +5417,7 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
     "</ul>");
 }]);
 
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -12118,7 +12207,7 @@ angular.module("template/typeahead/typeahead-popup.html", []).run(["$templateCac
 }.call(this));
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],14:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 (function (global){
 /**
  * marked - a markdown parser

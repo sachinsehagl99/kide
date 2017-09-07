@@ -1,10 +1,6 @@
-var angular = window.angular;
-
 var _ = require("lodash");
 
-
-module.exports =
-angular.module("plunker.service.oauth", [
+module.exports = angular.module("plunker.service.oauth", [
   require("./visitor").name,
 ])
 

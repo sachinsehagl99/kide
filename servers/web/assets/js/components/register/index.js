@@ -1,34 +1,30 @@
 var Fs = require("fs");
 var _ = require("lodash");
-
+require("../../services/users");
+require("../../services/flash");
+require("../oauth");
 
 module.exports = angular.module("plunker.component.register", [
   "ui.bootstrap",  
   "plunker.service.config", 
-  require("../oauth").name,
+  "plunker.service.users",
+  "plunker.service.flash",
+  "plunker.service.oauth"
 ])
 
-.factory("register", function ($rootScope, $modal, oauth, visitor) {
+.factory("register", function ($rootScope, $modal, oauth, visitor, UserService) {
   var register = {};
-
-  $rootScope.user = {
-    name: "bonnie",
-    email: "",
-    password: ""
-  };
 
   register.open = function () {
     var modalInstance = $modal.open({
-      scope: $rootScope,
       template: Fs.readFileSync(__dirname + "/register.html", "utf8"),
       controller: function ($scope, $modalInstance, $elements) {
 
-
-  $scope.user = {
-    name: "bonnie",
-    email: "",
-    password: ""
-  };
+        $scope.user = {
+	    name: "",
+	    email: "",
+	    password: ""
+	};
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
         $scope.identities = oauth.identities;
@@ -68,23 +64,14 @@ module.exports = angular.module("plunker.component.register", [
         $scope.step = $scope.steps[0];
         
         $scope.advance = function () {
-            console.log("==========");
-            console.log($rootScope.user.name);
-            console.log($rootScope.user.email);
-           console.log($rootScope.user.password);
-
-/*          var idx = $scope.steps.indexOf($scope.step);*/
-          //var advance = $scope.step.advance || function () {
-            //$scope.step = $scope.steps[idx + 1];
-          //};
-          
-          //if (idx < 0) throw new Error("Internal logic error");
-          
-          //if (!_.isFunction($scope.step.validate) || $scope.step.validate()) {
-            //advance();
-            
-            //if ($scope.step.onEnter) $scope.step.onEnter();
-          /*}*/
+            UserService.Create($scope.user)
+                .then(function (response) {
+                    if (response.success) {
+                        FlashService.Success('Registration successful', true);
+                    } else {
+                        FlashService.Error(response.message);
+                    }
+                });
         };
         
         $scope.toggle = function (service) {

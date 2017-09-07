@@ -176,7 +176,23 @@ exports.register = function (plugin, options, next) {
       }
     }
   });
-  
+  plugin.route({
+  	method: 'POST',
+	path: '/users',
+	config:{
+		handler : function (request , reply){
+		   //console.log(request.payload);
+		   var server = this.config.server;
+		   var url =  "http://" + server.api.host + ":" + server.api.port + "/users";
+		   var payload = request.payload;
+		    Request.post({url:url, form: payload}, function(err, httpResponse, body){
+	reply(body); 
+	//console.log(body);
+      }); 
+		   
+		}
+	}
+  }); 
   plugin.route({
     method: 'GET',
     path: '/',
