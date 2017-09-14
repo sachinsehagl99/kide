@@ -8,7 +8,6 @@ var randToken = require('rand-token');
 var JSONObject = require('json-object');
 var parse = require('parse-json'); 
 
-
 exports.register = function(server, options, next) {
   var context = {config: options.config};
   
@@ -23,16 +22,6 @@ exports.register = function(server, options, next) {
       reply(token);
     }
   });
-
- server.route({
-   method: 'GET',
-   path: '/users/exists/{username}',
-   handler: function(request, reply){
-     var username = request.params.username;
-
-     reply(username);
-   } 
-  }); 
 
   server.route({
     method: 'GET',
@@ -106,6 +95,17 @@ exports.register = function(server, options, next) {
       });      
     }
   });
+
+ server.route({
+   method: 'GET',
+   path: '/users/exists/{username}',
+   handler: function(request, reply){
+     var username = request.params.username;
+
+     reply(username);
+   } 
+  }); 
+
   server.route({
   	method: 'POST',
 	path :'/users',
@@ -114,15 +114,21 @@ exports.register = function(server, options, next) {
 		var email = request.payload.email;
 		var password = request.payload.password;
 
-                var User = new models.Users({
-		  'name' : name,
-		  'email' : email,
-		  'password' : password
-		});
-	
-               User.save(function (err){
-                 if(err) return handleError(err);
-               });
+                models.Users.find({'name': name, 'email': email}, function (err, user) {
+		  if(err) return reply(err);
+                  if(user.length!=0) return reply("user name or email allready exists");
+
+                   var User = new models.Users({
+		     'name' : name,
+		     'email' : email,
+		     'password' : password
+		   });
+
+		   User.save(function (err,success){
+                       if(err) return reply(err);
+		       else return reply("success"); 
+		   });
+                });
 	}
   });
   return next();

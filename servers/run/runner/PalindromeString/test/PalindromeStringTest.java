@@ -19,7 +19,7 @@ public class PalindromeStringTest extends Base {
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void PalindromeString.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void PalindromeString.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,7 +39,8 @@ public class PalindromeStringTest extends Base {
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		     String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -62,7 +63,8 @@ public class PalindromeStringTest extends Base {
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		   String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Input a string:madam\n", outContent.toString());
 	   	}
 	   }
@@ -83,7 +85,8 @@ public class PalindromeStringTest extends Base {
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		     String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Input a string:madam\n", outContent.toString());
 	   	}
 	   }
@@ -104,7 +107,8 @@ public class PalindromeStringTest extends Base {
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		     String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Input a string:Palindrome\n", outContent.toString());
 	   	}
 	   }
@@ -126,7 +130,8 @@ public class PalindromeStringTest extends Base {
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		   String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Input a string:Not palindrome\n", outContent.toString());
 	   	}
 	   }

@@ -18,7 +18,7 @@ public class PerfectTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Perfect.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Perfect.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -38,7 +38,10 @@ public class PerfectTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
+
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -61,7 +64,10 @@ public class PerfectTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
+
 		    assertEquals("Enter a number:28\n", outContent.toString());
 	   	}
 	   }
@@ -82,7 +88,10 @@ public class PerfectTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
+
 		    assertEquals("Enter a number:1\n3\n6\n6\n6\n", outContent.toString());
 	   	}
 	   }
@@ -103,7 +112,10 @@ public class PerfectTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
+
 		    assertEquals("Enter a number:Perfect\n", outContent.toString());
 	   	}
 	   }
@@ -124,7 +136,10 @@ public class PerfectTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
+
 		    assertEquals("Enter a number:Not Perfect\n", outContent.toString());
 	   	}
 	   }

@@ -35,6 +35,7 @@ module.exports = angular.module("plunker.component.login", [
         $scope.login = function (service) {
           $scope.status.authInProgress = oauth.identify(service).then(function (identities) {
             var loginIdentity = identities[service];
+	    console.log(loginIdentity);
             
             if (!loginIdentity) throw new Error("How is this even possible?");
             

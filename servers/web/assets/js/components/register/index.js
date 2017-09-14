@@ -12,7 +12,7 @@ module.exports = angular.module("plunker.component.register", [
   "plunker.service.oauth"
 ])
 
-.factory("register", function ($rootScope, $modal, oauth, visitor, UserService) {
+.factory("register", function ($rootScope, $modal, oauth, visitor, UserService, FlashService) {
   var register = {};
 
   register.open = function () {
@@ -25,6 +25,7 @@ module.exports = angular.module("plunker.component.register", [
 	    email: "",
 	    password: ""
 	};
+
         $scope.resolve = $modalInstance.close.bind($modalInstance);
         $scope.reject = $modalInstance.dismiss.bind($modalInstance);
         $scope.identities = oauth.identities;
@@ -66,11 +67,9 @@ module.exports = angular.module("plunker.component.register", [
         $scope.advance = function () {
             UserService.Create($scope.user)
                 .then(function (response) {
-                    if (response.success) {
-                        FlashService.Success('Registration successful', true);
-                    } else {
-                        FlashService.Error(response.message);
-                    }
+                      if(response != "success"){
+                        $scope.state.error = response;
+                      }
                 });
         };
         

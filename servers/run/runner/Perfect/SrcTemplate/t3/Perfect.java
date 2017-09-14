@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Perfect{
 	
-    public static void main() throws IOException{
+    public static void main(String args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int n=0;

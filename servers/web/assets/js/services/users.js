@@ -21,6 +21,7 @@
         }
 
         function GetByUsername(username) {
+	    console.log(username);
             return $http.get('/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
         }
 

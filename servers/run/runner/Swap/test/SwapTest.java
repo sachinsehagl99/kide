@@ -21,7 +21,7 @@ public class SwapTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Swap.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Swap.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -40,8 +40,8 @@ public class SwapTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,7 +64,8 @@ public class SwapTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the value of a:10\n", outContent.toString());
 		   
 		   }
@@ -85,7 +86,8 @@ public class SwapTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
 		   
 		   }
@@ -105,7 +107,8 @@ public class SwapTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
 	   	}
 	   }
@@ -124,7 +127,8 @@ public class SwapTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
 	   	}
 
@@ -144,7 +148,8 @@ public class SwapTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0]; 
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
 	   	}
 
@@ -163,7 +168,8 @@ public class SwapTest extends Base
 		Method m = getMethod(obj , "main");
 		if(m!=null)
 		{
-			m.invoke(obj);
+			String args[] = new String[0]; 
+		        m.invoke(obj,(Object)args);
 			assertEquals("Enter the value of a:Enter the value of b:The value of a:20\nThe value of b:10\n",outContent.toString());
 
 		}

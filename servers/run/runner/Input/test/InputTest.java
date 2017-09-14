@@ -21,7 +21,7 @@ public class InputTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Input.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Input.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -41,7 +41,8 @@ public class InputTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,7 +65,8 @@ public class InputTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!= null)
 		{
-		m.invoke(obj);
+		String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 	        assertEquals("Enter a number:\n10\n", outContent.toString());
      
 

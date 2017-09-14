@@ -19,7 +19,7 @@ public class PrimeTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Prime.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Prime.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,7 +39,9 @@ public class PrimeTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,7 +66,8 @@ public class PrimeTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Input a number:3\n", outContent.toString());
 	   	}
 	   }
@@ -86,7 +89,9 @@ public class PrimeTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
 		    assertEquals("Input a number:1\n2\n2\n2\n", outContent.toString());
 	   	}
 	   }
@@ -108,7 +113,9 @@ public class PrimeTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
 		    assertEquals("Input a number:Prime\n", outContent.toString());
 	   	}
 	   }
@@ -130,7 +137,9 @@ public class PrimeTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
+
 		    assertEquals("Input a number:Not Prime\n", outContent.toString());
 	   	}
 	   }

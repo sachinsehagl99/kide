@@ -19,7 +19,7 @@ public class NivenTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Niven.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Niven.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,7 +39,8 @@ public class NivenTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,7 +65,8 @@ public class NivenTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:111\n", outContent.toString());
 	   	}
 	   }
@@ -86,7 +88,8 @@ public class NivenTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:111\n", outContent.toString());
 	   	}
 	   }
@@ -106,7 +109,8 @@ public class NivenTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:1\n2\n3\n", outContent.toString());
 	   	}
 	   }
@@ -127,7 +131,8 @@ public class NivenTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:Niven Number\n", outContent.toString());
 	   	}
 	   }
@@ -148,7 +153,8 @@ public class NivenTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:Not a Niven Number\n", outContent.toString());
 	   	}
 	   }

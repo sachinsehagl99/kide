@@ -19,7 +19,7 @@ public class LcmTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Lcm.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Lcm.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,7 +39,8 @@ public class LcmTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -61,7 +62,8 @@ public class LcmTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\n54\n", outContent.toString());
 		   
 		   }
@@ -81,7 +83,8 @@ public class LcmTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
 		   
 		   }
@@ -102,7 +105,8 @@ public class LcmTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\nEnter the second number:\n54\n", outContent.toString());
 		   
 		   }
@@ -123,7 +127,8 @@ public class LcmTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
 		   
 		   }
@@ -145,7 +150,8 @@ public class LcmTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\nEnter the second number:\n6\n", outContent.toString());
 	   	}
 	   }
@@ -166,7 +172,8 @@ public class LcmTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[] = new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter the first number:\nEnter the second number:\n6\nLCM:216", outContent.toString());
 	   	}
 	   }
