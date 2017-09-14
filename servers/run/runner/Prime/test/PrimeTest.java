@@ -65,7 +65,7 @@ public class PrimeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a number:3\n", outContent.toString());
+		    assertEquals("input a number:3\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -87,7 +87,7 @@ public class PrimeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a number:1\n2\n2\n2\n", outContent.toString());
+		    assertEquals("input a number:1\n2\n2\n2\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -131,7 +131,7 @@ public class PrimeTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a number:Not Prime\n", outContent.toString());
+		    assertEquals("input a number:not prime\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

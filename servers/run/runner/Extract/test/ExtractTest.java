@@ -67,8 +67,12 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		    assertEquals("enter a three digit number:\n134\n", outContent.toString().toLowerCase());
 	   	}
 	   }
@@ -91,8 +95,12 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		    assertEquals("enter a three digit number:\nones position:4\n", outContent.toString().toLowerCase());
 	   	}
 	   }
@@ -114,9 +122,14 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+		    assertEquals("enter a three digit number:\nones position:4\ntens position:3\n", outContent.toString().toLowerCase());
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
 		    assertEquals("enter a three digit number:\nones position:4\ntens position:3\n",outContent.toString().toLowerCase());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}
@@ -137,8 +150,12 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		    assertEquals("enter a three digit number:\nones position:4\ntens position:3\nhundreds position:1\n", outContent.toString().toLowerCase());
 	   	}
 	   }

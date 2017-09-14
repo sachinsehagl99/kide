@@ -54,8 +54,22 @@ module.exports = angular.module("plunker.directive.previewer", [
   }
 
   getSrcTemplate("t" + $rootScope.testMethod);
-
+$rootScope.loader = "hidden";
   function refreshPreviews() {
+
+       $rootScope.submitButtonText = "Next";
+    	$rootScope.test = "true";
+        $rootScope.enable = "false";
+        $rootScope.test = "true";
+	$rootScope.submitButtonText = "Loading";
+        // Do your searching here
+        
+        $timeout(function(){
+            $rootScope.enable = "true";
+            $rootScope.submitButtonText = "Next";
+        }, 3000);
+        
+
     var testName = ($location.path()).split("/")[2];
     var pathId = ($location.path()).split("/")[4];
 

@@ -64,9 +64,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                 assertEquals("input the number:135\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                  assertEquals("Input the number:135\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 			 
      		
     		}
@@ -85,9 +91,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:135\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:135\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -108,9 +120,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		   String args[] = new String [0];
+		   m.invoke(obj, (Object)args);
+                   assertEquals("input the number:5\n3\n1\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                    assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -130,9 +148,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:1\n2\n3\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:1\n2\n3\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -155,9 +179,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:135\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:135\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -179,9 +209,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:5\n3\n1\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		    // assertEquals(0,1); 
      		
     		}
@@ -205,9 +241,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:125.0\n134.0\n135.0\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:125.0\n134.0\n135.0\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  		   //assertEquals(0,1);
      		
     		}
@@ -229,9 +271,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:2\n1\n0\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:2\n1\n0\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -253,9 +301,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:disarium number\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:Disarium Number\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -275,9 +329,15 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:not a disarium number\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:Not a Disarium Number\n",outContent.toString());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}

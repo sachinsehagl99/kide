@@ -82,10 +82,15 @@ public class GcdTest extends Base
 		   Method m = getMethod(obj,"main");
 		   if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+		    assertEquals("enter the first number:\nenter the second number:\n24\n", outContent.toString().toLowerCase());
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
 
 		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		   
 		   }
 	   }
@@ -106,10 +111,15 @@ public class GcdTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    m.invoke(obj);
+		    assertEquals("enter the first number:\nenter the second number:\ngcd = 6", outContent.toString().toLowerCase());
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
 
 		    assertEquals("Enter the first number:\nEnter the second number:\nGCD = 6", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}

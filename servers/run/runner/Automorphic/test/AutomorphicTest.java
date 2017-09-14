@@ -64,9 +64,16 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:76\n",outContent.toString().toLowerCase());		
+			 
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                  assertEquals("input the number:76\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
      		
     		}
         }
@@ -84,9 +91,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:76\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:76\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -107,9 +120,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:6\n7\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                    assertEquals("input the number:6\n7\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -129,9 +148,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:1\n2\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:1\n2\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -156,9 +181,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:76\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:5776\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -169,6 +200,34 @@ public class AutomorphicTest extends Base
 	
 	@Test
 	public void t8() throws java.io.IOException{
+<<<<<<< HEAD
+	instruction = "variable = variable * variable represents performing the square of a number and saving it in the same variable";
+	hint = "a= a *a ;\n";
+        description = "Find the square of the value of 'a'";
+	Automorphic obj = new Automorphic();
+	ByteArrayInputStream in = new ByteArrayInputStream("76".getBytes());
+	System.setIn(in);
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null)
+		{
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:5776\n",outContent.toString().toLowerCase());		
+ 
+     		
+    		}
+        }
+	catch(Exception e){}
+    	    
+        }
+	
+
+
+	@Test
+	public void t9() throws java.io.IOException{
+=======
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	instruction = "A do-while loop is a control flow statement\nthat executes a block of code at least once,\nand then repeatedly executes the block,or not,\ndepending on a given boolean condition at the\n end of the block.";
 	hint = "b=a%10;\na=a/10;\n";
         description = "Extract the number within do-while loop";
@@ -179,9 +238,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:6\n7\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:6\n7\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 		    // assertEquals(0,1); 
      		
     		}
@@ -205,9 +270,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:6\n13\n",outContent.toString().toLowerCase());		
+=======
    		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:6\n13\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  		   //assertEquals(0,1);
      		
     		}
@@ -229,9 +300,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:6\n76\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:6\n76\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  		   //assertEquals(0,1);
      		
     		}
@@ -254,9 +331,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:1\n0\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:1\n0\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -279,9 +362,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:automorphic number\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:automorphic number\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}
@@ -301,9 +390,15 @@ public class AutomorphicTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
+<<<<<<< HEAD
+		  String args[] = new String [0];
+		  m.invoke(obj, (Object)args);
+                  assertEquals("input the number:not an automorphic number\n",outContent.toString().toLowerCase());		
+=======
 		  String args[]=new String[0];
 		  m.invoke(obj,(Object)args);
                   assertEquals("input the number:not an automorphic number\n",(outContent.toString()).toLowerCase());		
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
  
      		
     		}

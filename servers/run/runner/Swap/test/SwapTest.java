@@ -65,7 +65,7 @@ public class SwapTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:10\n", outContent.toString());
+		    assertEquals("enter the value of a:10\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -86,7 +86,7 @@ public class SwapTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
+		    assertEquals("enter the value of a:enter the value of b:20\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -96,7 +96,7 @@ public class SwapTest extends Base
 
     	@Test
     public void t5() throws java.io.IOException{
-	instruction = "Exchange the value between two variable\nStore the value of 'c' into another variable\n'b'. Ex: b=c;";
+	instruction = "Store a variable or value into another variable\nFor instance,storing the value of 'c' into another variable\n'b'. Ex: b=c;";
 	hint = "temp=a;";
 	description = "Put the value of 'a' in 'temp' variable";
 	Swap obj = new Swap();
@@ -106,7 +106,7 @@ public class SwapTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
+		    assertEquals("enter the value of a:enter the value of b:10\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -125,7 +125,7 @@ public class SwapTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:20\n", outContent.toString());
+		    assertEquals("enter the value of a:enter the value of b:20\n", outContent.toString().toLowerCase());
 	   	}
 
 	   }
@@ -145,7 +145,7 @@ public class SwapTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:Enter the value of b:10\n", outContent.toString());
+		    assertEquals("enter the value of a:enter the value of b:10\n", outContent.toString().toLowerCase());
 	   	}
 
 	   }
@@ -164,7 +164,7 @@ public class SwapTest extends Base
 		if(m!=null)
 		{
 			m.invoke(obj);
-			assertEquals("Enter the value of a:Enter the value of b:The value of a:20\nThe value of b:10\n",outContent.toString());
+			assertEquals("enter the value of a:enter the value of b:the value of a:20\nthe value of b:10\n",outContent.toString().toLowerCase());
 
 		}
 		}

@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Automorphic{
 	
-   public static void main(String args[]) throws IOException{
+   public static void main(string args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int a=0;

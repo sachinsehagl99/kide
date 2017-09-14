@@ -13,7 +13,7 @@ public class ExtractItrTest extends Base
 	@Test
    public void t1() throws java.io.IOException{
 	instruction = "public : its the access specifier means\nfrom every where we can access it.\n\nstatic : access modifier means we can call\nthis method directly using class name\nwithout creating an object of it.\n\nvoid : it is a return type i.e it does\nnot return any value.\n\nmain() : it is a method name.\n\nstring args[] : its a command line argument\nit is a collection of variables in the string\nformat.\n";
-	hint = "public static void main() throws IOException {\n \n}";
+	hint = "public static void main(String args[]) throws IOException {\n \n}";
 	description = "Create a main method";
         ExtractItr obj = new ExtractItr();
 	try {
@@ -63,9 +63,15 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number:\n134", outContent.toString().toLowerCase());
+=======
 		    String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:\n134", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}
@@ -87,9 +93,15 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number:\nafter extraction:\n4\n3\n1\n", outContent.toString().toLowerCase());
+=======
 		     String args[]=new String[0];
 		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:\nAfter Extraction:\n4\n3\n1\n", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}
