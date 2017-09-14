@@ -11,7 +11,6 @@ module.exports = angular.module("plunker.directive.previewer", [
   "plunker.oplog"
 ])
 
-
 .directive("plunkerPreviewer", function($rootScope, $timeout, $interval, $http, $location, commander, project, settings, oplog, notifier, config) {
 
   commander.addCommand({
@@ -51,19 +50,12 @@ module.exports = angular.module("plunker.directive.previewer", [
   $rootScope.loader = "hidden";
 
   function refreshPreviews() {
-        $rootScope.submitButtonText = "Next";
-    	$rootScope.test = "true";
-        $rootScope.enable = "false";
-        $rootScope.test = "true";
-	$rootScope.submitButtonText = "Loading";
-        // Do your searching here
+    $rootScope.submitButtonText = "Next";
+    $rootScope.test = "true";
+    $rootScope.enable = "false";
+    $rootScope.test = "true";
+    $rootScope.submitButtonText = "Loading";
         
-        $timeout(function(){
-            $rootScope.enable = "true";
-            $rootScope.submitButtonText = "Next";
-        }, 3000);
-        
-
     var testName = ($location.path()).split("/")[2];
     var pathId = ($location.path()).split("/")[4];
 
@@ -83,9 +75,10 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     json.testMethod = "t" + $rootScope.testMethod;
     return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
-     //console.log(resp.data);
+     $rootScope.enable = "true";
+     $rootScope.submitButtonText = "Next";
+
      if(!resp.data.err){
-	//$rootScope.resp = resp;
 	$rootScope.hintVar = "hidden";
       	$rootScope.instruction = resp.data.instruction;
       	$rootScope.status = resp.data.status;
@@ -104,22 +97,10 @@ module.exports = angular.module("plunker.directive.previewer", [
           		notifier.success("yay!! thats all you need to do");
         	}
       }
-     } 
-     else {
+     } else {
         $rootScope.hintVar = "hidden";
-	//console.log(resp.data.instruction);
-        //$rootScope.instruction = resp.data.instruction;
-	//console.log(resp.data.status);    
-	//$rootScope.status= resp.data.status;
-	//console.log(resp.data.desciption);
-	//$rootScope.description = resp.data.desciption;
-	//console.log(resp.data.hint);
-	//$rootScope.hint = resp.data.hint;
-	//console.log(resp.data.err);
 	$rootScope.error = resp.data.err;
      }
-
-      
     });
   }
 
