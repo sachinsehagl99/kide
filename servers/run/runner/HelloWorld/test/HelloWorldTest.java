@@ -20,16 +20,12 @@ public class HelloWorldTest extends Base
         HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
-		System.err.println(m);
+		String args[] = new String [0];
+		m.invoke(obj,(Object)args);
 		String m1=m.toString();
-	        assertEquals(m1,"public static void HelloWorld.main(java.lang.String[]) throws java.io.IOException");
-     
-
-    		}
-        
-	catch(Exception e){}
-    
-        }
+	        assertEquals(m1, "public static void HelloWorld.main(java.lang.String[]) throws java.io.IOException");
+    		} catch(Exception e){} 
+    }
 
     @Test
    public void t2() throws java.io.IOException{
@@ -37,21 +33,16 @@ public class HelloWorldTest extends Base
 	hint = "System.out.println(\"Hello World\");\n";
         description = "Print 'Hello World'";
 	HelloWorld obj = new HelloWorld();
-	try {
-		Method m=getMethod(obj,"main");
-		if(m!= null)
-		{
-		String args[] = new String[0];
-		m.invoke(obj,(Object)args);
-	        assertEquals("hello world!\n", outContent.toString().toLowerCase());
-     
-
+	  try {
+		Method m = getMethod(obj,"main");
+                
+		if(m!= null) {
+		  String args[] = new String[0];
+		  m.invoke(obj,(Object)args);
+	          assertEquals("hello world\n", outContent.toString().toLowerCase());
     		}
-        }
-	catch(Exception e){}
-    
-        }
-  
+          } catch(Exception e){} 
+        } 
  }
 
 
