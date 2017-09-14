@@ -202,6 +202,7 @@ exports.register = function (plugin, options, next) {
         var server = this.config.server;
 	Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data){
             var data = JSON.parse(data);
+	    //console.log(data);
             var promisify = function(key) {
               return new Promise(function (resolve, reject) {
                 Request.get("http://" + server.api.host + ":" + server.api.port + "/handshake", function (err, res, token) {
@@ -237,7 +238,10 @@ exports.register = function (plugin, options, next) {
         var courseName = request.params.courseName;
 	var context = {"url": {"run": ""}};
 
-	reply.view("editor", context);
+	reply.view("editor", context, {
+                layout: "landing"
+              });
+
       }
     }
   });

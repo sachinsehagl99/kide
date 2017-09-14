@@ -20,8 +20,9 @@ public class HelloWorldTest extends Base
         HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
+		System.err.println(m);
 		String m1=m.toString();
-	        assertEquals(m1,"public static void HelloWorld.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void HelloWorld.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -33,15 +34,16 @@ public class HelloWorldTest extends Base
     @Test
    public void t2() throws java.io.IOException{
 	instruction = "System: It is a class in the java.lang package.\n\nout: It is a static member of the System\nclass, and is an instance of java.io.PrintStream.\n\nprintln: It is a method of java.io.PrintStream.\nThis method is overloaded to print message to\noutput destination, which is typically a\nconsole or file.";
-	hint = "System.out.println(\"Hello World!\");\n";
-        description = "Print 'Hello World!'";
+	hint = "System.out.println(\"Hello World\");\n";
+        description = "Print 'Hello World'";
 	HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
 		if(m!= null)
 		{
-		m.invoke(obj);
-	        assertEquals("Hello World!\n", outContent.toString());
+		String args[] = new String[0];
+		m.invoke(obj,(Object)args);
+	        assertEquals("hello world!\n", outContent.toString().toLowerCase());
      
 
     		}

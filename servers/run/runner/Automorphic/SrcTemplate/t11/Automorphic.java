@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Automorphic{
 	
-   public static void main() throws IOException{
+   public static void main(string args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int a=0;
@@ -16,19 +16,21 @@ public class Automorphic{
 		i++;
 	}while(a!=0);
 	a=dup;
-	a = a*a;
+	a = a* a;
 	do
 	{
 		b=a%10;
 		a=a/10;			
 		auto = (b*j) + auto;
-		
-	//=========== Write your code within the block ===========//
 		j=10;			
+			
+	//=========== Write your code within the block ===========//
+		i--;
 	//========================================================//
 	//IGNORE
-		System.out.println(+auto);
-		i--;       		
+		System.out.println(+i);
+		if(i == 2)
+			i = 0;       		
 	//END	
 	}while(i!=0);
     }

@@ -66,8 +66,6 @@ public class PerfectTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
-
 		    assertEquals("Enter a number:28\n", outContent.toString());
 	   	}
 	   }
@@ -90,8 +88,6 @@ public class PerfectTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
-
 		    assertEquals("Enter a number:1\n3\n6\n6\n6\n", outContent.toString());
 	   	}
 	   }
@@ -114,8 +110,6 @@ public class PerfectTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
-
 		    assertEquals("Enter a number:Perfect\n", outContent.toString());
 	   	}
 	   }
@@ -138,8 +132,6 @@ public class PerfectTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
-
 		    assertEquals("Enter a number:Not Perfect\n", outContent.toString());
 	   	}
 	   }

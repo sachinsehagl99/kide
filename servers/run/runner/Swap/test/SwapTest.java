@@ -98,7 +98,7 @@ public class SwapTest extends Base
 
     	@Test
     public void t5() throws java.io.IOException{
-	instruction = "Exchange the value between two variable\nStore the value of 'c' into another variable\n'b'. Ex: b=c;";
+	instruction = "Store a variable or value into another variable\nFor instance,storing the value of 'c' into another variable\n'b'. Ex: b=c;";
 	hint = "temp=a;";
 	description = "Put the value of 'a' in 'temp' variable";
 	Swap obj = new Swap();

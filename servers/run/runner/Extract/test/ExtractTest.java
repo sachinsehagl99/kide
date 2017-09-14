@@ -19,7 +19,7 @@ public class ExtractTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Extract.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Extract.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,8 +39,8 @@ public class ExtractTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -67,8 +67,9 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\n134\n", outContent.toString());
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter a three digit number:\n134\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -90,8 +91,9 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\nOnes position:4\n", outContent.toString());
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter a three digit number:\nones position:4\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -112,8 +114,9 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\nOnes position:4\nTens position:3\n", outContent.toString());
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter a three digit number:\nones position:4\ntens position:3\n",outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -134,8 +137,9 @@ public class ExtractTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a three digit number:\nOnes position:4\nTens position:3\nHundreds position:1\n", outContent.toString());
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter a three digit number:\nones position:4\ntens position:3\nhundreds position:1\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

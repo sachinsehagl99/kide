@@ -91,7 +91,6 @@ public class PrimeTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
 		    assertEquals("Input a number:1\n2\n2\n2\n", outContent.toString());
 	   	}
 	   }
@@ -139,7 +138,6 @@ public class PrimeTest extends Base
 		{
 		    String args[] = new String[0];
 		    m.invoke(obj,(Object)args);
-
 		    assertEquals("Input a number:Not Prime\n", outContent.toString());
 	   	}
 	   }

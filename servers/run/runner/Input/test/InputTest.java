@@ -66,7 +66,7 @@ public class InputTest extends Base
 		if(m!= null)
 		{
 		String args[] = new String[0];
-		    m.invoke(obj,(Object)args);
+		m.invoke(obj,(Object)args);
 	        assertEquals("Enter a number:\n10\n", outContent.toString());
      
 
