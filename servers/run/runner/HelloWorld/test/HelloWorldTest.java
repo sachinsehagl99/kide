@@ -43,7 +43,7 @@ public class HelloWorldTest extends Base
 		{
 		String args[] = new String[0];
 		m.invoke(obj,(Object)args);
-	        assertEquals("Hello World!\n", outContent.toString());
+	        assertEquals("hello world!\n", outContent.toString().toLowerCase());
      
 
     		}

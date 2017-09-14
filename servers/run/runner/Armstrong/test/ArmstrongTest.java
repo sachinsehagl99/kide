@@ -18,6 +18,7 @@ public class ArmstrongTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
+		//System.err.println(m1);
 	        assertEquals(m1,"public static void Armstrong.main(java.lang.String[]) throws java.io.IOException");
      
 

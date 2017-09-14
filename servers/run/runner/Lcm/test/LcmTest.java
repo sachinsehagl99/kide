@@ -62,7 +62,7 @@ public class LcmTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\n54\n", outContent.toString());
+		    assertEquals("enter the first number:\n54\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -82,7 +82,7 @@ public class LcmTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n24\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -103,7 +103,7 @@ public class LcmTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n54\n", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n54\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -124,7 +124,7 @@ public class LcmTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n24\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -146,7 +146,7 @@ public class LcmTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n6\n", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n6\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -167,7 +167,7 @@ public class LcmTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n6\nLCM:216", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n6\nlcm:216", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

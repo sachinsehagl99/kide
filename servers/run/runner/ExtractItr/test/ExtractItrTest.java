@@ -19,7 +19,7 @@ public class ExtractItrTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void ExtractItr.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void ExtractItr.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -38,8 +38,8 @@ public class ExtractItrTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -63,7 +63,8 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:\n134", outContent.toString());
 	   	}
 	   }
@@ -86,7 +87,8 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
+		     String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
 		    assertEquals("Enter a number:\nAfter Extraction:\n4\n3\n1\n", outContent.toString());
 	   	}
 	   }

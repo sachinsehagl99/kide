@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Fibonacci{
 	
-    public static void main() throws IOException{
+    public static void main(String args[]) throws IOException{
         BufferedReader br = null;
 	//=========== Write your code within the block ===========//
 	br = new BufferedReader(new InputStreamReader(System.in));

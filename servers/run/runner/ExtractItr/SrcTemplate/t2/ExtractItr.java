@@ -2,7 +2,7 @@ import java.io.*;
 
 public class ExtractItr{
 	
-   public static void main() throws IOException{
+   public static void main(String args[]) throws IOException{
         BufferedReader br = null;
 
 	//=========== Write your code within the block ===========//

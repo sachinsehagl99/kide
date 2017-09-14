@@ -13,13 +13,13 @@ public class DisariumTest extends Base
    public void t1() throws java.io.IOException{
 	instruction = "public : its the access specifier means\nfrom every where we can access it.\n\nstatic : access modifier means we can call\nthis method directly using class name\nwithout creating an object of it.\n\nvoid : it is a return type i.e it does\nnot return any value.\n\nmain() : it is a method name.\n\nstring args[] : its a command line argument\nit is a collection of variables in the string\nformat.\n";
 	
-	hint = "public static void main() throws IOException {\n \n}";
+	hint = "public static void main(String args[]) throws IOException {\n \n}";
 	description = "Create a main method";
         Disarium obj = new Disarium();
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Disarium.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Disarium.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,16 +39,17 @@ public class DisariumTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
 		   }
 	   } catch(Exception e){
              assertEquals(1, 0);
-           }
+           
 	}
+    }
 
 
    @Test
@@ -63,7 +64,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                  assertEquals("Input the number:135\n",outContent.toString());		
 			 
      		
@@ -83,7 +85,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:135\n",outContent.toString());		
  
      		
@@ -105,7 +108,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                    assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
  
      		
@@ -126,7 +130,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:1\n2\n3\n",outContent.toString());		
  
      		
@@ -150,7 +155,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:135\n",outContent.toString());		
  
      		
@@ -173,7 +179,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:5\n3\n1\n",outContent.toString());		
 		    // assertEquals(0,1); 
      		
@@ -198,7 +205,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:125.0\n134.0\n135.0\n",outContent.toString());		
  		   //assertEquals(0,1);
      		
@@ -221,7 +229,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:2\n1\n0\n",outContent.toString());		
  
      		
@@ -244,7 +253,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:Disarium Number\n",outContent.toString());		
  
      		
@@ -265,7 +275,8 @@ public class DisariumTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                   assertEquals("Input the number:Not a Disarium Number\n",outContent.toString());		
  
      		
