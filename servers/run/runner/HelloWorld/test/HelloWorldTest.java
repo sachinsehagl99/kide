@@ -20,8 +20,9 @@ public class HelloWorldTest extends Base
         HelloWorld obj = new HelloWorld();
 	try {
 		Method m=getMethod(obj,"main");
+		System.err.println(m);
 		String m1=m.toString();
-	        assertEquals(m1,"public static void HelloWorld.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void HelloWorld.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -40,8 +41,9 @@ public class HelloWorldTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!= null)
 		{
-		m.invoke(obj);
-	        assertEquals("hello world\n", outContent.toString().toLowerCase());
+		String args[] = new String[0];
+		m.invoke(obj,(Object)args);
+	        assertEquals("hello world!\n", outContent.toString().toLowerCase());
      
 
     		}

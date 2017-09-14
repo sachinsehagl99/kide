@@ -38,9 +38,8 @@ public class ExtractItrTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    String args[] = new String [0];
-		    m.invoke(obj, (Object)args);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,9 +63,15 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
 		    String args[] = new String [0];
 		    m.invoke(obj, (Object)args);
 		    assertEquals("enter a number:\n134", outContent.toString().toLowerCase());
+=======
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("Enter a number:\n134", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}
@@ -88,9 +93,15 @@ public class ExtractItrTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
+<<<<<<< HEAD
 		    String args[] = new String [0];
 		    m.invoke(obj, (Object)args);
 		    assertEquals("enter a number:\nafter extraction:\n4\n3\n1\n", outContent.toString().toLowerCase());
+=======
+		     String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("Enter a number:\nAfter Extraction:\n4\n3\n1\n", outContent.toString());
+>>>>>>> 2a47ed30857d7852e5457f489d903df1767a501b
 	   	}
 	   }
 	   catch(Exception e){}

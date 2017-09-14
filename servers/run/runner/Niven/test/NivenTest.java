@@ -65,7 +65,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:111\n", outContent.toString());
+		    assertEquals("enter a number:111\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -87,7 +87,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:111\n", outContent.toString());
+		    assertEquals("enter a number:111\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -107,7 +107,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:1\n2\n3\n", outContent.toString());
+		    assertEquals("enter a number:1\n2\n3\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -128,7 +128,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:Niven Number\n", outContent.toString());
+		    assertEquals("enter a number:niven number\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -149,7 +149,7 @@ public class NivenTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:Not a Niven Number\n", outContent.toString());
+		    assertEquals("enter a number:not a niven number\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

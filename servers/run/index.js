@@ -71,6 +71,7 @@ internals.fetchTree = function(sha, next) {
             path: path + entry.filename,
             contents: entry.contents,
           };
+	 console.log(entry.contents);
         }
       });
     }
@@ -227,7 +228,8 @@ exports.register = function(plugin, options, next) {
             }
              
 	    runner(testName + 'Test', testMethod, build_dir, entry_file, test_build_dir, test_file, function(obj) {
-	      reply(obj);
+	           reply(obj);
+	     
 	    });
           });
         });

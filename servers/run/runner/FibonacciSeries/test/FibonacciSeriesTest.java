@@ -20,7 +20,7 @@ public class FibonacciSeriesTest extends Base
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void FibonacciSeries.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void FibonacciSeries.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -39,8 +39,8 @@ public class FibonacciSeriesTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+		    String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,8 +64,9 @@ public class FibonacciSeriesTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter the value of n:5\n", outContent.toString());
+		     String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter the value of n:5\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -85,8 +86,9 @@ public class FibonacciSeriesTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter the value of n:Fibonacci Series:\n0\n1\n", outContent.toString());
+		     String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter the value of n:fibonacci series:\n0\n1\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -106,8 +108,9 @@ public class FibonacciSeriesTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter the value of n:Fibonacci Series:\n0\n1\n1\n2\n3\n", outContent.toString());
+		     String args[]=new String[0];
+		    m.invoke(obj,(Object)args);
+		    assertEquals("enter the value of n:fibonacci series:\n0\n1\n1\n2\n3\n",outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

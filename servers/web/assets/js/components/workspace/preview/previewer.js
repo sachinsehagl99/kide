@@ -89,22 +89,43 @@ $rootScope.loader = "hidden";
 
     json.testMethod = "t" + $rootScope.testMethod;
     return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
-      $rootScope.hintVar = "hidden";
-      $rootScope.instruction = resp.data.instruction;
-      $rootScope.status = resp.data.status;
-      $rootScope.description = resp.data.description;
-      $rootScope.hint = resp.data.hint;
+     //console.log(resp.data);
+     if(!resp.data.err){
+	//$rootScope.resp = resp;
+	$rootScope.hintVar = "hidden";
+      	$rootScope.instruction = resp.data.instruction;
+      	$rootScope.status = resp.data.status;
+      	$rootScope.description = resp.data.description;
+	$rootScope.error = "";
+	$rootScope.hint = resp.data.hint;
 
-      if ($rootScope.status == "passed") {
-        var testNo = ($location.path()).split("/")[3];
+      	if ($rootScope.status == "passed") {
+        	var testNo = ($location.path()).split("/")[3];
 
-        if($rootScope.testMethod < testNo){
-          $rootScope.testMethod = $rootScope.testMethod + 1;
-          getSrcTemplate("t" + $rootScope.testMethod);
-        } else {
-          notifier.success("yay!! thats all you need to do");
-        }
+        	if($rootScope.testMethod < testNo){
+          		$rootScope.testMethod = $rootScope.testMethod + 1;
+          		getSrcTemplate("t" + $rootScope.testMethod);
+        	} 
+		else {
+          		notifier.success("yay!! thats all you need to do");
+        	}
       }
+     } 
+     else {
+        $rootScope.hintVar = "hidden";
+	//console.log(resp.data.instruction);
+        //$rootScope.instruction = resp.data.instruction;
+	//console.log(resp.data.status);    
+	//$rootScope.status= resp.data.status;
+	//console.log(resp.data.desciption);
+	//$rootScope.description = resp.data.desciption;
+	//console.log(resp.data.hint);
+	//$rootScope.hint = resp.data.hint;
+	//console.log(resp.data.err);
+	$rootScope.error = resp.data.err;
+     }
+
+      
     });
   }
 

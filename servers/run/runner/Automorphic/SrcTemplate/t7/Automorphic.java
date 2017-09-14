@@ -16,7 +16,7 @@ public class Automorphic{
 		i++;
 	}while(a!=0);
 	//=========== Write your code within the block ===========//
-	a=dup;
+	a=dup * dup ;
 	//========================================================//
 	//IGNORE
 		System.out.println(+a);

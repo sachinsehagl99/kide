@@ -65,7 +65,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:\n10\n", outContent.toString());
+		    assertEquals("enter the value of a:\n10\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -86,7 +86,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:\nEnter the value of b:\n20\n", outContent.toString());
+		    assertEquals("enter the value of a:\nenter the value of b:\n20\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -106,7 +106,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:\nEnter the value of b:\n30\n", outContent.toString());
+		    assertEquals("enter the value of a:\nenter the value of b:\n30\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -125,7 +125,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:\nEnter the value of b:\n10\n", outContent.toString());
+		    assertEquals("enter the value of a:\nenter the value of b:\n10\n", outContent.toString().toLowerCase());
 	   	}
 
 	   }
@@ -145,7 +145,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the value of a:\nEnter the value of b:\n20\n", outContent.toString());
+		    assertEquals("enter the value of a:\nenter the value of b:\n20\n", outContent.toString().toLowerCase());
 	   	}
 
 	   }
@@ -164,7 +164,7 @@ public class SwapElementsWithoutThirdVariableTest extends Base
 		if(m!=null)
 		{
 			m.invoke(obj);
-			assertEquals("Enter the value of a:\nEnter the value of b:\nThe value of a:20\nThe value of b:10\n",outContent.toString());
+			assertEquals("enter the value of a:\nenter the value of b:\nthe value of a:20\nthe value of b:10\n",outContent.toString().toLowerCase());
 
 		}
 		}
