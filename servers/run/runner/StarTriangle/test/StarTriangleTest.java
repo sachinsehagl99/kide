@@ -20,7 +20,7 @@ public class StarTriangleTest extends Base
 		if(m!=null)
 		{
 		   m.invoke(obj);
-		   assertEquals("    *\n   **\n  ***\n ****\n*****\n", outContent.toString());
+		   assertEquals("    *\n   **\n  ***\n ****\n*****\n", outContent.toString().toLowerCase());
      
 
     		}

@@ -17,6 +17,7 @@ public class ArmstrongTest extends Base
         Armstrong obj = new Armstrong();
 	try {
 		Method m=getMethod(obj,"main");
+		System.err.println(m);
 		String m1=m.toString();
 	        assertEquals(m1,"public static void Armstrong.main(java.lang.String[]) throws java.io.IOException");
      
@@ -64,7 +65,7 @@ public class ArmstrongTest extends Base
 		{
 		 String args[] = new String [0];
 		 m.invoke(obj, (Object)args);
-                 assertEquals("Input the number:371\n",outContent.toString());		
+                 assertEquals("input the number:371\n",outContent.toString().toLowerCase());		
 			 
      		
     		}
@@ -85,7 +86,7 @@ public class ArmstrongTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj, (Object)args);
-                  assertEquals("Input the number:371\n",outContent.toString());		
+                  assertEquals("input the number:371\n",outContent.toString().toLowerCase());		
  
      		
     		}
@@ -108,7 +109,7 @@ public class ArmstrongTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj, (Object)args);
-                   assertEquals("Input the number:1\n7\n3\n",outContent.toString());		
+                   assertEquals("input the number:1\n7\n3\n",outContent.toString().toLowerCase());		
  
      		
     		}
@@ -130,7 +131,7 @@ public class ArmstrongTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj, (Object)args);
-                  assertEquals("Input the number:1\n344\n371\n",outContent.toString());		
+                  assertEquals("input the number:1\n344\n371\n",outContent.toString().toLowerCase());		
  
      		
     		}
@@ -153,7 +154,7 @@ public class ArmstrongTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj, (Object)args);
-                  assertEquals("Input the number:Armstrong number\n",outContent.toString());		
+                  assertEquals("input the number:armstrong number\n",outContent.toString().toLowerCase());		
  
      		
     		}
@@ -176,7 +177,7 @@ public class ArmstrongTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj, (Object)args);
-                  assertEquals("Input the number:Not an armstrong number\n",outContent.toString());		
+                  assertEquals("input the number:not an armstrong number\n",outContent.toString().toLowerCase());		
  
      		
     		}

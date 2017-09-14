@@ -62,7 +62,7 @@ public class GcdTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\n54\n", outContent.toString());
+		    assertEquals("enter the first number:\n54\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -82,7 +82,7 @@ public class GcdTest extends Base
 		   if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\n24\n", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\n24\n", outContent.toString().toLowerCase());
 		   
 		   }
 	   }
@@ -104,7 +104,7 @@ public class GcdTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter the first number:\nEnter the second number:\nGCD = 6", outContent.toString());
+		    assertEquals("enter the first number:\nenter the second number:\ngcd = 6", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

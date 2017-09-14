@@ -62,7 +62,7 @@ public class PerfectTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:28\n", outContent.toString());
+		    assertEquals("enter a number:28\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -83,7 +83,7 @@ public class PerfectTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:1\n3\n6\n6\n6\n", outContent.toString());
+		    assertEquals("enter a number:1\n3\n6\n6\n6\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -104,7 +104,7 @@ public class PerfectTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:Perfect\n", outContent.toString());
+		    assertEquals("enter a number:perfect\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -125,7 +125,7 @@ public class PerfectTest extends Base
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Enter a number:Not Perfect\n", outContent.toString());
+		    assertEquals("enter a number:not perfect\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

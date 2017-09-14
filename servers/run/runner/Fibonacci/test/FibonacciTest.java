@@ -14,13 +14,13 @@ public class FibonacciTest extends Base
 	  @Test
    public void t1() throws java.io.IOException{
 	instruction = "public : its the access specifier means\nfrom every where we can access it.\n\nstatic : access modifier means we can call\nthis method directly using class name\nwithout creating an object of it.\n\nvoid : it is a return type i.e it does\nnot return any value.\n\nmain() : it is a method name.\n\nstring args[] : its a command line argument\nit is a collection of variables in the string\nformat.\n";
-	hint = "public static void main() throws IOException {\n \n}";
+	hint = "public static void main(String args[]) throws IOException {\n \n}";
 	description = "Create a main method";
         Fibonacci obj = new Fibonacci();
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Fibonacci.main() throws java.io.IOException");
+	        assertEquals(m1,"public static void Fibonacci.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -40,7 +40,8 @@ public class FibonacciTest extends Base
 		   if(m!=null)
 		{
 
-		    m.invoke(obj);
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                     Object br = Base.getDebuggingObject();
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
@@ -64,8 +65,9 @@ public class FibonacciTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number :1\n", outContent.toString());
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number :1\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -86,8 +88,9 @@ public class FibonacciTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number :1\n", outContent.toString());
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number :1\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -111,8 +114,9 @@ public class FibonacciTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number :Fibonacci\n", outContent.toString());
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number :fibonacci\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -133,8 +137,9 @@ public class FibonacciTest extends Base
 	   	Method m = getMethod(obj,"main");
 	   	if(m!=null)
 		{
-		    m.invoke(obj);
-		    assertEquals("Enter a number :Not Fibonacci\n", outContent.toString());
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+		    assertEquals("enter a number :not fibonacci\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

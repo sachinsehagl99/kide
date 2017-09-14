@@ -65,7 +65,7 @@ public class InputTest extends Base
 		if(m!= null)
 		{
 		m.invoke(obj);
-	        assertEquals("Enter a number:\n10\n", outContent.toString());
+	        assertEquals("enter a number:\n10\n", outContent.toString().toLowerCase());
      
 
     		}
