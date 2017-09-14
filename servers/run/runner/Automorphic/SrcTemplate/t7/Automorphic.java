@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Automorphic{
 	
-   public static void main() throws IOException{
+   public static void main(String args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int a=0;
@@ -16,7 +16,7 @@ public class Automorphic{
 		i++;
 	}while(a!=0);
 	//=========== Write your code within the block ===========//
-	a=dup;
+	a=dup * dup ;
 	//========================================================//
 	//IGNORE
 		System.out.println(+a);

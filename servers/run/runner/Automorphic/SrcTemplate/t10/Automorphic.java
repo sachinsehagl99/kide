@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Automorphic{
 	
-   public static void main() throws IOException{
+   public static void main(String args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int a=0;
@@ -21,10 +21,10 @@ public class Automorphic{
 	{
 		b=a%10;
 		a=a/10;			
+		auto = (b*j) + auto;
 		
 	//=========== Write your code within the block ===========//
-		auto = (b*j) + auto;
-			
+		j=10;			
 	//========================================================//
 	//IGNORE
 		System.out.println(+auto);

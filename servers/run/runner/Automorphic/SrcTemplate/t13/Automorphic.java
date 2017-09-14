@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Automorphic{
 	
-   public static void main() throws IOException{
+   public static void main(String args[]) throws IOException{
 	BufferedReader br = null;
 	br = new BufferedReader(new InputStreamReader(System.in));
 	int a=0;
@@ -26,9 +26,12 @@ public class Automorphic{
 		i--;
     		
 	}while(i!=0);
+	if(auto == dup)
+		System.out.println("Automorphic Number");
+	
 	//=========== Write your code within the block ===========//
-		if(auto == dup)
-			System.out.println("Automorphic Number");
+	else
+		System.out.println("Not an Automorphic Number");
 	//========================================================//
 	
     }

@@ -63,7 +63,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:madam\n", outContent.toString());
+		    assertEquals("input a string:madam\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -84,7 +84,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:madam\n", outContent.toString());
+		    assertEquals("input a string:madam\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -105,7 +105,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:Palindrome\n", outContent.toString());
+		    assertEquals("input a string:palindrome\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}
@@ -127,7 +127,7 @@ public class PalindromeStringTest extends Base {
 	   	if(m!=null)
 		{
 		    m.invoke(obj);
-		    assertEquals("Input a string:Not palindrome\n", outContent.toString());
+		    assertEquals("input a string:not palindrome\n", outContent.toString().toLowerCase());
 	   	}
 	   }
 	   catch(Exception e){}

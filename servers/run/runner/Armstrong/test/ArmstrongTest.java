@@ -12,13 +12,14 @@ public class ArmstrongTest extends Base
      @Test
    public void t1() throws java.io.IOException{
 	instruction = "public : its the access specifier means\nfrom every where we can access it.\n\nstatic : access modifier means we can call\nthis method directly using class name\nwithout creating an object of it.\n\nvoid : it is a return type i.e it does\nnot return any value.\n\nmain() : it is a method name.\n\nstring args[] : its a command line argument\nit is a collection of variables in the string\nformat.\n";
-	hint = "public static void main() throws IOException {\n \n}";
+	hint = "public static void main(String args[]) throws IOException {\n \n}";
 	description = "Create a main method";
         Armstrong obj = new Armstrong();
 	try {
 		Method m=getMethod(obj,"main");
 		String m1=m.toString();
-	        assertEquals(m1,"public static void Armstrong.main() throws java.io.IOException");
+		//System.err.println(m1);
+	        assertEquals(m1,"public static void Armstrong.main(java.lang.String[]) throws java.io.IOException");
      
 
     		}
@@ -37,9 +38,10 @@ public class ArmstrongTest extends Base
 		   Method m = getMethod(obj, "main");
 		   if(m!=null)
 		{
-
-		    m.invoke(obj);
+                    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                     Object br = Base.getDebuggingObject();
+		    //System.err.println(br);
 		    assertEquals("java.io.BufferedReader", br.getClass().getName());
 		   
 		   }
@@ -61,7 +63,9 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		    String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
+
                  assertEquals("Input the number:371\n",outContent.toString());		
 			 
      		
@@ -81,7 +85,8 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                   assertEquals("Input the number:371\n",outContent.toString());		
  
      		
@@ -103,7 +108,8 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                    assertEquals("Input the number:1\n7\n3\n",outContent.toString());		
  
      		
@@ -124,7 +130,8 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                   assertEquals("Input the number:1\n344\n371\n",outContent.toString());		
  
      		
@@ -146,7 +153,8 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                   assertEquals("Input the number:Armstrong number\n",outContent.toString());		
  
      		
@@ -168,7 +176,8 @@ public class ArmstrongTest extends Base
 		Method m=getMethod(obj,"main");
 		if(m!=null)
 		{
-		  m.invoke(obj);
+		  String args[] = new String [0];
+		    m.invoke(obj, (Object)args);
                   assertEquals("Input the number:Not an armstrong number\n",outContent.toString());		
  
      		
