@@ -90,11 +90,10 @@ module.exports = angular.module("plunker.directive.previewer", [
         	var testNo = ($location.path()).split("/")[3];
 
         	if($rootScope.testMethod < testNo){
-          		$rootScope.testMethod = $rootScope.testMethod + 1;
-          		getSrcTemplate("t" + $rootScope.testMethod);
-        	} 
-		else {
-          		notifier.success("yay!! thats all you need to do");
+                    $rootScope.testMethod = $rootScope.testMethod + 1;
+                    getSrcTemplate("t" + $rootScope.testMethod);
+        	} else {
+                    notifier.success("yay!! thats all you need to do");
         	}
       }
      } else {
