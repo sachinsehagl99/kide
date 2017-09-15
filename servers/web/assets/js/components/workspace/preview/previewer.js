@@ -74,9 +74,9 @@ module.exports = angular.module("plunker.directive.previewer", [
     };
 
     json.testMethod = "t" + $rootScope.testMethod;
-    return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
+    
+	return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
      $rootScope.enable = "true";
-     $rootScope.submitButtonText = "Next";
 
      if(!resp.data.err){
 	$rootScope.hintVar = "hidden";
@@ -95,10 +95,15 @@ module.exports = angular.module("plunker.directive.previewer", [
         	} else {
                     notifier.success("yay!! thats all you need to do");
         	}
+
       }
+       else
+	     $rootScope.submitButtonText = "Next";
+		
      } else {
         $rootScope.hintVar = "hidden";
 	$rootScope.error = resp.data.err;
+	
      }
     });
   }
