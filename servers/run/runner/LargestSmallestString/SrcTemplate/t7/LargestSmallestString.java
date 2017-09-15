@@ -8,37 +8,28 @@ public class LargestSmallestString{
 	String a=" ";
 	System.out.println("Enter the sentence:");
 	a =br.readLine();
+	a = a.trim();
+	a = a + " ";
 	char c=' ';
         int k=0,small=50,lar=0;
         String s=" ",sm=" ",lm=" ";
         for(int i=0;i<a.length();i++){
 
        	    c=a.charAt(i);
-                if(c==' '){
-                    s=a.substring(k,i);
-                    k=i+1;
-                    if(s.length()<small){
-                 
-                        small=s.length();
-                        sm=s;                       
-                    }
-                    if(s.length()>lar){
-                      
-                        //=========== Write your code within the block ===========//
-                      
-                        lar=s.length();
-                        lm=s;
+            //=========== Write your code within the block ===========//
+            if(c==' '){
+                s=a.substring(k,i);
+                k=i+1;
+              
+            }
+            //========================================================//
 
-                
-                        //========================================================//
-
-
-                        //IGNORE
-        	        System.out.println(lar+" "+lm);
-                        //END
-                     }
-    
-	        }
+            //IGNORE
+            if(c==' '){
+        	System.out.println(s);
+            }
+            //END
+	
 	 }
 
     }

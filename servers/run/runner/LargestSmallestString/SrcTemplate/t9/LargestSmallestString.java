@@ -21,13 +21,22 @@ public class LargestSmallestString{
                     k=i+1;
                     if(s.length()<small){
                  
-                        //=========== Write your code within the block ===========//
                         small=s.length();
-                        sm=s; 
+                        sm=s;                       
+                    }
+                    if(s.length()>lar){
+                      
+                        //=========== Write your code within the block ===========//
+                      
+                        lar=s.length();
+                        lm=s;
+
+                
                         //========================================================//
 
+
                         //IGNORE
-        	        System.out.println(small+" "+sm);
+        	        System.out.println(lar+" "+lm);
                         //END
                      }
     

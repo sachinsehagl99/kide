@@ -67,12 +67,50 @@ public class LargestSmallestStringTest extends Base
 			 
      		
     		}
-        }
-	catch(Exception e){}
-    	        }
+        } catch(Exception e){}
+  }
 
   @Test
-   public void t4() throws java.io.IOException{
+  public void t4() throws java.io.IOException {
+    instruction = "String.trim(); removes a blank space from the begining and the end";
+    hint = "a = a.trim();";
+    description = "remove blank space from the variable 'a'";
+    LargestSmallestString obj = new LargestSmallestString();
+    ByteArrayInputStream in = new ByteArrayInputStream(" Cube ".getBytes());
+    System.setIn(in);
+
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null) {
+		  String args[] = new String [0];
+		  m.invoke(obj,(Object)args);
+                 assertEquals("enter the sentence:\ncube\n",outContent.toString().toLowerCase());		
+			 
+    		}
+        } catch(Exception e){}
+  }
+
+  @Test
+  public void t5() throws java.io.IOException {
+    instruction = "String = String + \" \" appends a black to the end of the String";
+    hint = "a = a + \" \";";
+    description = "add a blankspace to the end of the string variable";
+    LargestSmallestString obj = new LargestSmallestString();
+    ByteArrayInputStream in = new ByteArrayInputStream("Cube".getBytes());
+    System.setIn(in);
+    
+	try {
+		Method m=getMethod(obj,"main");
+		if(m!=null) {
+		  String args[] = new String [0];
+		  m.invoke(obj,(Object)args);
+                 assertEquals("enter the sentence:\ncube \n",outContent.toString().toLowerCase());		
+    		}
+        } catch(Exception e){}
+  }
+
+  @Test
+   public void t6() throws java.io.IOException{
 	instruction = "String.charAt(i):Extracts a character from the i th position of the String.";
 	hint = "c=a.charAt(i);\n";
         description = "Extracting each character";
@@ -85,7 +123,7 @@ public class LargestSmallestStringTest extends Base
 		{
 		  String args[] = new String [0];
 		  m.invoke(obj,(Object)args);
-                 assertEquals("enter the sentence:\nc\nu\nb\ne\n",outContent.toString().toLowerCase());		
+                 assertEquals("enter the sentence:\nc\nu\nb\ne\n \n",outContent.toString().toLowerCase());		
 			 
      		
     		}
@@ -93,8 +131,8 @@ public class LargestSmallestStringTest extends Base
 	catch(Exception e){}
     	        }
 
- @Test
-   public void t5() throws java.io.IOException{
+   @Test
+   public void t7() throws java.io.IOException{
 	instruction = "String.substring(position1,position2):Extracts the word from the string from position1 to position2\nIf c is space then the substring function extracts the word before the space and the value of k is increased to the starting position of the next word.";
 	hint = " if(c==' '){\n\ts=a.substring(k,i);\n k=i+1;\n}";
         description = "Extracting each word between the spaces.";
@@ -113,7 +151,7 @@ public class LargestSmallestStringTest extends Base
    }
 
    @Test
-   public void t6() throws java.io.IOException{
+   public void t8() throws java.io.IOException{
 	instruction = "string.length():returns the length of the input string\nuse string.length function to fin out the length of the string\ncopy the input string into another variable say sm=s.";
 	hint = " small=s.length();\nsm=s;\n";
         description = "finding string length and copying the value to other string variable.";
@@ -135,7 +173,7 @@ public class LargestSmallestStringTest extends Base
 	catch(Exception e){}
     	        }
 @Test
-   public void t7() throws java.io.IOException{
+   public void t9() throws java.io.IOException{
 	instruction = "string.length():returns the length of the input string\nuse string.length function to find out the length of the string\ncopy the input string into another variable say lm=s.";
 	hint = " lar=s.length();\nlm=s;\n";
         description = "finding string length and copying the value to other string variable.";
@@ -156,7 +194,7 @@ public class LargestSmallestStringTest extends Base
 	catch(Exception e){}
     	        }
 @Test
-   public void t8() throws java.io.IOException{
+   public void t10() throws java.io.IOException{
 	instruction = "Print the largest and the smallest word by using Sysytem.out.ptintln()function.";
 	hint = "System.out.println(\"The largest word is: \"+lm);\nSystem.out.println(\"The smallest word is: \"+sm);"; 
 
