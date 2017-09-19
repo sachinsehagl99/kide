@@ -238,9 +238,7 @@ exports.register = function (plugin, options, next) {
         var courseName = request.params.courseName;
 	var context = {"url": {"run": ""}};
 
-	reply.view("editor", context, {
-                layout: "landing"
-              });
+	reply.view("editor", context);
 
       }
     }

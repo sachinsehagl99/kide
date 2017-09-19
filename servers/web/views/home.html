@@ -1,11 +1,13 @@
-<div class="container-fluid">
+<div class="row" >
   <div class="col-xs-12">
     <div class="plunk-list">
     {{#each body.plunk}}
-      <div id="{{name}}" class="col-xs-12 col-md-6 col-lg-4">
-        {{> plunk}}
+      <div id="{{name}}" class="col-xs-12 col-md-6 col-lg-12" style="border: 1px solid; border-color: #D3D3D3;background-color: white; box-shadow: 0px 3px 2px #D3D3D3;">
+	<br>        
+		{{> plunk}}
       </div>
       {{/each}}
     </div>
   </div>
+<br>
 </div>

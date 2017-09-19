@@ -1,14 +1,7 @@
-<div class="plunk-h media">
-  <div class="pull-left plunk-image">
-    <div class="plunk-image-overlay">
-    </div>
-    <a href="/plunks/{{id}}">
-      <img class="media-object"  src="/image/java.jpg" width="156px" height="117px" style="height:117px;width:auto;">
-    </a>
-  </div>
-  <div class="media-body">
-    <h3>
-      <a href="/edit/{{name}}/{{test_no}}/{{plunkId}}">{{description}}</a>
+<div class="plunk-h card media">
+  <div class="media-body card-block">
+    <h3 class="card-text">
+      <a href="/edit/{{name}}/{{test_no}}/{{plunkId}}"><center>{{description}}</center></a>
     </h3>
     {{#if fork_of}}
     <div class="forked text-muted"><i class="fa fa-code-fork"></i> Forked from <a href="/plunks/{{fork_of}}">{{fork_of}}</a></div>
@@ -30,3 +23,4 @@
     </div>
   </div>
 </div>
+<br>

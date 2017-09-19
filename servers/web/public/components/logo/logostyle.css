@@ -1,0 +1,66 @@
+@font-face {
+                font-family: ya;
+                src: url(yahi.ttf);
+            }
+@font-face {
+                font-family: bo;
+                src: url(body.ttf);
+            }
+
+    .ssvg{
+        width: 174px;
+        height: 58px;
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes example {
+        from {background-color: #FF8C00;}
+        to {background-color: #63b1c6;}
+    }
+
+    /* Standard syntax */
+    @keyframes example {
+        from {fill: #FF8C00;}
+        to {fill: #63b1c6;}
+    }
+    
+    svg #underScore {
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+        animation-name: example;
+        animation-duration: 0.5s;
+        animation-iteration-count:infinite;
+    }
+    
+    .st0{font-family:'ya'; fill: #FF8C00;}
+        .st1{font-size:232.7938px;}
+        .st2{font-family:'ya'; fill: white;}
+        .st3{fill:#FF8C00;}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+}
+
+.icon:hover{
+	cursor: pointer;
+}
+
+#tweet:hover{
+	fill: #0084b4;
+}
+
+#fb:hover{
+	fill: #3b5998;
+}
+
+#gp:hover{
+	fill: #dd4b39;
+}
+
+#git:hover{
+	fill: #6e5494;
+}
