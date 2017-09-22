@@ -6147,7 +6147,7 @@ body {
 .navbar-static-top {
   background-color: #63b1c6;
   border: none;
-  height: 53px;
+  min-height: 38px;
   box-shadow: 0px 2px 15px grey;
 }
 .navbar-nav {
