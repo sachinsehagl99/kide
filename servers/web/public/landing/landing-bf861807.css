@@ -6279,11 +6279,13 @@ textarea + .input-group-btn > .dropdown-toggle {
   margin: 0 -15px;
 }
 .plunk-h {
-  border: 1px solid;
-  border-color: #D3D3D3;
+  border: 1px solid #e2e2e2;
   background-color: white;
-  box-shadow: 0px 3px 2px #D3D3D3;
+  box-shadow: 0px 1px 1px #D3D3D3;
   padding-left: 50px;
+}
+.plunk-h:hover {
+  box-shadow: 0px 3px 1px #D3D3D3;
 }
 .tags .list-inline {
   margin-top: 4px;
@@ -6306,6 +6308,8 @@ h3 p {
   font-weight: normal;
   font-size: 15px;
   color: #333;
+  text-align: justify;
+  padding-right: 50px;
 }
 footer {
   position: fixed;
