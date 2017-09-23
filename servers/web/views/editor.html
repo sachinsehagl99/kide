@@ -15,10 +15,7 @@
   </head>
 
   <body ng-controller="EditorController" plunker-overlay="editor">
-    <div fa-pane="container" keybindings >
-      <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
-        <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
-        <nav class="navbar navbar-inverse navbar-static-top" style="box-shadow: 0px;">
+<nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
 	<div class="pull-left">
 	<a href="/">
@@ -40,6 +37,10 @@
 	</div>
       </div>
     </nav>
+    <div fa-pane="container" keybindings >
+      <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
+        <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
+        
       </div>
       <div class="hintContainer" fa-pane="sidebar" pane-anchor="west" pane-size="28%">
         <plunker-previewer></plunker-previewer>
@@ -52,6 +53,7 @@
         <plunker-toolbar></plunker-toolbar> 
       </div>
     </div>    
+	
     <div growl></div>
     <script src="vendor/codemirror/lib/codemirror.js"></script>
     <script src="vendor/codemirror/mode/javascript/javascript.js"></script>
@@ -69,11 +71,11 @@
 	  }
        });
   </script>
+
+  </body>
 <footer>
 			<h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
 	</footer>
-  </body>
-
 
 </html>
 
