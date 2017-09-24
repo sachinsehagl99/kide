@@ -4,20 +4,43 @@
   <head>
     <meta charset="utf-8" />
     <base href="/edit">
+    <link rel="stylesheet" href="/components/logo/logostyle.css">
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="editor/editor.css">
+    <link rel="stylesheet" href="/editor/editor.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
   </head>
 
   <body ng-controller="EditorController" plunker-overlay="editor">
+<nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+	<div class="pull-left">
+	<a href="/">
+        <svg class="ssvg" style="float: left;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="-200 0 1000 500" style="enable-background:new 0 0 1000 500;" xml:space="preserve">
+
+        <text id="cuboid" transform="matrix(1 0 0 1 37.3206 309.5646)"><tspan x="-10" y="0" class="st0 st1">&gt;</tspan><tspan x="138.7" y="0" class="st2 st1">cuboid.io</tspan></text>
+
+        <rect id="underScore" x="167.4" y="315.4" class="st3" width="106" height="16.6"/>
+    </svg>
+	</a>
+	
+	<div style="float: left; padding-top: 17px;">
+		<a href="#"><input class="btn btn-danger disabled" style="width: 60px; height:19px;" value="Beta"></a>
+	</div>	
+	     <div style="float: left; padding: 8px; width: 500px; padding-left: 50px;">
+			<input class="form-control" placeholder="Search cuboid.io">
+		</div>
+	</div>
+      </div>
+    </nav>
     <div fa-pane="container" keybindings >
-      <div fa-pane="toolbar" pane-anchor="north" pane-size="38px">
+      <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
         <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
-        <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
+        
       </div>
       <div class="hintContainer" fa-pane="sidebar" pane-anchor="west" pane-size="28%">
         <plunker-previewer></plunker-previewer>
@@ -30,6 +53,7 @@
         <plunker-toolbar></plunker-toolbar> 
       </div>
     </div>    
+	
     <div growl></div>
     <script src="vendor/codemirror/lib/codemirror.js"></script>
     <script src="vendor/codemirror/mode/javascript/javascript.js"></script>
@@ -47,6 +71,11 @@
 	  }
        });
   </script>
+
   </body>
+<footer>
+			<h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
+	</footer>
+
 </html>
 
