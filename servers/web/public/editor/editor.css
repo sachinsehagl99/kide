@@ -10,23 +10,8 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-footer{
-	position: fixed;
-	left: 0px; 
-	bottom: 0px;
-	right: 0px;
-	width: 100%;
-	height: 40px;
-	background-color: #63b1c6;
-	padding-left: 100px;
-	color: #fff;
-}
-h5{
-		color: white;
-	}
 body {
   margin: 0;
-  padding-bottom: 40px;
 }
 article,
 aside,
@@ -7782,6 +7767,19 @@ ul.plunker-taglist a:hover:before {
   margin-bottom: 10px;
   padding-bottom: 4px;
 }
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  height: 40px;
+  background-color: #63b1c6;
+  padding-left: 100px;
+}
+footer h5 {
+  color: white;
+}
 .fa-pane-handle {
   background: #ccc;
 }
@@ -7896,6 +7894,7 @@ ul.plunker-taglist a:hover:before {
 }
 .pane-toolbar .toolbar-ops {
   display: inline-block;
+  overflow: visible;
 }
 .pane-toolbar .toolbar-group {
   display: inline-block;
