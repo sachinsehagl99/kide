@@ -100,6 +100,7 @@ Gulp.task("landing:styles:build", [ "landing:styles:clean" ], function () {
     .pipe(Less({
       paths: [ ".", __dirname + "assets/css" ]
     }))
+     .pipe(Rev())
     .pipe(Gulp.dest("public/landing"));
 });
 
