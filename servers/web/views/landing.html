@@ -6,9 +6,10 @@
     <meta charset="utf-8" />
     <title>cuboid.io{{subtitle}}</title>
     <link rel="stylesheet" href="/components/logo/logostyle.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/landing/landing-0da8c113.css">
+    <link rel="stylesheet" href="/landing/landing-7dc651e6.css">
     <!-- endinject -->
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/angular-timeago/angular-timeago.js"></script>
@@ -53,33 +54,47 @@
 		<div class="col-lg-4">
 
 			<div class="row" >
-				<div class="col-lg-12">
-						<div style="border: 1px solid; border-color: #D3D3D3;background-color: white; box-shadow: 0px 3px 2px #D3D3D3;"">
+				<div class="col-lg-12 profile-section">
+						<div class="profile-element">
 							<br>
-							<div style="padding-left: 30px;">
-							<h2>Join us today itself</h2>
+							<div class ="container">
+                                
+                                    <ul class="nav nav-pills">
+                                        <li  class="active"><a data-toggle="pill" href="#login">Log In</a></li>
+                                        <li id="sig"><a data-toggle="pill" href="#signup">Sign Up</a></li>
+                                    </ul>
+							</div>
 							<hr>
-							</div>
-							<div class="row">
-								<div class="col-lg-1"></div>
-								<div class="col-lg-10">							
-									<input class="form-control" placeholder="Email"><br>
-									<input class="form-control" placeholder="Password"><br>
-									<center>
-										<input class="btn btn-info" value="Login">
-										<br>OR<br>
-								  		<input class="btn btn-danger" value="SignUp">							
-									</center>
-								</div>
-								<div class="col-lg-1"></div>
-							</div>
+							<section class="container tab-content">
+								    		
+                                    <div id="login" class="tab-pane fade in active">
+                                        <div class="landing-form">
+									       <input class="form-control" placeholder="Email"><br>
+									       <input class="form-control" placeholder="Password"><br>
+									       <center>
+                                            <input class="btn btn-info" value="Login"> 						
+									       </center>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="signup" class="tab-pane fade">	
+                                       
+                                            <div class="landing-form">
+                                                <input class="form-control" placeholder="Email"><br>
+                                                <input class="form-control" placeholder="Password"><br>
+                                                <input class="form-control" placeholder="Confirm Password"><br>
+                                                <center>
+                                                <input class="btn btn-danger" value="Sign Up"> 						
+                                                </center>
+                                            </div>
+                                        
+                                    </div>
+                                    
+							</section>
 							<hr>
 							<div class="row">
 								<div class="col-lg-2"></div>
-								<div class="col-lg-3">							
-									<p>Login via: </p>
-								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<svg id="fb" class="icon icon-facebook2"><use xlink:href="#icon-facebook2"></use>
 										<defs>
 											<symbol id="icon-facebook2" viewBox="0 0 32 32">
@@ -89,7 +104,7 @@
 										</defs>		
 									</svg>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<svg id="tweet" class="icon icon-twitter"><use xlink:href="#icon-twitter"></use>
 										<defs>
 											<symbol id="icon-twitter" viewBox="0 0 32 32">
@@ -99,7 +114,7 @@
 										</defs>		
 									</svg>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<svg id="gp" class="icon icon-google3"><use xlink:href="#icon-google3"></use>
 										<defs>
 											<symbol id="icon-google3" viewBox="0 0 32 32">
@@ -109,7 +124,7 @@
 										</defs>		
 									</svg>
 								</div>
-								<div class="col-lg-1">
+								<div class="col-lg-2">
 									<svg id="git" class="icon icon-github"><use xlink:href="#icon-github"></use>
 										<defs>
 											<symbol id="icon-github" viewBox="0 0 32 32">
@@ -121,6 +136,7 @@
 								</div>
 								<div class="col-lg-2"></div>
 							</div>
+                            <hr>
 						</div>		
 								
 				</div>			
@@ -131,10 +147,11 @@
 	</div>
 	</div>
     <div growl></div>
+      <br>
   </body>
-
-
-	<footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <footer>
 			<h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
 	</footer>
 
