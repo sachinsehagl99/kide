@@ -1,9 +1,11 @@
 <div class="plunk-h card media">
   <div class="media-body card-block">
     <h3 class="card-text">
-      <a href="/edit/{{name}}/{{test_no}}/{{plunkId}}">{{description}}</a><hr>
-	<p>{{explanation}}</p><br>
+      <a href="/edit/{{name}}/{{test_no}}/{{plunkId}}">{{description}}</a>&nbsp&nbsp<span data-toggle="collapse" data-target="#{{_id}}" class="glyphicon glyphicon-menu-down"></span>
     </h3>
+      <div id="{{_id}}" class="collapse">
+        <p>{{explanation}}</p>
+      </div>
     {{#if fork_of}}
     <div class="forked text-muted"><i class="fa fa-code-fork"></i> Forked from <a href="/plunks/{{fork_of}}">{{fork_of}}</a></div>
     {{/if}}
@@ -24,4 +26,3 @@
     </div>
   </div>
 </div>
-<br>

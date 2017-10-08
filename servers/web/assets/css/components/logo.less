@@ -1,13 +1,4 @@
-@font-face {
-                font-family: ya;
-                src: url(yahi.ttf);
-            }
-@font-face {
-                font-family: bo;
-                src: url(body.ttf);
-            }
-
-    .ssvg{
+.ssvg{
         width: 174px;
         height: 58px;
     }
@@ -15,13 +6,13 @@
     /* Safari 4.0 - 8.0 */
     @-webkit-keyframes example {
         from {background-color: #FF8C00;}
-        to {background-color: #63b1c6;}
+        to {background-color: @themecolmain;}
     }
 
     /* Standard syntax */
     @keyframes example {
         from {fill: #FF8C00;}
-        to {fill: #63b1c6;}
+        to {fill: @themecolmain;}
     }
     
     svg #underScore {
@@ -32,10 +23,10 @@
         animation-iteration-count:infinite;
     }
     
-    .st0{font-family:'ya'; fill: #FF8C00;}
+    .st0{font-family: @fontType; fill: #FF8C00;}
         .st1{font-size:232.7938px;}
-        .st2{font-family:'ya'; fill: white;}
-        .st3{fill:#FF8C00;}
+        .st2{font-family: @fontType; fill: white;}
+        .st3{fill: @themecolmain;}
 
 .icon {
   display: inline-block;
