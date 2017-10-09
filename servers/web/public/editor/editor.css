@@ -7538,6 +7538,14 @@ fieldset[disabled] .btn {
   width: 500px;
   padding-left: 50px;
 }
+#beta {
+  float: left;
+  padding-top: 15px;
+}
+#beta .btn {
+  width: 60px;
+  height: 19px;
+}
 .modal-header h4 {
   margin: 0;
 }

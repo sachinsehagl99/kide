@@ -6266,6 +6266,14 @@ fieldset[disabled] .btn {
   width: 500px;
   padding-left: 50px;
 }
+#beta {
+  float: left;
+  padding-top: 15px;
+}
+#beta .btn {
+  width: 60px;
+  height: 19px;
+}
 .modal-header h4 {
   margin: 0;
 }
@@ -6399,6 +6407,10 @@ a {
 }
 a:hover {
   text-decoration: none;
+  color: #ff8c00;
+}
+a:focus {
+  text-decoration: none;
   color: #3b4453;
 }
 p {
@@ -6417,38 +6429,17 @@ p {
   cursor: pointer;
 }
 .line {
-  border-left: 3px solid #3b4453;
+  border-left: 2px solid #3b4453;
 }
 .profile-element {
   font-family: 'Roboto', sans-serif;
-  width: 26%;
   border: 1px solid;
   border-color: #D3D3D3;
-  background-color: white;
   border-radius: 10px;
-  position: fixed;
+  width: 100%;
 }
-.profile-element #join {
-  padding-left: 30px;
-}
-.profile-element a {
-  text-decoration: none;
-}
-.profile-element .landing-form {
-  height: 204px;
-  width: 26.5%;
-}
-.profile-element .nav-pills li.active a {
-  background-color: #3b4453;
-}
-.profile-element .nav-pills li.active a:hover {
-  background-color: #3b4453;
-}
-.profile-element .nav-pills li.active a:focus {
-  background-color: #3b4453;
-}
-.profile-element #sign {
-  float: right;
+.profile-element #signup {
+  padding: 12px;
 }
 .profile-section {
   padding-top: 80px;
