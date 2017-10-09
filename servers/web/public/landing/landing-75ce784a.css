@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Dosis');
 @import url("//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -6191,14 +6191,14 @@ svg #underScore {
   animation-iteration-count: infinite;
 }
 .st0 {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Roboto', sans-serif;
   fill: #FF8C00;
 }
 .st1 {
-  font-size: 232.7938px;
+  font-size: 200px;
 }
 .st2 {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Roboto', sans-serif;
   fill: white;
 }
 .st3 {
@@ -6259,6 +6259,12 @@ fieldset[disabled] .btn {
   cursor: default;
   pointer-events: none;
   opacity: 1;
+}
+#scuboid {
+  float: left;
+  padding: 8px;
+  width: 500px;
+  padding-left: 50px;
 }
 .modal-header h4 {
   margin: 0;
@@ -6368,10 +6374,12 @@ textarea + .input-group-btn > .dropdown-toggle {
   padding-top: 80px;
 }
 .plunk-h {
-  font-family: 'Dosis', sans-serif;
-  padding-left: 50px;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 20px;
+  padding-left: 30px;
   border-radius: 10px;
   padding-bottom: 15px;
+  padding-right: 20px;
 }
 .plunk-h:hover {
   background-color: #f2f2f3;
@@ -6399,17 +6407,20 @@ p {
   color: #7979b4;
   text-align: justify;
   padding-right: 50px;
-  letter-spacing: 1px;
-  line-height: 105%;
 }
 .glyphicon-menu-down {
   font-size: 0.6em;
+  float: right;
+  color: #3b4453;
 }
 .glyphicon-menu-down:hover {
   cursor: pointer;
 }
+.line {
+  border-left: 3px solid #3b4453;
+}
 .profile-element {
-  font-family: 'Dosis', sans-serif;
+  font-family: 'Roboto', sans-serif;
   width: 26%;
   border: 1px solid;
   border-color: #D3D3D3;
@@ -6441,7 +6452,4 @@ p {
 }
 .profile-section {
   padding-top: 80px;
-}
-.authored {
-  font-size: 90%;
 }

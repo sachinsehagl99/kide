@@ -9,9 +9,11 @@
 
 .plunk-h {
    font-family: @fontType;
-   padding-left: 50px;
+    margin-left: 20px;
+   padding-left: 30px;
    border-radius: 10px;
    padding-bottom: 15px;
+   padding-right: 20px;
    &:hover{
 	background-color: #f2f2f3;
    }
@@ -44,15 +46,21 @@ a{
 	color: #7979b4;
 	text-align: justify;
 	padding-right: 50px;
-    letter-spacing: 1px;
-    line-height: 105%;
+    //letter-spacing: 1px;
+    //line-height: 105%;
 
      }
 
 
 .glyphicon-menu-down{
     font-size: 0.6em;
+    float: right;
+    color: @themecolmain;
     &:hover{
         cursor: pointer;
     }
+}
+
+.line{
+    border-left: 2px solid @themecolmain;
 }
