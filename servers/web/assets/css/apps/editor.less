@@ -11,6 +11,7 @@
 
 @import '../components/shared.less';
 
+@import '../components/variables.less';
 @import '../components/toolbar.less';
 @import '../components/userPane.less';
 @import '../components/codePane.less';
@@ -22,9 +23,14 @@
 @import '../components/templates.less';
 @import '../components/logo.less';
 
-
+.btn-side{
+	background-color:@themecolside;
+	border-color: #56bc89;
+	color: white;
+}
 
 footer{
+	font-family: @fontType;
 	position: fixed;
 	left: 0px; 
 	bottom: 0px;
@@ -68,6 +74,7 @@ footer{
 }
 
 .plunker-brand {
+  font-family: @fontType;
   background: url('http://plnkr.co/img/plunker.png') no-repeat;
   background-size: 38px 38px;
   background-position: 0 center;
@@ -84,6 +91,7 @@ footer{
   float: left;
 
   a {
+    font-family: inherit;
     color: #f5f5f5;
 
     &:hover {
@@ -206,4 +214,8 @@ footer{
     color: #f5f5f5;
     text-shadow: #333 0 0 4px,white 0 0 1px;;
   }
+}
+
+.panel .panel-body{
+	font-family: @fontType;
 }
