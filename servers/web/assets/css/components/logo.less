@@ -5,13 +5,13 @@
 
     /* Safari 4.0 - 8.0 */
     @-webkit-keyframes example {
-        from {background-color: #FF8C00;}
+        from {background-color: @themecolside;}
         to {background-color: @themecolmain;}
     }
 
     /* Standard syntax */
     @keyframes example {
-        from {fill: #FF8C00;}
+        from {fill: @themecolside;}
         to {fill: @themecolmain;}
     }
     
@@ -23,39 +23,7 @@
         animation-iteration-count:infinite;
     }
     
-    .st0{font-family: @fontType; fill: #FF8C00;}
+    .st0{font-family: @fontType; fill: @themecolside;}
         .st1{font-size: 200px;}
         .st2{font-family: @fontType; fill: white;}
         .st3{fill: @themecolmain;}
-
-.icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  stroke-width: 0;
-  stroke: currentColor;
-}
-
-.icon:hover{
-	cursor: pointer;
-}
-
-#tweet:hover{
-	fill: #0084b4;
-}
-
-#fb:hover{
-	fill: #3b5998;
-}
-
-#gp:hover{
-	fill: #dd4b39;
-}
-
-#git:hover{
-	fill: #6e5494;
-}
-
-.navbar {
-  min-height: 38px;
-}
