@@ -128,7 +128,7 @@ Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
   }
 });
 
-Gulp.task("landing:inject", function () {
+Gulp.task("landing:inject",[ "landing:styles:build" ], function () {
   return Gulp.src("views/landing.html")
     .pipe(Inject(Gulp.src([ "public/landing/*.js", "public/landing/*.css" ], { read: false }), {
       ignorePath: "/public",
