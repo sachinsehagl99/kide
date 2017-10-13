@@ -25,6 +25,7 @@
     "lodash": "~2.4.1",
     "lru-cache": "~2.5.0",
     "marked": "~0.3.2",
+    "ng-tags-input": "^3.2.0",
     "ng-tags-input-extends": "^0.1.7",
     "node-summary": "~1.0.0",
     "passport": "~0.2.0",
