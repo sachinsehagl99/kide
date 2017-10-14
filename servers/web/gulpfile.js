@@ -92,7 +92,7 @@ Gulp.task("landing:styles:clean",[ "landing:scripts:build" ], function () {
     .pipe(Rimraf());
 });
 
-Gulp.task("landing:scripts:clean", function () {
+Gulp.task("landing:scripts:clean",["editor:inject"], function () {
   return Gulp.src([ "public/landing/*.js" ], { read: true })
     .pipe(Rimraf());
 });
@@ -131,7 +131,7 @@ Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
   }
 });
 
-Gulp.task("landing:inject",[ "landing:styles:build" ], function () {
+Gulp.task("inject",[ "landing:styles:build" ], function () {
   return Gulp.src("views/landing.html")
     .pipe(Inject(Gulp.src([ "public/landing/*.js", "public/landing/*.css" ], { read: false }), {
       ignorePath: "/public",
