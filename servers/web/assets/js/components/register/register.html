@@ -12,11 +12,11 @@
      <div class="col-md-12">
 <form name = "addFriendForm">
         <h2 class="form-signin-heading">Please Register</h2>
-        <label for="inputUserName" class="sr-only">Username</label>
+        <label for="inputUserName" class="sr-only">Username</label><br>
         <input type="text" id="inputUsername" class="form-control" placeholder="username" required="" autofocus="" ng-model="user.name">
-        <label for="inputEmail" class="sr-only">Email address</label>
+        <label for="inputEmail" class="sr-only">Email address</label><br>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" ng-model="user.email">
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label for="inputPassword" class="sr-only">Password</label><br>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" ng-model="user.password">
 </form>  
  
@@ -132,7 +132,7 @@
 
 <div class="modal-footer">
   <div class="pull-right">
-    <button ng-if="step.next" class="btn btn-primary" ng-click="advance()" ng-bind="step.next">Next</button>
+    <button ng-if="step.next" class="btn btn-side" ng-click="advance()" ng-bind="step.next">Next</button>
   </div> 
   <div class="pull-left">
     <button class="btn btn-link" ng-click="reject('Clicked cancel')">Cancel</button>
