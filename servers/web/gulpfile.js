@@ -11,7 +11,7 @@ var browserify = require('gulp-browserify');
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Gulp.task("editor:styles:clean", function () {
+Gulp.task("editor:styles:clean",["editor:scripts:build"], function () {
   return Gulp.src([ "public/editor/*.css" ], { read: true })
     .pipe(Rimraf());
 });
@@ -26,6 +26,7 @@ Gulp.task("editor:styles:build", [ "editor:styles:clean" ], function () {
     .pipe(Less({
       paths: [ ".", __dirname + "assets/css" ]
     }))
+    .pipe(Rev())
     .pipe(Gulp.dest("public/editor"));
 });
 
@@ -61,11 +62,12 @@ Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
       //.pipe(Rename(function (path) {
       //  path.basename += "-" + Genid(8, "", "abcdefghijklmnopqrstuvwxyz0123456789");
       //}))
+      .pipe(Rev())
       .pipe(Gulp.dest("public/editor"));
   }
 });
 
-Gulp.task("editor:inject", function () {
+Gulp.task("editor:inject",["editor:styles:build"], function () {
   return Gulp.src("views/editor.html")
     .pipe(Inject(Gulp.src([ "public/editor/*.js", "public/editor/*.css" ], { read: false }), {
       ignorePath: "/public",
@@ -85,7 +87,7 @@ Gulp.task("editor:watch", function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Gulp.task("landing:styles:clean", function () {
+Gulp.task("landing:styles:clean",[ "landing:scripts:build" ], function () {
   return Gulp.src([ "public/landing/*.css" ], { read: true })
     .pipe(Rimraf());
 });
@@ -124,6 +126,7 @@ Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
         Gutil.log("Bundling error", e.message);
       })
       .pipe(Source("landing.js"))
+      .pipe(Rev())
       .pipe(Gulp.dest("public/landing"));
   }
 });
