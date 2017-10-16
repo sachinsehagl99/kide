@@ -11,7 +11,7 @@ var browserify = require('gulp-browserify');
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Gulp.task("editor:styles:clean",["editor:scripts:build"], function () {
+Gulp.task("editor:styles:clean", function () {
   return Gulp.src([ "public/editor/*.css" ], { read: true })
     .pipe(Rimraf());
 });
@@ -67,7 +67,7 @@ Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
   }
 });
 
-Gulp.task("editor:inject",["editor:styles:build"], function () {
+Gulp.task("editor:inject",["editor:styles:build","editor:scripts:build"], function () {
   return Gulp.src("views/editor.html")
     .pipe(Inject(Gulp.src([ "public/editor/*.js", "public/editor/*.css" ], { read: false }), {
       ignorePath: "/public",
@@ -87,12 +87,12 @@ Gulp.task("editor:watch", function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Gulp.task("landing:styles:clean",[ "landing:scripts:build" ], function () {
+Gulp.task("landing:styles:clean", function () {
   return Gulp.src([ "public/landing/*.css" ], { read: true })
     .pipe(Rimraf());
 });
 
-Gulp.task("landing:scripts:clean",["editor:inject"], function () {
+Gulp.task("landing:scripts:clean", function () {
   return Gulp.src([ "public/landing/*.js" ], { read: true })
     .pipe(Rimraf());
 });
@@ -131,7 +131,7 @@ Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
   }
 });
 
-Gulp.task("inject",[ "landing:styles:build" ], function () {
+Gulp.task("landing:inject",[ "landing:styles:build","landing:scripts:build" ], function () {
   return Gulp.src("views/landing.html")
     .pipe(Inject(Gulp.src([ "public/landing/*.js", "public/landing/*.css" ], { read: false }), {
       ignorePath: "/public",
@@ -157,3 +157,4 @@ Gulp.task("landing:watch", function () {
 ////////////////////////////////////////////////////////////////////////////////
 
 Gulp.task("default", ["editor:watch", "landing:watch"]);
+Gulp.task("inject",["landing:inject", "editor:inject"]);
