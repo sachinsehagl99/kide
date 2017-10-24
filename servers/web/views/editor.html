@@ -7,7 +7,7 @@
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/editor/editor-667e31f8.css">
+    <link rel="stylesheet" href="/editor/editor-8e8a2a90.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
@@ -37,6 +37,12 @@
           <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
       </div>
     </nav>
+    <div style="" class="console-tab">
+        <ul class="nav nav-tabs">
+            <li class="active" ng-click="#"><a style="background-color: #555; color: white;" href="#">{{entry.filename}}</a></li>
+            <li ng-click="#"><a style="background-color: #555; color: white;"href="#">console</a></li>
+          </ul>
+      </div>
     <div fa-pane="container" keybindings >
       <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
         <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
@@ -48,13 +54,7 @@
       <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
-      <div fa-pane="workspace" pane-anchor="west" pane-size="60%">
-        <div style="background-color: #555; color: white;" >
-            <ul class="nav nav-tabs">
-                <li class="active"><a style="background-color: #555; color: white;" href="#">editor.java</a></li>
-                <li><a style="background-color: #555; color: white;"href="#">console</a></li>
-              </ul>
-        </div>
+      <div fa-pane="workspace" pane-anchor="west" pane-size="60%">    
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
