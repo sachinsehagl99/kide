@@ -3,7 +3,7 @@
     <div class="tree-entry tree-folder" ng-if="entry.isDirectory()" ng-class="{collapsed: collapsed}">
       <div class="tree-inner" ng-click="collapsed=!collapsed">
         <i class="tree-icon fa-li fa fa-folder{{!collapsed && '-open' || ''}}"></i>
-        <span class="tree-filename" >{{entry.filename}} <span class="label label-default" ng-show="collapsed" ng-bind="entry.children.length"></span></span>
+        <span class="tree-filename">{{entry.filename}} <span class="label label-default" ng-show="collapsed" ng-bind="entry.children.length"></span></span>
       </div>
       <div class="tree-bg"></div>
       <file-tree-recurse tree="entry.children"></file-tree-recurse>
@@ -17,4 +17,3 @@
     </div>
   </li>
 </ul>
-
