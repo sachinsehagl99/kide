@@ -218,8 +218,8 @@ module.exports = angular.module("plunker.project", [
     var treePromise = _.isArray(tree)
       ? $q.when(tree)
       : $http.get(config.url.api + "/trees/" + tree).then(function (response) {
-          console.log(response.data);
-          alert(response.data);
+          //console.log(response.data);
+          //alert(response.data);
         return response.data;
       });
     
