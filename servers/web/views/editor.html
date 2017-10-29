@@ -80,8 +80,10 @@
         
    window.onload=function() {
        console.log("initiated name extraction");
-       setTimeout(function(){document.getElementById("filename_tab").innerHTML = document.getElementById("filename").innerHTML;}, 10);
-       console.log("Success!");
+       setTimeout(function(){
+           document.getElementById("filename_tab").innerHTML = document.getElementById("filename").innerHTML;
+           console.log("Name extraction Success!");
+       }, 300);
    }
        
   </script>
