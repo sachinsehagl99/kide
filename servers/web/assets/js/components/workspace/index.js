@@ -6,6 +6,7 @@ require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
 require("./preview");
 require("ui-codemirror");
+require
 
 module.exports = angular.module("plunker.component.workspace", [
   "ui.codemirror",
@@ -165,5 +166,17 @@ module.exports = angular.module("plunker.component.workspace", [
       replace: true,
       template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
       controller: require("./controller"),
+    };
+})
+.directive("plunkerTabs", function() {
+    return {
+      restrict: "E",
+      replace: true,
+      template: Fs.readFileSync(__dirname + "/templatetabs.html", "utf8"),
+      link: function($scope, workspace, entries){
+		$scope.click = function(lol){
+			console.log(entries);
+		}
+	}
     };
 });

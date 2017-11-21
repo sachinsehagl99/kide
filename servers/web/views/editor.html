@@ -37,12 +37,15 @@
           <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
       </div>
     </nav>
+<!--
     <div class="console-tab">
         <ul class="nav nav-tabs">
             <li ng-click="#"><a id="filename_tab" style="background-color: #555; color: white;" href="#"></a></li>
             <li ><a style="background-color: #555; color: white;">console</a></li>
           </ul>
       </div>
+-->
+	
     <div fa-pane="container" keybindings >
       <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
         <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
@@ -54,12 +57,14 @@
       <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
+
+	
       <div fa-pane="workspace" pane-anchor="west" pane-size="60%">    
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
     </div>    
-	
+<plunker-tabs><plunker-tabs>	
     <div growl></div>
 
     <script src="vendor/codemirror/lib/codemirror.js"></script>
