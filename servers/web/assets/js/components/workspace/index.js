@@ -6,7 +6,6 @@ require("../../../vendor/borderLayout/borderLayout.coffee");
 require("../../../vendor/mousetrap/mousetrap");
 require("./preview");
 require("ui-codemirror");
-require
 
 module.exports = angular.module("plunker.component.workspace", [
   "ui.codemirror",
