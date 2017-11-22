@@ -198,4 +198,16 @@ angular.module("plunker.directive.fileTree", [
       $element.replaceWith(tree);
     }
   };
-}]);
+}])
+.directive("plunkerTabs", function() {
+    return {
+      restrict: "E",
+      replace: true,
+      template: Fs.readFileSync(__dirname + "/templatetabs.html", "utf8"),
+      link: function($scope, workspace, entries){
+		$scope.click = function(lol){
+			console.log(entries);
+		}
+	}
+    };
+});

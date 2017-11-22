@@ -166,16 +166,4 @@ module.exports = angular.module("plunker.component.workspace", [
       template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
       controller: require("./controller"),
     };
-})
-.directive("plunkerTabs", function() {
-    return {
-      restrict: "E",
-      replace: true,
-      template: Fs.readFileSync(__dirname + "/templatetabs.html", "utf8"),
-      link: function($scope, workspace, entries){
-		$scope.click = function(lol){
-			console.log(entries);
-		}
-	}
-    };
 });
