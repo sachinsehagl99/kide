@@ -8,6 +8,7 @@ module.exports = function ($scope, workspace, project) {
   function getPaneDef() {
 	console.log("i am the watch function");
 	var temp = workspace.panes[workspace.nextPaneNum-1];
+	console.log(workspace.panes);
 	if(count==1){
 	      var ws=temp;	
 	}

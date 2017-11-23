@@ -32,7 +32,7 @@ angular.module("plunker.directive.fileTree", [
 
       $scope.open = function ($event, entry, options) {
         $event.stopPropagation();
-	document.getElementById("filename_tab").innerHTML=entry.filename;
+	//document.getElementById("filename_tab").innerHTML=entry.filename;
         if (openRight && openDown) {
           if (workspace.isOpen("code", entry.entryId)) {
             commander.execute("workspace.close", {coords: workspace.getCoords("code", entry.entryId)});

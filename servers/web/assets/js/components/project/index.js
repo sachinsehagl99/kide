@@ -120,9 +120,13 @@ module.exports = angular.module("plunker.project", [
     
     this.entries[entry.getId()] = entry;
    if(filename==="console"){
+	count=1;
 	con=entry.getId();
 	console.log("Found Console "+con);
-	} 
+	}
+   else{
+	document.getElementById("filename_tab").innerHTML=entry.filename;
+   }
     return entry;
   };
   
