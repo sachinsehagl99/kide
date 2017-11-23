@@ -32,7 +32,7 @@ angular.module("plunker.directive.fileTree", [
 
       $scope.open = function ($event, entry, options) {
         $event.stopPropagation();
-
+	document.getElementById("filename_tab").innerHTML=entry.filename;
         if (openRight && openDown) {
           if (workspace.isOpen("code", entry.entryId)) {
             commander.execute("workspace.close", {coords: workspace.getCoords("code", entry.entryId)});
@@ -136,7 +136,7 @@ angular.module("plunker.directive.fileTree", [
       };
       
       $scope.isOpen = function (entry) {
-        document.getElementById("filename_tab").innerHTML=entry.filename;
+        //document.getElementById("filename_tab").innerHTML=entry.filename;
 
         return workspace.isOpen("code", entry.entryId);
       };
@@ -182,7 +182,6 @@ angular.module("plunker.directive.fileTree", [
     }
   };
 }])
-
 .directive("fileTreeRecurse", ["$compile", function($compile){
   return {
     restrict: "E",
@@ -199,6 +198,7 @@ angular.module("plunker.directive.fileTree", [
     }
   };
 }])
+/*
 .directive("plunkerTabs", function() {
     return {
       restrict: "E",
@@ -206,8 +206,9 @@ angular.module("plunker.directive.fileTree", [
       template: Fs.readFileSync(__dirname + "/templatetabs.html", "utf8"),
       link: function($scope, workspace, entries){
 		$scope.click = function(lol){
-			console.log(entries);
+			console.log(workspace.nextPaneNum);
 		}
 	}
     };
-});
+})*/
+;

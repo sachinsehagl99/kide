@@ -79,7 +79,7 @@ module.exports = angular.module("plunker.project", [
       return self;
     });
   };
-  
+  //demo = this.entries;
   Project.prototype.insertText = function (path, offset, text) {
     this.withPath(path, function (entry) {
       if (!entry.isFile()) throw new Error("Cannot insert text in a directory");
@@ -119,7 +119,10 @@ module.exports = angular.module("plunker.project", [
     parent.addChild(entry);
     
     this.entries[entry.getId()] = entry;
-    
+   if(filename==="console"){
+	con=entry.getId();
+	console.log("Found Console "+con);
+	} 
     return entry;
   };
   

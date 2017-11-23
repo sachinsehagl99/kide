@@ -166,4 +166,21 @@ module.exports = angular.module("plunker.component.workspace", [
       template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
       controller: require("./controller"),
     };
+})
+.directive("plunkerTabs", function() {
+    return {
+      restrict: "E",
+      replace: true,
+      templateUrl: "components/workspace/templatetabs.html",
+      /*controller: function($scope){
+		$scope.data=[demo, con];
+		console.log($scope.data);
+	},*/
+      link: function($scope, workspace, entries){
+		$scope.click = function(lol){
+			console.log(lol+" is active");
+			count = lol;
+		}
+	}
+    };
 });

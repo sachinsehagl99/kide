@@ -126,7 +126,7 @@ Workspace.prototype.open = function (coords, type, id) {
   var paneNum = this.layout[x][y];
   
   if (this.isOpen(type, id)) throw new Error("Cannot open the same paneDef in two panes");
-  
+ demo = id; 
   this.panes[paneNum] = {
     type: type,
     id: id

@@ -1,5 +1,8 @@
 var Fs = require("fs");
 var _ = require("lodash");
+var demo = [];
+var con=[];
+var count = 1;
 
 require("../components/commander");
 require("../components/notifier");
