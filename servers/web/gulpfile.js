@@ -7,7 +7,7 @@ var Inject = require("gulp-inject");
 var Watchify = require("watchify");
 var Source = require("vinyl-source-stream");
 var Sequence = require("run-sequence");
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
         }))
         .pipe(Gulp.dest('./public/editor'))*/
 
-  var bundler = Watchify({
+  var bundler = browserify({
     entries: [
       "./assets/js/apps/editor.js"
     ]
@@ -107,7 +107,7 @@ Gulp.task("landing:styles:build", [ "landing:styles:clean" ], function () {
 });
 
 Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
-  var bundler = Watchify({
+  var bundler = browserify({
     entries: [
       "./assets/js/apps/landing.js"
     ]

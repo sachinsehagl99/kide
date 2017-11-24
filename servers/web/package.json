@@ -13,6 +13,7 @@
     "boom": "~2.2.2",
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
+    "browserify": "^14.5.0",
     "catbox": "~2.2.1",
     "codemirror": "^5.25.2",
     "genid": "~0.1.0",
