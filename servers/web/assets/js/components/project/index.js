@@ -222,26 +222,12 @@ module.exports = angular.module("plunker.project", [
   };
   
   Project.prototype.openTree = function (tree) {
-
-    /*for(var prop in tree){
-      var t = tree[prop];
-    }*/
-
-
     var self = this;
     var sha = _.isString(tree) ? tree : null;
     
-    var treePromise = _.isArray(tree)
-      ? $q.when(tree)
-      : $http.get(config.url.api + "/trees/" + tree).then(function (response) {
-          //console.log(response.data);
-          //alert(response.data);
-        return response.data;
-      });
     
-    return treePromise.then(function (tree) {
       var returnPromise = commander.execute("project.setTree", {tree: tree}).then(function () {
-        self.tree = sha;
+      //  self.tree = sha;
       });
       
         returnPromise = returnPromise.then(function () {
@@ -254,7 +240,7 @@ module.exports = angular.module("plunker.project", [
 
       
       return returnPromise;
-    });
+
   };
   
   Project.prototype.open = function (plunkId) {
