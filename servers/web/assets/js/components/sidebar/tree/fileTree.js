@@ -1,10 +1,7 @@
-var angular = window.angular;
-
 var Fs = require("fs");
 var _ = require("lodash");
 
-module.exports = 
-angular.module("plunker.directive.fileTree", [
+module.exports = angular.module("plunker.directive.fileTree", [
   require("../../commander").name,
   require("../../notifier").name,
   require("../../workspace").name
@@ -19,8 +16,7 @@ angular.module("plunker.directive.fileTree", [
     restrict: "E",
     replace: true,
     scope: {
-      tree: "=",
-      closed: "@"
+      tree: "="
     },
     templateUrl: "components/sidebar/tree/fileTree.html",
     link: function($scope, $element, $attrs){
@@ -182,6 +178,7 @@ angular.module("plunker.directive.fileTree", [
     }
   };
 }])
+
 .directive("fileTreeRecurse", ["$compile", function($compile){
   return {
     restrict: "E",
@@ -197,18 +194,4 @@ angular.module("plunker.directive.fileTree", [
       $element.replaceWith(tree);
     }
   };
-}])
-/*
-.directive("plunkerTabs", function() {
-    return {
-      restrict: "E",
-      replace: true,
-      template: Fs.readFileSync(__dirname + "/templatetabs.html", "utf8"),
-      link: function($scope, workspace, entries){
-		$scope.click = function(lol){
-			console.log(workspace.nextPaneNum);
-		}
-	}
-    };
-})*/
-;
+}]);

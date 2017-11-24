@@ -197,8 +197,11 @@ module.exports = angular.module("plunker.project", [
     return this.clearTree().then(function () {
 
 	for(var i = 0; i<tree.length; i++){
-      return createEntries(root, tree[i]);
-      }
+		var temp = tree[i];
+		for(var proto in temp){
+		      createEntries(root, temp[proto]);
+		}
+      	}
 
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
