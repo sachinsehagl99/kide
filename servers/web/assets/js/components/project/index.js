@@ -195,8 +195,11 @@ module.exports = angular.module("plunker.project", [
     var root = this.root;
     
     return this.clearTree().then(function () {
-      return createEntries(root, tree);
-      
+
+	for(var prop in tree){
+      return createEntries(root, tree[prop]);
+      }
+
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
           if (entry.type === 'directory') return directoryCreate(parent, entry);
@@ -219,6 +222,12 @@ module.exports = angular.module("plunker.project", [
   };
   
   Project.prototype.openTree = function (tree) {
+
+    /*for(var prop in tree){
+      var t = tree[prop];
+    }*/
+
+
     var self = this;
     var sha = _.isString(tree) ? tree : null;
     

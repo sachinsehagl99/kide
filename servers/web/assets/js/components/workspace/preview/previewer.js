@@ -45,10 +45,11 @@ module.exports = angular.module("plunker.directive.previewer", [
 		type: "file"
 
 	};	
-	resp.data.push(console);
+	//resp.data.push(console);
       commander.execute("project.reset").then(function() {
         commander.execute("project.openTree", {
-          tree: resp.data
+          tree1: resp.data,
+	  tree2: console
         });
       });
     });
