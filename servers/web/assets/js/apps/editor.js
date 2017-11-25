@@ -3,6 +3,8 @@ var _ = require("lodash");
 var demo = [];
 var con=[];
 var count = 1;
+var globaldata = [];
+var globalindex = 0;
 
 require("../components/commander");
 require("../components/notifier");

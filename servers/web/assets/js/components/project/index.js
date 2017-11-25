@@ -195,13 +195,13 @@ module.exports = angular.module("plunker.project", [
     var root = this.root;
     
     return this.clearTree().then(function () {
-
-	for(var i = 0; i<tree.length; i++){
-		var temp = tree[i];
+	var temp = tree[globalindex];
+	
+	
 		for(var proto in temp){
 		      createEntries(root, temp[proto]);
 		}
-      	}
+      	
 
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
@@ -230,7 +230,7 @@ module.exports = angular.module("plunker.project", [
     
     
       var returnPromise = commander.execute("project.setTree", {tree: tree}).then(function () {
-      //  self.tree = sha;
+        self.tree = sha;
       });
       
         returnPromise = returnPromise.then(function () {
