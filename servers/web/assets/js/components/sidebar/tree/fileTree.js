@@ -205,12 +205,10 @@ module.exports = angular.module("plunker.directive.fileTree", [
 		console.log($scope.data);
 	},*/
       link: function($scope, $element, $attrs){
-		$scope.click = function(lol){
-			console.log(lol+" is active");
-			globalindex = lol;
-			return commander.execute("project.cleartree").then( function(){
-				commander.execute("project.setTree", {tree: globaldata});
-			});
+		$scope.click = function(index){
+			console.log(index+" is active");
+			globalIndex = index;
+			commander.execute("project.openTree", {tree: globalData});
 		}
 	}
     };

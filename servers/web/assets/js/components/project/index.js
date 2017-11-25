@@ -195,7 +195,7 @@ module.exports = angular.module("plunker.project", [
     var root = this.root;
     
     return this.clearTree().then(function () {
-	var temp = tree[globalindex];
+	var temp = tree[globalIndex];
 	
 	
 		for(var proto in temp){
