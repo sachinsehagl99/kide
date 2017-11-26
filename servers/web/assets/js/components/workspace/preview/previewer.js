@@ -38,23 +38,25 @@ module.exports = angular.module("plunker.directive.previewer", [
     $http.get("/getFiles/"+ testName + "/" + testMethod + "/" + sessionId).then(function(resp) {
 	$rootScope.definition = resp.data[0].definition;
 	var console = [{
-		active: false,
+		active: true,
 		contents: "",
 		defination: "",
 		filename: "console",
 		type: "file"
 
-	}];	
-	//resp.data.push(console);
-      commander.execute("project.reset").then(function() {
-        commander.execute("project.openTree", {tree:[
+	}];
+	globalIndex = 0;
+	globalData = [
           {
 	    tree2: resp.data
           },
           {
             tree1: console
           }
-        ]});
+        ];	
+	//resp.data.push(console);
+      commander.execute("project.reset").then(function() {
+        commander.execute("project.openTree", {tree: globalData});
       });
     });
   }

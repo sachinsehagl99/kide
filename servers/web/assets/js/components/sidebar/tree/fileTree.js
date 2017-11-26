@@ -28,7 +28,6 @@ module.exports = angular.module("plunker.directive.fileTree", [
 
       $scope.open = function ($event, entry, options) {
         $event.stopPropagation();
-	//document.getElementById("filename_tab").innerHTML=entry.filename;
         if (openRight && openDown) {
           if (workspace.isOpen("code", entry.entryId)) {
             commander.execute("workspace.close", {coords: workspace.getCoords("code", entry.entryId)});
@@ -194,4 +193,17 @@ module.exports = angular.module("plunker.directive.fileTree", [
       $element.replaceWith(tree);
     }
   };
+}])
+.directive("plunkerTabs",["$q", "$window", "commander", "notifier", "workspace", function ($q, $window, commander, notifier, workspace) {
+    return {
+      restrict: "E",
+      replace: true,
+      templateUrl: "components/workspace/templatetabs.html",
+      link: function($scope, $element, $attrs){
+		$scope.click = function(index){
+			globalIndex = index;
+			commander.execute("project.openTree", {tree: globalData});
+		}
+	}
+    };
 }]);

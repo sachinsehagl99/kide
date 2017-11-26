@@ -79,7 +79,7 @@ module.exports = angular.module("plunker.project", [
       return self;
     });
   };
-  //demo = this.entries;
+  
   Project.prototype.insertText = function (path, offset, text) {
     this.withPath(path, function (entry) {
       if (!entry.isFile()) throw new Error("Cannot insert text in a directory");
@@ -119,15 +119,8 @@ module.exports = angular.module("plunker.project", [
     parent.addChild(entry);
     
     this.entries[entry.getId()] = entry;
-   if(filename==="console"){
-	count=1;
-	con=entry.getId();
-	console.log("Found Console "+con);
-	}
-   else{
-	document.getElementById("filename_tab").innerHTML=entry.filename;
-   }
-    return entry;
+
+      return entry;
   };
   
   Project.prototype.markClean = function () {
@@ -195,13 +188,13 @@ module.exports = angular.module("plunker.project", [
     var root = this.root;
     
     return this.clearTree().then(function () {
-
-	for(var i = 0; i<tree.length; i++){
-		var temp = tree[i];
+	var temp = tree[globalIndex];
+	
+	
 		for(var proto in temp){
 		      createEntries(root, temp[proto]);
 		}
-      	}
+      	
 
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
@@ -230,7 +223,7 @@ module.exports = angular.module("plunker.project", [
     
     
       var returnPromise = commander.execute("project.setTree", {tree: tree}).then(function () {
-      //  self.tree = sha;
+        self.tree = sha;
       });
       
         returnPromise = returnPromise.then(function () {
