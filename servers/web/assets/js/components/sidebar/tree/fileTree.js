@@ -131,8 +131,9 @@ module.exports = angular.module("plunker.directive.fileTree", [
       };
       
       $scope.isOpen = function (entry) {
-        //document.getElementById("filename_tab").innerHTML=entry.filename;
-
+	if(entry.filename!="console"){
+		document.getElementById("filename_tab").innerHTML=entry.filename;
+	}
         return workspace.isOpen("code", entry.entryId);
       };
 

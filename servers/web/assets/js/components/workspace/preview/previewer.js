@@ -37,7 +37,6 @@ module.exports = angular.module("plunker.directive.previewer", [
 
     $http.get("/getFiles/"+ testName + "/" + testMethod + "/" + sessionId).then(function(resp) {
 	$rootScope.definition = resp.data[0].definition;
-	document.getElementById("filename_tab").innerHTML=resp.data[0].filename;	
 	var console = [{
 		active: true,
 		contents: "",

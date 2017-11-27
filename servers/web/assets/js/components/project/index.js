@@ -115,7 +115,6 @@ module.exports = angular.module("plunker.project", [
   Project.prototype.create = function (parent, filename, active) { 
     if (parent.hasChildByFilename(filename)) throw new Error("An entry already exists with the same filename: " + filename);
     var entry = new TextEntry(parent, filename, active);
-    
     parent.addChild(entry);
     
     this.entries[entry.getId()] = entry;
@@ -198,6 +197,7 @@ module.exports = angular.module("plunker.project", [
 
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
+	  
           if (entry.type === 'directory') return directoryCreate(parent, entry);
           else return fileCreate(parent, entry);
         }));
