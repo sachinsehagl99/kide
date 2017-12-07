@@ -9,6 +9,7 @@ var LRU = require("lru-cache");
 var When = require("when");
 var Request = require("request");
 var Passport = require("passport");
+var FacebookStrategy = require("passport-facebook").Strategy;
 var GithubStrategy = require("passport-github").Strategy;
 var DropboxStrategy = require("passport-dropbox-oauth2").Strategy;
 var GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
@@ -30,21 +31,23 @@ var internals = {
 
 internals.createOAuth2Delegate = function (service, options) {
   return function (accessToken, refreshToken, profile, done) {
-    
-    profile = Profiles[service](profile._json);
-    
+    //profile = Profiles[service](profile._json);
     var credentials = {
       service: service,
+      name: profile.displayName,
       id: profile.id,
-      accessToken: accessToken,
-      refreshToken: refreshToken
+      email: profile.emails[0].value,
+      propic : profile.photos[0].value
     };
-    
     // Since we may not be using SSL, seal the OAuth information of users that
     // will be passed over an open channel
     Iron.seal(credentials, options.config.auth.secret, Iron.defaults, function (err, sealed) {
       if (err) return done(err);
-      
+	var url =  "http://localhost:7070/users";
+	Request.post({url:url, form: credentials}, function(err, httpResponse, body){
+	reply(body); 
+	console.log(body);
+      }); 
       done(null, profile, sealed);
     });
   };
@@ -88,7 +91,7 @@ exports.register = function (plugin, options, next) {
     initialize: internals.initialize.bind(context),
     authenticate: internals.authenticate.bind(context)
   });
-  
+ Passport.use('facebook', new FacebookStrategy(options.config.auth.providers.facebook, internals.createOAuth2Delegate('facebook', options)));
   Passport.use('github', new GithubStrategy(options.config.auth.providers.github, internals.createOAuth2Delegate('github', options)));
   Passport.use('dropbox', new DropboxStrategy(options.config.auth.providers.dropbox, internals.createOAuth2Delegate('dropbox', options)));
   Passport.use('google', new GoogleStrategy(options.config.auth.providers.google, internals.createOAuth2Delegate('google', options)));
@@ -154,7 +157,7 @@ exports.register = function (plugin, options, next) {
       auth: false,
       handler: function (request, reply) {
 
-	Passport.authenticate(request.params.service)(request, reply);
+	Passport.authenticate(request.params.service, {scope: ['email']})(request, reply);
       } 
     }
   });
@@ -165,7 +168,7 @@ exports.register = function (plugin, options, next) {
     config: {
       auth: false,
       handler: function (request, reply) {
-	
+	console.log("Data mil gaya");	
 	Passport.authenticate(request.params.service)(request, reply, function () {
 	  reply.view("auth/complete.html", {
 	    payload: "auth." + Buffer(JSON.stringify({
