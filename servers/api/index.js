@@ -110,10 +110,11 @@ exports.register = function(server, options, next) {
   	method: 'POST',
 	path :'/users',
 	handler : function (request , reply ){
+		/*
 		var name = request.payload.name;
 		var email = request.payload.email;
 		var password = request.payload.password;
-
+		
                 models.Users.find({'name': name, 'email': email}, function (err, user) {
 		  if(err) return reply(err);
                   if(user.length!=0) return reply("user name or email allready exists");
@@ -128,7 +129,7 @@ exports.register = function(server, options, next) {
                        if(err) return reply(err);
 		       else return reply("success"); 
 		   });
-                });
+                });*/
 	}
   });
   return next();

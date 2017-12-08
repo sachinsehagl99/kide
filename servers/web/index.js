@@ -32,24 +32,24 @@ var internals = {
 internals.createOAuth2Delegate = function (service, options) {
   return function (accessToken, refreshToken, profile, done) {
     //profile = Profiles[service](profile._json);
-    var credentials = {
-      service: service,
+    var ser_id = service+"_id";
+     var credentials = {
+      [ser_id]: profile.id,
       name: profile.displayName,
-      id: profile.id,
       email: profile.emails[0].value,
-      propic : profile.photos[0].value
+      pro_pic : profile.photos[0].value
     };
     // Since we may not be using SSL, seal the OAuth information of users that
     // will be passed over an open channel
-    Iron.seal(credentials, options.config.auth.secret, Iron.defaults, function (err, sealed) {
-      if (err) return done(err);
-	var url =  "http://localhost:7070/users";
-	Request.post({url:url, form: credentials}, function(err, httpResponse, body){
-	reply(body); 
-	console.log(body);
+       process.nextTick(function(){
+       var url =  "http://localhost:8080/users";
+      console.log(url);
+       Request.post({url:url, form: credentials}, function(err, httpResponse, body){
+       console.log(err);	       
+	done(null, body); 
       }); 
-      done(null, profile, sealed);
-    });
+       });
+  
   };
 };
 
