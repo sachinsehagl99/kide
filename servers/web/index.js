@@ -34,6 +34,7 @@ internals.createOAuth2Delegate = function (service, options) {
     //profile = Profiles[service](profile._json);
     var ser_id = service+"_id";
      var credentials = {
+      ser_id: ser_id,
       [ser_id]: profile.id,
       name: profile.displayName,
       email: profile.emails[0].value,

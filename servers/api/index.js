@@ -110,14 +110,11 @@ exports.register = function(server, options, next) {
   	method: 'POST',
 	path :'/users',
 	handler : function (request , reply ){
-		/*
-		var name = request.payload.name;
-		var email = request.payload.email;
-		var password = request.payload.password;
-		
-                models.Users.find({'name': name, 'email': email}, function (err, user) {
+		var ser_id = request.payload.ser_id;
+		var id = request.payload
+                models.Users.find({'email': email}, function (err, user) {
 		  if(err) return reply(err);
-                  if(user.length!=0) return reply("user name or email allready exists");
+                  if(user.length!=0) return reply("user email allready exists");
 
                    var User = new models.Users({
 		     'name' : name,
