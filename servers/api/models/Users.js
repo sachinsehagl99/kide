@@ -11,7 +11,8 @@ var newSchema = new Schema({
   'google_id' : {type: String},
   'name': { type: String },
   'email': { type: String },
-  'password': {type: String }
+  'password': {type: String },
+  'pro_pic' : { type: String }
 },{collection : 'Users'});
 
 newSchema.pre('save', function(next){
