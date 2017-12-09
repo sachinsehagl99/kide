@@ -34,29 +34,11 @@ module.exports = angular.module("plunker.directive.previewer", [
   function getSrcTemplate(testMethod) {
     var testName = ($location.path()).split("/")[2];
     var sessionId = ($location.path()).split("/")[4];
-
     $http.get("/getFiles/"+ testName + "/" + testMethod + "/" + sessionId).then(function(resp) {
 	$rootScope.definition = resp.data[0].definition;
-	var console = [{
-		active: true,
-		contents: "",
-		defination: "",
-		filename: "console",
-		type: "file"
-
-	}];
-	globalIndex = 0;
-	globalData = [
-          {
-	    tree2: resp.data
-          },
-          {
-            tree1: console
-          }
-        ];	
-	//resp.data.push(console);
-      commander.execute("project.reset").then(function() {
-        commander.execute("project.openTree", {tree: globalData});
+	$rootScope.temp = resp.data;
+        commander.execute("project.reset").then(function() {
+        commander.execute("project.openTree", {tree: $rootScope.temp});
       });
     });
   }
@@ -124,11 +106,29 @@ module.exports = angular.module("plunker.directive.previewer", [
     });
   }
 
+
   var directive = {
     restrict: "E",
     replace: true,
     templateUrl: 'components/workspace/preview/previewer.html',
-    link: function($scope, $element, $attrs) { }
+    link: function($scope, $element, $attrs) {
+	var console = [{
+		active: true,
+		contents: "",
+		defination: "",
+		filename: "console",
+		type: "file"
+
+	}];
+
+   	$scope.click = function(index){
+		if(index==0)
+		  commander.execute("project.openTree", {tree: $rootScope.temp});
+		else
+		  commander.execute("project.openTree", {tree: console});	
+	
+	}
+    }
   };
 
   return directive;

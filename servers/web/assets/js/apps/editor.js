@@ -1,7 +1,5 @@
 var Fs = require("fs");
 var _ = require("lodash");
-var globalData = [];
-var globalIndex = 0;
 
 require("../components/commander");
 require("../components/notifier");
