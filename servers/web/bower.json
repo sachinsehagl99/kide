@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "codemirror": "^5.26.0"
+    "codemirror": "^5.26.0",
+    "angular-bootstrap-tour": "^0.3.4"
   }
 }
