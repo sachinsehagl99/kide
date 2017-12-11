@@ -40,6 +40,12 @@
       "twitter": {
         "consumerKey": "AmJMqcNknaL7SdrtujTHjwt2X",
         "consumerSecret": "G2bhMwZcXQGxALIzHeVAA0jcPrC7sjKbA5irpfJuCbvW3QFqfx"
+      },
+      "facebook": {
+      	"clientID" : "209620399576300",
+	"clientSecret" : "816bfdc24bb44ad47f7d646109626e62",
+	"callbackURL": "http://localhost:8080/auth/facebook/callback",
+	"profileFields" : ["id", "displayName", "picture.type(large)", "emails"]
       }
     }
   }

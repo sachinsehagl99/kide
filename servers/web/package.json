@@ -30,6 +30,7 @@
     "ng-tags-input-extends": "^0.1.7",
     "node-summary": "~1.0.0",
     "passport": "~0.2.0",
+    "passport-facebook": "^2.1.1",
     "passport-github": "~0.1.5",
     "passport-google-oauth": "~0.1.5",
     "passport-twitter": "~1.0.2",

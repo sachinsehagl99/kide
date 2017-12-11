@@ -5,10 +5,14 @@ if (mongoose.connection.readyState === 0) {
 }
 
 
-var newSchema = new Schema({  
+var newSchema = new Schema({ 
+  'facebook_id' : {type : String},
+  'github_id' : {type : String},
+  'google_id' : {type: String},
   'name': { type: String },
   'email': { type: String },
-  'password': {type: String }
+  'password': {type: String },
+  'pro_pic' : { type: String }
 },{collection : 'Users'});
 
 newSchema.pre('save', function(next){
