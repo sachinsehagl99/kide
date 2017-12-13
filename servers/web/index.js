@@ -76,19 +76,38 @@ exports.register = function(plugin, options, next) {
 
         plugin.route({
             method: ['GET', 'POST'],
-            path: '/auth/facebook',
+            path: '/auth/{service}',
             config: {
                 auth: {
                     strategy: 'facebook',
                     mode: 'try'
                 },
                 handler: function(request, reply) {
-
                     if (!request.auth.isAuthenticated) {
                         return reply('Authentication failed due to: ' + request.auth.error.message);
                     }
-                    reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
-		    //reply.redirect('/profile');
+                    console.log(request.params.service);
+                    var cred = request.auth.credentials;
+                    var ser_id = cred.provider + "_id";
+                    var credentials = {
+                        ser_id: ser_id,
+                        [ser_id]: cred.profile.id,
+                        name: cred.profile.displayName,
+                        email: cred.profile.email,
+                        pro_pic: "null at the moment"
+                    };
+                    process.nextTick(function() {
+                        var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/users";
+                        Request.post({
+                            url: url,
+                            form: credentials
+                        }, function(err, httpResponse, body) {
+                            console.log(body);
+                        });
+                    });
+
+                    //reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
+                    reply.redirect('/');
                 }
             }
         });
