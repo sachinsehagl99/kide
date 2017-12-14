@@ -73,7 +73,10 @@ exports.register = function(plugin, options, next) {
     };
 
     internals.macPrefix = options.config.auth.macPrefix;
-    plugin.register([{register: require('yar'), options: optionforcookie},require('bell')], function(err) {
+    plugin.register([{
+        register: require('yar'),
+        options: optionforcookie
+    }, require('bell')], function(err) {
         plugin.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
@@ -104,7 +107,7 @@ exports.register = function(plugin, options, next) {
                         email: cred.profile.email,
                         pro_pic: "null at the moment"
                     };
-			console.log(credentials);
+                    console.log(credentials);
                     process.nextTick(function() {
                         var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/users";
                         Request.post({
@@ -114,9 +117,14 @@ exports.register = function(plugin, options, next) {
                             console.log(body);
                         });
                     });
+                    request.yar.set('credentials', credentials);
+		    console.log(request.yar);
+		    reply.view("auth/complete.html", {
+                        payload: "auth." + Buffer(JSON.stringify({
+                            status: "success"
+                        })).toString("base64")
+                    });
 
-                    //reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
-                    reply.redirect('/');
                 }
             }
         });
