@@ -24,6 +24,14 @@ handlebars.registerHelper('json', function(context) {
     return JSON.stringify(context);
 });
 
+var optionforcookie = {
+    storeBlank: false,
+    cookieOptions: {
+        password: 'passwordmhcgkhxscdvyfbugnbtyvrcfegtfrtbgjgvdcrgdcthybgvnfbcvfxzdfcdrvthyjmbgtvhnfcserse3wxrfevtrghyr',
+        isSecure: true
+    }
+};
+
 var internals = {
     profileBuilders: {}
 };
@@ -65,7 +73,7 @@ exports.register = function(plugin, options, next) {
     };
 
     internals.macPrefix = options.config.auth.macPrefix;
-    plugin.register(require('bell'), function(err) {
+    plugin.register([{register: require('yar'), options: optionforcookie},require('bell')], function(err) {
         plugin.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
@@ -96,6 +104,7 @@ exports.register = function(plugin, options, next) {
                         email: cred.profile.email,
                         pro_pic: "null at the moment"
                     };
+			console.log(credentials);
                     process.nextTick(function() {
                         var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/users";
                         Request.post({
