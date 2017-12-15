@@ -1,52 +1,53 @@
 {
-  "server": {
-    "web": {
-      "path": "",
-      "host": "localhost",
-      "port": "8080"
+    "server": {
+        "web": {
+            "path": "",
+            "host": "localhost",
+            "port": "8080"
+        },
+        "api": {
+            "path": "",
+            "host": "localhost",
+            "port": "7070"
+        },
+        "run": {
+            "path": "",
+            "host": "localhost",
+            "port": "9090"
+        }
     },
-    "api": {
-      "path": "",
-      "host": "localhost",
-      "port": "7070"
+    "database": {
+        "cloudant": {
+            "url": ""
+        }
     },
-    "run": {
-      "path": "",
-      "host": "localhost",
-      "port": "9090"  
+    "auth": {
+        "providers": {
+            "github": {
+                "clientID": "293a2974de715cf1f8a3",
+                "clientSecret": "66e546959234370824f2a846e54bc68e25c39883"
+            },
+            "dropbox": {
+                "clientID": "74387y8",
+                "clientSecret": "kjksd787"
+            },
+            "google": {
+                "clientID": "721383437750-gkpam2jrasavf8qduj5e54kn1l094ri9.apps.googleusercontent.com",
+                "clientSecret": "xsHhfOd_-paFPksucFrXwmbi",
+                "callbackURL": "localhost"
+            },
+            "twitter": {
+                "consumerKey": "AmJMqcNknaL7SdrtujTHjwt2X",
+                "consumerSecret": "G2bhMwZcXQGxALIzHeVAA0jcPrC7sjKbA5irpfJuCbvW3QFqfx"
+            },
+            "facebook": {
+                "provider": "facebook",
+                "password": "cookie_encryption_password_secure",
+                "isSecure": false,
+                "clientId": "200249893877832",
+                "clientSecret": "b1dd681d743b0f6bc3acc33b16d7748e"
+
+            }
+        }
     }
-  },
-  "database": {
-    "cloudant": {
-      "url": ""
-    }
-  },
-  "auth": {
-    "macPrefix": "",
-    "providers": {
-      "github": {
-        "clientID": "293a2974de715cf1f8a3",
-        "clientSecret": "66e546959234370824f2a846e54bc68e25c39883"
-      },
-      "dropbox": {
-        "clientID": "74387y8",
-        "clientSecret": "kjksd787"
-      },
-      "google": {
-        "clientID": "721383437750-gkpam2jrasavf8qduj5e54kn1l094ri9.apps.googleusercontent.com",
-        "clientSecret": "xsHhfOd_-paFPksucFrXwmbi",
-        "callbackURL": "localhost"
-      },
-      "twitter": {
-        "consumerKey": "AmJMqcNknaL7SdrtujTHjwt2X",
-        "consumerSecret": "G2bhMwZcXQGxALIzHeVAA0jcPrC7sjKbA5irpfJuCbvW3QFqfx"
-      },
-      "facebook": {
-      	"clientID" : "209620399576300",
-	"clientSecret" : "816bfdc24bb44ad47f7d646109626e62",
-	"callbackURL": "http://localhost:8080/auth/facebook/callback",
-	"profileFields" : ["id", "displayName", "picture.type(large)", "emails"]
-      }
-    }
-  }
 }
