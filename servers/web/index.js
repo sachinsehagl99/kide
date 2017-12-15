@@ -25,10 +25,7 @@ exports.register = function(plugin, options, next) {
         local: options.config.expose,
     };
 
-    plugin.register([{
-        register: require('yar'),
-        options: optionforcookie
-    }, require('bell')], function(err) {
+    plugin.register([require('bell')], function(err) {
         plugin.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
@@ -69,7 +66,6 @@ exports.register = function(plugin, options, next) {
                             console.log(body);
                         });
                     });
-                    request.yar.set('credentials', credentials);
 		    console.log(request.yar);
 		    reply.view("auth/complete.html", {
                         payload: "auth." + Buffer(JSON.stringify({
