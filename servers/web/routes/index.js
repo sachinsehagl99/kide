@@ -157,7 +157,6 @@ module.exports = function(options) {
                 var username = request.params.username;
 
                 Request("http://" + server.api.host + ":" + server.api.port + '/users/exists/' + username, function(err, res, body) {
-                    console.log("==========");
                     console.log(body);
                 });
             }
@@ -235,9 +234,11 @@ module.exports = function(options) {
                 mode: 'try'
             },
             handler: function(request, reply) {
+
                 if (!request.auth.isAuthenticated) {
                     return reply('Authentication failed due to: ' + request.auth.error.message);
                 }
+
                 var cred = request.auth.credentials;
                 var ser_id = cred.provider + "_id";
                 var credentials = {
@@ -245,7 +246,8 @@ module.exports = function(options) {
                     [ser_id]: cred.profile.id,
                     name: cred.profile.displayName,
                     email: cred.profile.email,
-                    pro_pic: "null at the moment"
+                    pro_pic: cred.profile.photo
+
                 };
 
                 process.nextTick(function() {
@@ -257,12 +259,12 @@ module.exports = function(options) {
                         console.log(body);
                     });
                 });
+
                 var account = request.auth.credentials;
-                var sid = '' + account.profile.id;
-                //cache object bounded to the plugin is available here.
-                console.log(request.cookieAuth.set);
+                var sid = '' + account.profile;
+
                 request.cookieAuth.set({
-                    credentials
+                    sid: sid
                 });
 
                 return reply.view("auth/complete.html", {
