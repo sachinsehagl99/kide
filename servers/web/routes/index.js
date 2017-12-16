@@ -73,27 +73,36 @@ module.exports = function(options) {
                     console.log(err);
                 });
             });
-
         }
 
     }, {
         method: 'GET',
         path: '/edit/{courseName}/{testNo}/{plunkId}',
         config: {
-            handler: function(request, reply) {
-                var server = this.config.server;
-                var param = request.params;
-                var courseName = request.params.courseName;
-                var context = {
-                    "url": {
-                        "run": ""
-                    }
-                };
+            auth: {
+                strategy: 'session'
 
-                reply.view("editor", context);
-
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: '/'
+                }
             }
+        },
+        handler: function(request, reply) {
+            var server = this.config.server;
+            var param = request.params;
+            var courseName = request.params.courseName;
+            var context = {
+                "url": {
+                    "run": ""
+                }
+            };
+
+            reply.view("editor", context);
+
         }
+
     }, {
         method: 'GET',
         path: '/getFiles/{courseName}/{templateName}/{sessionId}',
@@ -229,7 +238,6 @@ module.exports = function(options) {
                 if (!request.auth.isAuthenticated) {
                     return reply('Authentication failed due to: ' + request.auth.error.message);
                 }
-                console.log(request.params.service);
                 var cred = request.auth.credentials;
                 var ser_id = cred.provider + "_id";
                 var credentials = {
@@ -248,15 +256,15 @@ module.exports = function(options) {
                     }, function(err, httpResponse, body) {
                         console.log(body);
                     });
-                    console.log(request.cookieAuth);
                 });
                 var account = request.auth.credentials;
                 var sid = '' + account.profile.id;
                 //cache object bounded to the plugin is available here.
-
+                console.log(request.cookieAuth.set);
                 request.cookieAuth.set({
-                    sid
+                    credentials
                 });
+
                 return reply.view("auth/complete.html", {
                     payload: "auth." + Buffer(JSON.stringify({
                         status: "success"

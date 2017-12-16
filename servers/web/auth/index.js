@@ -2,8 +2,8 @@ var Hoek = require("hoek");
 
 module.exports = function(plugin, options, next) {
     //app cache to store user information once logged in.
-    
-	var cache = plugin.cache({
+
+    var cache = plugin.cache({
         expiresIn: 3 * 24 * 60 * 60 * 1000
     });
     plugin.app.cache = cache;
@@ -13,28 +13,14 @@ module.exports = function(plugin, options, next) {
         cache: plugin.app.cache
     });
 
-     plugin.auth.strategy('facebook', 'bell', options.config.auth.providers.facebook);
+    plugin.auth.strategy('facebook', 'bell', options.config.auth.providers.facebook);
 
 
     plugin.auth.strategy('session', 'cookie', {
-        password: 'hapiauthjafdhafdjahyfjkdgsyjasfydukfeyafdheavjdfaejmyfdja', // give any string you think is right password to encrypted
-        cookie: 'sid-cuboid', // cookie name to use, usually sid-<appname>
-        redirectTo: '/',
+        password: 'hapissajafdhafdjahyfjkdgsyjasfydukfeyafdheavjdfaejmyfdja',
+        cookie: 'sid-cuboid',
+        redirectTo: '/login',
         isSecure: false,
-        validateFunc: function(session, callback) {
-            cache.get(session.sid, function(err, cached) {
-
-                if (err) {
-                    return callback(err, false);
-                }
-
-                if (!cached) {
-                    return callback(null, false);
-                }
-                console.log(cached);
-                return callback(null, true, cached.item.account);
-            });
-        }
     });
-    
+
 }

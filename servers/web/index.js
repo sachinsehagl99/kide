@@ -35,7 +35,7 @@ exports.register = function(plugin, options, next) {
             helpersPath: "views/helpers",
         });
 
-	Auth(plugin, options, next);
+        Auth(plugin, options, next);
 
         plugin.bind(context);
         plugin.route(Routes(options));
