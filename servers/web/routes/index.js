@@ -276,6 +276,23 @@ module.exports = function(options) {
 
             }
         }
+    }, {
+        method: 'GET',
+        path: '/user/auth',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+            var data = {
+                isAuth: request.auth.isAuthenticated
+            };
+            console.log(data);
+            reply(data);
+        }
+
     }];
 
     return routes;
