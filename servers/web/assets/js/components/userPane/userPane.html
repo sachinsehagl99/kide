@@ -1,16 +1,18 @@
 <div class="plunker-userpane" ng-switch="userPane.visitor.isMember()">
-  <div ng-switch-when="true" class="dropdown">
-    <button class="btn btn-sm btn-default dropdown-toggle">
-      <span ng-bind="userPane.visitor.user.username"></span>
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu pull-left">
-      <li><a href="javascript:void(0)" ng-click="userPane.showCollectionsManager()">Manage collections</a></li>
-      <li class="divider"></li>
-      <li><a href="javascript:void(0)" ng-click="userPane.visitor.logout()">Logout</a></li>
-    </ul>
-  </div>
-  <div ng-switch-when="false">
+  <div ng-if="!userPane.user.verified">
     <button id="sign" class="btn btn-side" ng-click="userPane.showLoginWindow()">Login</button>
   </div>
+  <div ng-if="userPane.user.verified" class="pull-right dropdown">
+                    <div class="plunker-profile"  onclick="myFunction()">
+			    <img src="{{userPane.user.picture.data.url}}" width="30px" height="30px" class="img-circle">
+                        <label class="profile-text">&nbsp;&nbsp;{{userPane.user.name}}&nbsp;<span class="caret"></span></label>
+                    </div>
+
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="console.html">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="#">My profile&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
+                        <a href="#">Logout&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
+                    </div>
+                </div>
+
 </div>

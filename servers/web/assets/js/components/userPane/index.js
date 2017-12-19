@@ -13,30 +13,25 @@ module.exports = angular.module("plunker.component.userPane", [
 
     var getAuth = function($http, cb) {
         return $http.get('/user/auth').then(function(response) {
-            if (response.data.isAuth) {
-                return 'user.html';
-            } else {
-                return 'userPane.html';
-            }
-        });
+		return response.data;           
+	});
     };
 
     return {
         restrict: "E",
         replace: true,
-        template: '<div ng-include src="userPane.template"></div>',
+        template: Fs.readFileSync(__dirname + "/userPane.html", "utf8"),
         controllerAs: "userPane",
         controller: ["$scope", "$http", "login", "visitor", function($scope, $http, login, visitor) {
-            //this.visitor = visitor;
             var self = this;
             self.visitor = visitor;
-            self.template = 'userPane.html';
 
             self.showLoginWindow = function() {
                 login.open();
             };
-            getAuth($http).then(function(template) {
-                self.template = '/components/userPane/' + template;
+            getAuth($http).then(function(data) {
+                self.user = data;
+		console.log(self.user);
             });
             self.showCollectionsManager = function() {
                 collectionsManager.show();

@@ -260,11 +260,10 @@ module.exports = function(options) {
                     });
                 });
 
-                var account = request.auth.credentials;
-                var sid = '' + account.profile;
+                var profile = request.auth.credentials.profile;
 
                 request.cookieAuth.set({
-                    sid: sid
+                    profile
                 });
 
                 return reply.view("auth/complete.html", {
@@ -286,10 +285,7 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
-            var data = {
-                isAuth: request.auth.isAuthenticated
-            };
-            console.log(data);
+            var data = request.auth.credentials.profile.raw;
             reply(data);
         }
 
