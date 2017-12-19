@@ -289,6 +289,20 @@ module.exports = function(options) {
             reply(data);
         }
 
+    }, {
+        method: 'GET',
+        path: '/logout',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+       		 request.cookieAuth.clear();
+		 return reply.redirect('/');
+	}
+
     }];
 
     return routes;
