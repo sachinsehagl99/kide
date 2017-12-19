@@ -4,29 +4,14 @@ var When = require("when");
 var Path = require("path");
 
 handlebars.registerHelper('json', function(context) {
-    return JSON.stringify(context);
+	var con = JSON.stringify(context);
+	console.log(con);
+	return con;
 });
 
 module.exports = function(options) {
 
     var routes = [{
-        method: 'POST',
-        path: '/users',
-        config: {
-            handler: function(request, reply) {
-                var server = this.config.server;
-                var url = "http://" + server.api.host + ":" + server.api.port + "/users";
-                var payload = request.payload;
-                Request.post({
-                    url: url,
-                    form: payload
-                }, function(err, httpResponse, body) {
-                    reply(body);
-                });
-
-            }
-        }
-    }, {
         method: 'GET',
         path: '/',
         config: {
@@ -299,10 +284,23 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
-       		 request.cookieAuth.clear();
-		 return reply.redirect('/');
-	}
+            request.cookieAuth.clear();
+            return reply.redirect('/');
+        }
 
+    }, {
+        method: 'GET',
+        path: '/id/profile',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+		var user = request.auth.credentials.profile.raw;
+		reply.view("profile", {user: user});
+        }
     }];
 
     return routes;
