@@ -1,10 +1,7 @@
-var angular = window.angular;
-
 var Fs = require("fs");
 var _ = require("lodash");
 
-module.exports = 
-angular.module("plunker.directive.fileTree", [
+module.exports = angular.module("plunker.directive.fileTree", [
   require("../../commander").name,
   require("../../notifier").name,
   require("../../workspace").name
@@ -19,8 +16,7 @@ angular.module("plunker.directive.fileTree", [
     restrict: "E",
     replace: true,
     scope: {
-      tree: "=",
-      closed: "@"
+      tree: "="
     },
     templateUrl: "components/sidebar/tree/fileTree.html",
     link: function($scope, $element, $attrs){
@@ -32,7 +28,6 @@ angular.module("plunker.directive.fileTree", [
 
       $scope.open = function ($event, entry, options) {
         $event.stopPropagation();
-
         if (openRight && openDown) {
           if (workspace.isOpen("code", entry.entryId)) {
             commander.execute("workspace.close", {coords: workspace.getCoords("code", entry.entryId)});

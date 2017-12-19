@@ -12,32 +12,32 @@ module.exports = angular.module("plunker.service.oauth", [
         name: "Github",
         id: "github",
         icon: "fa-github"
-      },
+      },/*
       {
         name: "Twitter",
         id: "twitter",
         icon: "fa-twitter"
-      },
+      },*/
       {
         name: "Google",
         id: "google",
         icon: "fa-google-plus"
-      },
+      },/*
       {
         name: "Dropbox",
         id: "dropbox",
         icon: "fa-dropbox"
-      },
+      },*/
       {
         name: "Facebook",
         id: "facebook",
         icon: "fa-facebook"
-      },
+      },/*
       {
         name: "Stack Overflow",
         id: "stackoverflow",
         icon: "fa-stack-overflow"
-      },
+      },*/
     ]
   };
   

@@ -6,7 +6,7 @@ module.exports = function ($scope, workspace, project) {
   this.close = workspace.close.bind(workspace);
 
   function getPaneDef() {
-    return workspace.panes[workspace.nextPaneNum - 1];
+	return  workspace.panes[workspace.nextPaneNum-1];
   }
 
   $scope.$watch(getPaneDef, function(paneDef) {

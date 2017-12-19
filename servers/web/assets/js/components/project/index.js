@@ -115,12 +115,11 @@ module.exports = angular.module("plunker.project", [
   Project.prototype.create = function (parent, filename, active) { 
     if (parent.hasChildByFilename(filename)) throw new Error("An entry already exists with the same filename: " + filename);
     var entry = new TextEntry(parent, filename, active);
-    
     parent.addChild(entry);
     
     this.entries[entry.getId()] = entry;
-    
-    return entry;
+
+      return entry;
   };
   
   Project.prototype.markClean = function () {
@@ -188,10 +187,11 @@ module.exports = angular.module("plunker.project", [
     var root = this.root;
     
     return this.clearTree().then(function () {
-      return createEntries(root, tree);
-      
+	return createEntries(root, tree);
+
       function createEntries (parent, entries) {
         return $q.all(_.map(entries, function (entry) {
+	  
           if (entry.type === 'directory') return directoryCreate(parent, entry);
           else return fileCreate(parent, entry);
         }));
@@ -215,13 +215,7 @@ module.exports = angular.module("plunker.project", [
     var self = this;
     var sha = _.isString(tree) ? tree : null;
     
-    var treePromise = _.isArray(tree)
-      ? $q.when(tree)
-      : $http.get(config.url.api + "/trees/" + tree).then(function (response) {
-        return response.data;
-      });
     
-    return treePromise.then(function (tree) {
       var returnPromise = commander.execute("project.setTree", {tree: tree}).then(function () {
         self.tree = sha;
       });
@@ -236,7 +230,7 @@ module.exports = angular.module("plunker.project", [
 
       
       return returnPromise;
-    });
+
   };
   
   Project.prototype.open = function (plunkId) {
