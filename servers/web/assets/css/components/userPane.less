@@ -32,8 +32,63 @@ textarea + .input-group-btn > .dropdown-toggle {
 }
 
 .plunker-userpane {
-  .dropdown-menu {
-    left: auto;
-    right: 0;
-  }
+	.dropdown {
+    		float: right;
+   		overflow: hidden;
+    		cursor: pointer;
+    		border: none;
+    		outline: none;
+		font-size: 18px;	
+		.show {
+   			 display: block;
+		}
+		.img-circle{
+			&:hover{
+				cursor: pointer;
+			}
+		}
+    		.dropdown-content {
+    			top: 60px;
+			right: 33px;
+    			position: fixed;
+    			width: 181.47px;
+    			display: none;
+    			float: right;
+    			background-color: #f9f9f9;
+   			min-width: 160px;
+    			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    			z-index: 1;
+    			a {
+    				float: none;
+    				color: black;
+    				padding: 12px 16px;
+    				text-decoration: none;
+    				display: block;
+    				text-align: left;
+				&:hover{
+					background-color: #ddd;
+				}
+    			}
+  		}
+		.plunker-profile{
+    			padding: 9px;
+ 	  	 	&:hover{
+    				background-color: #61d199;
+    				cursor: pointer;
+			}
+			.profile-text{
+    				color: white;
+    				float: right;
+    				font-size: 18px;
+				&:hover{
+					cursor: pointer;
+				}
+			}
+
+
+		}
+
+	}
 }
+
+
