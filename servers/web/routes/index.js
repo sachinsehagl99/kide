@@ -4,29 +4,14 @@ var When = require("when");
 var Path = require("path");
 
 handlebars.registerHelper('json', function(context) {
-    return JSON.stringify(context);
+	var con = JSON.stringify(context);
+	console.log(con);
+	return con;
 });
 
 module.exports = function(options) {
 
     var routes = [{
-        method: 'POST',
-        path: '/users',
-        config: {
-            handler: function(request, reply) {
-                var server = this.config.server;
-                var url = "http://" + server.api.host + ":" + server.api.port + "/users";
-                var payload = request.payload;
-                Request.post({
-                    url: url,
-                    form: payload
-                }, function(err, httpResponse, body) {
-                    reply(body);
-                });
-
-            }
-        }
-    }, {
         method: 'GET',
         path: '/',
         config: {
@@ -260,11 +245,10 @@ module.exports = function(options) {
                     });
                 });
 
-                var account = request.auth.credentials;
-                var sid = '' + account.profile;
+                var profile = request.auth.credentials.profile;
 
                 request.cookieAuth.set({
-                    sid: sid
+                    profile
                 });
 
                 return reply.view("auth/complete.html", {
@@ -275,6 +259,47 @@ module.exports = function(options) {
 
 
             }
+        }
+    }, {
+        method: 'GET',
+        path: '/user/auth',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+            var data = request.auth.credentials.profile.raw;
+            reply(data);
+        }
+
+    }, {
+        method: 'GET',
+        path: '/logout',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+            request.cookieAuth.clear();
+            return reply.redirect('/');
+        }
+
+    }, {
+        method: 'GET',
+        path: '/id/profile',
+        config: {
+            auth: {
+                strategy: 'session'
+
+            },
+        },
+        handler: function(request, reply) {
+		var user = request.auth.credentials.profile.raw;
+		reply.view("profile", {user: user});
         }
     }];
 

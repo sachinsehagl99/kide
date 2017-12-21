@@ -1,0 +1,116 @@
+<!DOCTYPE>
+<html ng-app="myApp">
+	<head>
+		<title>{{user.name}}-Profile</title>
+        <link rel="icon" href="resource/favicon.gif" type="image/x-icon" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/landing/landing-035d8c94.css">
+        <link rel="stylesheet" href="/style.css">
+	</head>
+
+	<body>
+		<nav class="navbar navbar-static-top">
+			<div class="container-fluid">
+				<div class="pull-left">
+					<a href="/">
+						<svg class="ssvg" style="float: left;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="-200 0 1000 500" style="enable-background:new 0 0 1000 500;" xml:space="preserve">
+
+							<text id="cuboid" transform="matrix(1 0 0 1 37.3206 309.5646)">
+								<tspan x="-10" y="0" class="st0 st1">&gt;</tspan><tspan x="138.7" y="0" class="st2 st1">cuboid.io</tspan>
+							</text>
+
+        						<rect id="underScore" x="167.4" y="315.4" class="st3" width="106" height="16.6"/>
+						</svg>
+					</a>
+
+					<div id="beta">
+						<a href="#/!"><input class="btn btn-side disabled" value="Beta"></a>
+					</div>
+
+             				<div id="scuboid">
+                        			<input class="form-control" placeholder="Search cuboid.io">
+                			</div>
+				</div>
+                
+                <div class="pull-right dropdown">
+                    <div class="plunker-profile"  onclick="myFunction()">
+			    <img src="{{user.picture.data.url}}" width="30px" height="30px" class="img-circle">
+                        <label class="profile-text">&nbsp;&nbsp;{{user.name}}&nbsp;<span class="caret"></span></label>
+                    </div>
+			<div class="dropdown-content" id="myDropdown">
+                        <a href="/" target="_self">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>
+			<a href="/profile/profile" target="_self">My profile&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
+                        <a href="/logout" target="_self">Logout&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
+                    </div>
+
+                </div>
+            
+            </div>
+        </nav>
+        <br><br><br>
+        
+            <div class="head">
+                
+                        <div class="avatar">
+				<img class="img-rounded propic" width="150px" height="150px" src="{{user.picture.data.url}}">
+                            </div>
+                            <div class="profile-info">
+                                <div class="profile-name">{{user.name}}</div>
+                                <div class="profile-details">{{user.email}}</div>
+                                <div class="profile-details">Last online now</div>
+                            </div>
+                            <a href="#!edit">
+                                <div class=" edit">Edit&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"></span></div>
+                            </a>
+                
+            </div>
+            <hr>
+            <div class="stats">
+                <div class="stat-overlay">
+                    <div class="course-stats">
+                        <div class="logo">
+                            <img src="/resource/course/java.svg" width="100px" height="100px">
+                        </div>
+                    </div>
+                </div>
+                <div class="course-stats">
+                    <div class="logo">
+                        <img src="/resource/course/py.png" width="100px" height="100px">
+                    </div>
+                </div>
+                 <div class="course-stats">
+                    <div class="logo">
+                        <img src="/resource/course/cpp.svg" width="100px" height="100px">
+                    </div>
+                </div>
+                <div class="course-stats">
+                    <div class="logo">
+                        <img src="/resource/course/git.png" width="100px" height="100px">
+                    </div>
+                </div>
+             </div>
+<script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if th`e user clicks outside of it
+        window.onclick = function(e) {
+          if (!e.target.matches('.plunker-profile')) {
+            var myDropdown = document.getElementById("myDropdown");
+              if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+              }
+          }
+        }
+        </script>
+            <!--<br><br><br><br><br><br><br><br><br><br><br><br>-->
+        <footer>
+            <h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
+        </footer>
+    </body>
+    
+</html>
