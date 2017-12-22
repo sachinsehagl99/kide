@@ -218,4 +218,4 @@ Gulp.task("profile:inject",[ "profile:styles:build"/*,"profile:scripts:build"*/ 
 
 ////////////////////////////////////////////////////////////////////////////////
 Gulp.task("default", ["editor:watch", "landing:watch"]);
-Gulp.task("build",["landing:inject", "editor:inject"]);
+Gulp.task("build",["landing:inject", "editor:inject", "profile:inject"]);
