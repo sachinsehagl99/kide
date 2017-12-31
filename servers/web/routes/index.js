@@ -288,7 +288,7 @@ module.exports = function(options) {
             return reply.redirect('/');
         }
 
-    }, {
+    }, /*{
         method: 'GET',
         path: '/id/profile',
         config: {
@@ -301,7 +301,7 @@ module.exports = function(options) {
 		var user = request.auth.credentials.profile.raw;
 		reply.view("profile", {user: user});
         }
-    }];
+    }*/];
 
     return routes;
 }
