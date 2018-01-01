@@ -7,41 +7,6 @@
         <!-- inject:css -->
         <link rel="stylesheet" href="/profile/profile-b5a025a7.css">
         <!-- endinject -->
-	<style>
-		button {
-  cursor: pointer;
-  font-weight: 500;
-  left: 3px;
-  line-height: inherit;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: inline-block;
-}
-
-.button--small {
-  padding: 10px 20px;
-  font-size: 0.875rem;
-}
-
-.button--green {
-  outline: none;
-  background-color: #64d18a;
-  border-color: #64d18a;
-  color: white;
-  transition: all 200ms ease;
-}
-
-.button--green:hover {
-  background-color: #8bdda8;
-  color: white;
-}
-	</style>
 	</head>
 
 	<body>
@@ -126,15 +91,16 @@
                     </div>
                 </div>
              </div>
-<form>
-  <div id="dropin-container"></div>
+<div id="dropin-container"></div>
+<form id="checkout-form" action="/checkouts">
+  <input type='submit' value='Pay'/>
 </form>
-
 <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
 
 <script>
 braintree.setup('{{user.clientToken}}', 'dropin', {
-  container: 'dropin-container'
+  container: 'dropin-container',
+  form: 'checkout-form'
 });
 </script> 
 
