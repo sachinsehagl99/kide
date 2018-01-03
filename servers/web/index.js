@@ -10,7 +10,7 @@ var Inert = require('inert');
 var Request = require('request');
 var Routes = require('./routes');
 var Auth = require("./auth");
-var Braintree = require("./gateway/braintree");
+var Braintree = require("./braintree");
 
 exports.register = function(plugin, options, next) {
 

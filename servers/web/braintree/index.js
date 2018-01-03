@@ -61,9 +61,8 @@ module.exports = function(plugin, options, next) {
         },
 
         handler: function(req, res) {
-		console.log(req.payload);
             var transactionErrors;
-            var amount = 100;
+            var amount = req.payload.amount;
 
             var nonce = req.payload.payment_method_nonce;
 		console.log(nonce);
