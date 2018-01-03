@@ -51,7 +51,7 @@ module.exports = function(plugin, options, next) {
     });
 
     plugin.route({
-        method: 'GET',
+        method: 'POST',
         path: '/checkouts',
         config: {
             auth: {
@@ -61,10 +61,11 @@ module.exports = function(plugin, options, next) {
         },
 
         handler: function(req, res) {
+		console.log(req.payload);
             var transactionErrors;
             var amount = 100;
 
-            var nonce = req.query.payment_method_nonce;
+            var nonce = req.payload.payment_method_nonce;
 		console.log(nonce);
             gateway.transaction.sale({
                 amount: amount,
