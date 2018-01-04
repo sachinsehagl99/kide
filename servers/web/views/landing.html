@@ -5,11 +5,10 @@
      
     <meta charset="utf-8" />
     <title>cuboid.io{{subtitle}}</title>
-    <link rel="stylesheet" href="/components/logo/logostyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link data-require="font-awesome@*" data-semver="4.1.0" rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/landing/landing-eeddb775.css">
+    <link rel="stylesheet" href="/landing/landing-057ce8c2.css">
     <!-- endinject -->
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/angular-timeago/angular-timeago.js"></script>
@@ -61,6 +60,24 @@
   </body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+          if (!e.target.matches('.plunker-profile')) {
+            var myDropdown = document.getElementById("myDropdown");
+              if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+              }
+          }
+        }
+        </script>
+ 
     <footer>
 			<h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
 	</footer>

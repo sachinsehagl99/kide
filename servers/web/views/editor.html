@@ -7,7 +7,7 @@
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/editor/editor-9b720d47.css">
+    <link rel="stylesheet" href="/editor/editor-6ef5af24.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
@@ -37,15 +37,9 @@
           <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
       </div>
     </nav>
-    <div class="console-tab">
-        <ul class="nav nav-tabs">
-            <li ng-click="#"><a id="filename_tab" style="background-color: #555; color: white;" href="#"></a></li>
-            <li ><a style="background-color: #555; color: white;">console</a></li>
-          </ul>
-      </div>
+
     <div fa-pane="container" keybindings >
       <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
-        <!--h1 class="plunker-brand"><a href="/" target="_self">baaa</a></h1-->
         
       </div>
       <div class="hintContainer" fa-pane="sidebar" pane-anchor="west" pane-size="28%">
@@ -54,12 +48,13 @@
       <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
+
+	
       <div fa-pane="workspace" pane-anchor="west" pane-size="60%">    
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
     </div>    
-	
     <div growl></div>
 
     <script src="vendor/codemirror/lib/codemirror.js"></script>
@@ -78,6 +73,24 @@
 	  }
        });
   </script>
+  <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(e) {
+          if (!e.target.matches('.plunker-profile')) {
+            var myDropdown = document.getElementById("myDropdown");
+              if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+              }
+          }
+        }
+        </script>
+
   </body>
 </html>
 

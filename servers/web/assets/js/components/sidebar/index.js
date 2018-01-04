@@ -1,5 +1,3 @@
-var angular = window.angular;
-
 var Fs = require("fs");
 require("../../../vendor/angular-timeago/angular-timeago");
 require("../project");
@@ -18,13 +16,15 @@ module.exports = angular.module("plunker.component.sidebar", [
   return function (text, n) { return String(text).substring(0, n); };
 })
 
-
 .directive("plunkerSidebar", [ function () {
   return {
     restrict: "E",
     replace: true,
     templateUrl: "components/sidebar/sidebar.html",
-    controller: require("./sidebarController"),
-    controllerAs: "sidebar"
+    controllerAs: "sidebar",
+    controller: function (project) {
+      this.tree = {root: project.root};
+      this.project = project;
+    }
   };
 }]);

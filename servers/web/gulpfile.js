@@ -7,7 +7,7 @@ var Inject = require("gulp-inject");
 var Watchify = require("watchify");
 var Source = require("vinyl-source-stream");
 var Sequence = require("run-sequence");
-var browserify = require('gulp-browserify');
+var browserify = require('browserify');
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ Gulp.task("editor:scripts:build", [ "editor:scripts:clean" ], function () {
         }))
         .pipe(Gulp.dest('./public/editor'))*/
 
-  var bundler = Watchify({
+  var bundler = browserify({
     entries: [
       "./assets/js/apps/editor.js"
     ]
@@ -107,7 +107,7 @@ Gulp.task("landing:styles:build", [ "landing:styles:clean" ], function () {
 });
 
 Gulp.task("landing:scripts:build", [ "landing:scripts:clean" ], function () {
-  var bundler = Watchify({
+  var bundler = browserify({
     entries: [
       "./assets/js/apps/landing.js"
     ]
@@ -156,5 +156,66 @@ Gulp.task("landing:watch", function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+Gulp.task("profile:styles:clean", function () {
+  return Gulp.src([ "public/profile/*.css" ], { read: true })
+    .pipe(Rimraf());
+});
+
+Gulp.task("profile:scripts:clean", function () {
+  return Gulp.src([ "public/profile/*.js" ], { read: true })
+    .pipe(Rimraf());
+});
+
+Gulp.task("profile:styles:build", [ "profile:styles:clean" ], function () {
+  return Gulp.src([ "assets/css/apps/profile.less" ])
+    .pipe(Less({
+      paths: [ ".", __dirname + "assets/css" ]
+    }))
+     .pipe(Rev())
+    .pipe(Gulp.dest("public/profile"));
+});
+
+Gulp.task("profile:scripts:build", [ "profile:scripts:clean" ], function () {
+  var bundler = browserify({
+    entries: [
+      "./assets/js/apps/profile.js"
+    ]
+  });
+  
+  bundler.transform("coffeeify");
+  bundler.transform("brfs");
+  
+  bundler.on("update", rebundle);
+  
+  return rebundle();
+  
+  function rebundle () {
+    return bundler.bundle()
+      .on("error", function (e) {
+        Gutil.log("Bundling error", e.message);
+      })
+      .pipe(Source("profile.js"))
+      .pipe(Rev())
+      .pipe(Gulp.dest("public/profile"));
+  }
+});
+
+Gulp.task("profile:inject",[ "profile:styles:build"/*,"profile:scripts:build"*/ ], function () {
+  return Gulp.src("views/profile.html")
+    .pipe(Inject(Gulp.src([ /*"public/profile/*.js",*/ "public/profile/*.css" ], { read: false }), {
+      ignorePath: "/public",
+      addRootSlash: true
+    }))
+    .pipe(Inject(Gulp.src("public/config.json"), {
+      transform: function (filepath, file) {
+        return '<script>angular.module("plunker.service.config", []).value("config",JSON.parse(atob("' + file.contents.toString("base64") + '")));</script>';
+      }
+    }))
+    .pipe(Gulp.dest("views"));
+});
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 Gulp.task("default", ["editor:watch", "landing:watch"]);
-Gulp.task("inject",["landing:inject", "editor:inject"]);
+Gulp.task("build",["landing:inject", "editor:inject", "profile:inject"]);

@@ -166,4 +166,5 @@ module.exports = angular.module("plunker.component.workspace", [
       template: Fs.readFileSync(__dirname + "/template.html", "utf8"),
       controller: require("./controller"),
     };
-});
+})
+;

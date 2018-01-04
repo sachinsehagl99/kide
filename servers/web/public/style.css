@@ -1,0 +1,120 @@
+.profile-text{
+    color: white;
+    float: right;
+    font-size: 18px;
+}
+.plunker-profile{
+    padding: 15px;
+}
+
+.plunker-profile:hover{
+    background-color: #61d199;
+    cursor: pointer;
+}
+
+a:hover{
+    cursor: pointer;
+}
+label:hover{
+    cursor: pointer;
+}
+.profiletext{
+    float: right;
+    color: #3b4453;
+}
+
+.head{
+    padding: 5rem;
+    min-height: 250px;
+}
+.avatar{
+    float: left;
+}
+.profile-info{
+    padding: 27px;
+    display: block;
+    float: left;
+}
+.profile-name{
+    font-size: 4.75rem;
+}
+.profile-details{
+    font-size: 2.25rem;
+    font-weight: 300;
+}
+
+.stats{
+    padding: 5rem;
+    min-height: 80px;
+}
+
+.course-stats{
+    margin-right: 110px;
+    margin-bottom: 110px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    background-color: #3b4453;
+    padding: 25px;
+    float: left;
+}
+
+.logo{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    background-color: white;
+    padding: 25px;
+}
+
+.logo:hover{
+    -webkit-filter: none;
+    filter: none;
+    cursor: pointer;
+}
+
+.edit{
+    float:right;
+    font-size: 25px;
+}
+.edit:hover{
+    cursor: pointer;
+}
+.dropdown {
+    float: right;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.dropdown-content {
+    top: 60px;
+    position: fixed;
+    width: 181.47px;
+    display: none;
+    float: right;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
