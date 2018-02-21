@@ -3,13 +3,15 @@ var handlebars = require('handlebars');
 var When = require("when");
 var Path = require("path");
 
+
+
 handlebars.registerHelper('json', function(context) {
 	var con = JSON.stringify(context);
 	console.log(con);
 	return con;
 });
 
-module.exports = function(options) {
+module.exports = function(server, options) {
 
     var routes = [{
         method: 'GET',
@@ -19,7 +21,7 @@ module.exports = function(options) {
                 strategy: 'session',
                 mode: 'try'
 
-            },
+       	     },
             plugins: {
                 'hapi-auth-cookie': {
                     redirectTo: false
@@ -94,22 +96,29 @@ module.exports = function(options) {
         config: {
             handler: function(request, reply) {
                 var server = this.config.server;
-                var requestParams = request.params;
+		var requestParams = request.params;
                 var courseName = requestParams.courseName;
                 var templateName = requestParams.templateName;
                 var sessionId = requestParams.sessionId;
 
                 Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName + "/" + sessionId, function(err, res, body) {
-                    reply(body);
+                    
+			reply(body)
+			  
                 });
             }
         }
     }, {
         method: 'POST',
         path: '/java/{testName}/{pathId}',
+/*	plugins: {
+	  'hapi-io': {
+	}	
+  },  */
         handler: function(request, reply) {
-            var server = this.config.server;
-            var params = request.params;
+	    var server = this.config.server;
+	    var io = require('socket.io')(server.listener);
+	    var params = request.params;
             var testName = encodeURIComponent(params.testName);
             var pathId = encodeURIComponent(params.pathId);
             var payload = request.payload;
@@ -119,9 +128,16 @@ module.exports = function(options) {
                 url: url,
                 form: payload
             }, function(err, httpResponse, body) {
-                reply(body);
+                 reply(body);
             });
-        }
+		io.on('connection', function(socket){
+			console.log('connected');
+
+	          io.on('disconnect', function(){
+			console.log('disconnected');	
+				});
+			}); 
+		        }
     }, {
         method: 'GET',
         path: '/login',
