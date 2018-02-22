@@ -111,10 +111,6 @@ module.exports = function(options) {
     }, {
         method: 'POST',
         path: '/java/{testName}/{pathId}',
-        /*	plugins: {
-        	  'hapi-io': {
-        	}	
-          },  */
         handler: function(request, reply) {
             var server = this.config.server;
             var params = request.params;

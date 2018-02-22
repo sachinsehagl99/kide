@@ -12,6 +12,7 @@ var Routes = require('./routes');
 var Auth = require("./auth");
 
 exports.register = function(plugin, options, next) {
+
     var io = require('socket.io')(plugin.listener);
 
     var context = {
