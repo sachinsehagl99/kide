@@ -3,7 +3,6 @@ require("../../commander");
 require("../../oplog");
 require("../../notifier");
 var _ = require("lodash");
-var io = require('socket.io');
 
 module.exports = angular.module("plunker.directive.previewer", [
   "plunker.service.settings",
@@ -43,7 +42,6 @@ module.exports = angular.module("plunker.directive.previewer", [
       });
     });
   }
-
   getSrcTemplate("t" + $rootScope.testMethod);
 
   $rootScope.loader = "hidden";
@@ -75,18 +73,6 @@ module.exports = angular.module("plunker.directive.previewer", [
     json.testMethod = "t" + $rootScope.testMethod;
     
 	return $http.post("/java/" + testName + "/" + pathId, json).then(function(resp) {
-       <script src="/socket.io/socket.io.js"></script>
-         <script>
-              var socket = io.connect('http://localhost');
-              socket.on('connection', function () {
-              console.log("Hello");
-              //socket.emit('my other event', { my: 'data' });
-           });
-         </script>
-	var socket = io('http://localhost:8080');
-    	socket.on('connection', function(socket){
-	console.log('Connected');
-	});  
      $rootScope.enable = "true";
 
      if(!resp.data.err){
@@ -145,4 +131,28 @@ module.exports = angular.module("plunker.directive.previewer", [
   };
 
   return directive;
+})
+.factory('socket', function ($rootScope) {
+  var socket = io.connect();
+  return {
+    on: function (eventName, callback) {
+      socket.on(eventName, function () {  
+        var args = arguments;
+        $rootScope.$apply(function () {
+          callback.apply(socket, args);
+        });
+      });
+    },
+    emit: function (eventName, data, callback) {
+      socket.emit(eventName, data, function () {
+        var args = arguments;
+        $rootScope.$apply(function () {
+          if (callback) {
+            callback.apply(socket, args);
+          }
+        });
+      })
+    }
+  };
 });
+

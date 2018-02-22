@@ -12,6 +12,7 @@ var Routes = require('./routes');
 var Auth = require("./auth");
 
 exports.register = function(plugin, options, next) {
+    var io = require('socket.io')(plugin.listener);
 
     var context = {
         config: options.config,
@@ -34,6 +35,13 @@ exports.register = function(plugin, options, next) {
             partialsPath: "views/partials",
             helpersPath: "views/helpers",
         });
+
+        io.sockets.on('connection', function(socket) {
+            socket.on('connected', function() {
+                console.log('new connection');
+            });
+        });
+
 
         Auth(plugin, options, next);
 
