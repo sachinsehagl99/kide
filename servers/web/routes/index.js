@@ -3,10 +3,12 @@ var handlebars = require('handlebars');
 var When = require("when");
 var Path = require("path");
 
+
+
 handlebars.registerHelper('json', function(context) {
-	var con = JSON.stringify(context);
-	console.log(con);
-	return con;
+    var con = JSON.stringify(context);
+    console.log(con);
+    return con;
 });
 
 module.exports = function(options) {
@@ -100,7 +102,9 @@ module.exports = function(options) {
                 var sessionId = requestParams.sessionId;
 
                 Request("http://" + server.api.host + ":" + server.api.port + "/getFiles/" + courseName + "/" + templateName + "/" + sessionId, function(err, res, body) {
-                    reply(body);
+
+                    reply(body)
+
                 });
             }
         }
@@ -298,8 +302,10 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
-		var user = request.auth.credentials.profile.raw;
-		reply.view("profile", {user: user});
+            var user = request.auth.credentials.profile.raw;
+            reply.view("profile", {
+                user: user
+            });
         }
     }*/];
 

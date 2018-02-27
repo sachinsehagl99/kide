@@ -14,6 +14,8 @@ var Braintree = require("./braintree");
 
 exports.register = function(plugin, options, next) {
 
+    var io = require('socket.io')(plugin.listener);
+
     var context = {
         config: options.config,
         local: options.config.expose,
@@ -35,6 +37,13 @@ exports.register = function(plugin, options, next) {
             partialsPath: "views/partials",
             helpersPath: "views/helpers",
         });
+
+        io.sockets.on('connection', function(socket) {
+            socket.on('connected', function() {
+                console.log('new connection');
+            });
+        });
+
 
         Auth(plugin, options, next);
 	Braintree(plugin, options, next);

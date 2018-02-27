@@ -7,7 +7,7 @@
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/editor/editor-6ef5af24.css">
+    <link rel="stylesheet" href="/editor/editor-96617527.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
@@ -61,6 +61,7 @@
     <script src="vendor/codemirror/mode/javascript/javascript.js"></script>
     <script src="vendor/angular/angular.js"></script>
     <script src="vendor/ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="vendor/socket.io-client/dist/socket.io.js"></script>
     <!-- inject:js -->
     <script src="/editor/editor-1441a790.js"></script>
     <!-- endinject -->
@@ -82,7 +83,7 @@
         
         // Close the dropdown if the user clicks outside of it
         window.onclick = function(e) {
-          if (!e.target.matches('.plunker-profile')) {
+          if (!e.target.matches('.overlay')) {
             var myDropdown = document.getElementById("myDropdown");
               if (myDropdown.classList.contains('show')) {
                 myDropdown.classList.remove('show');

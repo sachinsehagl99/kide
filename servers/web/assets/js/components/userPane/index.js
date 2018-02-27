@@ -31,7 +31,6 @@ module.exports = angular.module("plunker.component.userPane", [
             };
             getAuth($http).then(function(data) {
                 self.user = data;
-		console.log(self.user);
             });
             self.showCollectionsManager = function() {
                 collectionsManager.show();

@@ -13,50 +13,51 @@ require("../components/userPane");
 require("../components/commentsPane");
 
 module.exports = angular.module('plunker', [
-  "ui.bootstrap",
-  "fa.directive.borderLayout",
-  "plunker.service.commander",
-  "plunker.service.notifier",
-  "plunker.project",
-  "plunker.component.toolbar",
-  "plunker.component.sidebar",
-  "plunker.component.overlayer",
-  "plunker.component.workspace",
-  "plunker.urlState",
-  "plunker.component.userPane",
-  "plunker.commentsPane"
-])
+        "ui.bootstrap",
+        "fa.directive.borderLayout",
+        "plunker.service.commander",
+        "plunker.service.notifier",
+        "plunker.project",
+        "plunker.component.toolbar",
+        "plunker.component.sidebar",
+        "plunker.component.overlayer",
+        "plunker.component.workspace",
+        "plunker.urlState",
+        "plunker.component.userPane",
+        "plunker.commentsPane"
+    ])
 
-.config(["$locationProvider", function($locationProvider){
-  $locationProvider.html5Mode(true).hashPrefix("!");
-}])
+    .config(["$locationProvider", function($locationProvider) {
+        $locationProvider.html5Mode(true).hashPrefix("!");
+    }])
 
-.config(["$tooltipProvider", function($tooltipProvider){
-  $tooltipProvider.options({
-    appendToBody: true,
-    popupDelay: 200,
-  });
-}])
+    .config(["$tooltipProvider", function($tooltipProvider) {
+        $tooltipProvider.options({
+            appendToBody: true,
+            popupDelay: 200,
+        });
+    }])
 
 
-.controller("EditorController", function ($rootScope, $scope, $location, urlState, commander, project, notifier,config) {
+    .controller("EditorController", function($rootScope, $scope, $location, urlState, commander, project, notifier, config, socket) {
 
-  urlState.addState({
-    name: "plunkId",
-    queue: "project",
-    scope: $scope,
-    decode: function () {
-      return $location.path().slice(6);
-    },
-    encode: function (plunkId) {
-      return $location.path("/edit/" + (plunkId || ""));
-    },
-    read: function () {
-      return project.isSaved() ? project.plunk.id : void 0;
-    },
-    write: function (plunkId) {
-      //return commander.execute("editor.reset");
-    }
-  });
-  
-});
+        socket.emit('connected');
+        urlState.addState({
+            name: "plunkId",
+            queue: "project",
+            scope: $scope,
+            decode: function() {
+                return $location.path().slice(6);
+            },
+            encode: function(plunkId) {
+                return $location.path("/edit/" + (plunkId || ""));
+            },
+            read: function() {
+                return project.isSaved() ? project.plunk.id : void 0;
+            },
+            write: function(plunkId) {
+                //return commander.execute("editor.reset");
+            }
+        });
+
+    });
