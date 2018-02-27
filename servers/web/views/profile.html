@@ -5,7 +5,7 @@
         <link rel="icon" href="resource/favicon.gif" type="image/x-icon" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- inject:css -->
-        <link rel="stylesheet" href="/profile/profile-b5a025a7.css">
+        <link rel="stylesheet" href="/profile/profile-c2393b77.css">
         <!-- endinject -->
 
 	</head>
@@ -39,6 +39,7 @@
                     <div class="plunker-profile"  onclick="myFunction()">
 			    <img src="{{user.picture.data.url}}" width="30px" height="30px" class="img-circle">
                         <label class="profile-text">&nbsp;&nbsp;{{user.name}}&nbsp;<span class="caret"></span></label>
+				<div class="overlay" style="height: 100%; width:100%; opacity: 0; top: 0; left: 0; position: absolute; padding: 0;"></div>
                     </div>
 			<div class="dropdown-content" id="myDropdown">
                         <a href="/" target="_self">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>
@@ -101,7 +102,7 @@
         
         // Close the dropdown if th`e user clicks outside of it
         window.onclick = function(e) {
-          if (!e.target.matches('.plunker-profile')) {
+          if (!e.target.matches('.overlay')) {
             var myDropdown = document.getElementById("myDropdown");
               if (myDropdown.classList.contains('show')) {
                 myDropdown.classList.remove('show');
