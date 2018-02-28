@@ -1,17 +1,33 @@
+<style>
+.card{
+	    background-color: #fff;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    border: none;
+    margin-bottom: 17px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+.coming-soon {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+.available:hover{
+	box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+</style>
+
 <div class="row">
-    <script>
-        $(window).scroll(function() {    
-            var scroll = $(window).scrollTop();
-            if (scroll >= 500) {
-                $(".navbar-static-hidden").addClass(".navbar-static-top");
-            }
-        });
-    </script>
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
-        <div style="padding-top: 150px;">
+        <div style="padding-top: 10px;">
         <a href="/">
-            <img src="bg_white.png" style="width: auto; height: 30px; top: 50px;">
+            <img src="bg_white.png" style="width: auto; height: 30px; top: 20px;">
         </a>
         
         </div>
@@ -19,11 +35,105 @@
     </div>
     <div class="col-lg-5"></div>
 </div>
-<div   style="padding-top: 75px;" class="row">
-	<div class="col-lg-2"></div>
-    <div class="col-lg-8">
+<div   style="padding-top: 55px;" class="row">
+	<div class="col-lg-1"></div>
+	<div class="col-lg-10">
+    <div class="col-lg-12">
     	<input class="form-control" placeholder="Search through kitcode.io">
+    </div></div>
+    <div class="col-lg-1"></div>
+
+</div>
+
+<div style="padding-top: 20px;" class="row">
+	<div class="col-lg-1"></div><div class="col-lg-10">
+   <a href="opensomething.html"> <div class="col-lg-4" float="left">
+	    <div class="card available">
+		<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="14.74%" width="14.74%"></img>
+	        <p>&nbsp &nbspJava</p>
+	    </div>
+	   </div></a>
+    <div class="col-lg-4" >
+	    <div class="card">
+		<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-python/svg/python_logo" height="20%" width="20%" class="coming-soon"></img>
+	 	<p>&nbsp &nbspPython</p>
+	    </div>
     </div>
-    <div class="col-lg-2"></div>
+    <div class="col-lg-4" float="right">
+	    <div class="card">
+		<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-c-plus-plus/svg/c-plus-plus_logo" height="17.705%" width="17.705%" class="coming-soon"></img>
+	        <p>&nbsp &nbspC++</p>
+	    </div>
+    </div></div>
+    <div class="col-lg-1"></div>
+
+	</div>
+<div   style="padding-top: 5px;" class="row">
+	<div class="col-lg-1"></div><div class="col-lg-10">
+    <div class="col-lg-4" float="left">
+	    <div class="card">
+		<img src="http://hamwaves.com/cli/images/git.svg" height="19.915%" width="19.915%" class="coming-soon"></img>
+	        <p>&nbsp &nbspGit</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" >
+	    <div class="card">
+		<img src="https://static1.squarespace.com/static/513914cde4b0f86e34bbb954/t/58d2c758725e25221a20ed53/1490208601230/mongodb-logo.png" height="28.759%" width="28.759%" class="coming-soon"></img>
+	 	<p>&nbsp &nbspMongoDB</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" float="right">
+	    <div class="card">
+		<img src="https://jaystack.com/wp-content/uploads/2015/12/nodejs-logo-e1497443346889.png" height="18.315%" width="18.315%" class="coming-soon"></img>
+	        <p>&nbsp &nbspNode.js</p>
+	    </div>
+    </div></div>
+    <div class="col-lg-1"></div>
+
+</div>
+<div   style="padding-top: 5px;" class="row">
+	<div class="col-lg-1"></div><div class="col-lg-10">
+    <div class="col-lg-4" float="left">
+	    <div class="card">
+		<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-machine-learning-ml/svg/machine-learning-ml_logo" height="19.915%" width="19.915%" class="coming-soon"></img>
+	        <p>&nbsp &nbspMachine Learning</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" >
+	    <div class="card">
+		<img src="http://www.starkeautomation.com/images/images1/AI1.png" height="28.08%" width="28.08%" class="coming-soon"></img>
+	 	<p>&nbsp &nbspA.I.</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" float="right">
+	    <div class="card">
+		<img src="https://vignette.wikia.nocookie.net/logopedia/images/0/04/Linux_logo.png/revision/latest?cb=20120814052336" height="16.952%" width="16.952%" class="coming-soon"></img>
+	        <p>&nbsp &nbspLinux System</p>
+	    </div>
+    </div></div>
+    <div class="col-lg-1"></div>
+
+</div>
+<div   style="padding-top: 5px;" class="row">
+	<div class="col-lg-1"></div><div class="col-lg-10">
+    <div class="col-lg-4" float="left">
+	    <div class="card">
+		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/AmazonWebservices_Logo.svg/2000px-AmazonWebservices_Logo.svg.png" height="52.974%" width="52.974%" class="coming-soon"></img>
+	        <p>&nbsp &nbspAWS</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" >
+	    <div class="card">
+		<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-google-cloud-platform/svg/google-cloud-platform_logo" height="22.465%" width="22.465%" class="coming-soon"></img>
+	 	<p>&nbsp &nbspGoogle Cloud</p>
+	    </div>
+    </div>
+    <div class="col-lg-4" float="right">
+	    <div class="card">
+		<img src="https://cdn.wccftech.com/wp-content/uploads/2016/05/Azure_.png" height="34.85%" width="34.85%" class="coming-soon"></img>
+	        <p>&nbsp &nbspMicorsoft Azure</p>
+	    </div>
+    </div></div>
+    <div class="col-lg-1"></div>
 
 </div>

@@ -30,9 +30,14 @@ module.exports = function(options) {
             },
             handler: function(request, reply) {
                 var context = {
-                    config: this.local
+                    config: this.local,
+                    css: 'hidden'
                 };
-                reply.view('main', context, {
+                reply.view('main', {
+                    context: {
+                        css: 'hidden'
+                    }
+                }, {
                     layout: "landing"
                 });
             }
@@ -57,7 +62,8 @@ module.exports = function(options) {
 
             handler: function(request, reply) {
                 var context = {
-                    config: this.local
+                    config: this.local,
+                    css: 'top'
                 };
                 var server = this.config.server;
                 Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
@@ -78,7 +84,7 @@ module.exports = function(options) {
                         context.body = {
                             plunk: data
                         };
-                        reply.view("home", context, {
+                        reply.view("home",context, {
                             layout: "landing"
                         });
                     }).catch(function(err) {
