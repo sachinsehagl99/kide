@@ -6,20 +6,23 @@
     <link rel="icon" href="resource/favicon.gif" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <!-- inject:css -->
-    <link rel="stylesheet" href="/profile/profile-bcb54fdc.css">
+    <link rel="stylesheet" href="/profile/profile-3e14df05.css">
     <!-- endinject -->
+
 <style>
-hr.verticalhr{ 
-  
-    border:         none;
-    border-left:    1px solid hsla(200, 10%, 50%,100);
-    height:         100vh;
-    width:          1px;       
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
+.container .row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 </style>
 </head>
 
-<body>
+<body style="background-color: #fafafa">
     <nav class="navbar navbar-static-top">
         <div class="container-fluid">
             <div class="pull-left">
@@ -57,38 +60,64 @@ hr.verticalhr{
     <br>
     <br>
     <br>
-
-    <div class="head">
-    <div class="col-lg-4 cold-md-4 col-sm-12 col-xs-12">
-        <div class="avatar">
-            <img class="img-rounded propic" width="200px" height="200px" src="{{user.picture.data.url}}">
-	    <div class="profile-info">
-               <div class="profile-name">{{user.name}}</div>
-               <div class="profile-details">{{user.email}}</div>
-               <div class="profile-details">Last online now</div>
+    <div class="row">
+        <div class="col-lg-4 cold-md-4 col-sm-12 col-xs-12">
+            <div class="head">
+                <div class="avatar">
+                    <img class="img-rounded propic" width="200px" height="200px" src="{{user.picture.data.url}}">
+                    <div class="profile-info">
+                        <div class="profile-name">{{user.name}}</div>
+                        <div class="profile-details">{{user.email}}</div>
+			<div class="profile-details">Last online now&nbsp&nbsp<span class="glyphicon glyphicon-one-fine-green-dot"></span></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
-    <hr>
-    <center><a class="btn btn-md btn-warning" href="#paymentman" data-toggle="collapse">Pay Now Using PayPal!!!!</a></center>
-    <div id="paymentman" class="collapse">
-        <center>
-            <form id="payment-form" action="/checkouts" method="post">
-                <section>
-                    <label for="amount"><span class="input-label">Amount</span>
-                        <div class="input-wrapper amount-wrapper">
-                            <input id="amount" name="amount" type="tel" min="1" value="10" class="form-control" />
-                        </div>
-                    </label>
-                    <div class="bt-drop-in-wrapper">
-                        <div id="bt-dropin"></div>
-                    </div>
-                </section>
-                <input id="nonce" type="hidden" name="payment_method_nonce" />
-                <button class="btn btn-lg" type="submit"><span>Pay</span></button>
-            </form>
-        </center>
+
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+	    <div>
+		    <h2>Submissions</h2>
+	    	    <hr>
+		    <div>
+			<div style="border-radius: 5px; border: 2px solid #3b4453; height: 20%; width: 100%;" class="container">
+				<h3>You don't have any submissions yet.</h3>
+			</div>
+		    </div>
+		    <h2>Your Courses</h2>
+		    <hr>
+		    <div class="row">
+			    <a href="/landing/java"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+				<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="80px">
+				<p style="color: green; padding-top: 10px;">Freemium</p>
+		            </div></a>
+			    <a href="#paymentman" data-toggle="collapse"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+			        <span class="glyphicon glyphicon-plus" style="font-size: 400%;"></span>
+			    </div></a>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+		    </div>
+	    </div><hr>
+            <div id="paymentman" class="collapse">
+                <center>
+                    <form id="payment-form" action="/checkouts" method="post">
+                        <section>
+                            <label for="amount"><span class="input-label">Amount</span>
+                                <div class="input-wrapper amount-wrapper">
+                                    <input id="amount" name="amount" type="tel" min="1" value="10" class="form-control" />
+                                </div>
+                            </label>
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
+                            </div>
+                        </section>
+                        <input id="nonce" type="hidden" name="payment_method_nonce" />
+                        <button class="btn btn-lg" type="submit"><span>Pay</span></button>
+                    </form>
+                </center>
+            </div>
+        </div>
     </div>
     <script src="https://js.braintreegateway.com/web/dropin/1.9.2/js/dropin.min.js"></script>
 
@@ -122,7 +151,7 @@ hr.verticalhr{
 
     <script>
         /* When the user clicks on the button, 
-                toggle between hiding and showing the dropdown content */
+                        toggle between hiding and showing the dropdown content */
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
@@ -143,9 +172,9 @@ hr.verticalhr{
             <h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
         </footer> 
    -->
-    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 
 </html>
