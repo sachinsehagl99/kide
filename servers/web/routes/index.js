@@ -29,14 +29,8 @@ module.exports = function(options) {
 
             },
             handler: function(request, reply) {
-                var context = {
-                    config: this.local,
-                    css: 'hidden'
-                };
                 reply.view('main', {
-                    context: {
-                        css: 'hidden'
-                    }
+                    css: 'hidden'
                 }, {
                     layout: "landing"
                 });
@@ -84,7 +78,7 @@ module.exports = function(options) {
                         context.body = {
                             plunk: data
                         };
-                        reply.view("home",context, {
+                        reply.view("home", context, {
                             layout: "landing"
                         });
                     }).catch(function(err) {
