@@ -8,16 +8,16 @@ module.exports = angular.module("plunker.service.oauth", [
   var oauth = {
     identities : {},
     providers: [
-      {
+      /*{
         name: "Github",
         id: "github",
         icon: "fa-github"
-      },/*
+      },
       {
         name: "Twitter",
         id: "twitter",
         icon: "fa-twitter"
-      },*/
+      },
       {
         name: "Google",
         id: "google",
