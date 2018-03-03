@@ -118,9 +118,8 @@ exports.register = function(server, options, next) {
 
                 models.Users.find({'email': email}, function (err, user) {
 		  if(err) return reply(err);
-                  if(user.length!=0) return reply("user email allready exists");
-
-                   var User = new models.Users({
+                  if (user.length != 0){ console.log(user); return reply(user) };
+                  var User = new models.Users({
 		     name : name,
 		     email : email,
 		     [ser_id] : id,
