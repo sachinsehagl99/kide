@@ -1,62 +1,3 @@
-<!DOCTYPE>
-<html ng-app="myApp">
-
-<head>
-    <title>{{user.name}}-Profile</title>
-    <link rel="icon" href="resource/favicon.gif" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- inject:css -->
-    <link rel="stylesheet" href="/profile/profile-3e14df05.css">
-    <!-- endinject -->
-
-<style>
-.row {
-  margin-left: 0;
-  margin-right: 0;
-}
-.container .row {
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-</style>
-</head>
-
-<body style="background-color: #fafafa">
-    <nav class="navbar navbar-static-top">
-        <div class="container-fluid">
-            <div class="pull-left">
-                <a href="/">
-                    <img class="ssvg" style="float:left;" src="/kitcode-white.gif">
-                </a>
-
-                <div id="beta" style="padding-top: 22px;">
-                    <a href="#/!">
-                        <input class="btn btn-side disabled" value="Beta">
-                    </a>
-                </div>
-
-                <div id="scuboid">
-                    <input class="form-control" placeholder="Search cuboid.io">
-                </div>
-            </div>
-
-            <div class="pull-right dropdown">
-                <div class="plunker-profile" onclick="myFunction()">
-                    <img src="{{user.picture.data.url}}" width="30px" height="30px" class="img-circle">
-                    <label class="profile-text">&nbsp;&nbsp;{{user.name}}&nbsp;<span class="caret"></span></label>
-                    <div class="overlay" style="height: 100%; width:100%; opacity: 0; top: 0; left: 0; position: absolute; padding: 0;"></div>
-                </div>
-                <div class="dropdown-content" id="myDropdown">
-                    <a href="/" target="_self">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>
-                    <a href="/profile/profile" target="_self">My profile&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
-                    <a href="/logout" target="_self">Logout&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
-                </div>
-
-            </div>
-
-        </div>
-    </nav>
     <br>
     <br>
     <br>
@@ -64,7 +5,7 @@
         <div class="col-lg-4 cold-md-4 col-sm-12 col-xs-12">
             <div class="head">
                 <div class="avatar">
-                    <img class="img-rounded propic" width="200px" height="200px" src="{{user.picture.data.url}}">
+                    <img class="img-rounded propic" width="200px" height="200px" src="{{user.pro_pic}}">
                     <div class="profile-info">
                         <div class="profile-name">{{user.name}}</div>
                         <div class="profile-details">{{user.email}}</div>
@@ -149,32 +90,4 @@
         });
     </script>
 
-    <script>
-        /* When the user clicks on the button, 
-                        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if th`e user clicks outside of it
-        window.onclick = function(e) {
-            if (!e.target.matches('.overlay')) {
-                var myDropdown = document.getElementById("myDropdown");
-                if (myDropdown.classList.contains('show')) {
-                    myDropdown.classList.remove('show');
-                }
-            }
-        }
-    </script>
-    <!--<br><br><br><br><br><br><br><br><br><br><br><br>-->
-    <!--
-       	    <footer>
-            <h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
-        </footer> 
-   -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+   
