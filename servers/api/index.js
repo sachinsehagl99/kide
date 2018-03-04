@@ -126,9 +126,9 @@ exports.register = function(server, options, next) {
 		     pro_pic : pro_pic
 		   });
 
-		   User.save(function (err,success){
-                       if(err) return reply(err);
-		       else return reply("success"); 
+		   User.save(function (err,user){
+		       if(err) return reply(err);
+		       else return reply([user]); 
 		   });
                 });
 	}
