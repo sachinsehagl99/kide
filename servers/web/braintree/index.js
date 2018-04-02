@@ -39,13 +39,20 @@ module.exports = function(plugin, options, next) {
             },
         },
         handler: function(request, reply) {
-            var user = request.auth.credentials.profile.raw;
+            var user = request.auth.credentials.profile;
 
             gateway.clientToken.generate({}, function(err, response) {
-                user.clientToken = response.clientToken;
-                reply.view('profile', {
-                    user: user
-                });
+                if (err) {
+		    console.log(err);
+                } else {
+                    user.clientToken = response.clientToken;
+                    reply.view('profile', {
+			css: 'top',
+                        user: user
+                    },{
+		    	layout: 'landing'
+		    });
+                }
             });
         }
     });
@@ -65,7 +72,7 @@ module.exports = function(plugin, options, next) {
             var amount = req.payload.amount;
 
             var nonce = req.payload.payment_method_nonce;
-		console.log(nonce);
+            console.log(nonce);
             gateway.transaction.sale({
                 amount: amount,
                 paymentMethodNonce: nonce,
@@ -100,8 +107,8 @@ module.exports = function(plugin, options, next) {
             var transactionId = req.params.id;
 
             gateway.transaction.find(transactionId, function(err, transaction) {
-		console.log(transaction);
-		res.redirect('/');
+                console.log(transaction);
+                res.redirect('/');
             });
         }
     });

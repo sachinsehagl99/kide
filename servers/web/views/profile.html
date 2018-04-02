@@ -1,164 +1,113 @@
-<!DOCTYPE>
-<html ng-app="myApp">
-	<head>
-		<title>{{user.name}}-Profile</title>
-        <link rel="icon" href="resource/favicon.gif" type="image/x-icon" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- inject:css -->
-        <link rel="stylesheet" href="/profile/profile-b5a025a7.css">
-        <!-- endinject -->
-	</head>
-
-	<body>
-		<nav class="navbar navbar-static-top">
-			<div class="container-fluid">
-				<div class="pull-left">
-					<a href="/">
-						<svg class="ssvg" style="float: left;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-         viewBox="-200 0 1000 500" style="enable-background:new 0 0 1000 500;" xml:space="preserve">
-
-							<text id="cuboid" transform="matrix(1 0 0 1 37.3206 309.5646)">
-								<tspan x="-10" y="0" class="st0 st1">&gt;</tspan><tspan x="138.7" y="0" class="st2 st1">cuboid.io</tspan>
-							</text>
-
-        						<rect id="underScore" x="167.4" y="315.4" class="st3" width="106" height="16.6"/>
-						</svg>
-					</a>
-
-					<div id="beta">
-						<a href="#/!"><input class="btn btn-side disabled" value="Beta"></a>
-					</div>
-
-             				<div id="scuboid">
-                        			<input class="form-control" placeholder="Search cuboid.io">
-                			</div>
-				</div>
-                
-                <div class="pull-right dropdown">
-                    <div class="plunker-profile"  onclick="myFunction()">
-			    <img src="{{user.picture.data.url}}" width="30px" height="30px" class="img-circle">
-                        <label class="profile-text">&nbsp;&nbsp;{{user.name}}&nbsp;<span class="caret"></span></label>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-4 cold-md-4 col-sm-12 col-xs-12">
+            <div class="profile-head">
+                <div class="avatar">
+                    <img class="img-rounded propic" width="200px" height="200px" src="{{user.pro_pic}}">
+                    <div class="profile-info">
+                        <div class="profile-name">{{user.name}}</div>
+                        <div class="profile-details">{{user.email}}</div>
+			<div class="profile-details">Last online now&nbsp&nbsp<span class="glyphicon glyphicon-one-fine-green-dot"></span></div>
                     </div>
-			<div class="dropdown-content" id="myDropdown">
-                        <a href="/" target="_self">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>
-			<a href="/profile/profile" target="_self">My profile&nbsp;&nbsp;<span class="glyphicon glyphicon-user"></span></a>
-                        <a href="/logout" target="_self">Logout&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span></a>
-                    </div>
-
                 </div>
-            
             </div>
-        </nav>
-        <br><br><br>
-        
-            <div class="head">
-                
-                        <div class="avatar">
-				<img class="img-rounded propic" width="150px" height="150px" src="{{user.picture.data.url}}">
-                            </div>
-                            <div class="profile-info">
-                                <div class="profile-name">{{user.name}}</div>
-                                <div class="profile-details">{{user.email}}</div>
-                                <div class="profile-details">Last online now</div>
-                            </div>
-                            <a href="#!edit">
-                                <div class=" edit">Edit&nbsp;&nbsp;<span class="glyphicon glyphicon-edit"></span></div>
-                            </a>
-                
-            </div>
-            <hr>
-            <div class="stats">
-                <div class="stat-overlay">
-                    <div class="course-stats">
-                        <div class="logo">
-                            <img src="/resource/course/java.svg" width="100px" height="100px">
-                        </div>
-                    </div>
-                </div>
-                <div class="course-stats">
-                    <div class="logo">
-                        <img src="/resource/course/py.png" width="100px" height="100px">
-                    </div>
-                </div>
-                 <div class="course-stats">
-                    <div class="logo">
-                        <img src="/resource/course/cpp.svg" width="100px" height="100px">
-                    </div>
-                </div>
-                <div class="course-stats">
-                    <div class="logo">
-                        <img src="/resource/course/git.png" width="100px" height="100px">
-                    </div>
-                </div>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+	    <div>
+		    <h2>Submissions</h2>
+	    	    <hr>
+		    <div>
+			<div style="border-radius: 5px; border: 2px solid #3b4453; height: 175px; width: 100%;" class="container">
+				<h3>You don't have any submissions yet.</h3>
+			</div>
+		    </div>
+		    <h2>Your Courses</h2>
+		    <hr>
+		    <div class="row">
+			    <a href="/landing/java"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+				<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="80px">
+				<p style="color: green; padding-top: 10px;">Freemium</p>
+		            </div></a>
+			    <a href="#paymentman" data-toggle="collapse"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+			        <span class="glyphicon glyphicon-plus" style="font-size: 400%;"></span>
+			    </div></a>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+		    </div>
+	    </div><hr>
+	    <div id="paymentman" class="collapse">
+	    	<center>
+                    <div class="row">
+			    <a><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+				<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="80px">
+				<center><p style="color: green; padding-top: 10px;">$45</p></center>
+		            </div></a>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
+		    </div>
+		</center>
 	    </div>
-
-<form id="payment-form" action="/checkouts" method="post">
-  <section>
-    <label for="amount"><span class="input-label">Amount</span>
-      <div class="input-wrapper amount-wrapper">
-        <input id="amount" name="amount" type="tel" min="1" value="10"/>
-      </div>
-    </label>
-    <div class="bt-drop-in-wrapper">
-      <div id="bt-dropin"></div>
+	    <!--
+            <div id="paymentman" class="collapse">
+                <center>
+                    <form id="payment-form" action="/checkouts" method="post">
+                        <section>
+                            <label for="amount"><span class="input-label">Amount</span>
+                                <div class="input-wrapper amount-wrapper">
+                                    <input id="amount" name="amount" type="tel" min="1" value="10" class="form-control" />
+                                </div>
+                            </label>
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
+                            </div>
+                        </section>
+                        <input id="nonce" type="hidden" name="payment_method_nonce" />
+                        <button class="btn btn-lg" type="submit"><span>Pay</span></button>
+                    </form>
+                </center>
+            </div>
+        </div>
     </div>
-  </section>
-  <input id="nonce" type="hidden" name="payment_method_nonce"/>
-  <button class="button" type="submit"><span>Test Transaction</span></button>
-</form>
+    <script src="https://js.braintreegateway.com/web/dropin/1.9.2/js/dropin.min.js"></script>
+    -->
+    <!--
+    <script>
+        var form = document.querySelector('#payment-form');
+        var token = '{{user.clientToken}}';
 
-<script src="https://js.braintreegateway.com/web/dropin/1.9.2/js/dropin.min.js"></script>
+        braintree.dropin.create({
+            authorization: token,
+            container: '#bt-dropin',
+            paypal: {
+                flow: 'vault'
+            }
+        }, function(createErr, instance) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
 
-<script>
-    var form = document.querySelector('#payment-form');
-    var token = '{{user.clientToken}}';
+                instance.requestPaymentMethod(function(err, payload) {
+                    if (err) {
+                        console.log('Error', err);
+                        return;
+                    }
 
-    braintree.dropin.create({
-      authorization: token,
-      container: '#bt-dropin',
-      paypal: {
-        flow: 'vault'
-      }
-    }, function (createErr, instance) {
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        instance.requestPaymentMethod(function (err, payload) {
-          if (err) {
-            console.log('Error', err);
-            return;
-          }
-
-          // Add the nonce to the form and submit
-          document.querySelector('#nonce').value = payload.nonce;
-          form.submit();
+                    // Add the nonce to the form and submit
+                    document.querySelector('#nonce').value = payload.nonce;
+                    form.submit();
+                });
+            });
         });
-      });
-    });</script>
+    </script>
+    -->
 
-<script>
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-        
-        // Close the dropdown if th`e user clicks outside of it
-        window.onclick = function(e) {
-          if (!e.target.matches('.plunker-profile')) {
-            var myDropdown = document.getElementById("myDropdown");
-              if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-              }
-          }
-        }
-        </script>
-            <!--<br><br><br><br><br><br><br><br><br><br><br><br>-->
-   <!--
-       	    <footer>
-            <h5> <b>We are in beta! We would love to hear your feedback.</b></h5>
-        </footer> 
-   -->
-    </body>
-    
-</html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
+<script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="#00FF00" bolt-logo="<image path>"></script>    
+   

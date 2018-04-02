@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "angular-borderlayout": "github:souparno/angular-borderlayout",
-    "bell": "github:satnam-sandhu/bell",
+    "bell": "github:harnam/bell",
     "boom": "~2.2.2",
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
