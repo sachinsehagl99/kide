@@ -12,7 +12,8 @@ var newSchema = new Schema({
   'name': { type: String },
   'email': { type: String },
   'password': {type: String },
-  'pro_pic' : { type: String }
+  'pro_pic' : { type: String },
+  'java' : { type: Boolean }
 },{collection : 'Users'});
 
 newSchema.pre('save', function(next){

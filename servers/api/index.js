@@ -115,6 +115,7 @@ exports.register = function(server, options, next) {
 		var name = request.payload.name;
 		var email = request.payload.email;
 		var pro_pic = request.payload.pro_pic;
+		var java = request.payload.java;
 
                 models.Users.find({'email': email}, function (err, user) {
 		  if(err) return reply(err);
@@ -123,7 +124,8 @@ exports.register = function(server, options, next) {
 		     name : name,
 		     email : email,
 		     [ser_id] : id,
-		     pro_pic : pro_pic
+		     pro_pic : pro_pic,
+		     java: java
 		   });
 
 		   User.save(function (err,user){
@@ -133,6 +135,15 @@ exports.register = function(server, options, next) {
                 });
 	}
   });
+
+  server.route({
+  	method: 'POST',
+	path: '/purchase',
+	handler: function(request, reply){
+		console.log(request.payload);
+	}
+  });
+
   return next();
 };
 

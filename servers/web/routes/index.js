@@ -59,6 +59,10 @@ module.exports = function(options) {
                 config: this.local,
                 css: 'top'
             };
+
+	    if(request.auth.credentials.profile.java == false)
+		    return reply.redirect('/id/profile');
+
             var server = this.config.server;
             Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
                 var data = JSON.parse(data);
@@ -260,7 +264,8 @@ module.exports = function(options) {
                     [ser_id]: cred.profile.id,
                     name: cred.profile.displayName,
                     email: cred.profile.email,
-                    pro_pic: cred.profile.photo
+                    pro_pic: cred.profile.photo,
+		    java: false
 
                 };
 
@@ -313,41 +318,11 @@ module.exports = function(options) {
         }
 
     }, {
-        method: 'GET',
-        path: '/make-payment',
-        handler: function(request, reply) {
-            var param = {
-                billing_cust_address: 'Bangalore',
-                billing_cust_name: 'Nitish Kumar'
-            }; //It would be better to receive these values from the request
-
-            ccavenue.setOtherParams(param); //Set Customer Info
-            ccavenue.setOrderAmount("100");
-            ccavenue.setOrderId("8981455644"); //To be generated
-            ccavenue.makePayment(reply);
-        }
-
-    }, {
-        method: 'POST',
-        path: '/redirect-link',
-        handler: function(request, reply) {
-            var data = ccavenue.paymentRedirect(request); //It will get response from ccavenue payment.
-
-            if (data.isCheckSumValid == true && data.AuthDesc == 'Y') {
-                // Success
-                // Your code
-		console.log("Success");
-            } else if (data.isCheckSumValid == true && data.AuthDesc == 'N') {
-                // Unuccessful
-                // Your code
-            } else if (data.isCheckSumValid == true && data.AuthDesc == 'B') {
-                // Batch processing mode
-                // Your code
-            } else {
-                // Illegal access
-                // Your code
-            }
-        }
+    	method: 'GET',
+	path: '/payment/success',
+	handler: function(request, reply){
+		reply(request);
+	}
     }];
 
     return routes;
