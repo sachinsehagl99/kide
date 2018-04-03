@@ -381,8 +381,8 @@ module.exports = function(options) {
                 phone: "",
                 lastname: "",
                 firstname: user.name,
-                surl: "http://localhost:8080/success/java",
-                furl: "http://localhost:8080/fail/java"
+                surl: "http://kitcode.io/success/java",
+                furl: "http://kitcode.io/fail/java"
             };
             payumoney.makePayment(paymentData, function(err, response) {
                 if (err) {
