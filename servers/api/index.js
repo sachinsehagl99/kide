@@ -140,7 +140,23 @@ exports.register = function(server, options, next) {
   	method: 'POST',
 	path: '/purchase',
 	handler: function(request, reply){
-		console.log(request.payload);
+		console.log("me api and me update");
+		var data = request.payload;
+		models.Users.findOneAndUpdate({_id: data.id}, {$set: {java: true}}, {new: true}, function(err, doc){
+			if(err) throw err;
+			else return reply(doc);
+		})
+	}
+  });
+
+  server.route({
+  	method: 'POST',
+	path: '/course/validation',
+	handler: function(request, reply){
+		var email = request.payload.email;
+		models.Users.find({ 'email' : email}, function(err, user){
+			return reply(user);
+		});
 	}
   });
 

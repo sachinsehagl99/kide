@@ -27,12 +27,15 @@
 		    <h2>Your Courses</h2>
 		    <hr>
 		    <div class="row">
-			    <a href="/landing/java"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
-				<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="80px">
-				<p style="color: green; padding-top: 10px;">Freemium</p>
-		            </div></a>
+			    <a href="/landing/java">
+				    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
+					<img src="/images/java_logo.svg" height="80px">
+					<div class='pm-button'><a href='/purchase/java'><img src='https://www.payumoney.com/media/images/payby_payumoney/new_buttons/11.png' /></a></div>  
+				    </div>
+			    </a>
 			    <a href="#paymentman" data-toggle="collapse"><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
 			        <span class="glyphicon glyphicon-plus" style="font-size: 400%;"></span>
+				<p style="color: green; padding-top: 10px;">Add More</p>
 			    </div></a>
 			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
 			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
@@ -44,8 +47,7 @@
 	    	<center>
                     <div class="row">
 			    <a><div class="col-lg-2 col-md-2 col-sm-4 col-xs-6 img-round">
-				<img src="https://d1eq8vvyuam4eq.cloudfront.net/tutorials/learn-java/svg/java_logo" height="80px">
-				<center><p style="color: green; padding-top: 10px;">$45</p></center>
+				<img src="/images/java_logo.svg" height="80px">
 		            </div></a>
 			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
 			    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"></div>
@@ -55,20 +57,6 @@
 		    </div>
 		</center>
 	    </div>
-	    <!--
-            <div id="paymentman" class="collapse">
-                <center>
-                    <form id="payment-form" action="/checkouts" method="post">
-                        <section>
-                            <label for="amount"><span class="input-label">Amount</span>
-                                <div class="input-wrapper amount-wrapper">
-                                    <input id="amount" name="amount" type="tel" min="1" value="10" class="form-control" />
-                                </div>
-                            </label>
-                            <div class="bt-drop-in-wrapper">
-                                <div id="bt-dropin"></div>
-                            </div>
-                        </section>
                         <input id="nonce" type="hidden" name="payment_method_nonce" />
                         <button class="btn btn-lg" type="submit"><span>Pay</span></button>
                     </form>
@@ -76,38 +64,5 @@
             </div>
         </div>
     </div>
-    <script src="https://js.braintreegateway.com/web/dropin/1.9.2/js/dropin.min.js"></script>
-    -->
-    <!--
-    <script>
-        var form = document.querySelector('#payment-form');
-        var token = '{{user.clientToken}}';
 
-        braintree.dropin.create({
-            authorization: token,
-            container: '#bt-dropin',
-            paypal: {
-                flow: 'vault'
-            }
-        }, function(createErr, instance) {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
 
-                instance.requestPaymentMethod(function(err, payload) {
-                    if (err) {
-                        console.log('Error', err);
-                        return;
-                    }
-
-                    // Add the nonce to the form and submit
-                    document.querySelector('#nonce').value = payload.nonce;
-                    form.submit();
-                });
-            });
-        });
-    </script>
-    -->
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" >
-<script id="bolt" src="https://sboxcheckout-static.citruspay.com/bolt/run/bolt.min.js" bolt-color="#00FF00" bolt-logo="<image path>"></script>    
-   

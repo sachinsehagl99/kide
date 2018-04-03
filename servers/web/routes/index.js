@@ -2,8 +2,10 @@ var Request = require("request");
 var handlebars = require('handlebars');
 var When = require("when");
 var Path = require("path");
-
-
+var txnId = require('txnid');
+var payumoney = require('payumoney-node');
+payumoney.setKeys('lzXpTW2l', 'GwfV7m3KS0', 'BDdURBMX5oPTSlGLnaqlxrY8OrzgY5mFTCjNXwWAri4=');
+payumoney.isProdMode(true);
 
 handlebars.registerHelper('json', function(context) {
     var con = JSON.stringify(context);
@@ -48,7 +50,7 @@ module.exports = function(options) {
             },
             plugins: {
                 'hapi-auth-cookie': {
-                    redirectTo: false
+                    redirectTo: '/'
                 }
             }
 
@@ -59,36 +61,62 @@ module.exports = function(options) {
                 config: this.local,
                 css: 'top'
             };
+            
+	    if (request.query.status == 'new') {
+                var server = this.config.server;
+                console.log(request.query);
+                var payload = request.auth.credentials.profile;
+                var url = "http://" + server.api.host + ":" + server.api.port + "/course/validation";
+                Request.post({
+                    url: url,
+                    form: payload
+                }, function(err, httpResponse, body) {
+                    var profile = (JSON.parse(body))[0];
+                    profile.verified = true;
+                    request.cookieAuth.clear();
+                    request.cookieAuth.set({
+                        profile
+                    });
+                    if (request.auth.credentials.profile.java == false) {
+                        return reply.redirect('/id/profile');
+                    } else {
+		    	loadPage();
+		    }
 
-	    if(request.auth.credentials.profile.java == false)
-		    return reply.redirect('/id/profile');
+                })
+            } else {
+		loadPage();
+            }
 
-            var server = this.config.server;
-            Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
-                var data = JSON.parse(data);
-                var promisify = function(key) {
-                    return new Promise(function(resolve, reject) {
-                        Request.get("http://" + server.api.host + ":" + server.api.port + "/handshake", function(err, res, token) {
-                            data[key].plunkId = token;
-                            resolve();
+            function loadPage(){
+                var server = options.config.server;
+                Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
+                    var data = JSON.parse(data);
+                    var promisify = function(key) {
+                        return new Promise(function(resolve, reject) {
+                            Request.get("http://" + server.api.host + ":" + server.api.port + "/handshake", function(err, res, token) {
+                                data[key].plunkId = token;
+                                resolve();
+                            });
                         });
-                    });
-                };
-                var promises = [];
-                for (var key in data) {
-                    promises.push(promisify(key));
-                }
-                Promise.all(promises).then(function() {
-                    context.body = {
-                        plunk: data
                     };
-                    reply.view("home", context, {
-                        layout: "landing"
+                    var promises = [];
+                    for (var key in data) {
+                        promises.push(promisify(key));
+                    }
+                    Promise.all(promises).then(function() {
+                        context.body = {
+                            plunk: data
+                        };
+                        reply.view("home", context, {
+                            layout: "landing"
+                        });
+                    }).catch(function(err) {
+                        console.log(err);
                     });
-                }).catch(function(err) {
-                    console.log(err);
                 });
-            });
+
+            }
         }
 
     }, {
@@ -154,17 +182,6 @@ module.exports = function(options) {
             }, function(err, httpResponse, body) {
                 reply(body);
             });
-        }
-    }, {
-        method: 'GET',
-        path: '/login',
-        config: {
-            handler: function(request, reply) {
-                var context = {};
-                reply.view("login", context, {
-                    layout: "landing"
-                });
-            }
         }
     }, {
         method: 'GET',
@@ -265,7 +282,7 @@ module.exports = function(options) {
                     name: cred.profile.displayName,
                     email: cred.profile.email,
                     pro_pic: cred.profile.photo,
-		    java: false
+                    java: false
 
                 };
 
@@ -280,6 +297,7 @@ module.exports = function(options) {
                     request.cookieAuth.set({
                         profile
                     });
+		    console.log(profile);
                     return reply.view("auth/complete.html", {
                         payload: "auth." + Buffer(JSON.stringify({
                             status: "success"
@@ -299,6 +317,7 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
+		console.log(data);
             var data = request.auth.credentials.profile;
             reply(data);
         }
@@ -310,7 +329,7 @@ module.exports = function(options) {
             auth: {
                 strategy: 'session'
 
-            },
+            }
         },
         handler: function(request, reply) {
             request.cookieAuth.clear();
@@ -318,11 +337,99 @@ module.exports = function(options) {
         }
 
     }, {
-    	method: 'GET',
-	path: '/payment/success',
-	handler: function(request, reply){
-		reply(request);
-	}
+        method: 'POST',
+        path: '/success/java',
+        handler: function(request, reply) {
+
+            var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/purchase";
+
+            payumoney.paymentResponse(request.payload.txnid, function(error, response) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    var paymentStatus = {
+                        id: response[0].merchantTransactionId,
+                        status: response[0].postBackParam.status
+                    }
+
+                    Request.post({
+                        url: url,
+                        form: paymentStatus
+                    }, function(err, httpresponse, body) {
+                        /*var profile = (JSON.parse(body))[0];
+                        profile.verified = true;
+                        request.cookieAuth.clear();
+                        request.cookieAuth.set({
+                            profile
+                        });
+*/
+                    });
+
+                }
+            });
+        }
+    }, {
+        method: 'GET',
+        path: '/purchase/java',
+        config: {
+            auth: {
+                strategy: 'session'
+            }
+        },
+        handler: function(request, reply) {
+            var user = request.auth.credentials.profile;
+            var paymentData = {
+                productinfo: "JAVA",
+                txnid: user._id,
+                amount: "2",
+                email: user.email,
+                phone: "",
+                lastname: "",
+                firstname: user.name,
+                surl: "http://localhost:8080/success/java",
+                furl: "http://localhost:8080/fail/java"
+            };
+            payumoney.makePayment(paymentData, function(err, response) {
+                if (err) {
+                    console.log(err)
+                } else {
+                    reply.redirect(response);
+                }
+            });
+
+        }
+    }, {
+        method: 'GET',
+        path: '/mock',
+        handler: function(request, reply) {
+            var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/purchase";
+            var txnid = "5ac20595374cdd7b3a8bbdf6";
+            payumoney.paymentResponse(txnid, function(error, response) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    var paymentStatus = {
+                        id: response[0].merchantTransactionId,
+                        status: response[0].postBackParam.status
+                    }
+
+                    Request.post({
+                        url: url,
+                        form: paymentStatus
+                    }, function(err, httpresponse, body) {
+                        //var profile = (JSON.parse(body))[0];
+                        //body.verified = true;
+                        //request.cookieAuth.clear();
+                        /*request.cookieAuth.set({
+                            body
+                        });*/
+                        console.log("====me mock===\n" + body + "\n==========");
+                        reply.redirect('/landing/java?status=new');
+                    });
+
+                }
+            });
+        }
     }];
 
     return routes;

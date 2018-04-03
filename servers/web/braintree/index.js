@@ -36,11 +36,11 @@ module.exports = function(plugin, options, next) {
             auth: {
                 strategy: 'session'
 
-            },
+            }
         },
         handler: function(request, reply) {
             var user = request.auth.credentials.profile;
-
+/*
             gateway.clientToken.generate({}, function(err, response) {
                 if (err) {
 		    console.log(err);
@@ -53,7 +53,14 @@ module.exports = function(plugin, options, next) {
 		    	layout: 'landing'
 		    });
                 }
-            });
+            });*/
+		reply.view('profile', {
+			css: 'top',
+                        user: user
+                    },{
+		    	layout: 'landing'
+		    });
+
         }
     });
 

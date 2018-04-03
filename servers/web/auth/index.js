@@ -19,8 +19,22 @@ module.exports = function(plugin, options, next) {
     plugin.auth.strategy('session', 'cookie', {
         password: 'hapissajafdhafdjahyfjkdgsyjasfydukfeyafdheavjdfaejmyfdja',
         cookie: 'sid-cuboid',
-        redirectTo: '/login',
-        isSecure: false,
+        redirectTo: false,
+        isSecure: true,
+	/*validateFunc: function (request, session, callback) {
+            cache.get(session.sid, (err, cached) => {
+
+                if (err) {
+                    return callback(err, false);
+                }
+
+                if (!cached) {
+                    return callback(null, false);
+                }
+
+                return callback(null, true, cached.account);
+            });
+        }*/
     });
 
 }
