@@ -119,7 +119,7 @@ exports.register = function(server, options, next) {
 
                 models.Users.find({'email': email}, function (err, user) {
 		  if(err) return reply(err);
-                  if (user.length != 0){ console.log(user); return reply(user) };
+                  if (user.length != 0){ return reply(user) };
                   var User = new models.Users({
 		     name : name,
 		     email : email,
@@ -140,7 +140,6 @@ exports.register = function(server, options, next) {
   	method: 'POST',
 	path: '/purchase',
 	handler: function(request, reply){
-		console.log("me api and me update");
 		var data = request.payload;
 		models.Users.findOneAndUpdate({_id: data.id}, {$set: {java: true}}, {new: true}, function(err, doc){
 			if(err) throw err;

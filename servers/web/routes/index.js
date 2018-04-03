@@ -61,34 +61,37 @@ module.exports = function(options) {
                 config: this.local,
                 css: 'top'
             };
-            
-	    if (request.query.status == 'new') {
-                var server = this.config.server;
-                console.log(request.query);
-                var payload = request.auth.credentials.profile;
-                var url = "http://" + server.api.host + ":" + server.api.port + "/course/validation";
-                Request.post({
-                    url: url,
-                    form: payload
-                }, function(err, httpResponse, body) {
-                    var profile = (JSON.parse(body))[0];
-                    profile.verified = true;
-                    request.cookieAuth.clear();
-                    request.cookieAuth.set({
-                        profile
-                    });
-                    if (request.auth.credentials.profile.java == false) {
-                        return reply.redirect('/id/profile');
-                    } else {
-		    	loadPage();
-		    }
 
-                })
+            if (request.auth.credentials.profile.java == false) {
+                if (request.query.status == 'new') {
+                    var server = this.config.server;
+                    var payload = request.auth.credentials.profile;
+                    var url = "http://" + server.api.host + ":" + server.api.port + "/course/validation";
+                    Request.post({
+                        url: url,
+                        form: payload
+                    }, function(err, httpResponse, body) {
+                        var profile = (JSON.parse(body))[0];
+                        profile.verified = true;
+                        request.cookieAuth.clear();
+                        request.cookieAuth.set({
+                            profile
+                        });
+
+                        loadPage();
+
+
+                    });
+                } else {
+                    return reply.redirect('/id/profile');
+
+                }
+
             } else {
-		loadPage();
+                loadPage();
             }
 
-            function loadPage(){
+            function loadPage() {
                 var server = options.config.server;
                 Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
                     var data = JSON.parse(data);
@@ -297,7 +300,6 @@ module.exports = function(options) {
                     request.cookieAuth.set({
                         profile
                     });
-		    console.log(profile);
                     return reply.view("auth/complete.html", {
                         payload: "auth." + Buffer(JSON.stringify({
                             status: "success"
@@ -317,7 +319,6 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
-		console.log(data);
             var data = request.auth.credentials.profile;
             reply(data);
         }
@@ -343,7 +344,7 @@ module.exports = function(options) {
 
             var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/purchase";
 
-            payumoney.paymentResponse(request.payload.txnid, function(error, response) {
+            payumoney.paymentResponse(txnid, function(error, response) {
                 if (error) {
                     console.log(error);
                 } else {
@@ -355,14 +356,8 @@ module.exports = function(options) {
                     Request.post({
                         url: url,
                         form: paymentStatus
-                    }, function(err, httpresponse, body) {
-                        /*var profile = (JSON.parse(body))[0];
-                        profile.verified = true;
-                        request.cookieAuth.clear();
-                        request.cookieAuth.set({
-                            profile
-                        });
-*/
+                    }, function(err, httpresponse, body) {                    
+    			    reply.redirect('/landing/java?status=new');
                     });
 
                 }
@@ -398,7 +393,7 @@ module.exports = function(options) {
             });
 
         }
-    }, {
+    }/*, {
         method: 'GET',
         path: '/mock',
         handler: function(request, reply) {
@@ -416,21 +411,14 @@ module.exports = function(options) {
                     Request.post({
                         url: url,
                         form: paymentStatus
-                    }, function(err, httpresponse, body) {
-                        //var profile = (JSON.parse(body))[0];
-                        //body.verified = true;
-                        //request.cookieAuth.clear();
-                        /*request.cookieAuth.set({
-                            body
-                        });*/
-                        console.log("====me mock===\n" + body + "\n==========");
-                        reply.redirect('/landing/java?status=new');
+                    }, function(err, httpresponse, body) {                    
+    			    reply.redirect('/landing/java?status=new');
                     });
 
                 }
             });
         }
-    }];
+    }*/];
 
     return routes;
 }

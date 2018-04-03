@@ -20,7 +20,7 @@ module.exports = function(plugin, options, next) {
         password: 'hapissajafdhafdjahyfjkdgsyjasfydukfeyafdheavjdfaejmyfdja',
         cookie: 'sid-cuboid',
         redirectTo: false,
-        isSecure: true,
+        isSecure: false,
 	/*validateFunc: function (request, session, callback) {
             cache.get(session.sid, (err, cached) => {
 
