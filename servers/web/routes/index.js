@@ -343,7 +343,7 @@ module.exports = function(options) {
         handler: function(request, reply) {
 
             var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/purchase";
-
+	    var txnid = request.payload.txnid;
             payumoney.paymentResponse(txnid, function(error, response) {
                 if (error) {
                     console.log(error);
@@ -381,7 +381,7 @@ module.exports = function(options) {
                 phone: "",
                 lastname: "",
                 firstname: user.name,
-                surl: "http://kitcode.io/success/java",
+                surl: "http://"+"/success/java",
                 furl: "http://kitcode.io/fail/java"
             };
             payumoney.makePayment(paymentData, function(err, response) {
