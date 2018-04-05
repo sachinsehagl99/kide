@@ -12,7 +12,7 @@ module.exports = angular.module("plunker.component.login", [
   require("../oauth").name,
 ])
 
-.factory("login", ["$modal", "oauth", "visitor", "register", function ($modal, oauth, visitor, register) {
+.factory("login", ["$modal", "oauth", "visitor", "register", "$window", function ($modal, oauth, visitor, register, $window) {
   var login = {};
   
   login.open = function () {
@@ -50,6 +50,7 @@ module.exports = angular.module("plunker.component.login", [
             
           }).catch(function (err) {
             $scope.status.error = err;
+	    $window.location.reload()
           }).finally(function () {
             $scope.status.authInProgress = false;
           });

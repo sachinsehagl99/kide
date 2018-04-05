@@ -7,7 +7,6 @@ var Path = require("path");
 
 handlebars.registerHelper('json', function(context) {
     var con = JSON.stringify(context);
-    console.log(con);
     return con;
 });
 
@@ -29,10 +28,36 @@ module.exports = function(options) {
             }
 
         },
+        handler: function(request, reply) {
+            reply.view('main', {
+                css: 'hidden'
+            }, {
+                layout: "landing"
+            });
+        }
+
+
+    }, {
+        method: 'GET',
+        path: '/landing/java',
+        config: {
+            auth: {
+                strategy: 'session',
+                mode: 'try'
+
+            },
+            plugins: {
+                'hapi-auth-cookie': {
+                    redirectTo: false
+                }
+            }
+
+        },
 
         handler: function(request, reply) {
             var context = {
-                config: this.local
+                config: this.local,
+                css: 'top'
             };
             var server = this.config.server;
             Request("http://" + server.api.host + ":" + server.api.port + "/course", function(err, res, data) {
@@ -239,29 +264,24 @@ module.exports = function(options) {
 
                 };
 
-                process.nextTick(function() {
-                    var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/users";
-                    Request.post({
-                        url: url,
-                        form: credentials
-                    }, function(err, httpResponse, body) {
-                        console.log(body);
+
+                var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/users";
+                Request.post({
+                    url: url,
+                    form: credentials
+                }, function(err, httpResponse, body) {
+                    var profile = (JSON.parse(body))[0];
+                    profile.verified = true;
+                    request.cookieAuth.set({
+                        profile
                     });
+                    return reply.view("auth/complete.html", {
+                        payload: "auth." + Buffer(JSON.stringify({
+                            status: "success"
+                        })).toString("base64")
+                    });
+
                 });
-
-                var profile = request.auth.credentials.profile;
-
-                request.cookieAuth.set({
-                    profile
-                });
-
-                return reply.view("auth/complete.html", {
-                    payload: "auth." + Buffer(JSON.stringify({
-                        status: "success"
-                    })).toString("base64")
-                });
-
-
             }
         }
     }, {
@@ -274,7 +294,7 @@ module.exports = function(options) {
             },
         },
         handler: function(request, reply) {
-            var data = request.auth.credentials.profile.raw;
+            var data = request.auth.credentials.profile;
             reply(data);
         }
 
@@ -294,18 +314,39 @@ module.exports = function(options) {
 
     }, {
         method: 'GET',
-        path: '/id/profile',
-        config: {
-            auth: {
-                strategy: 'session'
-
-            },
-        },
+        path: '/make-payment',
         handler: function(request, reply) {
-            var user = request.auth.credentials.profile.raw;
-            reply.view("profile", {
-                user: user
-            });
+            var param = {
+                billing_cust_address: 'Bangalore',
+                billing_cust_name: 'Nitish Kumar'
+            }; //It would be better to receive these values from the request
+
+            ccavenue.setOtherParams(param); //Set Customer Info
+            ccavenue.setOrderAmount("100");
+            ccavenue.setOrderId("8981455644"); //To be generated
+            ccavenue.makePayment(reply);
+        }
+
+    }, {
+        method: 'POST',
+        path: '/redirect-link',
+        handler: function(request, reply) {
+            var data = ccavenue.paymentRedirect(request); //It will get response from ccavenue payment.
+
+            if (data.isCheckSumValid == true && data.AuthDesc == 'Y') {
+                // Success
+                // Your code
+		console.log("Success");
+            } else if (data.isCheckSumValid == true && data.AuthDesc == 'N') {
+                // Unuccessful
+                // Your code
+            } else if (data.isCheckSumValid == true && data.AuthDesc == 'B') {
+                // Batch processing mode
+                // Your code
+            } else {
+                // Illegal access
+                // Your code
+            }
         }
     }];
 

@@ -4,9 +4,10 @@
   </div>
   <div ng-if="userPane.user.verified" class="pull-right dropdown">
                     <div class="plunker-profile"  onclick="myFunction()">
-			    <img src="{{userPane.user.picture.data.url}}" width="30px" height="30px" class="img-circle">
+			    <img src="{{userPane.user.pro_pic}}" width="30px" height="30px" class="img-circle">
                         <label class="profile-text">&nbsp;&nbsp;{{userPane.user.name}}&nbsp;<span class="caret"></span></label>
-                    </div>
+                    	<div class="overlay"></div>
+		    </div>
 
                     <div class="dropdown-content" id="myDropdown">
                         <a href="/" target="_self">Dashboard&nbsp;&nbsp;<span class="glyphicon glyphicon-dashboard"></span></a>

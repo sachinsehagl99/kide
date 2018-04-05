@@ -1,0 +1,42 @@
+<svg class="ssvg" style="float: left;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 1000 500" style="enable-background:new 0 0 1000 500;" xml:space="preserve">
+<style>
+.ssvg{
+        width: 174px;
+        height: 58px;
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes example {
+        from {background-color: #fafafa;}
+        to {background-color: #61d199;}
+    }
+
+    /* Standard syntax */
+    @keyframes example {
+        from {fill: #fafafa;}
+        to {fill: #61d199;}
+    }
+    
+    #underScore {
+        -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.5s; /* Safari 4.0 - 8.0 */
+        animation-name: example;
+        animation-duration: 0.5s;
+        animation-iteration-count:infinite;
+    }
+    
+    .st0{font-family: 'Roboto', sans-serif; fill: #61d199;}
+        .st1{font-size: 200px;}
+        .st2{font-family: 'Roboto', sans-serif; fill: black;}
+        .st3{fill: black;}
+
+
+</style>
+
+
+        <text id="cuboid" transform="matrix(1 0 0 1 37.3206 309.5646)"><tspan x="-10" y="0" class="st0 st1">&gt;</tspan><tspan x="138.7" y="0" class="st2 st1">cuboid.io</tspan></text>
+
+        <rect id="underScore" x="167.4" y="315.4" class="st3" width="106" height="16.6"/>
+    </svg>
+

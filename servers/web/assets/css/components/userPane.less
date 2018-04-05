@@ -43,11 +43,7 @@ textarea + .input-group-btn > .dropdown-toggle {
 		.show {
    			 display: block;
 		}
-		.img-circle{
-			&:hover{
-				cursor: pointer;
-			}
-		}
+		
     		.dropdown-content {
     			top: 60px;
 			right: 32px;
@@ -72,24 +68,32 @@ textarea + .input-group-btn > .dropdown-toggle {
     			}
   		}
 		.plunker-profile{
+			.overlay{
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+    				top: 0;
+    				left: 0;
+    				position: absolute;
+    				padding: 0;
+				&:hover{
+				   	cursor: pointer;	
+				}
+			}
     			padding: 9px;
  	  	 	&:hover{
     				background-color: #61d199;
-    				cursor: pointer;
-			}
-			.profile-text{
-    				color: white;
-    				float: right;
-    				font-size: 18px;
-				&:hover{
-					cursor: pointer;
-				}
-			}
-
+    				}
+			
 
 		}
 
 	}
 }
+.profile-text{
+    				color: white;
+    				float: right;
+    				font-size: 18px;
+				}
 
 
