@@ -376,8 +376,8 @@ module.exports = function(options) {
                     phone: "",
                     lastname: "",
                     firstname: user.name,
-                    surl: "http://" + options.config.server.web.host + ":" + options.config.server.web.port + "/success/java",
-                    furl: "http://" + options.config.server.web.host + ":" + options.config.server.web.port + "/fail/java"
+                    surl: "http://kitcode.io/success/java",
+                    furl: "http://kitcode.io/fail/java"
                 };
                 payumoney.makePayment(paymentData, function(err, response) {
                     if (err) {
