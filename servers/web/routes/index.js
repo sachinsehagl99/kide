@@ -343,7 +343,7 @@ module.exports = function(options) {
                         console.log(error);
                     } else {
                         var paymentStatus = {
-                            id: response[0].merchantTransactionId,
+                            id: response[0].merchantTransactionId.substring(5),
                             status: response[0].postBackParam.status
                         }
 
@@ -351,7 +351,6 @@ module.exports = function(options) {
                             url: url,
                             form: paymentStatus
                         }, function(err, httpresponse, body) {
-				console.log('aab main landing k paas jaega');
                             reply.redirect('/landing/java');
                         });
 
@@ -370,16 +369,18 @@ module.exports = function(options) {
                 var user = request.auth.credentials.profile;
                 var paymentData = {
                     productinfo: "JAVA",
-                    txnid: user._id,
+                    txnid: txnId.newTxnid(5)+user._id,
                     amount: "1",
                     email: user.email,
                     phone: "",
                     lastname: "",
                     firstname: user.name,
                     surl: "http://kitcode.io/success/java",
-                    furl: "http://kitcode.io/fail/java"
+                    furl: "http://kitcode.io/fail/java",
+		    curl: "http://kitcode.io/cancel/java"
                 };
-                payumoney.makePayment(paymentData, function(err, response) {
+                
+		payumoney.makePayment(paymentData, function(err, response) {
                     if (err) {
                         console.log(err)
                     } else {
@@ -388,41 +389,20 @@ module.exports = function(options) {
                 });
 
             }
-        }
-        , {
-                method: 'GET',
-                path: '/mock',
-                handler: function(request, reply) {
-                var url = "http://" + options.config.server.api.host + ":" + options.config.server.api.port + "/purchase";
-                var txnid = '5ac20595374cdd7b3a8bbdf6';
-                payumoney.paymentResponse(txnid, function(error, response) {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        var paymentStatus = {
-                            id: response[0].merchantTransactionId,
-                            status: response[0].postBackParam.status
-                        }
-
-                        Request.post({
-                            url: url,
-                            form: paymentStatus
-                        }, function(err, httpresponse, body) {
-				console.log('aab main landing k paas jaega');
-                            reply.redirect('/landing/java');
-                        });
-
-                    }
-                });
-                }
-            }
-        , {
+        } , {
             method: 'POST',
             path: '/fail/java',
             handler: function(request, reply) {
-                reply.redirect('/landing/java?status=new');
+                reply.redirect('/landing/java');
+            }
+        },{
+            method: 'POST',
+            path: '/cancle/java',
+            handler: function(request, reply) {
+                reply.redirect('/landing/java');
             }
         }
+
     ];
 
     return routes;
