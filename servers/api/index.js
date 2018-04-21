@@ -115,15 +115,17 @@ exports.register = function(server, options, next) {
 		var name = request.payload.name;
 		var email = request.payload.email;
 		var pro_pic = request.payload.pro_pic;
+		var java = request.payload.java;
 
                 models.Users.find({'email': email}, function (err, user) {
 		  if(err) return reply(err);
-                  if (user.length != 0){ console.log(user); return reply(user) };
+                  if (user.length != 0){ return reply(user) };
                   var User = new models.Users({
 		     name : name,
 		     email : email,
 		     [ser_id] : id,
-		     pro_pic : pro_pic
+		     pro_pic : pro_pic,
+		     java: java
 		   });
 
 		   User.save(function (err,user){
@@ -133,6 +135,30 @@ exports.register = function(server, options, next) {
                 });
 	}
   });
+
+  server.route({
+  	method: 'POST',
+	path: '/purchase',
+	handler: function(request, reply){
+		var data = request.payload;
+		models.Users.findOneAndUpdate({_id: data.id}, {$set: {java: true}}, {new: true}, function(err, doc){
+			if(err) throw err;
+			else return reply(doc);
+		})
+	}
+  });
+
+  server.route({
+  	method: 'POST',
+	path: '/course/validation',
+	handler: function(request, reply){
+		var email = request.payload.email;
+		models.Users.find({ 'email' : email}, function(err, user){
+			return reply(user);
+		});
+	}
+  });
+
   return next();
 };
 

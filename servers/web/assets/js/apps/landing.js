@@ -3,6 +3,7 @@ module.exports = angular.module('plunker', [
   "ui.bootstrap",
   require("../components/markdown").name,
   require("../components/userPane").name,
+  require("../components/main").name
 ])
 
 .config(["$tooltipProvider", function($tooltipProvider){
