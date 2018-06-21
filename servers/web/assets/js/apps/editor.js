@@ -39,9 +39,8 @@ module.exports = angular.module('plunker', [
     }])
 
 
-    .controller("EditorController", function($rootScope, $scope, $location, urlState, commander, project, notifier, config, socket) {
+    .controller("EditorController", function($rootScope, $scope, $location, urlState, commander, project, notifier, config) {
 
-        socket.emit('connected');
         urlState.addState({
             name: "plunkId",
             queue: "project",

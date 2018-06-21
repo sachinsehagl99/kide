@@ -7,44 +7,20 @@
     <title ng-bind="title">cuboid.io - Editor</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css" />
     <!-- inject:css -->
-    <link rel="stylesheet" href="/editor/editor-89599785.css">
+    <link rel="stylesheet" href="/editor/editor-45862d38.css">
     <!-- endinject -->
     <link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css">  
   </head>
 
   <body ng-controller="EditorController" plunker-overlay="editor">
-<nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container-fluid">
-	<div class="pull-left">
-	<a href="/" target="_self">
-       <img class="ssvg" src="/kitcode-white.gif" style="float: left;">
-	</a>
-	
-	<div id="beta" style="padding-top:20px;">
-		<a href="#"><input class="btn btn-side disabled" value="Beta"></a>
-	</div>	
-	     <div id="scuboid">
-			<input class="form-control" placeholder="Search cuboid.io">
-		</div>
-	</div>
-          <plunker-user-pane class="navbar-right toolbar-group"></plunker-user-pane>
-      </div>
-    </nav>
-
     <div fa-pane="container" keybindings >
-      <div fa-pane="toolbar" pane-anchor="north" pane-size="58px">
-        
-      </div>
-      <div class="hintContainer" fa-pane="sidebar" pane-anchor="west" pane-size="28%">
-        <plunker-previewer></plunker-previewer>
-      </div>
       <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
         <plunker-sidebar></plunker-sidebar>
       </div>
 
 	
-      <div fa-pane="workspace" pane-anchor="west" pane-size="60%">    
+      <div fa-pane="workspace" pane-anchor="west" pane-size="100%">    
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
@@ -68,24 +44,7 @@
 	  }
        });
   </script>
-  <script>
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-        
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(e) {
-          if (!e.target.matches('.overlay')) {
-            var myDropdown = document.getElementById("myDropdown");
-              if (myDropdown.classList.contains('show')) {
-                myDropdown.classList.remove('show');
-              }
-          }
-        }
-        </script>
-
+  
   </body>
 </html>
 
