@@ -2,6 +2,8 @@ var handlebars = require('handlebars');
 var Path = require("path");
 var fs = require('fs');
 
+var dirname = __dirname + '/../project/';
+
 handlebars.registerHelper('json', function(context) {
   var con = JSON.stringify(context);
   return con;
@@ -40,7 +42,7 @@ module.exports = function(options) {
     method: 'GET',
     path: '/getFiles',
     handler: function(request, reply) {
-      var dirname = __dirname + '/../project/';
+
       var files = [];
       fs.readdir(dirname, function(err, filenames) {
         if (err) {
@@ -62,8 +64,21 @@ module.exports = function(options) {
             };
             if (filename == 'index.js') file.active = true;
             files.push(file);
-            if (fn==filenames.length) reply(files);
+            if (fn == filenames.length) reply(files);
           });
+        });
+      });
+    }
+  }, {
+    method: 'POST',
+    path: '/saveFile',
+    handler: function(request, reply) {
+      var files = request.payload.files;
+      var fn = 0;
+      files.forEach(function(file) {
+        fs.writeFile(dirname + file.path, file.contents, function() {
+          fn++;
+          if (fn == files.length) reply("OK");
         });
       });
     }
