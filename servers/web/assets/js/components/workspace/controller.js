@@ -1,4 +1,4 @@
-module.exports = function($scope, $rootScope, commander, workspace, project) {
+module.exports = function($scope, $rootScope, $http, commander, workspace, project) {
   this.layout = workspace.layout;
   this.isActive = workspace.isActive.bind(workspace);
   this.activate = workspace.activate.bind(workspace);
@@ -9,40 +9,19 @@ module.exports = function($scope, $rootScope, commander, workspace, project) {
   function getPaneDef() {
     return workspace.panes[workspace.nextPaneNum - 1];
   }
-  var _console = [{
-    active: true,
-    contents: "something",
-    defination: "",
-    filename: "console",
-    type: "file"
 
-  }];
-
-  $scope.click = function(index) {
-    if (index == 0)
-      commander.execute("project.openTree", {
-        tree: $rootScope.selected
-      });
-    else
-      commander.execute("project.openTree", {
-        tree: _console
-      });
-  }
-  $rootScope.selected = [{
-    active: true,
-    contents: "something about node",
-    defination: "",
-    filename: "index.js",
-    type: "file"
-
-  }];
-  setTimeout(function() {
-    commander.execute("project.reset").then(function() {
-      commander.execute("project.openTree", {
-        tree: $rootScope.selected
+  function getFiles() {
+    $http.get('/getFiles').then(function(res) {
+      console.log(res.data);
+      commander.execute("project.reset").then(function() {
+        commander.execute("project.openTree", {
+          tree: res.data
+        });
       });
     });
-  }, 0);
+  }
+
+  getFiles();
 
   $scope.$watch(getPaneDef, function(paneDef) {
     var entries = project.entries[paneDef.id];
