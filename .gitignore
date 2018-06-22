@@ -3,6 +3,5 @@
 node_modules
 servers/run/runner/**/*.class
 servers/web/public/landing/landing.js
-
-
+/terminal/venv
 /nbproject/private/
