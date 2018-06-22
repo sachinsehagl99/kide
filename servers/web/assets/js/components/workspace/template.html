@@ -1,8 +1,19 @@
-<div class="plunker-workspace">
-  <div fa-pane>
-      <div class="pane-container" pane-min="80px" ng-class="{active: workspace.isActive([colIndex, rowIndex])}" fa-pane pane-anchor="south" pane-size="93%" style="bottom: 49.36px;" pane-handle="{{$index!=verticalSplits.length-1&&4}}px" pane-no-toggle="true" pane-order="{{rowIndex}}" ui-codemirror="entries.options" ng-model="entries.code">
-      </div>
-  </div>
+<div>
+    <div class="console-tab">
+        <ul class="nav nav-tabs">
+            <li style="cursor: pointer;" onclick="hide();"><a style="background-color: #555; color: white;">Editor</a></li>
+            <li style="cursor: pointer;" onclick="show();"><a style="background-color: #555; color: white;">Terminal</a></li>
+        </ul>
+    </div>
+
+
+    <div class="plunker-workspace">
+        <div fa-pane>
+            <div class="pane-container" pane-min="80px" ng-class="{active: workspace.isActive([colIndex, rowIndex])}"
+                fa-pane pane-anchor="south" pane-size="93%" style="bottom: 49.36px;"
+                pane-handle="{{$index!=verticalSplits.length-1&&4}}px" pane-no-toggle="true"
+                pane-order="{{rowIndex}}" ui-codemirror="entries.options" ng-model="entries.code">
+            </div>
+        </div>
+    </div>
 </div>
-
-

@@ -1,9 +1,0 @@
-{
-  "basepath": "models/migrations",
-  "connection": "mongodb://localhost:27017/cuboid",
-  "current_timestamp": 0,
-  "models": {
-    "Course" : "models/Course.js",
-    "CourseFile": "models/CourseFile.js"
-  }
-}

@@ -7,17 +7,6 @@ var manifest = {
         host: Config.server.web.host,
         port: Config.server.web.port,
         labels: ['web'],
-    }, {
-        host: Config.server.run.host,
-        port: Config.server.run.port,
-        labels: ['run'],
-        routes: {
-            cors: true
-        }
-    }, {
-        host: Config.server.api.host,
-        port: Config.server.api.port,
-        labels: ['api']
     }],
     registrations: [{
             plugin: {
@@ -28,27 +17,6 @@ var manifest = {
             },
             options: {
                 select: ['web']
-            }
-        }, {
-            plugin: {
-                register: './servers/run',
-                options: {
-                    config: Config
-                }
-            },
-            options: {
-                select: ['run']
-            }
-        },
-        {
-            plugin: {
-                register: './servers/api',
-                options: {
-                    config: Config
-                }
-            },
-            options: {
-                select: ['api']
             }
         }
     ]
