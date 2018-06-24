@@ -2,7 +2,7 @@ var handlebars = require('handlebars');
 var Path = require("path");
 var fs = require('fs');
 
-var dirname = __dirname + '/../project/';
+var dirname = '/project/';
 
 handlebars.registerHelper('json', function(context) {
   var con = JSON.stringify(context);
