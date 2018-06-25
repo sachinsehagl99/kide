@@ -4,7 +4,6 @@ var Config = require("./config.json");
 
 var manifest = {
     connections: [{
-        host: Config.server.web.host,
         port: Config.server.web.port,
         labels: ['web'],
     }],

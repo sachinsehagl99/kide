@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update \
-    && apt-get install -y curl vim python\
+    && apt-get install -y curl vim python git net-tools\
     && apt-get -y autoclean
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 4.2.2
@@ -12,6 +12,7 @@ RUN source $NVM_DIR/nvm.sh \
     && nvm use default
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+RUN npm install -g pm2
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python get-pip.py
 ADD . /kide
