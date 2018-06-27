@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update \
-    && apt-get install -y curl vim python git net-tools\
+    && apt-get install -y curl vim python git net-tools sed\
     && apt-get -y autoclean
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 4.2.2
