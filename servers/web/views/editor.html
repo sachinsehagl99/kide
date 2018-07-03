@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="vendor/codemirror/theme/zenburn.css"> 
    <style>
      .hide{
-       right:0;
-       width:88%;
-       position:fixed;
+       width:50%;
        height:100%;
-       top:48px;
      }
      .show {
        z-index: 99999999999;
+     }
+     body{
+       margin: 0;
      }
    </style>
   </head>
@@ -30,10 +30,10 @@
 	    <iframe src="http://qwertyuiop-terminal.kitcode.io" style="width: 100%;height:100%; " frameborder="0"></iframe>
 	  </div>
     <div fa-pane="container"  keybindings >
-      <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="12%">
+      <div class="sidebar" fa-pane="sidebar" pane-anchor="west" pane-size="20%">
         <plunker-sidebar></plunker-sidebar>
       </div>
-      <div fa-pane="workspace" pane-anchor="west" pane-size="100%">    
+      <div fa-pane="workspace" pane-anchor="west" pane-size="80%">    
         <plunker-workspace></plunker-workspace>
         <plunker-toolbar></plunker-toolbar> 
       </div>
